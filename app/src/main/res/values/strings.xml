@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">QuizMe_Layout</string>
+    <string name="textview">TextView</string>
+    <string name="willkommen">Willkommen</string>
+    <string name="quizme">QuizMe</string>
+    <string name="start">Start</string>
+    <string name="highscore_liste">Highscore Liste</string>
+    <string name="todo">TODO</string>
+    <string name="quiz">Quiz</string>
+    <string name="infotext">Infotext</string>
+    <string name="highscoreliste">Highscore Liste</string>
+</resources>
