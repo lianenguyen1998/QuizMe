@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".Startseite"
     android:background="@drawable/hintergrund">
 
 
@@ -55,8 +55,7 @@
         android:layout_centerInParent="true"
         android:layout_marginStart="326dp"
         android:layout_marginTop="519dp"
-        android:background="@color/teal_700"
-        android:drawableTint="@color/teal_700"
+        android:background="@color/white"
         android:fontFamily="sans-serif-light"
         android:text="@string/start"
         android:textColor="@color/black"
@@ -94,4 +93,5 @@
         android:contentDescription="@string/todo"
         android:padding="8dp"
         app:srcCompat="@android:drawable/ic_dialog_info" />
+
 </RelativeLayout>

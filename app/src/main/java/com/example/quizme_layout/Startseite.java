@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class MainActivity extends AppCompatActivity {
+public class Startseite extends AppCompatActivity {
 
     // ---- QuizButton
     private Button button;
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.startseite);
 
         button = (Button) findViewById(R.id.button);
         button2 = (Button) findViewById(R.id.button2);
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                openMainActivity2();
+                openQuiz();
             }
         });
 
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                openMainActivity3();
+                openHighscoreliste();
             }
         });
 
@@ -48,27 +48,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                openMainActivity4();
+                openInfotext();
 
             }
         });
     }
 
     // ---- bringt uns zum Quiz
-    public void openMainActivity2() {
-        Intent intent = new Intent(this, MainActivity2.class);
+    public void openQuiz() {
+        Intent intent = new Intent(this, Quiz.class);
         startActivity(intent);
     }
 
     // ---- bringt uns zur Highscoreliste
-    public void openMainActivity3() {
-        Intent intent = new Intent(this, MainActivity3.class);
+    public void openHighscoreliste() {
+        Intent intent = new Intent(this, Highscoreliste.class);
         startActivity(intent);
     }
 
     // ---- bringt uns zum Infotext
-     public void openMainActivity4() {
-        Intent intent = new Intent(this, MainActivity4.class);
+     public void openInfotext() {
+        Intent intent = new Intent(this, Infotext.class);
         startActivity(intent);
     }
 
