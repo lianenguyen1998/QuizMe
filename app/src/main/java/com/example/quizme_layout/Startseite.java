@@ -11,10 +11,10 @@ import android.widget.ImageButton;
 public class Startseite extends AppCompatActivity {
 
     // ---- QuizButton
-    private Button button;
+    private Button start;
 
     // ---- HighscorelisteButton
-    private Button button2;
+    private Button highscoreliste;
 
     // ---- InfotextButton
     private ImageButton imageButton;
@@ -24,11 +24,11 @@ public class Startseite extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.startseite);
 
-        button = (Button) findViewById(R.id.button);
-        button2 = (Button) findViewById(R.id.button2);
-        imageButton = (ImageButton) findViewById(R.id.imageButton);
+        start = (Button) findViewById(R.id.start);
+        highscoreliste = (Button) findViewById(R.id.highscoreliste);
+        imageButton = (ImageButton) findViewById(R.id.info);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -36,7 +36,7 @@ public class Startseite extends AppCompatActivity {
             }
         });
 
-        button2.setOnClickListener(new View.OnClickListener() {
+        highscoreliste.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
