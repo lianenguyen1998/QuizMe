@@ -1,4 +1,4 @@
-package com.example.quizme3;
+package com.example.Datenbank;
 
 public class QuizMeModel {
     public String fragen;

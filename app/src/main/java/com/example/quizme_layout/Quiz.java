@@ -9,11 +9,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.quizme3.DatabaseHelper;
-import com.example.quizme3.QuizContract;
-import com.example.quizme3.QuizMeModel;
+import com.example.Datenbank.DatabaseHelper;
+import com.example.Datenbank.QuizMeModel;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
