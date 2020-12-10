@@ -16,7 +16,7 @@ import com.example.quizme_layout.R;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-public class MainActivity extends AppCompatActivity {
+public class Timer extends AppCompatActivity {
 
     //für die Preference bei firstAppStart
     final String prefNameFirstStart = "firstAppStart";
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.quiz);
 
         //Timer zuweisen
-        textview_timer = findViewById(R.id.);
+        textview_timer = findViewById(R.id.zeit);
         //Timer Dauer
         /***long dauer = TimeUnit.MINUTES.toMillis(1);
 
