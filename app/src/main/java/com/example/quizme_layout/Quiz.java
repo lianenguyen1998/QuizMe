@@ -31,10 +31,9 @@ public class Quiz extends AppCompatActivity {
     private Button option2;
     private Button option3;
     private Button option4;
-    private Button currentButton;
     private Button quit;
 
-    private ColorStateList textColorDefault;
+    private ColorStateList ColorDefault;
 
     private List<QuizMeModel> fragenliste;
     private int questionCounter;
@@ -64,7 +63,6 @@ public class Quiz extends AppCompatActivity {
         option2 = findViewById(R.id.choice2);
         option3 = findViewById(R.id.choice3);
         option4 = findViewById(R.id.choice4);
-        textColorDefault = option1.getTextColors();
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         fragenliste = dbHelper.getAllQuestions();
@@ -86,10 +84,6 @@ public class Quiz extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), currentQuestion.getHinweis() ,Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
-
 
 
        /* quit.setOnClickListener(new View.OnClickListener() {
@@ -141,7 +135,7 @@ public class Quiz extends AppCompatActivity {
         //answered = true;
         int answerNr = 1;
 
-            if(option1.isSelected() || option2.isSelected() || option3.isSelected() || option4.isSelected()) {
+            if(option1.isPressed() || option2.isPressed() || option3.isPressed() || option4.isPressed()) {
 
                 //falsche antworten rot
                 option1.setBackgroundColor(Color.parseColor("#FF6347"));
