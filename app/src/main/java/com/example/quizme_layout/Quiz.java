@@ -22,7 +22,7 @@ import java.util.Locale;
 
 public class Quiz extends AppCompatActivity implements Countdown {
 
-    TextView level;
+    //TextView level;
     TextView leben;
     TextView zeit;
     TextView logo;
@@ -49,6 +49,9 @@ public class Quiz extends AppCompatActivity implements Countdown {
     private CountDownTimer countdown;
     private long verbleibendeZeit;
     private TextView textview_timer;
+
+    private int level;
+    static final int MAXLEVEL = 50;
     ///////////////////////////////////////////
 
     @Override
@@ -91,7 +94,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
             public void onClick(View v) {
                 //pop up hinweis
                 //erstmal ein Toast?
-                Toast.makeText(getApplicationContext(), currentQuestion.getHinweis() ,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), currentQuestion.getHinweis(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -113,18 +116,19 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     }
 
-    private  View.OnClickListener answer = new View.OnClickListener() {
+    private View.OnClickListener answer = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             checkAnswer();
             /////////////////////////////////////////////////////////////
             startCountdown();
             //////////////////////////////////////////////////////
+            countlevel();
 
         }
     };
 
-    private void showNextQuestion(){
+    private void showNextQuestion() {
 
 
         //option1.setTextColor(textColorDefault);
@@ -133,7 +137,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
         //option4.setTextColor(textColorDefault);
 
 
-        if(questionCounter < questionCountTotal){
+        if (questionCounter < questionCountTotal) {
             currentQuestion = fragenliste.get(questionCounter);
             frage.setText(currentQuestion.getFragen());
             option1.setText(currentQuestion.getOption1());
@@ -149,55 +153,69 @@ public class Quiz extends AppCompatActivity implements Countdown {
         }
     }
 
-    private void finishQuiz(){
+    private void finishQuiz() {
         finish();
     }
 
-    private void checkAnswer(){
-        //answered = true;
+    private boolean checkAnswer() {
+        //////////////////
+        boolean answered = false;
+        ///////////////////////////
         int answerNr = 1;
 
-            if(option1.isPressed() || option2.isPressed() || option3.isPressed() || option4.isPressed()) {
+        if (option1.isPressed() || option2.isPressed() || option3.isPressed() || option4.isPressed()) {
 
-                //falsche antworten rot
-                option1.setBackgroundColor(Color.parseColor("#FF6347"));
-                option2.setBackgroundColor(Color.parseColor("#FF6347"));
-                option3.setBackgroundColor(Color.parseColor("#FF6347"));
-                option4.setBackgroundColor(Color.parseColor("#FF6347"));
+            //falsche antworten rot
+            option1.setBackgroundColor(Color.parseColor("#FF6347"));
+            option2.setBackgroundColor(Color.parseColor("#FF6347"));
+            option3.setBackgroundColor(Color.parseColor("#FF6347"));
+            option4.setBackgroundColor(Color.parseColor("#FF6347"));
 
-                for(int i = 0; i < 5; i++) {
+            for (int i = 0; i < 5; i++) {
 
-                    //  int answerNr = btn_id[i];
+                //  int answerNr = btn_id[i];
 
-                    if (answerNr == currentQuestion.getAntwort_nr()) {
-                        //wenn Antwort richtig
-                        //Farbe des Buttons grün
-                        switch (currentQuestion.getAntwort_nr()) {
-                            case 1:
-                                option1.setBackgroundColor(Color.parseColor("#98FB98"));
-                                break;
-                            case 2:
-                                option2.setBackgroundColor(Color.parseColor("#98FB98"));
-                                break;
-                            case 3:
-                                option3.setBackgroundColor(Color.parseColor("#98FB98"));
-                                break;
-                            case 4:
-                                option4.setBackgroundColor(Color.parseColor("#98FB98"));
-                                break;
-                        }
-                        // -> Gewonnen Pop Up
-                    } else {
-                        answerNr++;
+                if (answerNr == currentQuestion.getAntwort_nr()) {
+                    //wenn Antwort richtig
+                    //Farbe des Buttons grün
+                    switch (currentQuestion.getAntwort_nr()) {
+                        case 1:
+                            option1.setBackgroundColor(Color.parseColor("#98FB98"));
+                            break;
+                        case 2:
+                            option2.setBackgroundColor(Color.parseColor("#98FB98"));
+                            break;
+                        case 3:
+                            option3.setBackgroundColor(Color.parseColor("#98FB98"));
+                            break;
+                        case 4:
+                            option4.setBackgroundColor(Color.parseColor("#98FB98"));
+                            break;
+
                     }
+                    // -> Gewonnen Pop Up
+                    /////////////////////////////////////////////
+                    answered= true;
+                    Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
+                    //////////////////////////////////////////////////
+                } else {
+                    answerNr++;
                 }
 
-                //finishQuiz();
-                        //leben weg
-                        //keine leben mehr -> Antwort anzeigen -> Quiz beenden
-                }
             }
-/////////////////////////////////////////////////////////////////////////
+
+            //finishQuiz();
+            //leben weg
+            //keine leben mehr -> Antwort anzeigen -> Quiz beenden
+        }
+        ///////////////////////////////
+        //Toast.makeText(getApplicationContext(), "falsch", Toast.LENGTH_LONG).show();
+        return answered;
+        //////////////////////////////////
+
+    }
+
+    /////////////////////////////////////////////////////////////////////////
     @Override
     public void startCountdown() {
         countdown = new CountDownTimer(COUNTDOWN_IN_MILLIS, 1000) {
@@ -209,7 +227,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
             @Override
             public void onFinish() {
-                verbleibendeZeit= 0;
+                verbleibendeZeit = 0;
                 updateCountdownText();
                 // checkAnswer();
                 //dort countdown.cancel();
@@ -219,24 +237,38 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     @Override
     public void updateCountdownText() {
-        int minuten = (int) (verbleibendeZeit/1000) / 60;
-        int sekunden = (int) (verbleibendeZeit/1000)%60;
+        int minuten = (int) (verbleibendeZeit / 1000) / 60;
+        int sekunden = (int) (verbleibendeZeit / 1000) % 60;
 
-        String zeitformatiert  = String.format(Locale.getDefault(), "\"%02d : %02d", minuten, sekunden);
+        String zeitformatiert = String.format(Locale.getDefault(), "\"%02d : %02d", minuten, sekunden);
         textview_timer.setText(zeitformatiert);
 
-        if(verbleibendeZeit < 11000)
-        {
+        if (verbleibendeZeit < 11000) {
             textview_timer.setTextColor(Color.RED);
-        }
-        else
-        {
+        } else {
             textview_timer.setTextColor(textColor_countdown);
         }
     }
-    }
+
 
    /* public void abbrechen(){
         Intent intent = new Intent(Quiz.this, Startseite.class);
         startActivity(intent);
     }*/
+
+    private void countlevel() {
+
+        if(level>=1 && level<=MAXLEVEL ) {
+            //wenn die Antwort richtig ist level hochzählen
+            if (this.checkAnswer() == true) {
+                this.level++;
+                //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
+            }
+            //wenn die Antwort falsch ist zur Highscoreliste
+            else {
+                //endeee
+                //Toast.makeText(getApplicationContext(), "falsch", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+}
