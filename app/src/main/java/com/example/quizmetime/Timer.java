@@ -7,14 +7,13 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.quizme_layout.R;
 
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
+
+import static com.example.quizme_layout.R.id.textview_timer;
 
 public class Timer extends AppCompatActivity {
 
@@ -49,7 +48,7 @@ public class Timer extends AppCompatActivity {
         setContentView(R.layout.quiz);
 
         //Timer zuweisen
-        textview_timer = findViewById(R.id.zeit);
+        textview_timer = findViewById(R.id.textview_timer);
         //Timer Dauer
         /***long dauer = TimeUnit.MINUTES.toMillis(1);
 

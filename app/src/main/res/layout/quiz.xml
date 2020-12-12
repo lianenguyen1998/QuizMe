@@ -9,17 +9,21 @@
 
 
     <TextView
-        android:id="@+id/level"
+        android:id="@+id/text_view_level"
+        android:text="Level"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="731dp"
         android:layout_marginTop="31dp"
-        android:text="Level" />
+        app:drawableTopCompat="@drawable/vector_level"
+         />
 
     <TextView
-        android:id="@+id/zeit"
+        android:id="@+id/textview_timer"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -27,7 +31,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="393dp"
         android:layout_marginTop="35dp"
-        android:text="Zeit" />
+        app:drawableTopCompat="@drawable/vector_timer"
+         />
 
     <Button
         android:id="@+id/hinweis"
@@ -41,6 +46,8 @@
         android:text="@string/hinweis"
         android:textColor="@color/black"
         android:textSize="18sp"
+
+        app:drawableTopCompat="@drawable/vector_hinweis"
         />
 
     <TextView
@@ -160,6 +167,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="31dp"
+        app:drawableTopCompat="@drawable/vector_leben"
         android:text="Leben" />
 
 </RelativeLayout>
