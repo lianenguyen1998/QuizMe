@@ -96,6 +96,7 @@ public class Quiz extends AppCompatActivity {
     }
 
     private  View.OnClickListener answer = new View.OnClickListener() {
+
         @Override
         public void onClick(View v) {
             checkAnswer();
