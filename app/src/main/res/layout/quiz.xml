@@ -157,6 +157,7 @@
         android:padding="8dp"
         android:text="abbrechen"
         android:textColor="@color/black"
+        app:drawableTopCompat="@drawable/vector_close"
         android:textSize="18sp" />
 
     <TextView
