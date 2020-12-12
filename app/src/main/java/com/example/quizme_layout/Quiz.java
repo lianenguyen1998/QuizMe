@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,11 +14,13 @@ import android.widget.Toast;
 
 import com.example.Datenbank.DatabaseHelper;
 import com.example.Datenbank.QuizMeModel;
+import com.example.quizmetime.Countdown;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
-public class Quiz extends AppCompatActivity {
+public class Quiz extends AppCompatActivity implements Countdown {
 
     TextView level;
     TextView leben;
@@ -40,6 +43,13 @@ public class Quiz extends AppCompatActivity {
     private int questionCountTotal;
     private boolean answered;
     private QuizMeModel currentQuestion;
+
+    /////////////////////////////////////////
+    private ColorStateList textColor_countdown;
+    private CountDownTimer countdown;
+    private long verbleibendeZeit;
+    private TextView textview_timer;
+    ///////////////////////////////////////////
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,12 +103,24 @@ public class Quiz extends AppCompatActivity {
             }
         });*/
 
+        ////////////////////////////////////////////////
+        //Timer zuweisen
+        textview_timer = findViewById(R.id.textview_timer);
+        //Timer Dauer
+
+        textColor_countdown = textview_timer.getTextColors();
+        //////////////////////////////////////////////////////////
+
     }
 
     private  View.OnClickListener answer = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             checkAnswer();
+            /////////////////////////////////////////////////////////////
+            startCountdown();
+            //////////////////////////////////////////////////////
+
         }
     };
 
@@ -175,9 +197,46 @@ public class Quiz extends AppCompatActivity {
                         //keine leben mehr -> Antwort anzeigen -> Quiz beenden
                 }
             }
+/////////////////////////////////////////////////////////////////////////
+    @Override
+    public void startCountdown() {
+        countdown = new CountDownTimer(COUNTDOWN_IN_MILLIS, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                verbleibendeZeit = millisUntilFinished;
+                updateCountdownText();
+            }
+
+            @Override
+            public void onFinish() {
+                verbleibendeZeit= 0;
+                updateCountdownText();
+                // checkAnswer();
+                //dort countdown.cancel();
+            }
+        }.start();
+    }
+
+    @Override
+    public void updateCountdownText() {
+        int minuten = (int) (verbleibendeZeit/1000) / 60;
+        int sekunden = (int) (verbleibendeZeit/1000)%60;
+
+        String zeitformatiert  = String.format(Locale.getDefault(), "\"%02d : %02d", minuten, sekunden);
+        textview_timer.setText(zeitformatiert);
+
+        if(verbleibendeZeit < 10000)
+        {
+            textview_timer.setTextColor(Color.RED);
+        }
+        else
+        {
+            textview_timer.setTextColor(textColor_countdown);
+        }
+    }
+    }
 
    /* public void abbrechen(){
         Intent intent = new Intent(Quiz.this, Startseite.class);
         startActivity(intent);
     }*/
-}

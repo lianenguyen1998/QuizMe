@@ -24,10 +24,8 @@ public class Timer extends AppCompatActivity {
     final String prefLevel = "currentLevel";
 
     int currentLevel;
-
     //richtet sich nach der Datenbank
     final int maxLevel = 50;
-
 
 
     TextView textview_timer;
@@ -40,9 +38,7 @@ public class Timer extends AppCompatActivity {
     private long verbleibendeZeit;
 
     @Override
-    /***
-     *
-     */
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz);
@@ -77,7 +73,7 @@ public class Timer extends AppCompatActivity {
 
     /***
      *
-     */
+
     public void loadLevel() {
         SharedPreferences preferencesLoad = getSharedPreferences(prefLevel, MODE_PRIVATE);
         //Level 1, wenn noch kein Int zurückgegeben wird
@@ -94,7 +90,7 @@ public class Timer extends AppCompatActivity {
 
     /***
      *
-     */
+
     public void safeLevel()
     {
         SharedPreferences preferencesLevel = getSharedPreferences(prefLevel, MODE_PRIVATE);
@@ -114,10 +110,7 @@ public class Timer extends AppCompatActivity {
 
     }
 
-    /***
-     *
-     * @return
-     */
+
     public boolean firstAppStart()
     {
         //Mode_private nur unsere App kann zugreifenauf die Preference
@@ -155,7 +148,7 @@ public class Timer extends AppCompatActivity {
         startCountdown();
     }
 
-    private void startCountdown()
+    public void startCountdown()
     {
         countdown = new CountDownTimer(verbleibendeZeit, 1000) {
             @Override
