@@ -226,7 +226,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
         String zeitformatiert  = String.format(Locale.getDefault(), "\"%02d : %02d", minuten, sekunden);
         textview_timer.setText(zeitformatiert);
 
-        if(verbleibendeZeit < 10000)
+        if(verbleibendeZeit < 11000)
         {
             textview_timer.setTextColor(Color.RED);
         }
