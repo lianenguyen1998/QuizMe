@@ -165,7 +165,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
                 option2.setBackgroundColor(Color.parseColor("#FF6347"));
                 option3.setBackgroundColor(Color.parseColor("#FF6347"));
                 option4.setBackgroundColor(Color.parseColor("#FF6347"));
-
+/*
                 for(int i = 0; i < 5; i++) {
 
                     //  int answerNr = btn_id[i];
@@ -195,7 +195,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
                 //finishQuiz();
                         //leben weg
-                        //keine leben mehr -> Antwort anzeigen -> Quiz beenden
+                        //keine leben mehr -> Antwort anzeigen -> Quiz beenden*/
                 }
             }
 /////////////////////////////////////////////////////////////////////////
