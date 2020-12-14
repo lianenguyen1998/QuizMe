@@ -116,8 +116,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     }
 
-    private  View.OnClickListener answer = new View.OnClickListener() {
-
     private View.OnClickListener answer = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -173,7 +171,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
             option3.setBackgroundColor(Color.parseColor("#FF6347"));
             option4.setBackgroundColor(Color.parseColor("#FF6347"));
 
-            for (int i = 0; i < 5; i++) {
+            //for (int i = 0; i < 5; i++) {
 
                 //  int answerNr = btn_id[i];
 
@@ -183,28 +181,36 @@ public class Quiz extends AppCompatActivity implements Countdown {
                     switch (currentQuestion.getAntwort_nr()) {
                         case 1:
                             option1.setBackgroundColor(Color.parseColor("#98FB98"));
+                            //answered= true;
+                            //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
                             break;
                         case 2:
                             option2.setBackgroundColor(Color.parseColor("#98FB98"));
+                            //answered= true;
+                            //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
                             break;
                         case 3:
                             option3.setBackgroundColor(Color.parseColor("#98FB98"));
+                            //answered= true;
+                            //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
                             break;
                         case 4:
                             option4.setBackgroundColor(Color.parseColor("#98FB98"));
+                            //answered= true;
+                            //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
                             break;
 
                     }
                     // -> Gewonnen Pop Up
                     /////////////////////////////////////////////
-                    answered= true;
-                    Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
+                    //answered= true;
+                    //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
                     //////////////////////////////////////////////////
                 } else {
                     answerNr++;
                 }
 
-            }
+            //}
 
             //finishQuiz();
             //leben weg
