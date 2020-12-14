@@ -28,8 +28,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
     TextView logo;
     private TextView frage;
     private Button hinweis;
-    //Button[] btn = new Button[4];
-    //int[] btn_id = { R.id.choice1, R.id.choice2, R.id.choice3, R.id.choice4 };
+    /*Button[] btn = new Button[4];
+    int[] btn_id = { R.id.choice1, R.id.choice2, R.id.choice3, R.id.choice4 };*/
     private Button option1;
     private Button option2;
     private Button option3;
@@ -62,20 +62,23 @@ public class Quiz extends AppCompatActivity implements Countdown {
         frage = findViewById(R.id.question);
         hinweis = findViewById(R.id.hinweis);
 
-        /*for (int i = 0; i < btn.length; i++) {
+        /*
+        for (int i = 0; i < btn.length; i++) {
             btn[i] = (Button) findViewById(btn_id[i]);
-            btn[i].setOnClickListener(new View.OnClickListener() {
-               @Override
-                public void onClick(View v) {
-                    checkAnswer();
-                }
-            });
+            btn[i].setOnClickListener(answer);
         }*/
+
 
         option1 = findViewById(R.id.choice1);
         option2 = findViewById(R.id.choice2);
         option3 = findViewById(R.id.choice3);
         option4 = findViewById(R.id.choice4);
+
+        option1.setOnClickListener(answer);
+        option2.setOnClickListener(answer);
+        option3.setOnClickListener(answer);
+        option4.setOnClickListener(answer);
+
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         fragenliste = dbHelper.getAllQuestions();
@@ -84,10 +87,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
         showNextQuestion();
 
-        option1.setOnClickListener(answer);
-        option2.setOnClickListener(answer);
-        option3.setOnClickListener(answer);
-        option4.setOnClickListener(answer);
+
+
 
         hinweis.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,10 +117,25 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     }
 
+
     private View.OnClickListener answer = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            checkAnswer();
+
+            switch (v.getId()){
+                case R.id.choice1:
+                    checkAnswer(1,option1);
+                    break;
+                case R.id.choice2:
+                    checkAnswer(2,option2);
+                    break;
+                case R.id.choice3:
+                    checkAnswer(3,option3);
+                    break;
+                case R.id.choice4:
+                    checkAnswer(4,option4);
+                    break;
+            }
             /////////////////////////////////////////////////////////////
             startCountdown();
             //////////////////////////////////////////////////////
@@ -129,13 +145,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
     };
 
     private void showNextQuestion() {
-
-
-        //option1.setTextColor(textColorDefault);
-        //option2.setTextColor(textColorDefault);
-        //option3.setTextColor(textColorDefault);
-        //option4.setTextColor(textColorDefault);
-
 
         if (questionCounter < questionCountTotal) {
             currentQuestion = fragenliste.get(questionCounter);
@@ -157,75 +166,45 @@ public class Quiz extends AppCompatActivity implements Countdown {
         finish();
     }
 
-    private boolean checkAnswer() {
+    private boolean checkAnswer(int buttoncount, Button btnAnswer) {
         //////////////////
-        boolean answered = false;
+        boolean answered = true;
         ///////////////////////////
-        int answerNr = 1;
 
-        if (option1.isPressed() || option2.isPressed() || option3.isPressed() || option4.isPressed()) {
+        if (btnAnswer.isPressed()) {
 
             //falsche antworten rot
-            option1.setBackgroundColor(Color.parseColor("#FF6347"));
-            option2.setBackgroundColor(Color.parseColor("#FF6347"));
-            option3.setBackgroundColor(Color.parseColor("#FF6347"));
-            option4.setBackgroundColor(Color.parseColor("#FF6347"));
 
-            //for (int i = 0; i < 5; i++) {
-
-                //  int answerNr = btn_id[i];
-
-                if (answerNr == currentQuestion.getAntwort_nr()) {
+                if (buttoncount == currentQuestion.getAntwort_nr()) {
                     //wenn Antwort richtig
                     //Farbe des Buttons grün
-                    switch (currentQuestion.getAntwort_nr()) {
-                        case 1:
-                            option1.setBackgroundColor(Color.parseColor("#98FB98"));
-                            //answered= true;
-                            //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
-                            break;
-                        case 2:
-                            option2.setBackgroundColor(Color.parseColor("#98FB98"));
-                            //answered= true;
-                            //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
-                            break;
-                        case 3:
-                            option3.setBackgroundColor(Color.parseColor("#98FB98"));
-                            //answered= true;
-                            //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
-                            break;
-                        case 4:
-                            option4.setBackgroundColor(Color.parseColor("#98FB98"));
-                            //answered= true;
-                            //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
-                            break;
+                    btnAnswer.setBackgroundColor(Color.parseColor("#98FB98"));
+                    answered = true;
+                    Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
 
-                    }
-                    // -> Gewonnen Pop Up
-                    /////////////////////////////////////////////
-                    //answered= true;
-                    //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
-                    //////////////////////////////////////////////////
+                    //nachdem man eine Antwort anklickt -> nicht mehr drücken
+                    //btn[0].setEnabled(false);
+                    //btn[1].setEnabled(false);
+                    //btn[2].setEnabled(false);
+                    //btn[3].setEnabled(false);
+
+                    // -> Gewonnen Pop Up -> next level
+
                 } else {
-                    answerNr++;
+                    btnAnswer.setBackgroundColor(Color.parseColor("#FF6347"));
+                    //leben weg -> falsche antwort
+                    //keine leben mehr -> Antwort anzeigen -> Quiz beenden
                 }
 
-            //}
 
-            //finishQuiz();
-            //leben weg
-            //keine leben mehr -> Antwort anzeigen -> Quiz beenden
         }
-        ///////////////////////////////
-        //Toast.makeText(getApplicationContext(), "falsch", Toast.LENGTH_LONG).show();
-        return answered;
-        //////////////////////////////////
 
+        return answered;
     }
 
     /////////////////////////////////////////////////////////////////////////
     @Override
-    public void startCountdown() {
+    public void startCountdown(){
         countdown = new CountDownTimer(COUNTDOWN_IN_MILLIS, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -268,7 +247,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
         if(level>=1 && level<=MAXLEVEL ) {
             //wenn die Antwort richtig ist level hochzählen
-            if (this.checkAnswer() == true) {
+            if (this.checkAnswer(1, option1)) {
                 this.level++;
                 //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
             }
