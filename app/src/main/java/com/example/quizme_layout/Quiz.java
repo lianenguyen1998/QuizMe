@@ -193,12 +193,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
                     answered = true;
                     Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
 
-                    //nachdem man eine Antwort anklickt -> nicht mehr drücken
-                    //btn[0].setEnabled(false);
-                    //btn[1].setEnabled(false);
-                    //btn[2].setEnabled(false);
-                    //btn[3].setEnabled(false);
-
                     // -> Gewonnen Pop Up -> next level
 
                 } else {
@@ -208,6 +202,11 @@ public class Quiz extends AppCompatActivity implements Countdown {
                     answered = false;
                 }
 
+            //nachdem man eine Antwort anklickt -> nicht mehr drücken
+            option1.setEnabled(false);
+            option2.setEnabled(false);
+            option3.setEnabled(false);
+            option4.setEnabled(false);
 
         }
 
