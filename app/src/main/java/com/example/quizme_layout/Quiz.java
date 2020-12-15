@@ -71,7 +71,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
     ///////////////////////////////////////////
 
     //Pop-up Window Variables
-
     private Dialog mydialog;
     private Button toNextLevel;
     private TextView congrats;
@@ -91,6 +90,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
         }*/
 
 
+        //Antwortbuttons
         option1 = findViewById(R.id.choice1);
         option2 = findViewById(R.id.choice2);
         option3 = findViewById(R.id.choice3);
@@ -101,14 +101,13 @@ public class Quiz extends AppCompatActivity implements Countdown {
         option3.setOnClickListener(answer);
         option4.setOnClickListener(answer);
 
-
+        //Datenbank initialisieren
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         fragenliste = dbHelper.getAllQuestions();
         questionCountTotal = fragenliste.size();
         Collections.shuffle(fragenliste);
 
         showNextQuestion();
-
 
         hinweis.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,7 +140,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
         //textview_leben1 =
         //////////////////////////////////////////////////////////
 
-
+        //popUp
         mydialog = new Dialog(Quiz.this);
     }
 
@@ -156,11 +155,9 @@ public class Quiz extends AppCompatActivity implements Countdown {
                     break;
                 case R.id.choice2:
                     checkAnswer(2,option2);
-
                     break;
                 case R.id.choice3:
                     checkAnswer(3,option3);
-
                     break;
                 case R.id.choice4:
                     checkAnswer(4,option4);
@@ -175,6 +172,9 @@ public class Quiz extends AppCompatActivity implements Countdown {
         }
     };
 
+    /**
+     * Nächste Frage
+     */
     private void showNextQuestion() {
 
         if (questionCounter < questionCountTotal) {
@@ -197,7 +197,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
         finish();
     }
 
-    private boolean checkAnswer(int buttoncount, Button btnAnswer) throws NullPointerException{
+    private boolean checkAnswer(int buttoncount, Button btnAnswer){
             //////////////////
             boolean answered = false;
             ///////////////////////////
@@ -205,31 +205,34 @@ public class Quiz extends AppCompatActivity implements Countdown {
             if (btnAnswer.isPressed()) {
 
                 //falsche antworten rot
+                if(currentQuestion != null) {
+                    if (buttoncount == currentQuestion.getAntwort_nr()) {
+                        //wenn Antwort richtig
+                        //Farbe des Buttons grün
+                        btnAnswer.setBackgroundColor(Color.parseColor("#98FB98"));
+                        answered = true;
 
-                if (buttoncount == currentQuestion.getAntwort_nr()) {
-                    //wenn Antwort richtig
-                    //Farbe des Buttons grün
-                    btnAnswer.setBackgroundColor(Color.parseColor("#98FB98"));
-                    answered = true;
-                    Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
-                    CreateNextLevelDialog();
+                        Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
 
-                    // -> Gewonnen Pop Up -> next level
+                        //Popup zum nächsten Level
+                        CreateNextLevelDialog();
 
-                } else {
-                    btnAnswer.setBackgroundColor(Color.parseColor("#FF6347"));
-                    //leben weg -> falsche antwort
-                    //keine leben mehr -> Antwort anzeigen -> Quiz beenden
-                    answered = false;
+                        // -> Gewonnen Pop Up -> next level
+
+                    } else {
+                        btnAnswer.setBackgroundColor(Color.parseColor("#FF6347"));
+                        //leben weg -> falsche antwort
+                        //keine leben mehr -> Antwort anzeigen -> Quiz beenden
+                        answered = false;
+                    }
+
+                    //nachdem man eine Antwort anklickt -> nicht mehr drücken
+                    option1.setEnabled(false);
+                    option2.setEnabled(false);
+                    option3.setEnabled(false);
+                    option4.setEnabled(false);
+
                 }
-
-                //nachdem man eine Antwort anklickt -> nicht mehr drücken
-                option1.setEnabled(false);
-                option2.setEnabled(false);
-                option3.setEnabled(false);
-                option4.setEnabled(false);
-
-
 
             }
 
@@ -322,6 +325,9 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     }
 
+    /**
+     * Popup to Next Level
+     */
     private void CreateNextLevelDialog(){
 
         mydialog.setContentView(R.layout.popupnextlevel);
@@ -329,19 +335,22 @@ public class Quiz extends AppCompatActivity implements Countdown {
         congrats = (TextView) mydialog.findViewById(R.id.congrats);
 
 
+        /**
+         * to Next Question
+         */
         toNextLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Next Level
+                //Next Level, Reload Page to get new Question
                 Intent i = new Intent(Quiz.this, Quiz.class);
                 finish();
                 overridePendingTransition(0, 0);
                 startActivity(i);
                 overridePendingTransition(0, 0);
                 mydialog.dismiss();
-                //showNextQuestion();
             }
         });
+        //show Popup
         mydialog.show();
 
     }
