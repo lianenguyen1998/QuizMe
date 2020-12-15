@@ -50,8 +50,15 @@ public class Quiz extends AppCompatActivity implements Countdown {
     private long verbleibendeZeit;
     private TextView textview_timer;
 
-    private int level;
+    private TextView textview_level;
+    private int level_count =1;
     static final int MAXLEVEL = 50;
+
+    private TextView textview_leben3;
+    private TextView textview_leben2;
+    private TextView textview_leben1;
+    //muss noch gesetzt werden
+    private int leben_count;
     ///////////////////////////////////////////
 
     @Override
@@ -111,6 +118,12 @@ public class Quiz extends AppCompatActivity implements Countdown {
         //Timer Dauer
 
         textColor_countdown = textview_timer.getTextColors();
+
+        textview_level= findViewById(R.id.text_view_level);
+
+        //textview_leben3 =
+        //textview_leben2 =
+        //textview_leben1 =
         //////////////////////////////////////////////////////////
 
     }
@@ -166,7 +179,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     private boolean checkAnswer(int buttoncount, Button btnAnswer) {
         //////////////////
-        boolean answered = false;
+        boolean answered= false;
         ///////////////////////////
 
         if (btnAnswer.isPressed()) {
@@ -180,20 +193,21 @@ public class Quiz extends AppCompatActivity implements Countdown {
                     answered = true;
                     Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
 
+                    //nachdem man eine Antwort anklickt -> nicht mehr drücken
+                    //btn[0].setEnabled(false);
+                    //btn[1].setEnabled(false);
+                    //btn[2].setEnabled(false);
+                    //btn[3].setEnabled(false);
+
                     // -> Gewonnen Pop Up -> next level
 
                 } else {
                     btnAnswer.setBackgroundColor(Color.parseColor("#FF6347"));
                     //leben weg -> falsche antwort
                     //keine leben mehr -> Antwort anzeigen -> Quiz beenden
+                    answered = false;
                 }
 
-
-            //nachdem man eine Antwort anklickt -> nicht mehr drücken
-            //btn[0].setEnabled(false);
-            //btn[1].setEnabled(false);
-            //btn[2].setEnabled(false);
-            //btn[3].setEnabled(false);
 
         }
 
@@ -242,18 +256,47 @@ public class Quiz extends AppCompatActivity implements Countdown {
     }*/
 
     private void countlevel() {
-
-        if(level>=1 && level<=MAXLEVEL ) {
+        if(level_count >=1 && level_count <=MAXLEVEL ) {
             //wenn die Antwort richtig ist level hochzählen
-            if (this.checkAnswer(1, option1) || this.checkAnswer(2,option2) || this.checkAnswer(3,option3) || this.checkAnswer(4,option4)) {
-                this.level++;
+            if (this.checkAnswer(1, option1)== true || this.checkAnswer(2, option2)== true||
+                    this.checkAnswer(3, option3)== true|| this.checkAnswer(4, option4)== true)  {
+                this.level_count++;
+
                 //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
+
             }
             //wenn die Antwort falsch ist zur Highscoreliste
             else {
+                //String s = String.valueOf(this.level);
                 //endeee
-                //Toast.makeText(getApplicationContext(), "falsch", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Leben abzug", Toast.LENGTH_LONG).show();
             }
+            //String s = String.valueOf(this.level);
+            //Toast.makeText(getApplicationContext(), s , Toast.LENGTH_LONG).show();
+            textview_level.setText("Level :"+ this.level_count);
         }
+    }
+
+    private void showLeben()
+    {
+        //3 Textviews sollen da sein
+        if(this.leben_count==3){
+            //nichts verstecken
+        }
+        if(this.leben_count==2){
+
+            //textview_leben3 verstecken
+        }
+        if(this.leben_count==1){
+            //textview_leben3 verstecken
+            //textview_leben2 verstecken
+        }
+        if(this.leben_count!=3 || this.leben_count!=2 || this.leben_count!=1 ){
+            //Problemm
+        }
+    }
+
+    private void countleben(){
+
     }
 }
