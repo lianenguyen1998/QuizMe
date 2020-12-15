@@ -1,14 +1,22 @@
 package com.example.quizme_layout;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +25,7 @@ import com.example.Datenbank.QuizMeModel;
 import com.example.quizmetime.Countdown;
 
 import java.util.Collections;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -60,6 +69,12 @@ public class Quiz extends AppCompatActivity implements Countdown {
     //muss noch gesetzt werden
     private int leben_count;
     ///////////////////////////////////////////
+
+    //Pop-up Window Variables
+
+    private Dialog mydialog;
+    private Button toNextLevel;
+    private TextView congrats;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +141,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
         //textview_leben1 =
         //////////////////////////////////////////////////////////
 
+
+        mydialog = new Dialog(Quiz.this);
     }
 
 
@@ -139,12 +156,15 @@ public class Quiz extends AppCompatActivity implements Countdown {
                     break;
                 case R.id.choice2:
                     checkAnswer(2,option2);
+
                     break;
                 case R.id.choice3:
                     checkAnswer(3,option3);
+
                     break;
                 case R.id.choice4:
                     checkAnswer(4,option4);
+
                     break;
             }
             /////////////////////////////////////////////////////////////
@@ -177,14 +197,14 @@ public class Quiz extends AppCompatActivity implements Countdown {
         finish();
     }
 
-    private boolean checkAnswer(int buttoncount, Button btnAnswer) {
-        //////////////////
-        boolean answered= false;
-        ///////////////////////////
+    private boolean checkAnswer(int buttoncount, Button btnAnswer) throws NullPointerException{
+            //////////////////
+            boolean answered = false;
+            ///////////////////////////
 
-        if (btnAnswer.isPressed()) {
+            if (btnAnswer.isPressed()) {
 
-            //falsche antworten rot
+                //falsche antworten rot
 
                 if (buttoncount == currentQuestion.getAntwort_nr()) {
                     //wenn Antwort richtig
@@ -192,6 +212,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
                     btnAnswer.setBackgroundColor(Color.parseColor("#98FB98"));
                     answered = true;
                     Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
+                    CreateNextLevelDialog();
 
                     // -> Gewonnen Pop Up -> next level
 
@@ -202,13 +223,15 @@ public class Quiz extends AppCompatActivity implements Countdown {
                     answered = false;
                 }
 
-            //nachdem man eine Antwort anklickt -> nicht mehr drücken
-            option1.setEnabled(false);
-            option2.setEnabled(false);
-            option3.setEnabled(false);
-            option4.setEnabled(false);
+                //nachdem man eine Antwort anklickt -> nicht mehr drücken
+                option1.setEnabled(false);
+                option2.setEnabled(false);
+                option3.setEnabled(false);
+                option4.setEnabled(false);
 
-        }
+
+
+            }
 
         return answered;
     }
@@ -296,6 +319,30 @@ public class Quiz extends AppCompatActivity implements Countdown {
     }
 
     private void countleben(){
+
+    }
+
+    private void CreateNextLevelDialog(){
+
+        mydialog.setContentView(R.layout.popupnextlevel);
+        toNextLevel = (Button) mydialog.findViewById(R.id.nextLevel);
+        congrats = (TextView) mydialog.findViewById(R.id.congrats);
+
+
+        toNextLevel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Next Level
+                Intent i = new Intent(Quiz.this, Quiz.class);
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(i);
+                overridePendingTransition(0, 0);
+                mydialog.dismiss();
+                //showNextQuestion();
+            }
+        });
+        mydialog.show();
 
     }
 }
