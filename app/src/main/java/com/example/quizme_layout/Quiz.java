@@ -88,8 +88,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
         showNextQuestion();
 
 
-
-
         hinweis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,7 +166,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     private boolean checkAnswer(int buttoncount, Button btnAnswer) {
         //////////////////
-        boolean answered = true;
+        boolean answered = false;
         ///////////////////////////
 
         if (btnAnswer.isPressed()) {
@@ -182,12 +180,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
                     answered = true;
                     Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
 
-                    //nachdem man eine Antwort anklickt -> nicht mehr drücken
-                    //btn[0].setEnabled(false);
-                    //btn[1].setEnabled(false);
-                    //btn[2].setEnabled(false);
-                    //btn[3].setEnabled(false);
-
                     // -> Gewonnen Pop Up -> next level
 
                 } else {
@@ -196,6 +188,12 @@ public class Quiz extends AppCompatActivity implements Countdown {
                     //keine leben mehr -> Antwort anzeigen -> Quiz beenden
                 }
 
+
+            //nachdem man eine Antwort anklickt -> nicht mehr drücken
+            //btn[0].setEnabled(false);
+            //btn[1].setEnabled(false);
+            //btn[2].setEnabled(false);
+            //btn[3].setEnabled(false);
 
         }
 
@@ -247,7 +245,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
         if(level>=1 && level<=MAXLEVEL ) {
             //wenn die Antwort richtig ist level hochzählen
-            if (this.checkAnswer(1, option1)) {
+            if (this.checkAnswer(1, option1) || this.checkAnswer(2,option2) || this.checkAnswer(3,option3) || this.checkAnswer(4,option4)) {
                 this.level++;
                 //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
             }
