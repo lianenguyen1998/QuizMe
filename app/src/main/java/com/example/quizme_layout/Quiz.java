@@ -259,7 +259,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
     private void countlevel() {
         if(level_count >=1 && level_count <=MAXLEVEL ) {
             //wenn die Antwort richtig ist level hochzählen
-            if (this.checkAnswer(1, option1)== true)  {
+            if (this.checkAnswer(1, option1)== true || this.checkAnswer(2, option2)== true||
+                    this.checkAnswer(3, option3)== true|| this.checkAnswer(4, option4)== true)  {
                 this.level_count++;
 
                 //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
@@ -273,7 +274,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
             }
             //String s = String.valueOf(this.level);
             //Toast.makeText(getApplicationContext(), s , Toast.LENGTH_LONG).show();
-            textview_level.setText("Level "+ this.level_count);
+            textview_level.setText("Level :"+ this.level_count);
         }
     }
 
