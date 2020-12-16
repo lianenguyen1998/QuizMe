@@ -1,5 +1,6 @@
 package com.example.quizme_layout;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -82,6 +83,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
         frage = findViewById(R.id.question);
         hinweis = findViewById(R.id.hinweis);
+        quit = findViewById(R.id.quit);
 
         /*
         for (int i = 0; i < btn.length; i++) {
@@ -119,12 +121,12 @@ public class Quiz extends AppCompatActivity implements Countdown {
         });
 
 
-       /* quit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //abbrechen();
-            }
-        });*/
+       quit.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               finishQuiz();
+           }
+       });
 
         ////////////////////////////////////////////////
         //Timer zuweisen
@@ -171,6 +173,12 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
         }
     };
+
+
+
+
+
+
 
     /**
      * Nächste Frage
@@ -273,12 +281,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
             textview_timer.setTextColor(textColor_countdown);
         }
     }
-
-
-   /* public void abbrechen(){
-        Intent intent = new Intent(Quiz.this, Startseite.class);
-        startActivity(intent);
-    }*/
 
     private void countlevel() {
         if(level_count >=1 && level_count <=MAXLEVEL ) {

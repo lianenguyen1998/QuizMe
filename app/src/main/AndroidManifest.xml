@@ -11,7 +11,8 @@
         android:theme="@style/Theme.QuizMe_Layout">
         <activity android:name=".Infotext"></activity>
         <activity android:name=".Highscoreliste" />
-        <activity android:name=".Quiz" />
+        <activity android:name=".Quiz"
+            android:parentActivityName=".Startseite"/>
         <activity android:name=".Startseite">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
