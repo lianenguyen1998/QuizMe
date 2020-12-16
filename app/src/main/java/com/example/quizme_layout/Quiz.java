@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -69,6 +70,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
     private TextView textview_leben1;
     //muss noch gesetzt werden
     private int leben_count;
+    final String prefNameFirstStart = "firstAppStart";
     ///////////////////////////////////////////
 
     //Pop-up Window Variables
@@ -272,7 +274,9 @@ public class Quiz extends AppCompatActivity implements Countdown {
         int minuten = (int) (verbleibendeZeit / 1000) / 60;
         int sekunden = (int) (verbleibendeZeit / 1000) % 60;
 
-        String zeitformatiert = String.format(Locale.getDefault(), "\"%02d : %02d", minuten, sekunden);
+       // String zeitformatiert = String.format(Locale.getDefault(), "\"%02d : %02d", minuten, sekunden);
+        String zeitformatiert = String.format(Locale.getDefault(), "%02d", sekunden);
+
         textview_timer.setText(zeitformatiert);
 
         if (verbleibendeZeit < 11000) {
@@ -355,5 +359,29 @@ public class Quiz extends AppCompatActivity implements Countdown {
         //show Popup
         mydialog.show();
 
+    }
+
+    ////////////////////////////////////////////////////////////////////
+    public boolean firstAppStart()
+    {
+        //Mode_private nur unsere App kann zugreifenauf die Preference
+        //bei public können auch andere Apps zugreifen
+        SharedPreferences preferences = getSharedPreferences(prefNameFirstStart, MODE_PRIVATE);
+
+        if(preferences.getBoolean(prefNameFirstStart, true))
+        {   //man möchte einen boolean haben, wenn in prefNameFirstStart kein boolean ist, soll true zurückgegeben
+
+            //um den boolean der Prefernce zu verändern
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean(prefNameFirstStart, false);
+            //damit die preference geändert wird
+            editor.commit();
+            ///startCountdown();
+            return true;
+        }
+        else
+        {
+            return false;       //die App wurde schon gestartet
+        }
     }
 }

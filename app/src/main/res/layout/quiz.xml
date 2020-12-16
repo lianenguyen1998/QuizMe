@@ -7,28 +7,74 @@
     tools:context=".Startseite"
     android:background="@drawable/hintergrund">
 
+    <TextView
+        android:id="@+id/textview_leben1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:gravity="top|right"
+        android:text=""
+        android:textSize="24sp"
+        app:drawableTopCompat="@drawable/vector_leben" />
+
+
+    <TextView
+        android:id="@+id/textview_leben2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:gravity="top|right"
+        android:text=""
+        android:textSize="24sp"
+        app:drawableTopCompat="@drawable/vector_leben" />
+
+    <TextView
+        android:id="@+id/textview_leben3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="95dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:gravity="top|right"
+        android:text=""
+        android:textSize="24sp"
+        app:drawableTopCompat="@drawable/vector_leben" />
 
     <TextView
         android:id="@+id/text_view_level"
-        android:text="Level: 1"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:drawableTopCompat="@drawable/vector_level"
-         />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:text="Level: 1"
+        android:textSize="24sp"
+        app:drawableTopCompat="@drawable/vector_level_neu" />
 
     <TextView
         android:id="@+id/textview_timer"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="393dp"
-        android:layout_marginTop="35dp"
-        app:drawableTopCompat="@drawable/vector_timer"
-         />
+        android:layout_marginTop="10dp"
+        android:gravity="center|top"
+        android:textSize="30sp"
+        android:text="30"
+        app:drawableTopCompat="@drawable/vector_timer" />
+
+    <TextView
+        android:id="@+id/textview_LebenCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="70dp"
+        android:text="Leben: 3"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/hinweis"
@@ -66,10 +112,9 @@
         android:id="@+id/question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:layout_above="@+id/hinweis"
-        android:layout_marginBottom="50dp"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="52dp"
         android:fontFamily="sans-serif-light"
         android:lineSpacingExtra="8sp"
         android:padding="8dp"
@@ -156,15 +201,5 @@
         app:drawableTopCompat="@drawable/vector_close"
         android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/textview_leben"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="31dp"
-        app:drawableTopCompat="@drawable/vector_leben"
-        android:text="3" />
 
 </RelativeLayout>
