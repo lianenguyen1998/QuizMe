@@ -114,6 +114,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
         if(currentQuestion == null)
             showNextQuestion();
 
+        Collections.shuffle(fragenliste);
+
         hinweis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -183,16 +185,9 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     private void showNextQuestion() {
 
-        List<QuizMeModel> seenQuestions = new ArrayList<>();
-        Collections.shuffle(fragenliste);
-
         //genutze Frage in Liste speichern
-        seenQuestions.add(currentQuestion);
-
         //Wenn Frage gleich einer Frage in der Liste ist, dann nächste Frage
-        if(seenQuestions.equals(currentQuestion)){
-            fragenliste.iterator().next();
-        }
+
 
         if (questionCounter < questionCountTotal) {
             currentQuestion = fragenliste.get(questionCounter);
@@ -204,13 +199,30 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
             questionCounter++;
             answered = false;
+            saveQuestion();
 
         } else {
 
             //Quiz beenden und Liste leeren
             finishQuiz();
-            seenQuestions.removeAll(fragenliste);
+
         }
+    }
+
+    private void saveQuestion(){
+
+        List<String> seenQuestions = new ArrayList<>();
+        if(currentQuestion != null)
+            seenQuestions.add(currentQuestion.getFragen());
+
+        if(questionCounter < questionCountTotal){
+            if(currentQuestion != null) {
+                if (seenQuestions.equals(currentQuestion.getFragen())) {
+                    fragenliste.iterator().next();
+                }
+            }
+        }
+
     }
 
     private void finishQuiz() {
