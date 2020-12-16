@@ -25,6 +25,7 @@ import com.example.Datenbank.DatabaseHelper;
 import com.example.Datenbank.QuizMeModel;
 import com.example.quizmetime.Countdown;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -107,7 +108,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         fragenliste = dbHelper.getAllQuestions();
         questionCountTotal = fragenliste.size();
-        Collections.shuffle(fragenliste);
 
         showNextQuestion();
 
@@ -147,6 +147,9 @@ public class Quiz extends AppCompatActivity implements Countdown {
     }
 
 
+    /**
+     * onClick für Antwortbutton
+     */
     private View.OnClickListener answer = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -175,15 +178,18 @@ public class Quiz extends AppCompatActivity implements Countdown {
     };
 
 
-
-
-
-
-
-    /**
-     * Nächste Frage
-     */
     private void showNextQuestion() {
+
+        List<QuizMeModel> seenQuestions = new ArrayList<>();
+        Collections.shuffle(fragenliste);
+
+        //genutze Frage in Liste speichern
+        seenQuestions.add(currentQuestion);
+
+        //Wenn Frage gleich einer Frage in der Liste ist, dann nächste Frage
+        if(seenQuestions.equals(currentQuestion)){
+            fragenliste.iterator().next();
+        }
 
         if (questionCounter < questionCountTotal) {
             currentQuestion = fragenliste.get(questionCounter);
@@ -197,7 +203,10 @@ public class Quiz extends AppCompatActivity implements Countdown {
             answered = false;
 
         } else {
+
+            //Quiz beenden und Liste leeren
             finishQuiz();
+            seenQuestions.removeAll(fragenliste);
         }
     }
 
