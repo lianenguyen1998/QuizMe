@@ -111,7 +111,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
         fragenliste = dbHelper.getAllQuestions();
         questionCountTotal = fragenliste.size();
 
-        showNextQuestion();
+        if(currentQuestion == null)
+            showNextQuestion();
 
         hinweis.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -349,19 +350,17 @@ public class Quiz extends AppCompatActivity implements Countdown {
         toNextLevel = (Button) mydialog.findViewById(R.id.nextLevel);
         congrats = (TextView) mydialog.findViewById(R.id.congrats);
 
-
-        /**
-         * to Next Question
-         */
         toNextLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Next Level, Reload Page to get new Question
-                Intent i = new Intent(Quiz.this, Quiz.class);
-                finish();
-                overridePendingTransition(0, 0);
-                startActivity(i);
-                overridePendingTransition(0, 0);
+                //nächste Frage anzeigen
+                showNextQuestion();
+
+                option1.setEnabled(true);
+                option2.setEnabled(true);
+                option3.setEnabled(true);
+                option4.setEnabled(true);
+
                 mydialog.dismiss();
             }
         });

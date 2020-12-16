@@ -114,6 +114,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/hinweis"
         android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="52dp"
         android:fontFamily="sans-serif-light"
         android:lineSpacingExtra="8sp"
