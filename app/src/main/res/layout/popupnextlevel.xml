@@ -12,19 +12,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:fontFamily="sans-serif"
+        android:fontFamily="@font/athiti"
         android:text="CONGRATULATIONS YOU DID IT!"
         android:textAlignment="center"
-        android:textSize="25sp" />
+        android:textSize="30sp" />
 
     <Button
-            android:id="@+id/nextLevel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginStart="50dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Next" />
+        android:id="@+id/nextLevel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/rounded_corners"
+        android:backgroundTint="#2E7D91"
+        android:fontFamily="@font/athiti"
+        android:text="Next" />
 
 </LinearLayout>

@@ -7,16 +7,36 @@
     tools:context=".Startseite"
     android:background="@drawable/hintergrund">
 
-
+    <!-- Infotext -->
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="572dp"
+        android:layout_marginEnd="325dp"
+        android:fontFamily="@font/athiti"
+        android:lineSpacingExtra="8sp"
+        android:padding="8dp"
+        android:text="Infotext"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="#505050"
+        android:textSize="36sp" />
+
+    <!-- Logo-Schriftzug -->
+    <TextView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="1088dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="1158dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/quizme"
         android:textAlignment="center"
@@ -24,22 +44,5 @@
         android:textColor="#505050"
         android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="541dp"
-        android:layout_marginEnd="313dp"
-        android:fontFamily="sans-serif-light"
-        android:lineSpacingExtra="8sp"
-        android:padding="8dp"
-        android:text="@string/infotext"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="#505050"
-        android:textSize="36sp" />
 
 </RelativeLayout>
