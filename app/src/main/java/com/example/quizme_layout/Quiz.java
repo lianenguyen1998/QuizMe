@@ -361,11 +361,12 @@ public class Quiz extends AppCompatActivity implements Countdown {
         mydialog.setContentView(R.layout.popupnextlevel);
         toNextLevel = (Button) mydialog.findViewById(R.id.nextLevel);
         congrats = (TextView) mydialog.findViewById(R.id.congrats);
-
+        mydialog.setCanceledOnTouchOutside(false);
         toNextLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //nächste Frage anzeigen
+
                 showNextQuestion();
 
                 option1.setEnabled(true);
