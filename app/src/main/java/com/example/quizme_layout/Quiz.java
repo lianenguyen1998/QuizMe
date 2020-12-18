@@ -3,6 +3,7 @@ package com.example.quizme_layout;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.Gravity;
@@ -254,7 +256,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
                     if (buttoncount == currentQuestion.getAntwort_nr()) {
                         //wenn Antwort richtig
                         //Farbe des Buttons grün
-                        btnAnswer.setBackgroundColor(Color.parseColor("#98FB98"));
+                        //btnAnswer.setBackgroundColor(Color.parseColor("#98FB98"));
+                        btnAnswer.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightgreen));
                         answered = true;
 
                         Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
@@ -265,7 +268,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
                         // -> Gewonnen Pop Up -> next level
 
                     } else {
-                        btnAnswer.setBackgroundColor(Color.parseColor("#FF6347"));
+                        btnAnswer.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightred));
                         //leben weg -> falsche antwort
                         //keine leben mehr -> Antwort anzeigen -> Quiz beenden
                         answered = false;
@@ -345,6 +348,11 @@ public class Quiz extends AppCompatActivity implements Countdown {
                 option2.setEnabled(true);
                 option3.setEnabled(true);
                 option4.setEnabled(true);
+
+                option1.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
+                option2.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
+                option3.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
+                option4.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
 
                 mydialog.dismiss();
 
