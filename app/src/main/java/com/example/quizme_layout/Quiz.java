@@ -79,10 +79,15 @@ public class Quiz extends AppCompatActivity implements Countdown {
     final String prefNameFirstStart = "firstAppStart";
     ///////////////////////////////////////////
 
-    //Pop-up Window Variables
+    //Pop-up Window Variables - Next
     private Dialog mydialog;
     private Button toNextLevel;
     private TextView congrats;
+
+    //Pop-up Window Variables - Hinweis
+    private Dialog dialogHinweis;
+    private Button closesHinweis;
+    private TextView hinweisText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +131,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
             public void onClick(View v) {
                 //pop up hinweis
                 //erstmal ein Toast?
-                Toast.makeText(getApplicationContext(), currentQuestion.getHinweis(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), currentQuestion.getHinweis(), Toast.LENGTH_SHORT).show();
+                popUpHinweis();
             }
         });
 
@@ -166,6 +172,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
         //popUp
         mydialog = new Dialog(Quiz.this);
+        dialogHinweis = new Dialog(Quiz.this);
     }
 
 
@@ -374,6 +381,24 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     }
 
+    private void popUpHinweis(){
+        dialogHinweis.setContentView(R.layout.popuphinweis);
+        hinweisText = (TextView) dialogHinweis.findViewById(R.id.hinweisPopup);
+        closesHinweis = (Button) dialogHinweis.findViewById(R.id.closeHinweis);
+        dialogHinweis.setCanceledOnTouchOutside(false);
+        dialogHinweis.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        hinweisText.setText(currentQuestion.getHinweis());
+
+        closesHinweis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogHinweis.dismiss();
+            }
+        });
+
+        dialogHinweis.show();
+    }
     ////////////////////////////////////////////////////////////////////
     public boolean firstAppStart()
     {
