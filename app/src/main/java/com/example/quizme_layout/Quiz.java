@@ -74,8 +74,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
     private TextView textview_leben3;
     private TextView textview_leben2;
     private TextView textview_leben1;
-    //muss noch gesetzt werden
-    private int leben_count;
+    private TextView textView_lebenAnzeige;
+    private int leben_count = 3;
     final String prefNameFirstStart = "firstAppStart";
     ///////////////////////////////////////////
 
@@ -153,15 +153,13 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
         textview_level= findViewById(R.id.text_view_level);
 
-        //textview_leben3 =
-        //textview_leben2 =
-        //textview_leben1
-        if(timerRunning){
-            pauseCountdown();
-            restartCountdown();
-        }
+        textview_leben3 = findViewById(R.id.textview_leben3);
+        textview_leben2 = findViewById(R.id.textview_leben2);
+        textview_leben1 = findViewById(R.id.textview_leben1);
 
-        //startCountdown();
+        textView_lebenAnzeige = findViewById(R.id.textview_LebenCount);
+
+
         if(timerRunning){
             pauseCountdown();
             restartCountdown();
@@ -198,9 +196,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
                     break;
             }
-            /////////////////////////////////////////////////////////////
-            //startCountdown();
-            //////////////////////////////////////////////////////
             countlevel();
 
         }
@@ -281,6 +276,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
                         //leben weg -> falsche antwort
                         //keine leben mehr -> Antwort anzeigen -> Quiz beenden
                         answered = false;
+
                     }
 
                     //nachdem man eine Antwort anklickt -> nicht mehr drücken
@@ -288,6 +284,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
                     option2.setEnabled(false);
                     option3.setEnabled(false);
                     option4.setEnabled(false);
+
+
 
                 }
 
@@ -305,6 +303,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
                 this.level_count++;
             }
             else {
+                this.leben_count--;
             }
             showLevel();
         }
@@ -316,27 +315,40 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     private void showLeben()
     {
+        textView_lebenAnzeige.setText("Leben "+ this.leben_count);
         //3 Textviews sollen da sein
-        if(this.leben_count==3){
-            //nichts verstecken
-        }
         if(this.leben_count==2){
 
             //textview_leben3 verstecken
+            textview_leben3.setVisibility(View.INVISIBLE);
         }
         if(this.leben_count==1){
-            //textview_leben3 verstecken
-            //textview_leben2 verstecken
+            //textview_leben3 und 2 verstecken
+            textview_leben3.setVisibility(View.INVISIBLE);
+            textview_leben2.setVisibility(View.INVISIBLE);
+
         }
-        if(this.leben_count!=3 || this.leben_count!=2 || this.leben_count!=1 ){
-            //Problemm
+        if(this.leben_count==0 ){
+            textview_leben3.setVisibility(View.INVISIBLE);
+            textview_leben2.setVisibility(View.INVISIBLE);
+            textview_leben1.setVisibility(View.INVISIBLE);
         }
     }
 
-    private void countleben(){
-
+    private void countlebenCountdown(){
+        showLeben();
+        if (verbleibendeZeit <= 500) {
+            this.leben_count--;
+        }
+        showLeben();
     }
+    //andere Methode, da sonst jede Sekunde ein Leben abgezogen wird
+    private void countlebenAnswer(){
+       // if (this.checkAnswer(1, option1)==false || this.checkAnswer(2, option2)== false||
+       //         this.checkAnswer(3, option3)== false|| this.checkAnswer(4, option4)== false)  {
 
+            this.leben_count--;
+    }
     /**
      * Popup to Next Level
      */
@@ -399,31 +411,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
         dialogHinweis.show();
     }
-    ////////////////////////////////////////////////////////////////////
-    public boolean firstAppStart()
-    {
-        //Mode_private nur unsere App kann zugreifenauf die Preference
-        //bei public können auch andere Apps zugreifen
-        SharedPreferences preferences = getSharedPreferences(prefNameFirstStart, MODE_PRIVATE);
-
-        if(preferences.getBoolean(prefNameFirstStart, true))
-        {   //man möchte einen boolean haben, wenn in prefNameFirstStart kein boolean ist, soll true zurückgegeben
-
-            //um den boolean der Prefernce zu verändern
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean(prefNameFirstStart, false);
-            //damit die preference geändert wird
-            editor.commit();
-            ///startCountdown();
-            return true;
-        }
-        else
-        {
-            return false;       //die App wurde schon gestartet
-        }
-    }
-
-    /////////////////////////////////////////////////////////////////////////
     @Override
     public void startCountdown(){
         countdown = new CountDownTimer(COUNTDOWN_IN_MILLIS, 1000) {
@@ -431,6 +418,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
             public void onTick(long millisUntilFinished) {
                 verbleibendeZeit = millisUntilFinished;
                 updateCountdownText();
+
             }
 
             @Override
@@ -461,6 +449,9 @@ public class Quiz extends AppCompatActivity implements Countdown {
         } else {
             textview_timer.setTextColor(textColor_countdown);
         }
+
+        countlebenCountdown();
+        //showLeben();
     }
 
     private void pauseCountdown(){
