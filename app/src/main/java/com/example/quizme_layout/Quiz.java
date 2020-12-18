@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -55,9 +56,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
     private ColorStateList ColorDefault;
 
     private List<QuizMeModel> fragenliste;
-    private int questionCounter;
+    private int questionCounter = 0;
     private int questionCountTotal;
-    private boolean answered;
     private QuizMeModel currentQuestion;
 
     /////////////////////////////////////////
@@ -204,11 +204,13 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     private void showNextQuestion() {
 
+        saveQuestion();
         //genutze Frage in Liste speichern
         //Wenn Frage gleich einer Frage in der Liste ist, dann nächste Frage
 
 
         if (questionCounter < questionCountTotal) {
+
             currentQuestion = fragenliste.get(questionCounter);
             frage.setText(currentQuestion.getFragen());
             option1.setText(currentQuestion.getOption1());
@@ -217,8 +219,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
             option4.setText(currentQuestion.getOption4());
 
             questionCounter++;
-            answered = false;
-            saveQuestion();
 
         } else {
 
@@ -260,35 +260,42 @@ public class Quiz extends AppCompatActivity implements Countdown {
                     if (buttoncount == currentQuestion.getAntwort_nr()) {
                         //wenn Antwort richtig
                         //Farbe des Buttons grün
-                        //btnAnswer.setBackgroundColor(Color.parseColor("#98FB98"));
-                        btnAnswer.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightgreen));
                         answered = true;
+                        btnAnswer.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightgreen));
 
-                        Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
 
-                        //Popup zum nächsten Level
-                        CreateNextLevelDialog();
+                        //nachdem man richtige Antwort anklickt -> nicht mehr drücken
+                        option1.setEnabled(false);
+                        option2.setEnabled(false);
+                        option3.setEnabled(false);
+                        option4.setEnabled(false);
+
+                        //debug message
+                        //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
 
                         // -> Gewonnen Pop Up -> next level
+                        CreateNextLevelDialog();
+
+
+                    } else if (leben_count <= 1) {
+
+                        //Timer stoppen
+                        pauseCountdown();
+                        //damit letzter angeklickter Button noch rot wird
+                        btnAnswer.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightred));
+
+                        //Popup Aufrufen, da man verloren hat
+                        CreateNextLevelDialog();
 
                     } else {
+                        //Auswahl wird rot
                         btnAnswer.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightred));
-                        //leben weg -> falsche antwort
+                        //falsche Antwort -> leben weg
                         //keine leben mehr -> Antwort anzeigen -> Quiz beenden
                         answered = false;
 
                     }
-
-                    //nachdem man eine Antwort anklickt -> nicht mehr drücken
-                    option1.setEnabled(false);
-                    option2.setEnabled(false);
-                    option3.setEnabled(false);
-                    option4.setEnabled(false);
-
-
-
                 }
-
             }
 
         return answered;
@@ -298,8 +305,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
     private void countlevel() {
         if(level_count >=1 && level_count <=MAXLEVEL ) {
             //wenn die Antwort richtig ist level hochzählen
-            if (this.checkAnswer(1, option1)== true || this.checkAnswer(2, option2)== true||
-                    this.checkAnswer(3, option3)== true|| this.checkAnswer(4, option4)== true)  {
+            if (this.checkAnswer(1, option1) || this.checkAnswer(2, option2) || this.checkAnswer(3, option3) || this.checkAnswer(4, option4))  {
                 this.level_count++;
             }
             else {
@@ -335,6 +341,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
         }
     }
 
+
     private void countlebenCountdown(){
         showLeben();
         if (verbleibendeZeit <= 500) {
@@ -361,31 +368,41 @@ public class Quiz extends AppCompatActivity implements Countdown {
         mydialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         toNextLevel.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                //nächste Frage anzeigen
 
-                showNextQuestion();
-                //restartCountdown();
-                option1.setEnabled(true);
-                option2.setEnabled(true);
-                option3.setEnabled(true);
-                option4.setEnabled(true);
+                if(checkAnswer(1,option1) || checkAnswer(2, option2) || checkAnswer(3, option3) || checkAnswer(4, option4)) {
+                    if(questionCounter < questionCountTotal) {
+                        //nächste Frage anzeigen
+                        showNextQuestion();
+                        //restartCountdown();
+                        option1.setEnabled(true);
+                        option2.setEnabled(true);
+                        option3.setEnabled(true);
+                        option4.setEnabled(true);
 
-                option1.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
-                option2.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
-                option3.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
-                option4.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
+                        option1.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
+                        option2.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
+                        option3.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
+                        option4.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
 
-                mydialog.dismiss();
+                        mydialog.dismiss();
 
-                if(timerRunning){
-                    pauseCountdown();
-                    restartCountdown();
+                        if (timerRunning) {
+                            pauseCountdown();
+                            restartCountdown();
+                        }
+                        startCountdown();
+                    }
+                    //wenn keine Leben mehr
+                } else if(leben_count <= 1){
+
+                    toNextLevel.setText("Schließen");
+                    congrats.setText("ohh, du hast leider verloren");
+                    finishQuiz();
+                    mydialog.dismiss();
                 }
-                startCountdown();
-
-
             }
         });
         //show Popup
@@ -393,6 +410,9 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     }
 
+    /**
+     * Popup für Hinweis
+     */
     private void popUpHinweis(){
         dialogHinweis.setContentView(R.layout.popuphinweis);
         hinweisText = (TextView) dialogHinweis.findViewById(R.id.hinweisPopup);
@@ -411,6 +431,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
         dialogHinweis.show();
     }
+
     @Override
     public void startCountdown(){
         countdown = new CountDownTimer(COUNTDOWN_IN_MILLIS, 1000) {
