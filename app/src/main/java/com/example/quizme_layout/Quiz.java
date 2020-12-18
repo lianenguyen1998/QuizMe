@@ -59,6 +59,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
     /////////////////////////////////////////
     private ColorStateList textColor_countdown;
     private CountDownTimer countdown;
+    private boolean timerRunning;
     private long verbleibendeZeit;
     private TextView textview_timer;
 
@@ -144,7 +145,19 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
         //textview_leben3 =
         //textview_leben2 =
-        //textview_leben1 =
+        //textview_leben1
+        if(timerRunning){
+            pauseCountdown();
+            restartCountdown();
+        }
+
+        //startCountdown();
+        if(timerRunning){
+            pauseCountdown();
+            restartCountdown();
+        }
+        startCountdown();
+
         //////////////////////////////////////////////////////////
 
         //popUp
@@ -175,7 +188,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
                     break;
             }
             /////////////////////////////////////////////////////////////
-            startCountdown();
+            //startCountdown();
             //////////////////////////////////////////////////////
             countlevel();
 
@@ -271,42 +284,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
         return answered;
     }
 
-    /////////////////////////////////////////////////////////////////////////
-    @Override
-    public void startCountdown(){
-        countdown = new CountDownTimer(COUNTDOWN_IN_MILLIS, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                verbleibendeZeit = millisUntilFinished;
-                updateCountdownText();
-            }
-
-            @Override
-            public void onFinish() {
-                verbleibendeZeit = 0;
-                updateCountdownText();
-                // checkAnswer();
-                //dort countdown.cancel();
-            }
-        }.start();
-    }
-
-    @Override
-    public void updateCountdownText() {
-        int minuten = (int) (verbleibendeZeit / 1000) / 60;
-        int sekunden = (int) (verbleibendeZeit / 1000) % 60;
-
-       // String zeitformatiert = String.format(Locale.getDefault(), "\"%02d : %02d", minuten, sekunden);
-        String zeitformatiert = String.format(Locale.getDefault(), "%02d", sekunden);
-
-        textview_timer.setText(zeitformatiert);
-
-        if (verbleibendeZeit < 11000) {
-            textview_timer.setTextColor(Color.RED);
-        } else {
-            textview_timer.setTextColor(textColor_countdown);
-        }
-    }
 
     private void countlevel() {
         if(level_count >=1 && level_count <=MAXLEVEL ) {
@@ -314,20 +291,15 @@ public class Quiz extends AppCompatActivity implements Countdown {
             if (this.checkAnswer(1, option1)== true || this.checkAnswer(2, option2)== true||
                     this.checkAnswer(3, option3)== true|| this.checkAnswer(4, option4)== true)  {
                 this.level_count++;
-
-                //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
-
             }
-            //wenn die Antwort falsch ist zur Highscoreliste
             else {
-                //String s = String.valueOf(this.level);
-                //endeee
-                //Toast.makeText(getApplicationContext(), "Leben abzug", Toast.LENGTH_LONG).show();
             }
-            //String s = String.valueOf(this.level);
-            //Toast.makeText(getApplicationContext(), s , Toast.LENGTH_LONG).show();
-            textview_level.setText("Level :"+ this.level_count);
+            showLevel();
         }
+    }
+
+    private void showLevel(){
+        textview_level.setText("Level :"+ this.level_count);
     }
 
     private void showLeben()
@@ -368,13 +340,21 @@ public class Quiz extends AppCompatActivity implements Countdown {
                 //nächste Frage anzeigen
 
                 showNextQuestion();
-
+                //restartCountdown();
                 option1.setEnabled(true);
                 option2.setEnabled(true);
                 option3.setEnabled(true);
                 option4.setEnabled(true);
 
                 mydialog.dismiss();
+
+                if(timerRunning){
+                    pauseCountdown();
+                    restartCountdown();
+                }
+                startCountdown();
+
+
             }
         });
         //show Popup
@@ -404,5 +384,56 @@ public class Quiz extends AppCompatActivity implements Countdown {
         {
             return false;       //die App wurde schon gestartet
         }
+    }
+
+    /////////////////////////////////////////////////////////////////////////
+    @Override
+    public void startCountdown(){
+        countdown = new CountDownTimer(COUNTDOWN_IN_MILLIS, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                verbleibendeZeit = millisUntilFinished;
+                updateCountdownText();
+            }
+
+            @Override
+            public void onFinish() {
+                verbleibendeZeit = 0;
+                updateCountdownText();
+                // checkAnswer();
+                //dort countdown.cancel();
+                timerRunning = false;
+            }
+        }.start();
+
+        timerRunning= true;
+    }
+
+    @Override
+    public void updateCountdownText() {
+        int minuten = (int) (verbleibendeZeit / 1000) / 60;
+        int sekunden = (int) (verbleibendeZeit / 1000) % 60;
+
+        // String zeitformatiert = String.format(Locale.getDefault(), "\"%02d : %02d", minuten, sekunden);
+        String zeitformatiert = String.format(Locale.getDefault(), "%02d", sekunden);
+
+        textview_timer.setText(zeitformatiert);
+
+        if (verbleibendeZeit < 11000) {
+            textview_timer.setTextColor(Color.RED);
+        } else {
+            textview_timer.setTextColor(textColor_countdown);
+        }
+    }
+
+    private void pauseCountdown(){
+        countdown.cancel();
+        timerRunning = false;
+    }
+    private void restartCountdown()
+    {
+        verbleibendeZeit= COUNTDOWN_IN_MILLIS;
+        updateCountdownText();
+        //textview_timer.setText("30");
     }
 }
