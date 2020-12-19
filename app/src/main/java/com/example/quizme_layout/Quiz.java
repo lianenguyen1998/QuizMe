@@ -368,11 +368,10 @@ public class Quiz extends AppCompatActivity implements Countdown {
         mydialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         toNextLevel.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
 
-                if(checkAnswer(1,option1) || checkAnswer(2, option2) || checkAnswer(3, option3) || checkAnswer(4, option4)) {
+                if(leben_count >= 1) {
                     if(questionCounter < questionCountTotal) {
                         //nächste Frage anzeigen
                         showNextQuestion();
@@ -387,22 +386,23 @@ public class Quiz extends AppCompatActivity implements Countdown {
                         option3.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
                         option4.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
 
-                        mydialog.dismiss();
-
                         if (timerRunning) {
                             pauseCountdown();
                             restartCountdown();
                         }
                         startCountdown();
+
+
                     }
                     //wenn keine Leben mehr
-                } else if(leben_count <= 1){
+                } else {
 
                     toNextLevel.setText("Schließen");
                     congrats.setText("ohh, du hast leider verloren");
                     finishQuiz();
-                    mydialog.dismiss();
                 }
+
+                mydialog.dismiss();
             }
         });
         //show Popup
