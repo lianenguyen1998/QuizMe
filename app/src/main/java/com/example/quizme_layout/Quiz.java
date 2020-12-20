@@ -414,7 +414,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
         dialogLost.setContentView(R.layout.popuplost);
         closeLost = (Button) dialogLost.findViewById(R.id.closeVerloren);
         dialogLost.setCanceledOnTouchOutside(false);
-        dialogLost.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        //dialogLost.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         closeLost.setOnClickListener(new View.OnClickListener() {
             @Override
