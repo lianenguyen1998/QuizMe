@@ -56,7 +56,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
     private ColorStateList ColorDefault;
 
     private List<QuizMeModel> fragenliste;
-    private int questionCounter = 0;
+    private int questionCounter;
     private int questionCountTotal;
     private QuizMeModel currentQuestion;
 
@@ -68,7 +68,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
     private TextView textview_timer;
 
     private TextView textview_level;
-    private int level_count =1;
+    private int level_count = 1;
     static final int MAXLEVEL = 50;
 
     private TextView textview_leben3;
@@ -82,12 +82,16 @@ public class Quiz extends AppCompatActivity implements Countdown {
     //Pop-up Window Variables - Next
     private Dialog mydialog;
     private Button toNextLevel;
-    private TextView congrats;
 
     //Pop-up Window Variables - Hinweis
     private Dialog dialogHinweis;
     private Button closesHinweis;
     private TextView hinweisText;
+
+    //Pop-up Window Variables - Verloren
+    private Dialog dialogLost;
+    private Button closeLost;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,13 +101,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
         frage = findViewById(R.id.question);
         hinweis = findViewById(R.id.hinweis);
         quit = findViewById(R.id.quit);
-
-        /*
-        for (int i = 0; i < btn.length; i++) {
-            btn[i] = (Button) findViewById(btn_id[i]);
-            btn[i].setOnClickListener(answer);
-        }*/
-
 
         //Antwortbuttons
         option1 = findViewById(R.id.choice1);
@@ -171,6 +168,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
         //popUp
         mydialog = new Dialog(Quiz.this);
         dialogHinweis = new Dialog(Quiz.this);
+        dialogLost = new Dialog(Quiz.this);
     }
 
 
@@ -276,17 +274,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
                         // -> Gewonnen Pop Up -> next level
                         CreateNextLevelDialog();
 
-
-                    } else if (leben_count <= 1) {
-
-                        //Timer stoppen
-                        pauseCountdown();
-                        //damit letzter angeklickter Button noch rot wird
-                        btnAnswer.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightred));
-
-                        //Popup Aufrufen, da man verloren hat
-                        CreateNextLevelDialog();
-
                     } else {
                         //Auswahl wird rot
                         btnAnswer.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightred));
@@ -338,6 +325,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
             textview_leben3.setVisibility(View.INVISIBLE);
             textview_leben2.setVisibility(View.INVISIBLE);
             textview_leben1.setVisibility(View.INVISIBLE);
+            popUpVerloren();
         }
     }
 
@@ -363,7 +351,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
         mydialog.setContentView(R.layout.popupnextlevel);
         toNextLevel = (Button) mydialog.findViewById(R.id.nextLevel);
-        congrats = (TextView) mydialog.findViewById(R.id.congrats);
         mydialog.setCanceledOnTouchOutside(false);
         mydialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -371,7 +358,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
             @Override
             public void onClick(View v) {
 
-                if(leben_count >= 1) {
+                //if(checkAnswer(1, option1) || checkAnswer(2, option2) || checkAnswer(3, option3) || checkAnswer(4, option4)){ {
                     if(questionCounter < questionCountTotal) {
                         //nächste Frage anzeigen
                         showNextQuestion();
@@ -391,16 +378,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
                             restartCountdown();
                         }
                         startCountdown();
-
-
                     }
-                    //wenn keine Leben mehr
-                } else {
-
-                    toNextLevel.setText("Schließen");
-                    congrats.setText("ohh, du hast leider verloren");
-                    finishQuiz();
-                }
 
                 mydialog.dismiss();
             }
@@ -430,6 +408,23 @@ public class Quiz extends AppCompatActivity implements Countdown {
         });
 
         dialogHinweis.show();
+    }
+
+    private void popUpVerloren(){
+        dialogLost.setContentView(R.layout.popuplost);
+        closeLost = (Button) dialogLost.findViewById(R.id.closeVerloren);
+        dialogLost.setCanceledOnTouchOutside(false);
+        dialogLost.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        closeLost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finishQuiz();
+                dialogLost.dismiss();
+            }
+        });
+
+        dialogLost.show();
     }
 
     @Override

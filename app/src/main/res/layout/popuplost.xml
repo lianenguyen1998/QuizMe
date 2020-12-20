@@ -10,20 +10,20 @@
 
 
     <TextView
-        android:id="@+id/hinweisPopup"
+        android:id="@+id/verloren"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hinweis"
+        android:text="Du hast leider verloren"
         android:layout_marginTop="100dp"
         android:fontFamily="@font/athiti"
         android:textAlignment="center"
         android:textSize="30sp"/>
 
     <Button
-        android:id="@+id/closeHinweis"
+        android:id="@+id/closeVerloren"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Schließen"
+        android:text="Zurück zur Startseite"
         android:layout_marginStart="50dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="50dp"
