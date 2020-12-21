@@ -6,14 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.Gravity;
@@ -53,8 +56,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
     private Button option4;
     private Button quit;
 
-    private ColorStateList ColorDefault;
-
     private List<QuizMeModel> fragenliste;
     private int questionCounter;
     private int questionCountTotal;
@@ -81,16 +82,12 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     //Pop-up Window Variables - Next
     private Dialog mydialog;
-    private Button toNextLevel;
 
     //Pop-up Window Variables - Hinweis
     private Dialog dialogHinweis;
-    private Button closesHinweis;
-    private TextView hinweisText;
 
     //Pop-up Window Variables - Verloren
     private Dialog dialogLost;
-    private Button closeLost;
 
 
     @Override
@@ -117,11 +114,12 @@ public class Quiz extends AppCompatActivity implements Countdown {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         fragenliste = dbHelper.getAllQuestions();
         questionCountTotal = fragenliste.size();
+        Collections.shuffle(fragenliste);
 
         if(currentQuestion == null)
             showNextQuestion();
 
-        Collections.shuffle(fragenliste);
+
 
         hinweis.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,7 +173,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
     /**
      * onClick für Antwortbutton
      */
-    private View.OnClickListener answer = new View.OnClickListener() {
+    private final View.OnClickListener answer = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
@@ -261,7 +259,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
                         answered = true;
                         btnAnswer.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightgreen));
 
-
                         //nachdem man richtige Antwort anklickt -> nicht mehr drücken
                         option1.setEnabled(false);
                         option2.setEnabled(false);
@@ -277,8 +274,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
                     } else {
                         //Auswahl wird rot
                         btnAnswer.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightred));
-                        //falsche Antwort -> leben weg
-                        //keine leben mehr -> Antwort anzeigen -> Quiz beenden
                         answered = false;
 
                     }
@@ -322,10 +317,11 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
         }
         if(this.leben_count==0 ){
+            popUpVerloren();
             textview_leben3.setVisibility(View.INVISIBLE);
             textview_leben2.setVisibility(View.INVISIBLE);
             textview_leben1.setVisibility(View.INVISIBLE);
-            popUpVerloren();
+
         }
     }
 
@@ -350,7 +346,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
     private void CreateNextLevelDialog(){
 
         mydialog.setContentView(R.layout.popupnextlevel);
-        toNextLevel = (Button) mydialog.findViewById(R.id.nextLevel);
+        Button toNextLevel = (Button) mydialog.findViewById(R.id.nextLevel);
         mydialog.setCanceledOnTouchOutside(false);
         mydialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -393,8 +389,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
      */
     private void popUpHinweis(){
         dialogHinweis.setContentView(R.layout.popuphinweis);
-        hinweisText = (TextView) dialogHinweis.findViewById(R.id.hinweisPopup);
-        closesHinweis = (Button) dialogHinweis.findViewById(R.id.closeHinweis);
+        TextView hinweisText = (TextView) dialogHinweis.findViewById(R.id.hinweisPopup);
+        Button closesHinweis = (Button) dialogHinweis.findViewById(R.id.closeHinweis);
         dialogHinweis.setCanceledOnTouchOutside(false);
         dialogHinweis.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -411,20 +407,34 @@ public class Quiz extends AppCompatActivity implements Countdown {
     }
 
     private void popUpVerloren(){
+
         dialogLost.setContentView(R.layout.popuplost);
-        closeLost = (Button) dialogLost.findViewById(R.id.closeVerloren);
+        Button closeLost = (Button) dialogLost.findViewById(R.id.closeVerloren);
         dialogLost.setCanceledOnTouchOutside(false);
-        //dialogLost.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialogLost.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         closeLost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                dismissWithTryCatch(dialogLost);
                 finishQuiz();
-                dialogLost.dismiss();
             }
         });
-
+    if(!isFinishing())
         dialogLost.show();
+    }
+
+    public void dismissWithTryCatch(Dialog dialog) {
+        try {
+            dialog.dismiss();
+        } catch (final IllegalArgumentException e) {
+            // Do nothing.
+        } catch (final Exception e) {
+            // Do nothing.
+        } finally {
+            dialog = null;
+        }
     }
 
     @Override
