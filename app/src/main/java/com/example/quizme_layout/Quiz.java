@@ -42,10 +42,6 @@ import java.util.Locale;
 
 public class Quiz extends AppCompatActivity implements Countdown {
 
-    //TextView level;
-    TextView leben;
-    TextView zeit;
-    TextView logo;
     private TextView frage;
     private Button hinweis;
     /*Button[] btn = new Button[4];
@@ -61,24 +57,25 @@ public class Quiz extends AppCompatActivity implements Countdown {
     private int questionCountTotal;
     private QuizMeModel currentQuestion;
 
-    /////////////////////////////////////////
+    //Countdown Variables
+    private TextView zeit;
+    private TextView textview_timer;
     private ColorStateList textColor_countdown;
     private CountDownTimer countdown;
     private boolean timerRunning;
     private long verbleibendeZeit;
-    private TextView textview_timer;
 
+    //Level Variables
     private TextView textview_level;
     private int level_count = 1;
     static final int MAXLEVEL = 50;
 
+    //Leben Variables
     private TextView textview_leben3;
     private TextView textview_leben2;
     private TextView textview_leben1;
     private TextView textView_lebenAnzeige;
     private int leben_count = 3;
-    final String prefNameFirstStart = "firstAppStart";
-    ///////////////////////////////////////////
 
     //Pop-up Window Variables - Next
     private Dialog mydialog;
@@ -139,29 +136,24 @@ public class Quiz extends AppCompatActivity implements Countdown {
            }
        });
 
-        ////////////////////////////////////////////////
-        //Timer zuweisen
-        textview_timer = findViewById(R.id.textview_timer);
-        //Timer Dauer
-
-        textColor_countdown = textview_timer.getTextColors();
-
+        //Level
         textview_level= findViewById(R.id.text_view_level);
 
+        //Leben
         textview_leben3 = findViewById(R.id.textview_leben3);
         textview_leben2 = findViewById(R.id.textview_leben2);
         textview_leben1 = findViewById(R.id.textview_leben1);
-
         textView_lebenAnzeige = findViewById(R.id.textview_LebenCount);
 
+        //Timer
+        textview_timer = findViewById(R.id.textview_timer);
+        textColor_countdown = textview_timer.getTextColors();
 
         if(timerRunning){
             pauseCountdown();
             restartCountdown();
         }
         startCountdown();
-
-        //////////////////////////////////////////////////////////
 
         //popUp
         mydialog = new Dialog(Quiz.this);
@@ -283,7 +275,11 @@ public class Quiz extends AppCompatActivity implements Countdown {
         return answered;
     }
 
-
+    /***
+     * Wenn ein Button mit der richtigen Antwort gedrückt wird, kommt man in das nächste Level,
+     * also wird das Level hochgezählt
+     * Wenn ein Button mit der falschen Antwort gedrückt wird, bekommt man ein Leben abgezogen
+     */
     private void countlevel() {
         if(level_count >=1 && level_count <=MAXLEVEL ) {
             //wenn die Antwort richtig ist level hochzählen
@@ -291,22 +287,32 @@ public class Quiz extends AppCompatActivity implements Countdown {
                 this.level_count++;
             }
             else {
+                //Sonst wird ein Leben abgezogen
                 this.leben_count--;
             }
             showLevel();
         }
     }
 
+    /**
+     * Die Anzahl der Leben wird in die zugehörige Tetview gesetzt
+     */
     private void showLevel(){
         textview_level.setText("Level :"+ this.level_count);
     }
 
+    /**
+     * Soll dafür sirgen, dass angezeigt wird wie viele Leben noch da sind.
+     * Außerdem verschwinden je nach Leben die Textview-Herzen
+     * Wenn man 0 Leben hat, dann kommt das Verloren-Pop-Up
+     */
     private void showLeben()
-    {
+    {   //Die Anzahl der Leben auf der Textview ausgeben
         textView_lebenAnzeige.setText("Leben "+ this.leben_count);
-        //3 Textviews sollen da sein
-        if(this.leben_count==2){
 
+        //Bei 3 Leben sind alle Textviews noch da
+
+        if(this.leben_count==2){
             //textview_leben3 verstecken
             textview_leben3.setVisibility(View.INVISIBLE);
         }
@@ -314,32 +320,34 @@ public class Quiz extends AppCompatActivity implements Countdown {
             //textview_leben3 und 2 verstecken
             textview_leben3.setVisibility(View.INVISIBLE);
             textview_leben2.setVisibility(View.INVISIBLE);
-
         }
+        //keine Leben, also hat man verloren
         if(this.leben_count==0 ){
-            popUpVerloren();
+            //alle Leben-Textviews verschwinden
             textview_leben3.setVisibility(View.INVISIBLE);
             textview_leben2.setVisibility(View.INVISIBLE);
             textview_leben1.setVisibility(View.INVISIBLE);
 
+            //Das Verloren-Pop-Up erscheint
+            popUpVerloren();
         }
     }
 
-
+    /***
+     * Hier werden die Leben abgezogen, die man dadurch verliert, dass der Countdown abläuft
+     */
     private void countlebenCountdown(){
+        //Aktuelle Anzahl der Leben anzeigen
         showLeben();
-        if (verbleibendeZeit <= 500) {
-            this.leben_count--;
-        }
-        showLeben();
-    }
-    //andere Methode, da sonst jede Sekunde ein Leben abgezogen wird
-    private void countlebenAnswer(){
-       // if (this.checkAnswer(1, option1)==false || this.checkAnswer(2, option2)== false||
-       //         this.checkAnswer(3, option3)== false|| this.checkAnswer(4, option4)== false)  {
 
+        //Wenn der Countdown abläuft ein Leben abziehen
+        if (verbleibendeZeit <= 100) {
             this.leben_count--;
+            //neu anzeigen
+            showLeben();
+        }
     }
+
     /**
      * Popup to Next Level
      */
@@ -438,56 +446,90 @@ public class Quiz extends AppCompatActivity implements Countdown {
     }
 
     @Override
+    /***
+     * Hier wird der Countdown auf 30 Sekunden gesetzt und gestartet
+     * Der Countdown wird heruntergezählt und auf 0 gesetzt
+     */
     public void startCountdown(){
+        //den Countdown zuweisen auf 30 Sekunden
         countdown = new CountDownTimer(COUNTDOWN_IN_MILLIS, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
+                //Zeit herunterzählen
                 verbleibendeZeit = millisUntilFinished;
+                //auf der Textview anzeigen
                 updateCountdownText();
-
             }
 
             @Override
             public void onFinish() {
+                //Wenn der Timer abgelaufen ist
+                //Zeit auf 0 setzen
                 verbleibendeZeit = 0;
+                //auf der Textview anzeigen
                 updateCountdownText();
-                // checkAnswer();
-                //dort countdown.cancel();
+
+                //Der Countdown läuft nicht weiter
                 timerRunning = false;
             }
         }.start();
-
+        //Der Countdown läuft
         timerRunning= true;
     }
 
+    /***
+     * Hier wird der zu sehende Text der Textview aktualisiert
+     * Die Zeit wird in Sekunden heruntergezählt
+     */
     @Override
     public void updateCountdownText() {
-        int minuten = (int) (verbleibendeZeit / 1000) / 60;
+        //umrechnen der verbleibenden Zeit in Sekunden
         int sekunden = (int) (verbleibendeZeit / 1000) % 60;
 
-        // String zeitformatiert = String.format(Locale.getDefault(), "\"%02d : %02d", minuten, sekunden);
+        //die verbleibende Zeit wird als String formatiert
         String zeitformatiert = String.format(Locale.getDefault(), "%02d", sekunden);
 
+        //Die String mit der Zeit wird in die Textview gesetzt
         textview_timer.setText(zeitformatiert);
 
+        //In den letzten 10 Sekunden wird die Anzeige rot
+        countdownTextRed();
+
+        //Wenn der Countdown abläuft wird hier ein Leben abgezogen
+        countlebenCountdown();
+    }
+
+    /***
+     * In den letzten 10 Sekunden wird die Anzeige des Countdowns rot rot
+     */
+    private void countdownTextRed(){
+        //letzeen 10 Sekunden, also rot
         if (verbleibendeZeit < 11000) {
             textview_timer.setTextColor(Color.RED);
+
+        //Ansonsten bleibt die Anzeige wie voher
         } else {
             textview_timer.setTextColor(textColor_countdown);
         }
-
-        countlebenCountdown();
-        //showLeben();
     }
 
+    /***
+     * Der Countdown soll abgebrochen werden
+     */
     private void pauseCountdown(){
         countdown.cancel();
+
+        //Der Countdown läuft nicht weiter
         timerRunning = false;
     }
-    private void restartCountdown()
-    {
+
+    /***
+     * Wenn der Countdown zurückgesetzt wird, muss die verbleibende Zeit wieder auf 30 Sekunden gesetzt werden
+     */
+    private void restartCountdown() {
         verbleibendeZeit= COUNTDOWN_IN_MILLIS;
+
+        //die Anzeige der Textview aktualisieren
         updateCountdownText();
-        //textview_timer.setText("30");
     }
 }
