@@ -10,17 +10,17 @@
 
 
     <TextView
-        android:id="@+id/verloren"
+        android:id="@+id/gewonnen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Du hast leider verloren"
+        android:text="Du hast alle Level gemeistert!"
         android:layout_marginTop="100dp"
         android:fontFamily="@font/athiti"
         android:textAlignment="center"
         android:textSize="30sp"/>
 
     <Button
-        android:id="@+id/closeVerloren"
+        android:id="@+id/closeGewonnen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Zur Highscoreliste"
