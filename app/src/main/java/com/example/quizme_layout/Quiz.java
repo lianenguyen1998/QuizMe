@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -85,6 +86,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     //Pop-up Window Variables - Verloren
     private Dialog dialogLost;
+
+    Chronometer chronometer;
 
 
     @Override
@@ -159,8 +162,19 @@ public class Quiz extends AppCompatActivity implements Countdown {
         mydialog = new Dialog(Quiz.this);
         dialogHinweis = new Dialog(Quiz.this);
         dialogLost = new Dialog(Quiz.this);
-    }
 
+        chronometer = findViewById(R.id.Textview_chronometer);
+        createChronometer();
+        chronometer.start();
+    }
+    private void createChronometer(){
+        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer _chronometer) {
+                chronometer = _chronometer;
+            }
+        });
+    }
 
     /**
      * onClick für Antwortbutton
@@ -185,7 +199,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
                     break;
             }
             countlevel();
-
         }
     };
 
@@ -330,6 +343,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
             //Das Verloren-Pop-Up erscheint
             popUpVerloren();
+
+            chronometer.stop();
         }
     }
 
