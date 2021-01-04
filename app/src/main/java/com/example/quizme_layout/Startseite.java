@@ -48,8 +48,8 @@ public class Startseite extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                openInfotext();
-
+                //openInfotext();
+                    openBackgroundTest();
             }
         });
     }
@@ -75,7 +75,11 @@ public class Startseite extends AppCompatActivity {
 
     // ---------------------------------------------------------------------------------------- //
 
-
+    public void openBackgroundTest()
+    {
+        Intent intent = new Intent(this, HintergrundTest.class);
+        startActivity(intent);
+    }
 
 
 
