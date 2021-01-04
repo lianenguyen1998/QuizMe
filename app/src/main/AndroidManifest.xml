@@ -9,10 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizMe_Layout">
-        <activity android:name=".Infotext"></activity>
+        <activity android:name=".HintergrundTest"></activity>
+        <activity android:name=".Infotext" />
         <activity android:name=".Highscoreliste" />
-        <activity android:name=".Quiz"
-            android:parentActivityName=".Startseite"/>
+        <activity
+            android:name=".Quiz"
+            android:parentActivityName=".Startseite" />
         <activity android:name=".Startseite">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
