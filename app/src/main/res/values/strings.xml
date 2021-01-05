@@ -20,4 +20,5 @@
     <string name="leben_3">Leben: 3</string>
     <string name="abbrechen">abbrechen</string>
     <string name="lase">Lase</string>
+    <string name="xd">Wenn deine Zeit abläuft verlierst du ein Leben</string>
 </resources>

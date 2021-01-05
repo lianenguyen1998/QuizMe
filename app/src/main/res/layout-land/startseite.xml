@@ -6,7 +6,8 @@
     android:layout_width= "match_parent"
     android:layout_height= "match_parent"
     tools:context= ".Startseite"
-    android:background = "@drawable/hintergrund_liste">
+    android:background="@drawable/hintergrund_liste"
+    android:id="@+id/hintergrundStart_id">
 
     <TextView
         android:id="@+id/logo2"
