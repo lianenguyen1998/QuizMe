@@ -51,6 +51,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
     private Button option4;
     private Button quit;
 
+    //Databank variables
     private List<QuizMeModel> fragenliste;
     private int questionCounter;
     private int questionCountTotal;
@@ -120,13 +121,10 @@ public class Quiz extends AppCompatActivity implements Countdown {
         if(currentQuestion == null)
             showNextQuestion();
 
-
         hinweis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //pop up hinweis
-                //erstmal ein Toast?
-                //Toast.makeText(getApplicationContext(), currentQuestion.getHinweis(), Toast.LENGTH_SHORT).show();
                 popUpHinweis();
             }
         });
@@ -164,14 +162,16 @@ public class Quiz extends AppCompatActivity implements Countdown {
         dialogLost = new Dialog(Quiz.this);
         dialogWin = new Dialog(Quiz.this);
 
+
         chronometer = findViewById(R.id.textview_chronometer);
-        //createChronometer();
-        //chronometer.start();
+        createChronometer();
+        chronometer.start();
+
     }
 
     private void createChronometer() throws NullPointerException{
         try {
-            chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            this.chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
                 @Override
                 public void onChronometerTick(Chronometer _chronometer) {
                     chronometer = _chronometer;
@@ -231,7 +231,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
             //Quiz beenden und zur Highscoreliste gehen
             popUpGewonnen();
         }
-    //}
     }
 
     private void saveQuestion(){
@@ -346,7 +345,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
             textview_leben2.setVisibility(View.INVISIBLE);
             textview_leben1.setVisibility(View.INVISIBLE);
 
-            //chronometer.stop();
+            chronometer.stop();
 
             //Das Verloren-Pop-Up erscheint
             popUpVerloren();
