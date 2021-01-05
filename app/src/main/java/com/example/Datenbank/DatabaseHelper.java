@@ -17,7 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private SQLiteDatabase db;
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, 2);
     }
 
     /**
@@ -69,7 +69,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         add(q4);
         QuizMeModel q5 = new QuizMeModel("Welches Land ist kein Mitglied im Sicherheitsrat der Vereinten Nationen?", "USA", "Russland", "Deutschland", "China", "Ein für dich sehr bekanntes Land", 3);
         add(q5);
-        QuizMeModel q6 = new QuizMeModel("Welches dieser Tiere hält keinen Winterschlaf?", "Eichhörnchen", "Fledermaus", "Igel", "Siebenschläfer", "Es ist ein Nagetier", 1);
+        /*QuizMeModel q6 = new QuizMeModel("Welches dieser Tiere hält keinen Winterschlaf?", "Eichhörnchen", "Fledermaus", "Igel", "Siebenschläfer", "Es ist ein Nagetier", 1);
         add(q6);
         QuizMeModel q7 = new QuizMeModel("Wie heißt die Hauptstadt von Thüringen?", "Magdeburg", "Erfurt", "Dresden", "Potsdam", "Nachbarstadt ist Weimar", 2);
         add(q7);
@@ -158,7 +158,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         QuizMeModel q49 = new QuizMeModel("Wie nennt man in Frankreich umgangssprachlich einen Polizisten?", "Flip", "Cloque", "Flac", "Flic", "Cloque passt nicht dazu", 4);
         add(q49);
         QuizMeModel q50 = new QuizMeModel("Welche Gestalt aus der griechischen Mythologie starb, weil sie der Sonne zu nah kam?", "Tantalos", "Sisyphos", "Daidalos", "Ikarus", "Sisyphos hat mehrmals den Tod überlistet", 4);
-        add(q50);
+        add(q50);*/
 
     }
 
@@ -206,6 +206,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         c.close();
         return fragenliste;
     }
-
 
 }

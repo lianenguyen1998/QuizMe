@@ -45,14 +45,13 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     private TextView frage;
     private Button hinweis;
-    /*Button[] btn = new Button[4];
-    int[] btn_id = { R.id.choice1, R.id.choice2, R.id.choice3, R.id.choice4 };*/
     private Button option1;
     private Button option2;
     private Button option3;
     private Button option4;
     private Button quit;
 
+    //Databank variables
     private List<QuizMeModel> fragenliste;
     private int questionCounter;
     private int questionCountTotal;
@@ -87,7 +86,10 @@ public class Quiz extends AppCompatActivity implements Countdown {
     //Pop-up Window Variables - Verloren
     private Dialog dialogLost;
 
-    Chronometer chronometer;
+    //Pop-up Window Variables - Gewonnen
+    private Dialog dialogWin;
+
+    private Chronometer chronometer;
 
 
     @Override
@@ -119,14 +121,10 @@ public class Quiz extends AppCompatActivity implements Countdown {
         if(currentQuestion == null)
             showNextQuestion();
 
-
-
         hinweis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //pop up hinweis
-                //erstmal ein Toast?
-                //Toast.makeText(getApplicationContext(), currentQuestion.getHinweis(), Toast.LENGTH_SHORT).show();
                 popUpHinweis();
             }
         });
@@ -162,18 +160,26 @@ public class Quiz extends AppCompatActivity implements Countdown {
         mydialog = new Dialog(Quiz.this);
         dialogHinweis = new Dialog(Quiz.this);
         dialogLost = new Dialog(Quiz.this);
+        dialogWin = new Dialog(Quiz.this);
 
-        chronometer = findViewById(R.id.Textview_chronometer);
+
+        chronometer = findViewById(R.id.textview_chronometer);
         createChronometer();
         chronometer.start();
+
     }
-    private void createChronometer(){
-        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-            @Override
-            public void onChronometerTick(Chronometer _chronometer) {
-                chronometer = _chronometer;
-            }
-        });
+
+    private void createChronometer() throws NullPointerException{
+        try {
+            this.chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+                @Override
+                public void onChronometerTick(Chronometer _chronometer) {
+                    chronometer = _chronometer;
+                }
+            });
+        } catch (NullPointerException e){
+            System.out.println(e);
+        }
     }
 
     /**
@@ -222,10 +228,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
             questionCounter++;
 
         } else {
-
-            //Quiz beenden und Liste leeren
-            finishQuiz();
-
+            //Quiz beenden und zur Highscoreliste gehen
+            popUpGewonnen();
         }
     }
 
@@ -235,8 +239,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
         if(currentQuestion != null)
             seenQuestions.add(currentQuestion.getFragen());
 
-        if(questionCounter < questionCountTotal){
-            if(currentQuestion != null) {
+        if(questionCounter < questionCountTotal) {
+            if (currentQuestion != null) {
                 if (seenQuestions.equals(currentQuestion.getFragen())) {
                     fragenliste.iterator().next();
                 }
@@ -341,10 +345,12 @@ public class Quiz extends AppCompatActivity implements Countdown {
             textview_leben2.setVisibility(View.INVISIBLE);
             textview_leben1.setVisibility(View.INVISIBLE);
 
+            chronometer.stop();
+
             //Das Verloren-Pop-Up erscheint
             popUpVerloren();
 
-            chronometer.stop();
+
         }
     }
 
@@ -368,42 +374,47 @@ public class Quiz extends AppCompatActivity implements Countdown {
      */
     private void CreateNextLevelDialog(){
 
-        mydialog.setContentView(R.layout.popupnextlevel);
-        Button toNextLevel = (Button) mydialog.findViewById(R.id.nextLevel);
-        mydialog.setCanceledOnTouchOutside(false);
-        mydialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        if(questionCounter < questionCountTotal) {
+            mydialog.setContentView(R.layout.popupnextlevel);
+            Button toNextLevel = (Button) mydialog.findViewById(R.id.nextLevel);
+            mydialog.setCanceledOnTouchOutside(false);
+            mydialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        toNextLevel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            toNextLevel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-                //if(checkAnswer(1, option1) || checkAnswer(2, option2) || checkAnswer(3, option3) || checkAnswer(4, option4)){ {
-                    if(questionCounter < questionCountTotal) {
-                        //nächste Frage anzeigen
-                        showNextQuestion();
-                        //restartCountdown();
-                        option1.setEnabled(true);
-                        option2.setEnabled(true);
-                        option3.setEnabled(true);
-                        option4.setEnabled(true);
+                    //nächste Frage anzeigen
+                    showNextQuestion();
+                    //restartCountdown();
+                    option1.setEnabled(true);
+                    option2.setEnabled(true);
+                    option3.setEnabled(true);
+                    option4.setEnabled(true);
 
-                        option1.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
-                        option2.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
-                        option3.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
-                        option4.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
+                    option1.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
+                    option2.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
+                    option3.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
+                    option4.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
 
-                        if (timerRunning) {
-                            pauseCountdown();
-                            restartCountdown();
-                        }
-                        startCountdown();
+                    if (timerRunning) {
+                        pauseCountdown();
+                        restartCountdown();
                     }
+                    startCountdown();
+                    mydialog.dismiss();
+                }
 
-                mydialog.dismiss();
-            }
-        });
+            });
+        }
+
+         //else if(questionCounter == 50 ){
+            //spopUpGewonnen();
+        //}
+
         //show Popup
-        mydialog.show();
+        if(!isFinishing())
+            mydialog.show();
 
     }
 
@@ -441,7 +452,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
             public void onClick(View v) {
 
                 dismissWithTryCatch(dialogLost);
-                finishQuiz();
+                Intent intent = new Intent(Quiz.this, Highscoreliste.class);
+                startActivity(intent);
             }
         });
     if(!isFinishing())
@@ -458,6 +470,27 @@ public class Quiz extends AppCompatActivity implements Countdown {
         } finally {
             dialog = null;
         }
+    }
+
+    private void popUpGewonnen(){
+
+        dialogWin.setContentView(R.layout.popup_gewonnen);
+        Button closeWin = (Button) dialogWin.findViewById(R.id.closeGewonnen);
+        dialogWin.setCanceledOnTouchOutside(false);
+        dialogWin.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        closeWin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dismissWithTryCatch(dialogWin);
+                Intent intent = new Intent(Quiz.this, Highscoreliste.class);
+                startActivity(intent);
+            }
+        });
+
+        if(!isFinishing())
+            dialogWin.show();
     }
 
     @Override
