@@ -6,27 +6,47 @@
     android:layout_width= "match_parent"
     android:layout_height= "match_parent"
     tools:context= ".Startseite"
-    android:background = "@drawable/hintergrund">
+    android:background = "@drawable/hintergrund_liste">
+
+    <TextView
+        android:id="@+id/logo2"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="684dp"
+        android:layout_marginBottom="9dp"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/quizme"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#505050"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/willkommen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="241dp"
-        android:fontFamily="@font/athiti"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="235dp"
+        android:layout_marginEnd="410dp"
+        android:fontFamily="@font/raleway_light"
         android:lineSpacingExtra="8sp"
         android:padding="8dp"
         android:text="@string/willkommen"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="#505050"
-        android:textSize="50sp" />
+        android:textSize="60sp"
+        android:typeface="normal" />
 
     <Button
         android:id="@+id/start"
-        android:layout_width="210dp"
+        android:layout_width="250dp"
         android:layout_height="70dp"
         android:layout_below="@+id/willkommen"
         android:layout_centerInParent="true"
@@ -36,26 +56,26 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/rounded_corners"
         android:backgroundTint="#2E7D91"
-        android:fontFamily="@font/athiti"
+        android:fontFamily="@font/raleway_light"
         android:text="@string/start"
         android:textColor="@color/black"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:iconPadding="8dp" />
 
     <Button
         android:id="@+id/highscoreliste"
-        android:layout_width="210dp"
+        android:layout_width="250dp"
         android:layout_height="70dp"
         android:layout_below="@+id/start"
         android:layout_centerInParent="true"
         android:background="@drawable/rounded_corners"
         android:backgroundTint="#2E7D91"
         android:drawableTint="@color/teal_700"
-        android:fontFamily="@font/athiti"
+        android:fontFamily="@font/raleway_light"
         android:text="@string/highscoreliste"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:iconPadding="8dp" />
 
     <ImageButton
@@ -67,31 +87,13 @@
         android:layout_centerInParent="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="7dp"
         android:background="@android:drawable/divider_horizontal_bright"
         android:backgroundTint="#C7F6EA"
         android:contentDescription="@string/todo"
         android:padding="8dp"
         android:tint="#424242"
         app:srcCompat="@android:drawable/ic_dialog_info" />
-
-    <TextView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="679dp"
-        android:layout_marginBottom="15dp"
-        android:fontFamily="sans-serif-light"
-        android:text="@string/quizme"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="#505050"
-        android:textSize="24sp" />
 
 </RelativeLayout>

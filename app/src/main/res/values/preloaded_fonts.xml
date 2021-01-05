@@ -9,5 +9,9 @@
         <item>@font/cinzel_decorative</item>
         <item>@font/cuprum</item>
         <item>@font/lancelot</item>
+        <item>@font/raleway_bold</item>
+        <item>@font/raleway_light</item>
+        <item>@font/raleway_medium</item>
+        <item>@font/raleway_semibold</item>
     </array>
 </resources>

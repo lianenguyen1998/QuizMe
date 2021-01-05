@@ -8,14 +8,33 @@
     tools:context=".Startseite"
     android:background="@drawable/hintergrund_liste">
 
+
+    <TextView
+        android:id="@+id/logo3"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="684dp"
+        android:layout_marginBottom="9dp"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/quizme"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#505050"
+        android:textSize="24sp" />
+
     <Button
         android:id="@+id/weiterSpielen"
         android:layout_width="300dp"
         android:layout_height="70dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="426dp"
-        android:layout_marginBottom="216dp"
+        android:layout_marginStart="663dp"
+        android:layout_marginBottom="72dp"
         android:background="@drawable/rounded_corners"
         android:backgroundTint="#2E7D91"
         android:drawableTint="@color/teal_700"
@@ -32,8 +51,8 @@
         android:layout_height="70dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="75dp"
-        android:layout_marginBottom="217dp"
+        android:layout_marginStart="316dp"
+        android:layout_marginBottom="73dp"
         android:background="@drawable/rounded_corners"
         android:backgroundTint="#2E7D91"
         android:drawableTint="@color/teal_700"
@@ -45,32 +64,14 @@
         app:iconPadding="8dp" />
 
     <TextView
-        android:id="@+id/logo6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="1158dp"
-        android:fontFamily="sans-serif-light"
-        android:text="@string/quizme"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="#505050"
-        android:textSize="24sp" />
-
-
-    <TextView
         android:id="@+id/highscoreliste"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
-        android:layout_marginTop="257dp"
-        android:layout_marginEnd="235dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="478dp"
         android:fontFamily="@font/raleway_medium"
         android:lineSpacingExtra="8sp"
         android:padding="8dp"
@@ -84,7 +85,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
-        android:layout_marginVertical="400dp">
+        android:layout_marginVertical="150dp">
 
         <TableRow>
 
@@ -655,7 +656,6 @@
                 android:layout_marginHorizontal="1dp"/>
 
         </TableRow>
-
 
     </TableLayout>
 

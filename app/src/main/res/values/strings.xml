@@ -14,4 +14,10 @@
     <string name="hinweis">Hinweis</string>
     <string name="chai">Chai</string>
     <string name="Abbrechbutton">Abbrechen</string>
+    <string name="level_1">Level: 1</string>
+    <string name="oak">Oak</string>
+    <string name="_30">30</string>
+    <string name="leben_3">Leben: 3</string>
+    <string name="abbrechen">abbrechen</string>
+    <string name="lase">Lase</string>
 </resources>

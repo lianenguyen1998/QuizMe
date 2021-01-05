@@ -1,34 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="700dp"
     android:layout_height="400dp"
-    android:orientation="vertical"
     android:layout_gravity="center"
-    android:backgroundTint="@color/teal_700"
-    android:background="@drawable/rounded_corners">
+    android:background="@drawable/hintergrund_liste"
+    android:orientation="vertical">
 
 
     <TextView
         android:id="@+id/verloren"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Du hast leider verloren"
         android:layout_marginTop="100dp"
-        android:fontFamily="@font/athiti"
+        android:fontFamily="@font/raleway_light"
+        android:text="Du hast leider verloren"
         android:textAlignment="center"
-        android:textSize="30sp"/>
+        android:textSize="33sp" />
 
     <Button
         android:id="@+id/closeVerloren"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Zurück zur Startseite"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="50dp"
+        android:layout_width="500dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="100dp"
         android:background="@drawable/rounded_corners"
         android:backgroundTint="#2E7D91"
-        android:fontFamily="@font/athiti"
-        />
+        android:fontFamily="@font/raleway_light"
+        android:text="Zurück zur Startseite" />
 </LinearLayout>
