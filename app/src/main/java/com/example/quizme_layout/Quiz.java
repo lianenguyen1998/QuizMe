@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
@@ -19,12 +20,14 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.InputType;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -32,6 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.Datenbank.DatabaseHelper;
+import com.example.Datenbank.HighscoreModel;
 import com.example.Datenbank.QuizMeModel;
 import com.example.quizmetime.Countdown;
 
@@ -57,6 +61,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
     private int questionCountTotal;
     private QuizMeModel currentQuestion;
 
+    private List<HighscoreModel> highscoreliste;
+
     //Countdown Variables
     private TextView zeit;
     private TextView textview_timer;
@@ -68,7 +74,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
     //Level Variables
     private TextView textview_level;
     private int level_count = 1;
-    static final int MAXLEVEL = 50;
+    static final int MAXLEVEL = 5;
 
     //Leben Variables
     private TextView textview_leben3;
@@ -165,7 +171,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
         chronometer = findViewById(R.id.textview_chronometer);
         createChronometer();
-        chronometer.start();
+        //chronometer.start();
 
     }
 
@@ -229,7 +235,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
         } else {
             //Quiz beenden und zur Highscoreliste gehen
-            popUpGewonnen();
+            //if(questionCounter == questionCountTotal)
+                //popUpGewonnen();
         }
     }
 
@@ -247,6 +254,14 @@ public class Quiz extends AppCompatActivity implements Countdown {
             }
         }
 
+    }
+
+    public int getLevelCount(){
+        return this.level_count;
+    }
+
+    public long getTime(){
+        return chronometer.getBase();
     }
 
     private void finishQuiz() {
@@ -278,7 +293,11 @@ public class Quiz extends AppCompatActivity implements Countdown {
                         //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
 
                         // -> Gewonnen Pop Up -> next level
+                        if(questionCounter < questionCountTotal)
                         CreateNextLevelDialog();
+
+                        if(questionCounter == questionCountTotal)
+                            popUpGewonnen();
 
                     } else {
                         //Auswahl wird rot
@@ -345,7 +364,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
             textview_leben2.setVisibility(View.INVISIBLE);
             textview_leben1.setVisibility(View.INVISIBLE);
 
-            chronometer.stop();
+            //chronometer.stop();
 
             //Das Verloren-Pop-Up erscheint
             popUpVerloren();
@@ -491,6 +510,42 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
         if(!isFinishing())
             dialogWin.show();
+    }
+
+    private void popupInsertName(){
+        AlertDialog.Builder insertUsername = new AlertDialog.Builder(this);
+        insertUsername.setTitle("Um auf die Highscoreliste zu kommen gib bitte deinen Namen ein");
+
+        final EditText username = new EditText(this);
+        username.setInputType(InputType.TYPE_CLASS_TEXT );
+        insertUsername.setView(username);
+
+        //Quiz quiz = new Quiz();
+
+        insertUsername.setPositiveButton("Sichern", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Edit Text in Datenbank speichern
+                HighscoreModel model;
+                try {
+                    model = new HighscoreModel(-1, username.getText().toString(), getTime(), getLevelCount());
+                    Toast.makeText(Quiz.this, model.toString(), Toast.LENGTH_SHORT).show();
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        insertUsername.setNegativeButton("Abbrechen", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(),"abgebrochen", Toast.LENGTH_SHORT).show();
+                dialog.cancel();
+                finishQuiz();
+            }
+        });
+        if(!isFinishing())
+        insertUsername.show();
     }
 
     @Override

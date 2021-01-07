@@ -62,7 +62,6 @@ public class QuizMeModel {
         this.option3 = option3;
     }
 
-
     public String getOption4() {
         return option4;
     }
