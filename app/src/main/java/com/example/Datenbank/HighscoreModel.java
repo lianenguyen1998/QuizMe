@@ -3,15 +3,13 @@ package com.example.Datenbank;
 public class HighscoreModel {
 
 
-    public int id;
     public String username;
     public long userzeit;
     public int levelanzahl;
 
     public HighscoreModel(){}
 
-    public HighscoreModel(int _id, String _username, long _userzeit, int _levelanzahl){
-        this.id = _id;
+    public HighscoreModel(String _username, long _userzeit, int _levelanzahl){
         this.username = _username;
         this.userzeit = _userzeit;
         this.levelanzahl = _levelanzahl;

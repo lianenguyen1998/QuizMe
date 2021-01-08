@@ -35,6 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.Datenbank.DatabaseHelper;
+import com.example.Datenbank.DatabaseHighscorelist;
 import com.example.Datenbank.HighscoreModel;
 import com.example.Datenbank.QuizMeModel;
 import com.example.quizmetime.Countdown;
@@ -168,10 +169,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
         dialogLost = new Dialog(Quiz.this);
         dialogWin = new Dialog(Quiz.this);
 
-
         chronometer = findViewById(R.id.textview_chronometer);
         createChronometer();
-        //chronometer.start();
 
     }
 
@@ -183,8 +182,9 @@ public class Quiz extends AppCompatActivity implements Countdown {
                     chronometer = _chronometer;
                 }
             });
+            chronometer.start();
         } catch (NullPointerException e){
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 
@@ -364,7 +364,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
             textview_leben2.setVisibility(View.INVISIBLE);
             textview_leben1.setVisibility(View.INVISIBLE);
 
-            //chronometer.stop();
+            chronometer.stop();
 
             //Das Verloren-Pop-Up erscheint
             popUpVerloren();
@@ -501,10 +501,10 @@ public class Quiz extends AppCompatActivity implements Countdown {
         closeWin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                popupInsertName();
                 dismissWithTryCatch(dialogWin);
-                Intent intent = new Intent(Quiz.this, Highscoreliste.class);
-                startActivity(intent);
+                //Intent intent = new Intent(Quiz.this, Highscoreliste.class);
+                //startActivity(intent);
             }
         });
 
@@ -516,11 +516,12 @@ public class Quiz extends AppCompatActivity implements Countdown {
         AlertDialog.Builder insertUsername = new AlertDialog.Builder(this);
         insertUsername.setTitle("Um auf die Highscoreliste zu kommen gib bitte deinen Namen ein");
 
-        final EditText username = new EditText(this);
+        final EditText username = new EditText(Quiz.this);
         username.setInputType(InputType.TYPE_CLASS_TEXT );
         insertUsername.setView(username);
 
-        //Quiz quiz = new Quiz();
+        //Datenbank Highscoreliste
+        DatabaseHighscorelist dbHighscore = new DatabaseHighscorelist(Quiz.this);
 
         insertUsername.setPositiveButton("Sichern", new DialogInterface.OnClickListener() {
             @Override
@@ -528,11 +529,21 @@ public class Quiz extends AppCompatActivity implements Countdown {
                 //Edit Text in Datenbank speichern
                 HighscoreModel model;
                 try {
-                    model = new HighscoreModel(-1, username.getText().toString(), getTime(), getLevelCount());
-                    Toast.makeText(Quiz.this, model.toString(), Toast.LENGTH_SHORT).show();
+                    model = new HighscoreModel(username.getText().toString(), getTime(), getLevelCount());
+                    //Toast.makeText(Quiz.this, model.toString(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Quiz.this, Highscoreliste.class);
+                    startActivity(intent);
+
                 } catch (Exception e){
+                    model = new HighscoreModel("Error", 0, 0);
+                    Toast.makeText(Quiz.this, model.toString(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
+
+                //Daten einfügen in die Datenbank
+                boolean success = dbHighscore.add(model);
+                //Test
+                Toast.makeText(Quiz.this, "Success " + success, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -544,7 +555,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
                 finishQuiz();
             }
         });
-        if(!isFinishing())
+
         insertUsername.show();
     }
 

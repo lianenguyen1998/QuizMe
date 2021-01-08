@@ -200,6 +200,16 @@
         android:textSize="14sp"
         app:drawableTopCompat="@drawable/vector_close" />
 
+    <Chronometer
+        android:id= "@+id/textview_chronometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="-3dp"
+        android:layout_marginTop="720dp"
+        android:layout_marginBottom="15dp"
+        android:textSize="24sp" />
+
     <TextView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
@@ -218,14 +228,6 @@
         android:textColor="#373636"
         android:textSize="24sp" />
 
-    <Chronometer
-        android:id="@+id/textview_chronometer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="-3dp"
-        android:layout_marginTop="720dp"
-        android:layout_marginBottom="15dp"
-        android:textSize="24sp" />
+
 
 </RelativeLayout>

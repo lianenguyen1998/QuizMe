@@ -42,12 +42,14 @@ public class DatabaseHighscorelist extends SQLiteOpenHelper {
     }
 
     public boolean add(HighscoreModel model){
+        db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put(HighscoreTable.COLUMN_NAME, model.username);
         cv.put(HighscoreTable.COLUMN_ZEIT, model.userzeit);
         cv.put(HighscoreTable.COLUMN_LEVEL, model.levelanzahl);
         long insert = db.insert(HighscoreTable.TABLE_NAME, null, cv);
+
         if(insert == -1){
             return false;
         } else {

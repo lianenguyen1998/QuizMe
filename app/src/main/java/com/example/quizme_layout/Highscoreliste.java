@@ -27,11 +27,6 @@ public class Highscoreliste extends AppCompatActivity {
     // ---- WeiterSpielenButton
     private Button weiterSpielen;
 
-    // Datenbank Variablen
-    private List<HighscoreModel> highscoreliste;
-    private HighscoreModel currentHighscore;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
