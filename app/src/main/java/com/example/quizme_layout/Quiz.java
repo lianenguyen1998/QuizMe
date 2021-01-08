@@ -3,6 +3,7 @@ package com.example.quizme_layout;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
@@ -15,6 +16,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -104,6 +106,10 @@ public class Quiz extends AppCompatActivity implements Countdown {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz);
 
+        //starten der Hintergrundanimation
+        //muss vor dem Countdown und dem Chronometer passieren
+        backgroundAnimation();
+
         frage = findViewById(R.id.question);
         hinweis = findViewById(R.id.hinweis);
         quit = findViewById(R.id.quit);
@@ -125,7 +131,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
         questionCountTotal = fragenliste.size();
         Collections.shuffle(fragenliste);
 
-        if(currentQuestion == null)
+        if (currentQuestion == null)
             showNextQuestion();
 
         hinweis.setOnClickListener(new View.OnClickListener() {
@@ -137,15 +143,15 @@ public class Quiz extends AppCompatActivity implements Countdown {
         });
 
 
-       quit.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               finishQuiz();
-           }
-       });
+        quit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finishQuiz();
+            }
+        });
 
         //Level
-        textview_level= findViewById(R.id.text_view_level);
+        textview_level = findViewById(R.id.text_view_level);
 
         //Leben
         textview_leben3 = findViewById(R.id.textview_leben3);
@@ -157,7 +163,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
         textview_timer = findViewById(R.id.textview_timer);
         textColor_countdown = textview_timer.getTextColors();
 
-        if(timerRunning){
+        if (timerRunning) {
             pauseCountdown();
             restartCountdown();
         }
@@ -172,6 +178,31 @@ public class Quiz extends AppCompatActivity implements Countdown {
         chronometer = findViewById(R.id.textview_chronometer);
         createChronometer();
 
+
+    }
+
+    /***
+     * Die Hintergrundanimation, welche aus aus einer Animationsliste besteht, soll hier in ihrer Dauer
+     * angepasst und gestartet werden
+     */
+    private void backgroundAnimation(){
+        //Von class android.graphics.drawable.DrawableContainer
+
+        RelativeLayout constraintLayout = findViewById(R.id.hintergrundQuiz_id);
+
+        //der Hintergrund beinhaltet die Animationsliste (siehe quiz.xml)
+        //diese muss als Variable definiert werden, um sie starten zu können
+        AnimationDrawable  animation= (AnimationDrawable) constraintLayout.getBackground();
+
+        //duration ist die Dauer (in Millisekunden), um das Frame anzuzeigen
+        //Die Duration wird geändert, wenn das neue Drawable eintrifft
+        animation.setEnterFadeDuration(4000);
+
+        //Die Duration wird geändert, wenn das Drawable verschwindet
+        animation.setExitFadeDuration(4000);
+
+        //das Starten der Hintergrundanimation
+        animation.start();
     }
 
     private void createChronometer() throws NullPointerException{
