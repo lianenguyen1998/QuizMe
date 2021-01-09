@@ -41,6 +41,7 @@ import com.example.Datenbank.DatabaseHighscorelist;
 import com.example.Datenbank.HighscoreModel;
 import com.example.Datenbank.QuizMeModel;
 import com.example.quizmetime.Countdown;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -108,6 +109,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
         //starten der Hintergrundanimation
         //muss vor dem Countdown und dem Chronometer passieren
+        //android:background="@drawable/hintergrund_liste"
         backgroundAnimation();
 
         frage = findViewById(R.id.question);
@@ -177,10 +179,32 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
         chronometer = findViewById(R.id.textview_chronometer);
         createChronometer();
+        createPanel();
+    }
+    public void createPanel(){
+        try {
+            SlidingUpPanelLayout layout = findViewById(R.id.hintergrundQuiz_id);
+            layout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+                @Override
+                public void onPanelSlide(View panel, float slideOffset) {
 
+                    findViewById(R.id.textview_panel).setAlpha(1 - slideOffset);
+                }
+
+                @Override
+                public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+
+                    if (newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
+                    }
+                    //Panel expanded
+                    //COLLABSED
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
-
     /***
      * Die Hintergrundanimation, welche aus aus einer Animationsliste besteht, soll hier in ihrer Dauer
      * angepasst und gestartet werden
@@ -188,11 +212,11 @@ public class Quiz extends AppCompatActivity implements Countdown {
     private void backgroundAnimation(){
         //Von class android.graphics.drawable.DrawableContainer
 
-        RelativeLayout constraintLayout = findViewById(R.id.hintergrundQuiz_id);
+        RelativeLayout layout = findViewById(R.id.hintergrundQuiz_id_relative);
 
         //der Hintergrund beinhaltet die Animationsliste (siehe quiz.xml)
         //diese muss als Variable definiert werden, um sie starten zu können
-        AnimationDrawable  animation= (AnimationDrawable) constraintLayout.getBackground();
+        AnimationDrawable  animation= (AnimationDrawable) layout.getBackground();
 
         //duration ist die Dauer (in Millisekunden), um das Frame anzuzeigen
         //Die Duration wird geändert, wenn das neue Drawable eintrifft
@@ -323,6 +347,10 @@ public class Quiz extends AppCompatActivity implements Countdown {
                         //debug message
                         //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
 
+                        //der Countdown muss abgebrochen werden, da man sonst ein weiteres Leben verliert während sich das
+                        //gewonnen Pop up öffnet
+                        countdown.cancel();
+
                         // -> Gewonnen Pop Up -> next level
                         if(questionCounter < questionCountTotal)
                         CreateNextLevelDialog();
@@ -395,12 +423,11 @@ public class Quiz extends AppCompatActivity implements Countdown {
             textview_leben2.setVisibility(View.INVISIBLE);
             textview_leben1.setVisibility(View.INVISIBLE);
 
+            //die allgemeine zeit wird gestoppt
             chronometer.stop();
 
             //Das Verloren-Pop-Up erscheint
             popUpVerloren();
-
-
         }
     }
 

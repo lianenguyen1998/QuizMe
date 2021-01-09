@@ -29,4 +29,12 @@
         android:backgroundTint="#2E7D91"
         android:fontFamily="@font/raleway_medium"
         android:text="zur Highscoreliste" />
+        android:fontFamily="@font/raleway_light"
+        android:text="Zurück zur Startseite" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/lost"
+        />
 </LinearLayout>
