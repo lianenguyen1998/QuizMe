@@ -4,14 +4,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class Startseite extends AppCompatActivity {
+
+    // ---- Splash Screen Animation - Variablen
+    Animation obenAnim, untenAnim;
+    TextView willkommenAnim, logoAnim;
+    Button startAnim, highscorelisteAnim;
+    ImageButton infoAnim;
 
     // ---- QuizButton
     private Button start;
@@ -26,6 +36,23 @@ public class Startseite extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.startseite);
+
+        // ---- Splash Screen Animation
+        obenAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
+        untenAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
+
+        // Hooks
+        willkommenAnim = findViewById(R.id.willkommen);
+        startAnim = findViewById(R.id.start);
+        highscorelisteAnim = findViewById(R.id.highscoreliste);
+        logoAnim = findViewById(R.id.logo4);
+        infoAnim = findViewById(R.id.info);
+
+        willkommenAnim.setAnimation(obenAnim);
+        startAnim.setAnimation(untenAnim);
+        highscorelisteAnim.setAnimation(untenAnim);
+        logoAnim.setAnimation(untenAnim);
+        infoAnim.setAnimation(untenAnim);
 
         backgroundAnimation();
 

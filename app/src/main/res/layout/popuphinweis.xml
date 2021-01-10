@@ -3,18 +3,18 @@
     android:layout_width="700dp"
     android:layout_height="400dp"
     android:layout_gravity="center"
-    android:background="@drawable/hintergrund_liste"
+    android:background="@drawable/hintergrundbild2_round"
     android:orientation="vertical">
-
 
     <TextView
         android:id="@+id/hinweisPopup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:fontFamily="@font/raleway_light"
+        android:fontFamily="@font/raleway_medium"
         android:text="Hinweis"
         android:textAlignment="center"
+        android:textColor="#1E1E1E"
         android:textSize="35sp" />
 
     <Button
@@ -26,6 +26,6 @@
         android:layout_marginEnd="100dp"
         android:background="@drawable/rounded_corners"
         android:backgroundTint="#2E7D91"
-        android:fontFamily="@font/raleway_light"
+        android:fontFamily="@font/raleway_medium"
         android:text="Schließen" />
 </LinearLayout>

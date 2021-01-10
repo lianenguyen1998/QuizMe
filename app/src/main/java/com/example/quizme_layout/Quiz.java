@@ -468,6 +468,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     }
 
+
     /**
      * Popup für Hinweis
      */

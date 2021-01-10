@@ -4,7 +4,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="lightred">#FF6347</color>
-    <color name="lightgreen">#98FB98</color>
-    <color name="lightblue">#5BA3AF</color>
+    <color name="lightred">#F34F42</color>
+    <color name="lightgreen">#4DEF48</color>
+    <color name="lightblue">#58E3CE</color>
 </resources>

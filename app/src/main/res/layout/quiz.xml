@@ -54,6 +54,7 @@
         android:layout_marginEnd="20dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/level_1"
+        android:textColor="#353535"
         android:textSize="24sp"
         app:drawableTopCompat="@drawable/vector_level_neu" />
 
@@ -67,6 +68,7 @@
         android:fontFamily="sans-serif-light"
         android:gravity="center|top"
         android:text="@string/_30"
+        android:textColor="#353535"
         android:textSize="30sp"
         app:drawableTopCompat="@drawable/vector_timer" />
 
@@ -78,6 +80,7 @@
         android:layout_marginTop="70dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/leben_3"
+        android:textColor="#353535"
         android:textSize="24sp" />
 
 
@@ -93,12 +96,12 @@
         android:layout_marginTop="378dp"
         android:layout_marginEnd="-2dp"
         android:layout_toStartOf="@id/hinweis"
-        android:fontFamily="@font/raleway_light"
+        android:fontFamily="@font/raleway_medium"
         android:padding="8dp"
         android:text="@string/welchen_namen_hatte_java_urspr_nglich"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="#505050"
+        android:textColor="#1E1E1E"
         android:textSize="30sp" />
 
     <Button
@@ -109,8 +112,8 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="517dp"
         android:background="@drawable/rounded_corners"
-        android:backgroundTint="#2E7D91"
-        android:fontFamily="@font/raleway_light"
+        android:backgroundTint="#3ED19E"
+        android:fontFamily="@font/raleway_medium"
         android:padding="8dp"
         android:shape="rectangle"
         android:text="@string/hinweis"
@@ -129,7 +132,7 @@
         android:layout_marginEnd="-139dp"
         android:layout_toStartOf="@id/hinweis"
         android:background="@drawable/rounded_corners"
-        android:fontFamily="@font/raleway_light"
+        android:fontFamily="@font/raleway_medium"
         android:padding="8dp"
         android:text="@string/jasa"
         android:textColor="@color/black"
@@ -145,7 +148,7 @@
         android:layout_marginEnd="-514dp"
         android:layout_toStartOf="@id/hinweis"
         android:background="@drawable/rounded_corners"
-        android:fontFamily="@font/raleway_light"
+        android:fontFamily="@font/raleway_medium"
         android:padding="8dp"
         android:text="@string/chai"
         android:textColor="@color/black"
@@ -161,7 +164,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="766dp"
         android:background="@drawable/rounded_corners"
-        android:fontFamily="@font/raleway_light"
+        android:fontFamily="@font/raleway_medium"
         android:padding="8dp"
         android:text="@string/oak"
         android:textColor="@color/black"
@@ -177,7 +180,7 @@
         android:layout_marginStart="413dp"
         android:layout_marginTop="769dp"
         android:background="@drawable/rounded_corners"
-        android:fontFamily="@font/raleway_light"
+        android:fontFamily="@font/raleway_medium"
         android:padding="8dp"
         android:text="@string/lase"
         android:textColor="@color/black"
@@ -193,7 +196,7 @@
         android:layout_marginEnd="-9dp"
         android:layout_marginBottom="-3dp"
         android:background="@drawable/rounded_corners_transparent"
-        android:drawableTint="#272626"
+        android:drawableTint="#1E1E1E"
         android:fontFamily="sans-serif-light"
         android:padding="8dp"
         android:text="@string/abbrechen"
@@ -226,7 +229,7 @@
         android:text="@string/quizme"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="#373636"
+        android:textColor="#000000"
         android:textSize="24sp" />
 
 
