@@ -33,13 +33,16 @@ public class Startseite extends AppCompatActivity {
     // ---- InfotextButton
     private ImageButton imageButton;
 
-    //Sound für den Buttonklick
-    //MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.button_klick1);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.startseite);
+
+        //Sound für den Buttonklick
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.button_klick1);
+
+        //Sound für den Buttonklick
+        final MediaPlayer mediaPlayer2 = MediaPlayer.create(this, R.raw.button_klick2);
 
         // ---- Splash Screen Animation
         obenAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
@@ -67,7 +70,7 @@ public class Startseite extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               //mediaPlayer.start();
+                mediaPlayer.start();
                 openQuiz();
             }
         });
@@ -75,7 +78,7 @@ public class Startseite extends AppCompatActivity {
         highscoreliste.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //mediaPlayer.start();
+                mediaPlayer2.start();
                 openHighscoreliste();
             }
         });
@@ -83,7 +86,7 @@ public class Startseite extends AppCompatActivity {
          imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               //mediaPlayer.start();
+               mediaPlayer.start();
                 openInfotext();
                     //openBackgroundTest();
             }
