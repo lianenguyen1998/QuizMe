@@ -236,6 +236,12 @@
         android:textColor="#000000"
         android:textSize="24sp" />
 
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#05F324"
+        >
         <TextView
             android:id="@+id/textview_panel"
             android:layout_width="match_parent"
@@ -253,11 +259,5 @@
             android:textSize="30sp"
             android:textStyle="bold"
             app:drawableBottomCompat="@drawable/vector_down"/>
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
     </RelativeLayout>
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

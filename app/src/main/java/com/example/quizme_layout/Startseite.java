@@ -34,7 +34,7 @@ public class Startseite extends AppCompatActivity {
     private ImageButton imageButton;
 
     //Sound für den Buttonklick
-    //final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.ButtonClick1);
+    //MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.button_klick1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,7 @@ public class Startseite extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // mediaPlayer.start();
+               //mediaPlayer.start();
                 openQuiz();
             }
         });
@@ -83,7 +83,7 @@ public class Startseite extends AppCompatActivity {
          imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // mediaPlayer.start();
+               //mediaPlayer.start();
                 openInfotext();
                     //openBackgroundTest();
             }
