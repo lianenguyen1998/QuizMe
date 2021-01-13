@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.text.InputType;
@@ -13,10 +14,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.SimpleAdapter;
+import android.widget.TableLayout;
 import android.widget.Toast;
+
+import de.codecrafters.tableview.*;
+import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter;
+import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter;
 
 import com.example.Datenbank.DatabaseHighscorelist;
 import com.example.Datenbank.HighscoreModel;
+import com.example.Datenbank.TableHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,15 +38,24 @@ public class Highscoreliste extends AppCompatActivity {
     // ---- WeiterSpielenButton
     private Button weiterSpielen;
 
+    //Tableview
+    TableView<String[]> table;
+    TableHelper tableHelper;
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.highscoreliste);
 
-        backgroundAnimation();
+        //backgroundAnimation();
 
         zurückzurStartseite = (Button) findViewById(R.id.zurückzurStartseite);
         weiterSpielen = (Button) findViewById(R.id.weiterSpielen);
+
 
         zurückzurStartseite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +72,16 @@ public class Highscoreliste extends AppCompatActivity {
                 openweiterSpielen();
             }
         });
+
+
+        tableHelper = new TableHelper(this);
+        table = (TableView<String[]>) findViewById(R.id.highscoreview);
+        table.setColumnCount(4);
+        table.setHeaderBackgroundColor(Color.parseColor("#2ecc71"));
+        table.setHeaderAdapter(new SimpleTableHeaderAdapter(this, tableHelper.getHeader()));
+        table.setDataAdapter(new SimpleTableDataAdapter(this, tableHelper.getSpieler()));
+
+
     }
 
     // ---- bringt uns zurück Startseite
@@ -92,5 +119,7 @@ public class Highscoreliste extends AppCompatActivity {
         //das Starten der Hintergrundanimation
         animation.start();
     }
+
+
 
 }

@@ -60,7 +60,7 @@ public class DatabaseHighscorelist extends SQLiteOpenHelper {
     public List<HighscoreModel> getHighscorelist(){
         List<HighscoreModel> highscoreliste = new ArrayList<>();
         db = getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM " + HighscoreTable.TABLE_NAME, null);
+        Cursor c = db.rawQuery("SELECT * FROM " + HighscoreTable.TABLE_NAME + " ORDER BY " + HighscoreTable.COLUMN_LEVEL + " ASC", null);
 
         if(c.moveToFirst()){
             do{
@@ -69,9 +69,12 @@ public class DatabaseHighscorelist extends SQLiteOpenHelper {
                 highscore.setUserzeit(c.getLong(c.getColumnIndex(HighscoreTable.COLUMN_ZEIT)));
                 highscore.setLevelanzahl(c.getInt(c.getColumnIndex(HighscoreTable.COLUMN_LEVEL)));
             } while (c.moveToNext());
+        } else {
+
         }
 
         c.close();
+        db.close();
         return highscoreliste;
     }
 }

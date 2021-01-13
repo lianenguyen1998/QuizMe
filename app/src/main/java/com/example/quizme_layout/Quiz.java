@@ -78,7 +78,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
     //Level Variables
     private TextView textview_level;
     private int level_count = 1;
-    static final int MAXLEVEL = 5;
+    private final int MAXLEVEL = 5;
 
     //Leben Variables
     private TextView textview_leben3;
@@ -311,6 +311,10 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     }
 
+    public int getQuestionCountTotal(){
+        return this.questionCountTotal;
+    }
+
     public int getLevelCount(){
         return this.level_count;
     }
@@ -320,7 +324,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
     }
 
     private void finishQuiz() {
-        finish();
+        Intent intent = new Intent(this, Startseite.class);
+        startActivity(intent);
     }
 
     private boolean checkAnswer(int buttoncount, Button btnAnswer){
@@ -560,7 +565,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
         closeWin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                popupInsertName();
+                //popupInsertName();
                 dismissWithTryCatch(dialogWin);
                 //Intent intent = new Intent(Quiz.this, Highscoreliste.class);
                 //startActivity(intent);
@@ -578,6 +583,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
         final EditText username = new EditText(Quiz.this);
         username.setInputType(InputType.TYPE_CLASS_TEXT );
         insertUsername.setView(username);
+        Quiz quiz = new Quiz();
 
         //Datenbank Highscoreliste
         DatabaseHighscorelist dbHighscore = new DatabaseHighscorelist(Quiz.this);
@@ -588,10 +594,25 @@ public class Quiz extends AppCompatActivity implements Countdown {
                 //Edit Text in Datenbank speichern
                 HighscoreModel model;
                 try {
-                    model = new HighscoreModel(username.getText().toString(), getTime(), getLevelCount());
-                    //Toast.makeText(Quiz.this, model.toString(), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Quiz.this, Highscoreliste.class);
-                    startActivity(intent);
+                    if(username.getText().toString()!= null) {
+                        model = new HighscoreModel(username.getText().toString(), quiz.getTime(), quiz.getLevelCount());
+                        //Toast.makeText(Quiz.this, model.toString(), Toast.LENGTH_SHORT).show();
+
+                        //Daten einfügen in die Datenbank
+                        boolean success = dbHighscore.add( model);
+                        //Test
+                        Toast.makeText(Quiz.this, "Success " + success, Toast.LENGTH_SHORT).show();
+
+                        //Zur Highscoreseite
+                        Intent intent = new Intent(Quiz.this, Highscoreliste.class);
+                        startActivity(intent);
+
+
+                    } else {
+                        Toast.makeText(getApplicationContext(),"abgebrochen", Toast.LENGTH_SHORT).show();
+                        dialog.cancel();
+
+                    }
 
                 } catch (Exception e){
                     model = new HighscoreModel("Error", 0, 0);
@@ -599,10 +620,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
                     e.printStackTrace();
                 }
 
-                //Daten einfügen in die Datenbank
-                boolean success = dbHighscore.add(model);
-                //Test
-                Toast.makeText(Quiz.this, "Success " + success, Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -611,7 +629,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(getApplicationContext(),"abgebrochen", Toast.LENGTH_SHORT).show();
                 dialog.cancel();
-                finishQuiz();
             }
         });
 
