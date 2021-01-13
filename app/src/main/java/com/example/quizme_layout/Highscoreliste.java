@@ -51,7 +51,7 @@ public class Highscoreliste extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.highscoreliste);
 
-        //backgroundAnimation();
+        backgroundAnimation();
 
         zurückzurStartseite = (Button) findViewById(R.id.zurückzurStartseite);
         weiterSpielen = (Button) findViewById(R.id.weiterSpielen);
