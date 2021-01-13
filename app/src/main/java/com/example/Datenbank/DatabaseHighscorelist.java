@@ -68,9 +68,8 @@ public class DatabaseHighscorelist extends SQLiteOpenHelper {
                 highscore.setUsername(c.getString(c.getColumnIndex(HighscoreTable.COLUMN_NAME)));
                 highscore.setUserzeit(c.getLong(c.getColumnIndex(HighscoreTable.COLUMN_ZEIT)));
                 highscore.setLevelanzahl(c.getInt(c.getColumnIndex(HighscoreTable.COLUMN_LEVEL)));
+                highscoreliste.add(highscore);
             } while (c.moveToNext());
-        } else {
-
         }
 
         c.close();

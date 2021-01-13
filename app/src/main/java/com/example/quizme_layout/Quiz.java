@@ -40,6 +40,7 @@ import com.example.Datenbank.DatabaseHelper;
 import com.example.Datenbank.DatabaseHighscorelist;
 import com.example.Datenbank.HighscoreModel;
 import com.example.Datenbank.QuizMeModel;
+import com.example.Datenbank.TableHelper;
 import com.example.quizmetime.Countdown;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
@@ -135,6 +136,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
         if (currentQuestion == null)
             showNextQuestion();
+
+
 
         hinweis.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -565,7 +568,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
         closeWin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //popupInsertName();
+                popupInsertName();
                 dismissWithTryCatch(dialogWin);
                 //Intent intent = new Intent(Quiz.this, Highscoreliste.class);
                 //startActivity(intent);
@@ -583,7 +586,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
         final EditText username = new EditText(Quiz.this);
         username.setInputType(InputType.TYPE_CLASS_TEXT );
         insertUsername.setView(username);
-        Quiz quiz = new Quiz();
 
         //Datenbank Highscoreliste
         DatabaseHighscorelist dbHighscore = new DatabaseHighscorelist(Quiz.this);
@@ -595,7 +597,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
                 HighscoreModel model;
                 try {
                     if(username.getText().toString()!= null) {
-                        model = new HighscoreModel(username.getText().toString(), quiz.getTime(), quiz.getLevelCount());
+                        model = new HighscoreModel(username.getText().toString(), getTime(), getLevelCount());
                         //Toast.makeText(Quiz.this, model.toString(), Toast.LENGTH_SHORT).show();
 
                         //Daten einfügen in die Datenbank
