@@ -573,7 +573,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     private void popupInsertName(){
         AlertDialog.Builder insertUsername = new AlertDialog.Builder(this);
-        insertUsername.setTitle("Um auf die Highscoreliste zu kommen gib bitte deinen Namen ein");
+        insertUsername.setTitle("Um auf die Highscoreliste zu kommen, geben Sie bitte Ihren Namen ein");
 
         final EditText username = new EditText(Quiz.this);
         username.setInputType(InputType.TYPE_CLASS_TEXT );
