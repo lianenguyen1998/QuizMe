@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:fontFamily="@font/raleway_medium"
-        android:text="Sie haben die richtige Antwort gewählt"
+        android:text="Richtig!"
         android:textAlignment="center"
         android:textColor="#1E1E1E"
         android:textSize="33sp" />
