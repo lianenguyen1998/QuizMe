@@ -114,7 +114,11 @@ public class Quiz extends AppCompatActivity implements Countdown {
         backgroundAnimation();
 
         frage = findViewById(R.id.question);
-        hinweis = findViewById(R.id.hinweis);
+
+        // *********************** Vorläufig auskommentiert
+        //hinweis = findViewById(R.id.hinweis);
+
+
         quit = findViewById(R.id.quit);
 
         //Antwortbuttons
@@ -138,7 +142,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
             showNextQuestion();
 
 
-
+        /* *************** VORLÄUFIG AUSKOMMENTIERT ***************
         hinweis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,7 +150,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
                 popUpHinweis();
             }
         });
-
+        ************************************************* */
 
         quit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -504,9 +508,10 @@ public class Quiz extends AppCompatActivity implements Countdown {
     }
 
 
-    /**
+    /* ****************** VORLÄUFIG AUSKOMMENTIERT ************
+
      * Popup für Hinweis
-     */
+
     private void popUpHinweis(){
         dialogHinweis.setContentView(R.layout.popuphinweis);
         TextView hinweisText = (TextView) dialogHinweis.findViewById(R.id.hinweisPopup);
@@ -525,6 +530,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
         dialogHinweis.show();
     }
+    **************************************************** */
 
     private void popUpVerloren(){
 

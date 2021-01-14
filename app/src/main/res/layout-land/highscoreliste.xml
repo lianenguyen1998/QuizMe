@@ -6,26 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Startseite"
-    android:background="@drawable/hintergrund_liste">
+    android:background="@drawable/hintergrund_liste"
+    android:id="@+id/hintergrundListe_id">
 
-
-    <TextView
-        android:id="@+id/logo3"
-        android:layout_width="wrap_content"
-        android:layout_height="34dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="684dp"
-        android:layout_marginBottom="9dp"
-        android:fontFamily="sans-serif-light"
-        android:text="@string/quizme"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="24sp" />
 
     <Button
         android:id="@+id/weiterSpielen"
@@ -33,8 +16,8 @@
         android:layout_height="70dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="663dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginStart="709dp"
+        android:layout_marginBottom="67dp"
         android:background="@drawable/rounded_corners"
         android:backgroundTint="#2E7D91"
         android:drawableTint="@color/teal_700"
@@ -51,8 +34,8 @@
         android:layout_height="70dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="316dp"
-        android:layout_marginBottom="73dp"
+        android:layout_marginStart="259dp"
+        android:layout_marginBottom="69dp"
         android:background="@drawable/rounded_corners"
         android:backgroundTint="#2E7D91"
         android:drawableTint="@color/teal_700"
@@ -70,8 +53,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="478dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="475dp"
         android:fontFamily="@font/raleway_medium"
         android:lineSpacingExtra="8sp"
         android:padding="8dp"
@@ -81,583 +64,43 @@
         android:textColor="#1E1E1E"
         android:textSize="36sp" />
 
-    <TableLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/logo6"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="25dp"
-        android:layout_marginVertical="150dp">
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:fontFamily="@font/raleway_bold"
-                android:gravity="center"
-                android:text="Rang"
-                android:textSize="30sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:fontFamily="@font/raleway_bold"
-                android:gravity="center"
-                android:text="Level"
-                android:textSize="30sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:fontFamily="@font/raleway_bold"
-                android:gravity="center"
-                android:text="Name"
-                android:textSize="30sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:fontFamily="@font/raleway_bold"
-                android:gravity="center"
-                android:text="Zeit"
-                android:textSize="30sp" />
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="1."
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Musterlevel"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Max Mustermann"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Musterzeit"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="2."
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Musterlevel"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Max Mustermann"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Musterzeit"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="3."
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Musterlevel"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Max Mustermann"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Musterzeit"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="4."
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Musterlevel"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Max Mustermann"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Musterzeit"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="5."
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Musterlevel"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Max Mustermann"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Musterzeit"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="6."
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Musterlevel"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Max Mustermann"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Musterzeit"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="7."
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Musterlevel"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Max Mustermann"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Musterzeit"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="8."
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Musterlevel"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Max Mustermann"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Musterzeit"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="9."
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Musterlevel"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Max Mustermann"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Musterzeit"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="10."
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Musterlevel"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Max Mustermann"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="Musterzeit"
-                android:textSize="25sp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginHorizontal="1dp"/>
-
-        </TableRow>
-
-    </TableLayout>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="1158dp"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/quizme"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="24sp" />
+
+
+    <include layout="@layout/tableviewhighscore"/>
+
+    <TextView
+        android:id="@+id/logo"
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="-11dp"
+        android:layout_marginEnd="1176dp"
+        android:layout_marginBottom="-2dp"
+        android:fontFamily="sans-serif-light"
+        android:padding="8dp"
+        android:text="@string/quizme"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="22sp" />
 
 </RelativeLayout>
 

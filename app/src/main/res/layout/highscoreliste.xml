@@ -16,8 +16,8 @@
         android:layout_height="70dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="426dp"
-        android:layout_marginBottom="216dp"
+        android:layout_marginStart="425dp"
+        android:layout_marginBottom="90dp"
         android:background="@drawable/rounded_corners"
         android:backgroundTint="#2E7D91"
         android:drawableTint="@color/teal_700"
@@ -34,8 +34,8 @@
         android:layout_height="70dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="75dp"
-        android:layout_marginBottom="217dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginBottom="90dp"
         android:background="@drawable/rounded_corners"
         android:backgroundTint="#2E7D91"
         android:drawableTint="@color/teal_700"
@@ -64,24 +64,29 @@
         android:textColor="#1E1E1E"
         android:textSize="36sp" />
 
+
+
+
+    <include layout="@layout/tableviewhighscore"/>
+
     <TextView
-        android:id="@+id/logo6"
-        android:layout_width="wrap_content"
+        android:id="@+id/logo2"
+        android:layout_width="121dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="1158dp"
+        android:layout_marginStart="-3dp"
+        android:layout_marginEnd="708dp"
+        android:layout_marginBottom="-3dp"
         android:fontFamily="sans-serif-light"
+        android:padding="8dp"
         android:text="@string/quizme"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#000000"
-        android:textSize="24sp" />
-
-
-    <include layout="@layout/tableviewhighscore"/>
+        android:textSize="22sp" />
 
 </RelativeLayout>
 

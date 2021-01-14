@@ -10,21 +10,22 @@
 
     <TextView
         android:id="@+id/logo4"
-        android:layout_width="wrap_content"
+        android:layout_width="121dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="1164dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="-3dp"
+        android:layout_marginEnd="708dp"
+        android:layout_marginBottom="-3dp"
         android:fontFamily="sans-serif-light"
+        android:padding="8dp"
         android:text="@string/quizme"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#000000"
-        android:textSize="24sp" />
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/willkommen"
@@ -32,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="464dp"
+        android:layout_marginTop="479dp"
         android:fontFamily="@font/raleway_medium"
         android:lineSpacingExtra="8sp"
         android:padding="8dp"
@@ -40,13 +41,13 @@
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="#1E1E1E"
-        android:textSize="60sp"
+        android:textSize="65sp"
         android:typeface="normal" />
 
     <Button
         android:id="@+id/start"
-        android:layout_width="350dp"
-        android:layout_height="85dp"
+        android:layout_width="370dp"
+        android:layout_height="95dp"
         android:layout_below="@+id/willkommen"
         android:layout_centerInParent="true"
         android:layout_marginStart="20dp"
@@ -62,11 +63,11 @@
 
     <Button
         android:id="@+id/highscoreliste"
-        android:layout_width="350dp"
-        android:layout_height="85dp"
+        android:layout_width="370dp"
+        android:layout_height="95dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="437dp"
+        android:layout_marginBottom="392dp"
         android:background="@drawable/rounded_corners"
         android:fontFamily="@font/raleway_medium"
         android:text="@string/highscoreliste"

@@ -13,6 +13,26 @@
         android:id="@+id/hintergrundQuiz_id_relative"
         android:background="@drawable/hintergrund_liste"
         >
+
+        <TextView
+            android:id="@+id/logo7"
+            android:layout_width="121dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="-3dp"
+            android:layout_marginEnd="708dp"
+            android:layout_marginBottom="-3dp"
+            android:fontFamily="sans-serif-light"
+            android:padding="8dp"
+            android:text="@string/quizme"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="22sp" />
+
         <TextView
             android:id="@+id/textview_leben1"
             android:layout_width="wrap_content"
@@ -58,6 +78,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="sans-serif-light"
+            android:textColor="#1E1E1E"
             android:text="@string/level_1"
             android:textSize="24sp"
             app:drawableTopCompat="@drawable/vector_level_neu" />
@@ -72,7 +93,7 @@
         android:fontFamily="sans-serif-light"
         android:gravity="center|top"
         android:text="@string/_30"
-        android:textColor="#353535"
+        android:textColor="#1E1E1E"
         android:textSize="30sp"
         app:drawableTopCompat="@drawable/vector_timer" />
 
@@ -84,113 +105,94 @@
         android:layout_marginTop="70dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/leben_3"
-        android:textColor="#353535"
+        android:textColor="#1E1E1E"
         android:textSize="24sp" />
 
 
-    <TextView
-        android:id="@+id/question"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="378dp"
-        android:layout_marginEnd="-2dp"
-        android:layout_toStartOf="@id/hinweis"
-        android:fontFamily="@font/raleway_medium"
-        android:padding="8dp"
-        android:text="@string/welchen_namen_hatte_java_urspr_nglich"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="#1E1E1E"
-        android:textSize="30sp" />
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="369dp"
+            android:layout_marginEnd="4dp"
+            android:fontFamily="@font/raleway_medium"
+            android:padding="8dp"
+            android:text="@string/welchen_namen_hatte_java_urspr_nglich"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="#1E1E1E"
+            android:textSize="30sp" />
 
-    <Button
-        android:id="@+id/hinweis"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="517dp"
-        android:background="@drawable/rounded_corners"
-        android:backgroundTint="#3ED19E"
-        android:fontFamily="@font/raleway_medium"
-        android:padding="8dp"
-        android:shape="rectangle"
-        android:text="@string/hinweis"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:drawableTopCompat="@drawable/vector_hinweis" />
+        <Button
+            android:id="@+id/choice1"
+            android:layout_width="370dp"
+            android:layout_height="110dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="583dp"
+            android:background="@drawable/rounded_corners"
+            android:fontFamily="@font/raleway_medium"
+            android:padding="8dp"
+            android:text="@string/jasa"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/choice1"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_below="@id/hinweis"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="46dp"
-        android:layout_marginEnd="-139dp"
-        android:layout_toStartOf="@id/hinweis"
-        android:background="@drawable/rounded_corners"
-        android:fontFamily="@font/raleway_medium"
-        android:padding="8dp"
-        android:text="@string/jasa"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+        <Button
+            android:id="@+id/choice2"
+            android:layout_width="370dp"
+            android:layout_height="110dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="407dp"
+            android:layout_marginTop="585dp"
+            android:background="@drawable/rounded_corners"
+            android:fontFamily="@font/raleway_medium"
+            android:padding="8dp"
+            android:text="@string/chai"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/choice2"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_below="@id/hinweis"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="47dp"
-        android:layout_marginEnd="-514dp"
-        android:layout_toStartOf="@id/hinweis"
-        android:background="@drawable/rounded_corners"
-        android:fontFamily="@font/raleway_medium"
-        android:padding="8dp"
-        android:text="@string/chai"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+        <Button
+            android:id="@+id/choice3"
+            android:layout_width="370dp"
+            android:layout_height="110dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="724dp"
+            android:background="@drawable/rounded_corners"
+            android:fontFamily="@font/raleway_medium"
+            android:padding="8dp"
+            android:text="@string/oak"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/choice3"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="766dp"
-        android:background="@drawable/rounded_corners"
-        android:fontFamily="@font/raleway_medium"
-        android:padding="8dp"
-        android:text="@string/oak"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+        <Button
+            android:id="@+id/choice4"
+            android:layout_width="370dp"
+            android:layout_height="110dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="407dp"
+            android:layout_marginTop="724dp"
+            android:background="@drawable/rounded_corners"
+            android:fontFamily="@font/raleway_medium"
+            android:padding="8dp"
+            android:text="@string/lase"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/choice4"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="413dp"
-        android:layout_marginTop="769dp"
-        android:background="@drawable/rounded_corners"
-        android:fontFamily="@font/raleway_medium"
-        android:padding="8dp"
-        android:text="@string/lase"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
-
-    <Button
+        <Button
         android:id="@+id/quit"
         android:layout_width="121dp"
         android:layout_height="wrap_content"
@@ -209,56 +211,63 @@
         app:drawableTopCompat="@drawable/vector_close" />
 
         <Chronometer
-            android:id= "@+id/textview_chronometer"
+            android:id="@+id/textview_chronometer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/question"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="-3dp"
-            android:layout_marginTop="720dp"
-            android:layout_marginBottom="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="358dp"
+            android:layout_marginTop="487dp"
             android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="1164dp"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="sans-serif-light"
-        android:text="@string/quizme"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="24sp" />
+        TextView
+            android:id="@+id/logo"
+            android:layout_width="121dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="702dp"
+            android:layout_marginBottom="-2dp"
+            android:fontFamily="sans-serif-light"
+            android:padding="8dp"
+            android:text="@string/quizme"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="22sp" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#05F324"
+        android:background="#17DC7F"
         >
+
         <TextView
             android:id="@+id/textview_panel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fontFamily="@font/raleway_medium"
             android:gravity="center|top"
-            android:text="Hinweis"
+            android:text="@string/hinweis"
+            android:textColor="#1E1E1E"
             android:textSize="24sp"
-            android:textStyle="bold"
-            app:drawableTopCompat="@drawable/vector_up"/>
+            app:drawableTopCompat="@drawable/vector_up"
+            app:drawableTint="#1E1E1E" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="zurück"
+            android:fontFamily="@font/raleway_medium"
             android:gravity="bottom"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            app:drawableBottomCompat="@drawable/vector_down"/>
+            android:text="@string/zur_ck"
+            android:textColor="#1E1E1E"
+            android:textSize="20sp"
+            app:drawableBottomCompat="@drawable/vector_down"
+            app:drawableTint="#1E1E1E" />
     </RelativeLayout>
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

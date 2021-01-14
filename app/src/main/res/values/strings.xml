@@ -21,4 +21,6 @@
     <string name="abbrechen">abbrechen</string>
     <string name="lase">Lase</string>
     <string name="xd">Wenn deine Zeit abläuft verlierst du ein Leben</string>
+    <string name="hinweis_">HINWEIS</string>
+    <string name="zur_ck">ZURÜCK</string>
 </resources>
