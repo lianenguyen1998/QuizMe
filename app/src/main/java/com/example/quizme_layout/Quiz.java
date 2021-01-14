@@ -102,7 +102,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     private Chronometer chronometer;
 
-    TextView timerTest = findViewById(R.id.textview_timerTest);
+    TextView timerTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,7 +185,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
         dialogLost = new Dialog(Quiz.this);
         dialogWin = new Dialog(Quiz.this);
 
-
+        timerTest = findViewById(R.id.textview_timerTest);
         chronometer = findViewById(R.id.textview_chronometer);
         createChronometer();
         createPanel();
@@ -206,7 +206,14 @@ public class Quiz extends AppCompatActivity implements Countdown {
                 @Override
                 public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
 
-                    //if (newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
+                    if (newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
+                        //
+                    }
+
+                    if (newState == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+                        //countdown.
+                    }
+
 
                 }
                 //Panel expanded
@@ -696,6 +703,8 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
         //Die String mit der Zeit wird in die Textview gesetzt
         textview_timer.setText(zeitformatiert);
+        //Zeit auch im unteren Layout anzeigen
+        timerTest.setText("übrige Zeit: " +zeitformatiert);
 
         //In den letzten 10 Sekunden wird die Anzeige rot
         countdownTextRed();

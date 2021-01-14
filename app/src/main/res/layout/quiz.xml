@@ -277,7 +277,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/raleway_medium"
-            android:gravity="bottom"
+            android:gravity="center"
             android:text="test timer"
             android:textColor="#1E1E1E"
             android:textSize="20sp"
