@@ -81,7 +81,8 @@
             android:textColor="#1E1E1E"
             android:text="@string/level_1"
             android:textSize="24sp"
-            app:drawableTopCompat="@drawable/vector_level_neu" />
+            app:drawableTopCompat="@drawable/vector_level_neu"
+            android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/textview_timer"
@@ -95,6 +96,7 @@
         android:text="@string/_30"
         android:textColor="#1E1E1E"
         android:textSize="30sp"
+        android:textStyle="bold"
         app:drawableTopCompat="@drawable/vector_timer" />
 
     <TextView
@@ -104,6 +106,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="70dp"
         android:fontFamily="sans-serif-light"
+        android:textStyle="bold"
         android:text="@string/leben_3"
         android:textColor="#1E1E1E"
         android:textSize="24sp" />
@@ -222,7 +225,7 @@
             android:layout_marginTop="487dp"
             android:textSize="24sp" />
 
-        TextView
+        <TextView
             android:id="@+id/logo"
             android:layout_width="121dp"
             android:layout_height="wrap_content"
@@ -268,6 +271,16 @@
             android:textColor="#1E1E1E"
             android:textSize="20sp"
             app:drawableBottomCompat="@drawable/vector_down"
+            app:drawableTint="#1E1E1E" />
+        <TextView
+            android:id="@+id/textview_timerTest"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/raleway_medium"
+            android:gravity="bottom"
+            android:text="test timer"
+            android:textColor="#1E1E1E"
+            android:textSize="20sp"
             app:drawableTint="#1E1E1E" />
     </RelativeLayout>
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

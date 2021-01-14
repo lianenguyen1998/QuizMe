@@ -102,6 +102,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     private Chronometer chronometer;
 
+    TextView timerTest = findViewById(R.id.textview_timerTest);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,12 +185,16 @@ public class Quiz extends AppCompatActivity implements Countdown {
         dialogLost = new Dialog(Quiz.this);
         dialogWin = new Dialog(Quiz.this);
 
+
         chronometer = findViewById(R.id.textview_chronometer);
         createChronometer();
         createPanel();
+
     }
-    public void createPanel(){
-        try {
+    public void createPanel()
+    {
+
+            //das SlideupPanel dem Hintergrund zuweisen
             SlidingUpPanelLayout layout = findViewById(R.id.hintergrundQuiz_id);
             layout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
                 @Override
@@ -201,16 +206,11 @@ public class Quiz extends AppCompatActivity implements Countdown {
                 @Override
                 public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
 
-                    if (newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
-                    }
-                    //Panel expanded
-                    //COLLABSED
-                }
-            });
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+                    //if (newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
 
+                }
+                //Panel expanded
+            });     //COLLABSED
     }
     /***
      * Die Hintergrundanimation, welche aus aus einer Animationsliste besteht, soll hier in ihrer Dauer
@@ -430,6 +430,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
         }
         //keine Leben, also hat man verloren
         if(this.leben_count==0 ){
+            pauseCountdown();
             //alle Leben-Textviews verschwinden
             textview_leben3.setVisibility(View.INVISIBLE);
             textview_leben2.setVisibility(View.INVISIBLE);
@@ -455,6 +456,12 @@ public class Quiz extends AppCompatActivity implements Countdown {
             this.leben_count--;
             //neu anzeigen
             showLeben();
+            //eine neue Frage soll erscheinen
+            showNextQuestion();
+            //und der Countdown muss wieder neu starten
+            pauseCountdown();
+            restartCountdown();
+            startCountdown();
         }
     }
 

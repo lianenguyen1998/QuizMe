@@ -222,7 +222,7 @@
             android:layout_marginTop="273dp"
             android:textSize="24sp" />
 
-        TextView
+        <TextView
         android:id="@+id/logo"
         android:layout_width="121dp"
         android:layout_height="wrap_content"
