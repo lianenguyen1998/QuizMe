@@ -554,9 +554,10 @@ public class Quiz extends AppCompatActivity implements Countdown {
             @Override
             public void onClick(View v) {
 
+                popupInsertName();
                 dismissWithTryCatch(dialogLost);
-                Intent intent = new Intent(Quiz.this, Highscoreliste.class);
-                startActivity(intent);
+                //Intent intent = new Intent(Quiz.this, Highscoreliste.class);
+                //startActivity(intent);
             }
         });
     if(!isFinishing())
@@ -701,7 +702,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
         //Die String mit der Zeit wird in die Textview gesetzt
         textview_timer.setText(zeitformatiert);
         //Zeit auch im unteren Layout anzeigen
-        timerTest.setText("übrige Zeit: " +zeitformatiert);
+        timerTest.setText("übrige Zeit: " + zeitformatiert);
 
         //In den letzten 10 Sekunden wird die Anzeige rot
         countdownTextRed();

@@ -60,7 +60,7 @@ public class DatabaseHighscorelist extends SQLiteOpenHelper {
     public List<HighscoreModel> getHighscorelist(){
         List<HighscoreModel> highscoreliste = new ArrayList<>();
         db = getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM " + HighscoreTable.TABLE_NAME + " ORDER BY " + HighscoreTable.COLUMN_LEVEL + " ASC", null);
+        Cursor c = db.rawQuery("SELECT * FROM " + HighscoreTable.TABLE_NAME + " ORDER BY " + HighscoreTable.COLUMN_LEVEL + " DESC", null);
 
         if(c.moveToFirst()){
             do{
