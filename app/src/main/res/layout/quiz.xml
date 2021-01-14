@@ -15,7 +15,7 @@
         >
 
         <TextView
-            android:id="@+id/logo7"
+            android:id="@+id/logo3"
             android:layout_width="121dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -224,23 +224,6 @@
             android:layout_marginStart="358dp"
             android:layout_marginTop="487dp"
             android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/logo"
-            android:layout_width="121dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_centerInParent="true"
-            android:layout_marginEnd="702dp"
-            android:layout_marginBottom="-2dp"
-            android:fontFamily="sans-serif-light"
-            android:padding="8dp"
-            android:text="@string/quizme"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            android:textSize="22sp" />
 
     </RelativeLayout>
 

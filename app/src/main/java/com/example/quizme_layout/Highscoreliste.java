@@ -35,8 +35,8 @@ public class Highscoreliste extends AppCompatActivity {
     // ---- StartseiteButton
     private Button zurückzurStartseite;
 
-    // ---- WeiterSpielenButton
-    private Button weiterSpielen;
+    // ---- neuesSpielButton
+    private Button neuesSpiel;
 
     //Tableview
     TableView<String[]> table;
@@ -54,7 +54,7 @@ public class Highscoreliste extends AppCompatActivity {
         backgroundAnimation();
 
         zurückzurStartseite = (Button) findViewById(R.id.zurückzurStartseite);
-        weiterSpielen = (Button) findViewById(R.id.weiterSpielen);
+        neuesSpiel = (Button) findViewById(R.id.neuesSpiel);
 
 
         zurückzurStartseite.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +65,7 @@ public class Highscoreliste extends AppCompatActivity {
             }
         });
 
-        weiterSpielen.setOnClickListener(new View.OnClickListener() {
+        neuesSpiel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
