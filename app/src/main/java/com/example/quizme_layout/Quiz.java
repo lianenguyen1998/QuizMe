@@ -250,18 +250,22 @@ public class Quiz extends AppCompatActivity implements Countdown {
             switch (v.getId()){
                 case R.id.choice1:
                     checkAnswer(1,option1);
+                    option1.setEnabled(false);
                     break;
                 case R.id.choice2:
                     checkAnswer(2,option2);
+                    option2.setEnabled(false);
                     break;
                 case R.id.choice3:
                     checkAnswer(3,option3);
+                    option3.setEnabled(false);
                     break;
                 case R.id.choice4:
                     checkAnswer(4,option4);
-
+                    option4.setEnabled(false);
                     break;
             }
+
             countlevel();
         }
     };
