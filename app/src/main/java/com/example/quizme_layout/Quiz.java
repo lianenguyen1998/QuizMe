@@ -1,38 +1,25 @@
 package com.example.quizme_layout;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.text.InputType;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,13 +28,11 @@ import com.example.Datenbank.DatabaseHelper;
 import com.example.Datenbank.DatabaseHighscorelist;
 import com.example.Datenbank.HighscoreModel;
 import com.example.Datenbank.QuizMeModel;
-import com.example.Datenbank.TableHelper;
 import com.example.quizmetime.Countdown;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -323,10 +308,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     }
 
-    public int getQuestionCountTotal(){
-        return this.questionCountTotal;
-    }
-
     public int getLevelCount(){
         return this.level_count;
     }
@@ -371,7 +352,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
                         // -> Gewonnen Pop Up -> next level
                         if(questionCounter < questionCountTotal)
-                        CreateNextLevelDialog();
+                        createNextLevelDialog();
 
                         if(questionCounter == questionCountTotal)
                             popUpGewonnen();
@@ -474,7 +455,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
     /**
      * Popup to Next Level
      */
-    private void CreateNextLevelDialog(){
+    private void createNextLevelDialog(){
 
         if(questionCounter < questionCountTotal) {
             mydialog.setContentView(R.layout.popupnextlevel);
@@ -600,8 +581,9 @@ public class Quiz extends AppCompatActivity implements Countdown {
     }
 
     private void popupInsertName(){
-        AlertDialog.Builder insertUsername = new AlertDialog.Builder(this);
+        AlertDialog.Builder  insertUsername = new AlertDialog.Builder(this);
         insertUsername.setTitle("Um auf die Highscoreliste zu kommen, geben Sie bitte Ihren Namen ein");
+
 
         final EditText username = new EditText(Quiz.this);
         username.setInputType(InputType.TYPE_CLASS_TEXT );
@@ -649,12 +631,14 @@ public class Quiz extends AppCompatActivity implements Countdown {
         insertUsername.setNegativeButton("Abbrechen", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getApplicationContext(),"abgebrochen", Toast.LENGTH_SHORT).show();
-                dialog.cancel();
+                //Toast.makeText(getApplicationContext(),"abgebrochen", Toast.LENGTH_SHORT).show();
+                finishQuiz();
             }
         });
 
-        insertUsername.show();
+        Dialog insertDialog = insertUsername.create();
+        insertDialog.setCanceledOnTouchOutside(false);
+        insertDialog.show();
     }
 
     @Override
