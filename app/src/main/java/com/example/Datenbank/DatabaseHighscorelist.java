@@ -28,7 +28,7 @@ public class DatabaseHighscorelist extends SQLiteOpenHelper {
             HighscoreTable.TABLE_NAME + " ( " +
             HighscoreTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             HighscoreTable.COLUMN_NAME + " TEXT, " +
-            HighscoreTable.COLUMN_ZEIT + " TEXT, " +
+            HighscoreTable.COLUMN_ZEIT + " INTEGER, " +
             HighscoreTable.COLUMN_LEVEL + " INTEGER" +
             ")";
 
@@ -66,7 +66,7 @@ public class DatabaseHighscorelist extends SQLiteOpenHelper {
             do{
                 HighscoreModel highscore = new HighscoreModel();
                 highscore.setUsername(c.getString(c.getColumnIndex(HighscoreTable.COLUMN_NAME)));
-                highscore.setUserzeit(c.getLong(c.getColumnIndex(HighscoreTable.COLUMN_ZEIT)));
+                highscore.setUserzeit(c.getInt(c.getColumnIndex(HighscoreTable.COLUMN_ZEIT)));
                 highscore.setLevelanzahl(c.getInt(c.getColumnIndex(HighscoreTable.COLUMN_LEVEL)));
                 highscoreliste.add(highscore);
             } while (c.moveToNext());

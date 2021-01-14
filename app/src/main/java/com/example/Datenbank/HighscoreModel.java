@@ -4,12 +4,12 @@ public class HighscoreModel {
 
 
     public String username;
-    public long userzeit;
+    public int userzeit;
     public int levelanzahl;
 
     public HighscoreModel(){}
 
-    public HighscoreModel(String _username, long _userzeit, int _levelanzahl){
+    public HighscoreModel(String _username, int _userzeit, int _levelanzahl){
         this.username = _username;
         this.userzeit = _userzeit;
         this.levelanzahl = _levelanzahl;
@@ -27,11 +27,11 @@ public class HighscoreModel {
         this.username = username;
     }
 
-    public long getUserzeit() {
+    public int getUserzeit() {
         return userzeit;
     }
 
-    public void setUserzeit(long userzeit) {
+    public void setUserzeit(int userzeit) {
         this.userzeit = userzeit;
     }
 

@@ -22,6 +22,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.text.InputType;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -330,8 +331,9 @@ public class Quiz extends AppCompatActivity implements Countdown {
         return this.level_count;
     }
 
-    public long getTime(){
-        return chronometer.getBase();
+    public int getTime(){
+      int sek = (int) ((SystemClock.elapsedRealtime()-chronometer.getBase())/1000);
+        return sek;
     }
 
     private void finishQuiz() {
