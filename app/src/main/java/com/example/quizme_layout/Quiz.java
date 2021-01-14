@@ -193,7 +193,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
     }
     public void createPanel()
     {
-
             //das SlideupPanel dem Hintergrund zuweisen
             SlidingUpPanelLayout layout = findViewById(R.id.hintergrundQuiz_id);
             layout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
@@ -213,8 +212,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
                     if (newState == SlidingUpPanelLayout.PanelState.COLLAPSED) {
                         //countdown.
                     }
-
-
                 }
                 //Panel expanded
             });     //COLLABSED
