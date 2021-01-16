@@ -16,7 +16,18 @@
         android:text="Du hast leider verloren!"
         android:textAlignment="center"
         android:textColor="#1E1E1E"
-        android:textSize="35sp" />
+        android:textSize="35sp" /><![CDATA[
+
+
+        android:fontFamily="@font/raleway_light"
+        android:text="Zurück zur Startseite" />
+
+
+
+
+
+
+    ]]>
 
     <Button
         android:id="@+id/closeVerloren"
@@ -29,12 +40,11 @@
         android:backgroundTint="#2E7D91"
         android:fontFamily="@font/raleway_medium"
         android:text="zur Highscoreliste" />
-        android:fontFamily="@font/raleway_light"
-        android:text="Zurück zur Startseite" />
 
     <pl.droidsonroids.gif.GifImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/lost"
-        />
+        android:layout_width="470dp"
+        android:layout_height="182dp"
+        android:layout_gravity="center|top"
+
+        android:src="@drawable/brokenheart" />
 </LinearLayout>
