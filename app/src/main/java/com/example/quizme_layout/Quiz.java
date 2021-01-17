@@ -39,7 +39,7 @@ import java.util.Locale;
 public class Quiz extends AppCompatActivity implements Countdown {
 
     private TextView frage;
-    private Button hinweis;
+    //private Button hinweis;
     private Button option1;
     private Button option2;
     private Button option3;
@@ -635,8 +635,9 @@ public class Quiz extends AppCompatActivity implements Countdown {
         insertUsername.setNegativeButton("Abbrechen", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //Toast.makeText(getApplicationContext(),"abgebrochen", Toast.LENGTH_SHORT).show();
-                finishQuiz();
+                //ohne Speichern zur Highscoreliste
+                Intent intent2 = new Intent(Quiz.this, Highscoreliste.class);
+                startActivity(intent2);
             }
         });
 

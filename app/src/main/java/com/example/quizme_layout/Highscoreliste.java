@@ -14,11 +14,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TableLayout;
 import android.widget.Toast;
 
 import de.codecrafters.tableview.*;
+import de.codecrafters.tableview.listeners.OnScrollListener;
 import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter;
 import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter;
 
@@ -80,6 +82,7 @@ public class Highscoreliste extends AppCompatActivity {
         table.setHeaderBackgroundColor(Color.parseColor("#2ecc71"));
         table.setHeaderAdapter(new SimpleTableHeaderAdapter(this, tableHelper.getHeader()));
         table.setDataAdapter(new SimpleTableDataAdapter(this, tableHelper.getSpieler()));
+
 
 
     }
