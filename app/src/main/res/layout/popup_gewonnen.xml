@@ -19,6 +19,13 @@
         android:textColor="#1E1E1E"
         android:textSize="35sp" />
 
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="499dp"
+        android:layout_height="218dp"
+        android:layout_gravity="center|top"
+
+        android:src="@drawable/pokal" />
+
     <Button
         android:id="@+id/closeGewonnen"
         android:layout_width="500dp"
