@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="700dp"
-    android:layout_height="400dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="720dp"
+    android:layout_height="450dp"
     android:layout_gravity="center"
     android:background="@drawable/hintergrundbild2_round"
     android:orientation="vertical">
@@ -10,29 +10,27 @@
         android:id="@+id/congrats"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
         android:fontFamily="@font/raleway_medium"
-        android:text="Richtig!"
+        android:text="@string/richtig"
         android:textAlignment="center"
         android:textColor="#1E1E1E"
-        android:textSize="33sp" />
-    <pl.droidsonroids.gif.GifImageView
-        android:layout_width="470dp"
-        android:layout_height="182dp"
-        android:layout_gravity="center|top"
+        android:textSize="35sp" />
 
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="530dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center|top"
         android:src="@drawable/right" />
 
     <Button
         android:id="@+id/nextLevel"
         android:layout_width="500dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="100dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="110dp"
         android:background="@drawable/rounded_corners"
         android:backgroundTint="#2E7D91"
         android:fontFamily="@font/raleway_medium"
-        android:text="Zur nächsten Frage" />
+        android:text="@string/zur_n_chsten_frage" />
 
-</RelativeLayout>
+</LinearLayout>

@@ -63,7 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         add(q1);
         QuizMeModel q2 = new QuizMeModel("Wie viele Zähne hat ein erwachenser Mensch normalerweise?", "26", "30", "32", "36", "Auf jedenfall um die 30", 3);
         add(q2);
-        QuizMeModel q3 = new QuizMeModel("Wer wählt den Bundeskanzler?", "Bundeskanzler", "Bundestag", "Bundesrat", "Bundesversammlung", "nicht nur eine Person",4);
+        QuizMeModel q3 = new QuizMeModel("Wer wählt den Bundeskanzler?", "Bundeskanzler", "Bundestag", "Bundesrat", "Bundesversammlung", "Nicht nur eine Person",4);
         add(q3);
         QuizMeModel q4 = new QuizMeModel("Wofür steht die Abkürzung KGaA?", "Kreditgesellschaft auf Aktien", "Kommanditgesellschaft auf Aktien", "Kardinalgesellschaft auf Aktien", "Kompetenzgesellschaft auf Aktien", "sicher was mit Aktien", 2);
         add(q4);
