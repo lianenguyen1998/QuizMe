@@ -2,9 +2,7 @@ package com.example.quizme_layout;
 import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.widget.TextView;
-
 import com.example.quizmetime.Countdown;
-
 import java.util.Locale;
 
 public class CountdownQuiz {
@@ -14,18 +12,22 @@ public class CountdownQuiz {
     private static final long COUNTDOWN_ZEIT = 30000;
     long verbleibendeZeit;
     boolean timerRunning;
+    TextView oben;
+    TextView unten;
 
     /***
      * das neue startCoundown
      */
     public CountdownQuiz(TextView _textview_timer, TextView _timerTest){
+        this.oben = _textview_timer;
+        this.unten = _timerTest;
         this.countdown= new CountDownTimer(COUNTDOWN_ZEIT,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 //Zeit herunterzählen
                 verbleibendeZeit = millisUntilFinished;
                 //auf der Textview anzeigen
-                updateCountdownText(_textview_timer, _timerTest);
+                updateCountdownText();
             }
 
             @Override
@@ -34,7 +36,7 @@ public class CountdownQuiz {
                 //Zeit auf 0 setzen
                 verbleibendeZeit = 0;
                 //auf der Textview anzeigen
-                updateCountdownText( _textview_timer,_timerTest);
+                updateCountdownText();
 
                 //Der Countdown läuft nicht weiter
                 timerRunning = false;
@@ -45,13 +47,11 @@ public class CountdownQuiz {
 
     }
 
-    /***
-     * Hier wird der Countdown auf 30 Sekunden gesetzt und gestartet
-     * Der Countdown wird heruntergezählt und auf 0 gesetzt
 
-    public void startCountdown(){
+    /// voher start
+    public void resetCountdown(){
         //den Countdown zuweisen auf 30 Sekunden
-        countdown = new CountDownTimer(COUNTDOWN_IN_MILLIS, 1000) {
+        countdown = new CountDownTimer(30000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 //Zeit herunterzählen
@@ -74,9 +74,16 @@ public class CountdownQuiz {
         }.start();
         //Der Countdown läuft
         timerRunning= true;
-    } */
+    }
 
-    public void updateCountdownText(TextView _textview_timer, TextView _timerTest) {
+    public void startCountdown(){
+        if (timerRunning) {
+            pauseCountdown();
+            restartCountdown();
+        }
+        startCountdown();
+    }
+    public void updateCountdownText() {
         //umrechnen der verbleibenden Zeit in Sekunden
         int sekunden = (int) (verbleibendeZeit / 1000) % 60;
 
@@ -84,12 +91,12 @@ public class CountdownQuiz {
         String zeitformatiert = String.format(Locale.getDefault(), "%02d", sekunden);
 
         //Die String mit der Zeit wird in die Textview gesetzt
-        _textview_timer.setText(zeitformatiert);
+        this.oben.setText(zeitformatiert);
         //Zeit auch im unteren Layout anzeigen
-        _timerTest.setText("übrige Zeit: " + zeitformatiert);
+        this.unten.setText("übrige Zeit: " + zeitformatiert);
 
         //In den letzten 10 Sekunden wird die Anzeige rot
-        countdownTextRed( _textview_timer, _timerTest);
+        countdownTextRed();
 
         //Wenn der Countdown abläuft wird hier ein Leben abgezogen
         ///////////////////////////////////////////////////////////////////////////////
@@ -98,21 +105,23 @@ public class CountdownQuiz {
     }
 
 
-    private void countdownTextRed(TextView _textview_timer, TextView _timerTest){
+    public void countdownTextRed(){
         //letzeen 10 Sekunden, also rot
         if (verbleibendeZeit < 11000) {
-            _textview_timer.setTextColor(Color.RED);
-            _timerTest.setTextColor(Color.RED);
+            this.oben.setTextColor(Color.RED);
+            this.unten.setTextColor(Color.RED);
 
             //Ansonsten bleibt die Anzeige wie voher
         } else {
             ////////////////////////////////////////////////////////////////////
-            _textview_timer.setTextColor(Color.BLACK);
+            this.oben.setTextColor(Color.BLACK);
+            this.unten.setTextColor(Color.BLACK);
+
         }
     }
 
 
-    private void pauseCountdown(){
+    public void pauseCountdown(){
         countdown.cancel();
 
         //Der Countdown läuft nicht weiter
@@ -120,10 +129,19 @@ public class CountdownQuiz {
     }
 
 
-    private void restartCountdown(TextView _textview_timer, TextView _timerTest) {
+    public void restartCountdown() {
         verbleibendeZeit=30000;
 
         //die Anzeige der Textview aktualisieren
-        updateCountdownText( _textview_timer,  _timerTest);
+        updateCountdownText();
+    }
+
+    public boolean getTimerRunning()
+    {
+        return this.timerRunning;
+    }
+
+    public long getVerbleibendeZeit(){
+        return this.verbleibendeZeit;
     }
 }
