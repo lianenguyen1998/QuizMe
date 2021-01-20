@@ -11,7 +11,6 @@
     <string name="highscoreliste">Highscore Liste</string>
     <string name="jasa">Jasa</string>
     <string name="welchen_namen_hatte_java_urspr_nglich">Welchen Namen hatte Java ursprünglich?</string>
-    <string name="hinweis">Hinweis</string>
     <string name="chai">Chai</string>
     <string name="Abbrechbutton">Abbrechen</string>
     <string name="level_1">Level: 1</string>
@@ -23,4 +22,13 @@
     <string name="xd">Wenn deine Zeit abläuft verlierst du ein Leben</string>
     <string name="hinweis_">HINWEIS</string>
     <string name="zur_ck">ZURÜCK</string>
+    <string name="richtig">Richtig!</string>
+    <string name="zur_n_chsten_frage">Zur nächsten Frage</string>
+    <string name="du_hast_leider_verloren">Du hast leider verloren!</string>
+    <string name="zur_highscoreliste">zur Highscoreliste</string>
+    <string name="du_hast_alle_level_gemeistert">Du hast alle Level gemeistert!</string>
+    <string name="zurhighscoreliste">Zur Highscoreliste</string>
+    <string name="schlie_en">Schließen</string>
+    <string name="hinWeis">hinweis</string>
+    <string name="hinweis">HINWEIS</string>
 </resources>
