@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.example.Datenbank.DatabaseHelper;
 import com.example.Datenbank.DatabaseHighscorelist;
 import com.example.Datenbank.HighscoreModel;
+import com.example.Datenbank.MainActivity;
 import com.example.Datenbank.QuizMeModel;
 import com.example.quizmetime.Countdown;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -36,7 +37,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-public class Quiz extends AppCompatActivity implements Countdown {
+public class Quiz extends AppCompatActivity {
 
     private TextView frage;
     //private Button hinweis;
@@ -45,6 +46,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
     private Button option3;
     private Button option4;
     private Button quit;
+
 
     //Databank variables
     private List<QuizMeModel> fragenliste;
@@ -61,6 +63,7 @@ public class Quiz extends AppCompatActivity implements Countdown {
     private CountDownTimer countdown;
     private boolean timerRunning;
     private long verbleibendeZeit;
+    static final long COUNTDOWN_IN_MILLIS = 30000;
 
     //Level Variables
     private TextView textview_level;
@@ -125,8 +128,9 @@ public class Quiz extends AppCompatActivity implements Countdown {
         questionCountTotal = fragenliste.size();
         Collections.shuffle(fragenliste);
 
-        if (currentQuestion == null)
+        if (currentQuestion == null) {
             showNextQuestion();
+        }
 
 
         /* *************** VORLÄUFIG AUSKOMMENTIERT ***************
@@ -176,6 +180,18 @@ public class Quiz extends AppCompatActivity implements Countdown {
         createChronometer();
         createPanel();
 
+    }
+    public int getTime(){
+        int sek = (int) ((SystemClock.elapsedRealtime()-chronometer.getBase())/1000);
+        //int sek = (int) (chronometer.getBase()/100000000);
+
+        return sek;
+       // return zahl;
+    }
+    public String getStringTime(){
+        Toast.makeText(this, chronometer.getFormat(), Toast.LENGTH_LONG).show();
+        //System.out.println(chronometer.getFormat());
+        return chronometer.getFormat();
     }
     public void createPanel()
     {
@@ -314,11 +330,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
 
     public int getLevelCount(){
         return this.level_count;
-    }
-
-    public int getTime(){
-      int sek = (int) ((SystemClock.elapsedRealtime()-chronometer.getBase())/1000);
-        return sek;
     }
 
     private void finishQuiz() {
@@ -491,18 +502,14 @@ public class Quiz extends AppCompatActivity implements Countdown {
                     startCountdown();
                     mydialog.dismiss();
                 }
-
             });
         }
-
          //else if(questionCounter == 50 ){
             //spopUpGewonnen();
         //}
-
         //show Popup
         if(!isFinishing())
             mydialog.show();
-
     }
 
 
@@ -646,7 +653,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
         insertDialog.show();
     }
 
-    @Override
     /***
      * Hier wird der Countdown auf 30 Sekunden gesetzt und gestartet
      * Der Countdown wird heruntergezählt und auf 0 gesetzt
@@ -682,7 +688,6 @@ public class Quiz extends AppCompatActivity implements Countdown {
      * Hier wird der zu sehende Text der Textview aktualisiert
      * Die Zeit wird in Sekunden heruntergezählt
      */
-    @Override
     public void updateCountdownText() {
         //umrechnen der verbleibenden Zeit in Sekunden
         int sekunden = (int) (verbleibendeZeit / 1000) % 60;
