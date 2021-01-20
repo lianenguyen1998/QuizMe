@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="700dp"
-    android:layout_height="400dp"
+    android:layout_width="720dp"
+    android:layout_height="450dp"
     android:layout_gravity="center"
     android:background="@drawable/hintergrundbild2_round"
     android:id="@+id/hintergrundInfo_id"
@@ -12,23 +12,27 @@
         android:id="@+id/gewonnen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
         android:fontFamily="@font/raleway_medium"
-        android:text="Du hast alle Level gemeistert!"
+        android:text="@string/du_hast_alle_level_gemeistert"
         android:textAlignment="center"
         android:textColor="#1E1E1E"
         android:textSize="35sp" />
 
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="516dp"
+        android:layout_height="199dp"
+        android:layout_gravity="center|top"
+        android:src="@drawable/pokal" />
+
     <Button
         android:id="@+id/closeGewonnen"
         android:layout_width="500dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="100dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="110dp"
         android:background="@drawable/rounded_corners"
         android:backgroundTint="#2E7D91"
         android:fontFamily="@font/raleway_medium"
-        android:text="Zur Highscoreliste" />
+        android:text="@string/zurhighscoreliste" />
 
 </LinearLayout>
