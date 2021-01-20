@@ -21,8 +21,8 @@ public class Startseite extends AppCompatActivity {
     // ---- Splash Screen Animation - Variablen
     Animation obenAnim, untenAnim;
     TextView willkommenAnim, logoAnim;
-    Button startAnim, highscorelisteAnim;
-    ImageButton infoAnim;
+    Button startAnim, highscorelisteAnim, überQuizmeAnim;
+    ImageButton einstellungAnim;
 
     // ---- QuizButton
     private Button start;
@@ -31,7 +31,10 @@ public class Startseite extends AppCompatActivity {
     private Button highscoreliste;
 
     // ---- InfotextButton
-    private ImageButton imageButton;
+    private Button überQuizme;
+
+    // ---- EinstellungsButton
+    private ImageButton einstellung;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,20 +55,23 @@ public class Startseite extends AppCompatActivity {
         willkommenAnim = findViewById(R.id.willkommen);
         startAnim = findViewById(R.id.start);
         highscorelisteAnim = findViewById(R.id.highscoreliste);
+        überQuizmeAnim = findViewById(R.id.infotext);
         logoAnim = findViewById(R.id.logo4);
-        infoAnim = findViewById(R.id.info);
+        einstellungAnim = findViewById(R.id.einstellung);
 
         willkommenAnim.setAnimation(obenAnim);
         startAnim.setAnimation(untenAnim);
         highscorelisteAnim.setAnimation(untenAnim);
+        überQuizmeAnim.setAnimation(untenAnim);
         logoAnim.setAnimation(untenAnim);
-        infoAnim.setAnimation(untenAnim);
+        einstellungAnim.setAnimation(obenAnim);
 
         backgroundAnimation();
 
         start = (Button) findViewById(R.id.start);
         highscoreliste = (Button) findViewById(R.id.highscoreliste);
-        imageButton = (ImageButton) findViewById(R.id.info);
+        überQuizme = (Button) findViewById(R.id.infotext);
+        einstellung = (ImageButton) findViewById(R.id.einstellung);
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,12 +89,21 @@ public class Startseite extends AppCompatActivity {
             }
         });
 
-         imageButton.setOnClickListener(new View.OnClickListener() {
+        überQuizme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                mediaPlayer.start();
                 openInfotext();
                     //openBackgroundTest();
+            }
+        });
+
+        einstellung.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer.start();
+                openEinstellung();
+                //openBackgroundTest();
             }
         });
 
@@ -112,6 +127,11 @@ public class Startseite extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // ---- bringt uns zu der Einstellung
+    public void openEinstellung() {
+        Intent intent = new Intent(this, Einstellung.class);
+        startActivity(intent);
+    }
 
     // ---------------------------------------------------------------------------------------- //
 

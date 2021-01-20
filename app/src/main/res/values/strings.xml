@@ -31,4 +31,6 @@
     <string name="schlie_en">Schließen</string>
     <string name="hinWeis">hinweis</string>
     <string name="hinweis">HINWEIS</string>
+    <string name="name">Name</string>
+    <string name="button">Button</string>
 </resources>

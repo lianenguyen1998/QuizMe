@@ -77,39 +77,36 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
-            android:fontFamily="sans-serif-light"
-            android:textColor="#1E1E1E"
+            android:fontFamily="sans-serif"
             android:text="@string/level_1"
+            android:textColor="#1E1E1E"
             android:textSize="24sp"
-            app:drawableTopCompat="@drawable/vector_level_neu"
-            android:textStyle="bold"/>
+            app:drawableTopCompat="@drawable/vector_level_neu" />
 
-    <TextView
-        android:id="@+id/textview_timer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-light"
-        android:gravity="center|top"
-        android:text="@string/_30"
-        android:textColor="#1E1E1E"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:drawableTopCompat="@drawable/vector_timer" />
+        <TextView
+            android:id="@+id/textview_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center|top"
+            android:text="@string/_30"
+            android:textColor="#1E1E1E"
+            android:textSize="30sp"
+            app:drawableTopCompat="@drawable/vector_timer" />
 
-    <TextView
-        android:id="@+id/textview_LebenCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="70dp"
-        android:fontFamily="sans-serif-light"
-        android:textStyle="bold"
-        android:text="@string/leben_3"
-        android:textColor="#1E1E1E"
-        android:textSize="24sp" />
+        <TextView
+            android:id="@+id/textview_LebenCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="70dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/leben_3"
+            android:textColor="#1E1E1E"
+            android:textSize="24sp" />
 
 
         <TextView

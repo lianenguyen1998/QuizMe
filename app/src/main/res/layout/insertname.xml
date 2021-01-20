@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:layout_gravity="center"
     tools:context=".Quiz"
+    android:id="@+id/insertName"
     android:background="@drawable/hintergrundbild2_round">
 
 
@@ -18,9 +19,10 @@
         android:layout_marginEnd="20dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="@string/name"
         android:textAlignment="viewStart"
-        android:background="@color/white" />
+        android:background="@color/white"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/saveOrCancelButton"
@@ -28,8 +30,7 @@
         android:layout_height="60dp"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:text="Button"
-        android:onClick="popupInsertName"/>
+        android:text="@string/button" />
 
 
 </LinearLayout>

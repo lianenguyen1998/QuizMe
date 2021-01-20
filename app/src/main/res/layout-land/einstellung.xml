@@ -9,7 +9,7 @@
     android:id="@+id/hintergrundInfo_id">
 
     <TextView
-        android:id="@+id/logo8"
+        android:id="@+id/logo5"
         android:layout_width="97dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -28,18 +28,18 @@
         android:textSize="22sp" />
 
     <TextView
-        android:id="@+id/info"
+        android:id="@+id/einstellung"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
-        android:layout_marginTop="343dp"
-        android:layout_marginEnd="518dp"
+        android:layout_marginTop="349dp"
+        android:layout_marginEnd="508dp"
         android:fontFamily="@font/raleway_light"
         android:lineSpacingExtra="8sp"
         android:padding="8dp"
-        android:text="über quizme"
+        android:text="einstellung"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="#1E1E1E"

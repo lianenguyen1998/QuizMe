@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.text.InputType;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -46,7 +47,6 @@ public class Quiz extends AppCompatActivity {
     private Button option3;
     private Button option4;
     private Button quit;
-
 
     //Databank variables
     private List<QuizMeModel> fragenliste;
@@ -539,6 +539,7 @@ public class Quiz extends AppCompatActivity {
                 }
             });
         }
+
          //else if(questionCounter == 50 ){
             //spopUpGewonnen();
         //}
@@ -639,8 +640,7 @@ public class Quiz extends AppCompatActivity {
 
     private void popupInsertName(){
         AlertDialog.Builder  insertUsername = new AlertDialog.Builder(this);
-        insertUsername.setTitle("Bitte Namen eingeben");
-
+        insertUsername.setTitle("Bitte geben Sie Ihren Namen ein, um in die Highscoreliste zu gelangen:");
 
         final EditText username = new EditText(Quiz.this);
         username.setInputType(InputType.TYPE_CLASS_TEXT );
@@ -668,7 +668,7 @@ public class Quiz extends AppCompatActivity {
 
 
                     } else {
-                        Toast.makeText(getApplicationContext(),"abgebrochen", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Vorgang abgebrochen", Toast.LENGTH_SHORT).show();
                         dialog.cancel();
 
                     }

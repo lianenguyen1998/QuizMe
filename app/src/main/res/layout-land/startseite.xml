@@ -8,17 +8,32 @@
     android:background="@drawable/hintergrund_liste"
     android:id="@+id/hintergrundStart_id">
 
+
+    <ImageButton
+        android:id="@+id/einstellung2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-13dp"
+        android:layout_marginEnd="-5dp"
+        android:background="@android:drawable/divider_horizontal_bright"
+        android:backgroundTint="#00D0D6BF"
+        android:contentDescription="@string/todo"
+        android:padding="8dp"
+        app:srcCompat="@android:drawable/ic_menu_manage" />
+
     <TextView
-        android:id="@+id/logo4"
-        android:layout_width="115dp"
+        android:id="@+id/logo7"
+        android:layout_width="97dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginStart="-11dp"
-        android:layout_marginEnd="1176dp"
-        android:layout_marginBottom="-2dp"
+        android:layout_marginStart="-4dp"
+        android:layout_marginEnd="1187dp"
+        android:layout_marginBottom="-3dp"
         android:fontFamily="sans-serif-light"
         android:padding="8dp"
         android:text="@string/quizme"
@@ -33,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="194dp"
+        android:layout_marginTop="154dp"
         android:fontFamily="@font/raleway_medium"
         android:lineSpacingExtra="8sp"
         android:padding="8dp"
@@ -41,17 +56,17 @@
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="#1E1E1E"
-        android:textSize="68sp"
+        android:textSize="65sp"
         android:typeface="normal" />
 
     <Button
         android:id="@+id/start"
-        android:layout_width="390dp"
-        android:layout_height="100dp"
+        android:layout_width="370dp"
+        android:layout_height="95dp"
         android:layout_below="@+id/willkommen"
         android:layout_centerInParent="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="31dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/rounded_corners"
@@ -63,11 +78,13 @@
 
     <Button
         android:id="@+id/highscoreliste"
-        android:layout_width="390dp"
-        android:layout_height="100dp"
+        android:layout_width="370dp"
+        android:layout_height="95dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="180dp"
+        android:layout_marginEnd="455dp"
+        android:layout_marginBottom="230dp"
         android:background="@drawable/rounded_corners"
         android:fontFamily="@font/raleway_medium"
         android:text="@string/highscoreliste"
@@ -76,22 +93,22 @@
         android:textSize="20sp"
         app:iconPadding="8dp" />
 
-    <ImageButton
-        android:id="@+id/info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Button
+        android:id="@+id/infotext"
+        android:layout_width="370dp"
+        android:layout_height="95dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="3dp"
-        android:background="@android:drawable/divider_horizontal_bright"
-        android:backgroundTint="#C7F6EA"
-        android:contentDescription="@string/todo"
-        android:padding="8dp"
-        android:tint="#2C2C2C"
-        app:srcCompat="@android:drawable/ic_dialog_info" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="455dp"
+        android:layout_marginBottom="107dp"
+        android:background="@drawable/rounded_corners"
+        android:fontFamily="@font/raleway_medium"
+        android:text="über quizme"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:iconPadding="8dp" />
+
 
 </RelativeLayout>
