@@ -8,4 +8,5 @@ public class Sound {
     Sound(MediaPlayer _sound){
         this.sound = _sound;
     }
+
 }

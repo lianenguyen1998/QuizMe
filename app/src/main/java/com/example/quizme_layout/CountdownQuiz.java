@@ -6,8 +6,7 @@ import com.example.quizmetime.Countdown;
 import java.util.Locale;
 
 public class CountdownQuiz {
-
-
+/***
     CountDownTimer countdown;
     private static final long COUNTDOWN_ZEIT = 30000;
     long verbleibendeZeit;
@@ -17,7 +16,7 @@ public class CountdownQuiz {
 
     /***
      * das neue startCoundown
-     */
+
     public CountdownQuiz(TextView _textview_timer, TextView _timerTest){
         this.oben = _textview_timer;
         this.unten = _timerTest;
@@ -77,11 +76,11 @@ public class CountdownQuiz {
     }
 
     public void startCountdown(){
-        if (timerRunning) {
+        if (!timerRunning) {
             pauseCountdown();
             restartCountdown();
         }
-        startCountdown();
+        this.countdown.start();
     }
     public void updateCountdownText() {
         //umrechnen der verbleibenden Zeit in Sekunden
@@ -141,7 +140,12 @@ public class CountdownQuiz {
         return this.timerRunning;
     }
 
+    public CountDownTimer getCountdownTimer()
+    {
+       return this.countdown;
+    }
+
     public long getVerbleibendeZeit(){
         return this.verbleibendeZeit;
-    }
+    } */
 }

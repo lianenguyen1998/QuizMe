@@ -60,10 +60,10 @@ public class Quiz extends AppCompatActivity {
     private TextView zeit;
     private TextView textview_timer;
     private ColorStateList textColor_countdown;
-    //private CountDownTimer countdown;
-    //private boolean timerRunning;
-    //private long verbleibendeZeit;
-    //static final long COUNTDOWN_IN_MILLIS = 30000;
+    private CountDownTimer countdown;
+    private boolean timerRunning;
+    private long verbleibendeZeit;
+    static final long COUNTDOWN_IN_MILLIS = 30000;
 
     //Level Variables
     private TextView textview_level;
@@ -92,7 +92,7 @@ public class Quiz extends AppCompatActivity {
     private Chronometer chronometer;
 
     TextView timerTest;
-    CountdownQuiz countDown = new CountdownQuiz(textview_timer, timerTest);
+    //CountdownQuiz countDown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -170,7 +170,6 @@ public class Quiz extends AppCompatActivity {
         textview_timer = findViewById(R.id.textview_timer);
         textColor_countdown = textview_timer.getTextColors();
 
-        countDown.startCountdown();
 
         //popUp
         mydialog = new Dialog(Quiz.this);
@@ -186,9 +185,14 @@ public class Quiz extends AppCompatActivity {
         if(savedInstanceState != null){
             currentQuestion = savedInstanceState.getParcelable("CurrentQuestion");
         }
+         //countDown = new CountdownQuiz(textview_timer, timerTest);
+         //countDown.startCountdown();
 
-
-
+            if (timerRunning) {
+                pauseCountdown();
+                restartCountdown();
+            }
+            startCountdown();
     }
 
     @Override
@@ -392,7 +396,7 @@ public class Quiz extends AppCompatActivity {
                         //gewonnen Pop up öffnet
 
                         //////////
-                        countDown.pauseCountdown();
+                        pauseCountdown();
 
                         // -> nachste Frage Pop Up -> next level
                         if(questionCounter < questionCountTotal)
@@ -463,7 +467,7 @@ public class Quiz extends AppCompatActivity {
         }
         //keine Leben, also hat man verloren
         if(this.leben_count==0 ){
-            countDown.pauseCountdown();
+            pauseCountdown();
             //alle Leben-Textviews verschwinden
             textview_leben3.setVisibility(View.INVISIBLE);
             textview_leben2.setVisibility(View.INVISIBLE);
@@ -483,20 +487,19 @@ public class Quiz extends AppCompatActivity {
     private void countlebenCountdown(){
         //Aktuelle Anzahl der Leben anzeigen
         showLeben();
-
-        //Wenn der Countdown abläuft ein Leben abziehen
-        if (countDown.getVerbleibendeZeit() <= 100) {
-            this.leben_count--;
-            //neu anzeigen
-            showLeben();
-            //eine neue Frage soll erscheinen
-            showNextQuestion();
-            //und der Countdown muss wieder neu starten
-            countDown.pauseCountdown();
-            countDown.restartCountdown();
-            //start
-            countDown.resetCountdown();
-        }
+            //Wenn der Countdown abläuft ein Leben abziehen
+            if (verbleibendeZeit <= 100) {
+                this.leben_count--;
+                //neu anzeigen
+                showLeben();
+                //eine neue Frage soll erscheinen
+                showNextQuestion();
+                //und der Countdown muss wieder neu starten
+                pauseCountdown();
+                restartCountdown();
+                //start
+                startCountdown();
+            }
     }
 
     /**
@@ -530,14 +533,13 @@ public class Quiz extends AppCompatActivity {
                     option3.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
                     option4.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
 
-                    /****
+
                     if (timerRunning) {
                         pauseCountdown();
                         restartCountdown();
                     }
                     startCountdown();
-                     ***/
-                    countDown.startCountdown();
+
                     mydialog.dismiss();
                 }
             });
@@ -709,7 +711,7 @@ public class Quiz extends AppCompatActivity {
     /***
      * Hier wird der Countdown auf 30 Sekunden gesetzt und gestartet
      * Der Countdown wird heruntergezählt und auf 0 gesetzt
-
+     * */
     public void startCountdown(){
         //den Countdown zuweisen auf 30 Sekunden
         countdown = new CountDownTimer(COUNTDOWN_IN_MILLIS, 1000) {
@@ -740,7 +742,7 @@ public class Quiz extends AppCompatActivity {
     /***
      * Hier wird der zu sehende Text der Textview aktualisiert
      * Die Zeit wird in Sekunden heruntergezählt
-
+    */
     public void updateCountdownText() {
         //umrechnen der verbleibenden Zeit in Sekunden
         int sekunden = (int) (verbleibendeZeit / 1000) % 60;
@@ -762,7 +764,7 @@ public class Quiz extends AppCompatActivity {
 
     /***
      * In den letzten 10 Sekunden wird die Anzeige des Countdowns rot rot
-
+     */
     private void countdownTextRed(){
         //letzeen 10 Sekunden, also rot
         if (verbleibendeZeit < 11000) {
@@ -776,7 +778,7 @@ public class Quiz extends AppCompatActivity {
 
     /***
      * Der Countdown soll abgebrochen werden
-
+    */
     private void pauseCountdown(){
         countdown.cancel();
 
@@ -786,11 +788,11 @@ public class Quiz extends AppCompatActivity {
 
     /***
      * Wenn der Countdown zurückgesetzt wird, muss die verbleibende Zeit wieder auf 30 Sekunden gesetzt werden
-
+    */
     private void restartCountdown() {
         verbleibendeZeit= COUNTDOWN_IN_MILLIS;
 
         //die Anzeige der Textview aktualisieren
         updateCountdownText();
-    }*/
+    }
 }
