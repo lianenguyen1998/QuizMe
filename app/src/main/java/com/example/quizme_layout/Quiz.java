@@ -41,7 +41,7 @@ import java.util.Locale;
 public class Quiz extends AppCompatActivity {
 
     private TextView frage;
-    //private Button hinweis;
+    private TextView hinweis;
     private Button option1;
     private Button option2;
     private Button option3;
@@ -228,13 +228,15 @@ public class Quiz extends AppCompatActivity {
                 public void onPanelSlide(View panel, float slideOffset) {
 
                     findViewById(R.id.textview_panel).setAlpha(1 - slideOffset);
+
                 }
 
                 @Override
                 public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
 
                     if (newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
-                        //
+                        hinweis = findViewById(R.id.textview_hinweis);
+                        hinweis.setText(currentQuestion.getHinweis());
                     }
 
                     if (newState == SlidingUpPanelLayout.PanelState.COLLAPSED) {
@@ -661,7 +663,7 @@ public class Quiz extends AppCompatActivity {
                 HighscoreModel model;
                 try {
                     if(username.getText().toString()!= null) {
-                        model = new HighscoreModel(username.getText().toString(), getTime(), getLevelCount());
+                        model = new HighscoreModel(username.getText().toString(), getStringTime(), getLevelCount());
 
                         //Daten einfügen in die Datenbank
                         boolean success = dbHighscore.add( model);
@@ -679,7 +681,7 @@ public class Quiz extends AppCompatActivity {
                     }
 
                 } catch (Exception e){
-                    model = new HighscoreModel("Error", 0, 0);
+                    model = new HighscoreModel("Error", "Error", 0);
                     Toast.makeText(Quiz.this, model.toString(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }

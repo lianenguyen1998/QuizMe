@@ -252,15 +252,30 @@
             android:textSize="20sp"
             app:drawableBottomCompat="@drawable/vector_down"
             app:drawableTint="#1E1E1E" />
+
         <TextView
             android:id="@+id/textview_timerTest"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/raleway_medium"
-            android:gravity="center"
+            android:layout_margin="5dp"
+            android:gravity="end|bottom"
             android:text="test timer"
             android:textColor="#1E1E1E"
             android:textSize="20sp"
             app:drawableTint="#1E1E1E" />
+
+        <TextView
+            android:id="@+id/textview_hinweis"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/raleway_medium"
+            android:gravity="center"
+            android:text="@string/hinweis"
+            android:textColor="#1E1E1E"
+            android:textSize="24sp"
+            app:drawableTint="#1E1E1E" />
+
+            />
     </RelativeLayout>
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>
