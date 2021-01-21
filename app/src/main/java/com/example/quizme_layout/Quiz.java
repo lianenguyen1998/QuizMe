@@ -207,17 +207,9 @@ public class Quiz extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         savedInstanceState.getParcelable("CurrentQuestion");
     }
-    public int getTime(){
-        int sek = (int) ((SystemClock.elapsedRealtime()-chronometer.getBase())/1000);
-        //int sek = (int) (chronometer.getBase()/100000000);
 
-        return sek;
-       // return zahl;
-    }
     public String getStringTime(){
-        Toast.makeText(this, chronometer.getFormat(), Toast.LENGTH_LONG).show();
-        //System.out.println(chronometer.getFormat());
-        return chronometer.getFormat();
+        return chronometer.getText().toString();
     }
     public void createPanel()
     {
