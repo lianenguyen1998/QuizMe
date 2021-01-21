@@ -65,11 +65,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         add(q2);
         QuizMeModel q3 = new QuizMeModel("Wer wählt den Bundeskanzler?", "Bundeskanzler", "Bundestag", "Bundesrat", "Bundesversammlung", "Nicht nur eine Person",4);
         add(q3);
-        QuizMeModel q4 = new QuizMeModel("Wofür steht die Abkürzung KGaA?", "Kreditgesellschaft auf Aktien", "Kommanditgesellschaft auf Aktien", "Kardinalgesellschaft auf Aktien", "Kompetenzgesellschaft auf Aktien", "sicher was mit Aktien", 2);
+        QuizMeModel q4 = new QuizMeModel("Wofür steht die Abkürzung KGaA?", "Kreditgesellschaft auf Aktien", "Kommanditgesellschaft auf Aktien", "Kardinalgesellschaft auf Aktien", "Kompetenzgesellschaft auf Aktien", "Sicher was mit Aktien", 2);
         add(q4);
         QuizMeModel q5 = new QuizMeModel("Welches Land ist kein Mitglied im Sicherheitsrat der Vereinten Nationen?", "USA", "Russland", "Deutschland", "China", "Ein für dich sehr bekanntes Land", 3);
         add(q5);
-        /*QuizMeModel q6 = new QuizMeModel("Welches dieser Tiere hält keinen Winterschlaf?", "Eichhörnchen", "Fledermaus", "Igel", "Siebenschläfer", "Es ist ein Nagetier", 1);
+        QuizMeModel q6 = new QuizMeModel("Welches dieser Tiere hält keinen Winterschlaf?", "Eichhörnchen", "Fledermaus", "Igel", "Siebenschläfer", "Es ist ein Nagetier", 1);
         add(q6);
         QuizMeModel q7 = new QuizMeModel("Wie heißt die Hauptstadt von Thüringen?", "Magdeburg", "Erfurt", "Dresden", "Potsdam", "Nachbarstadt ist Weimar", 2);
         add(q7);
@@ -83,8 +83,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         add(q11);
         QuizMeModel q12 = new QuizMeModel("Wie heißt die Hauptstadt von Äthiopien?", "Nairobi", "Mogadischu", "Harare", "Addis Adeba", "Es hat mindestens zwei a's im Namen", 4);
         add(q12);
-        QuizMeModel q13 = new QuizMeModel("Wer war von 1981 bis 1995 französischer Präsident?", "Jaques Chirac", "Francois Mitterand", "Valéry Giscard d'Estaing", "Charles de Gaulle", "Jaques Chirac war der Bürgermeister von Paris ", 2);
-        add(q13);
         QuizMeModel q14 = new QuizMeModel("Was soll Cäsar gesagt haben, als er den Rubikon überquerte?", "veni, vidi, vici", "divide et empera", "alea iacta est", "et tu, brute", "Er sagt:'Die Würfel sind gefallen'", 3);
         add(q14);
         QuizMeModel q15 = new QuizMeModel("Wie viele Oscars gewann der Film Titanic?", "10", "11", "12", "13", "Mehr als 10 definitiv", 2);
@@ -99,7 +97,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         add(q19);
         QuizMeModel q20 = new QuizMeModel("Wie lautet das chemische Symbol für Blei?", "Bl", "Pb", "Be", "Pt", "Es fängt mit 'P' an", 2);
         add(q20);
-        QuizMeModel q21 = new QuizMeModel("Wie viele Planeten hat das Sonnensystem?", "8", "9", "10", "11", "nicht mehr als 10", 1);
+        QuizMeModel q21 = new QuizMeModel("Wie viele Planeten hat das Sonnensystem?", "8", "9", "10", "11", "Nicht mehr als 10", 1);
         add(q21);
         QuizMeModel q22 = new QuizMeModel("In welchem Meer liegt die Insel Hawaii?", "Atlantischer Ozean", "Indischer Ozean", "Karibisches Meer", "Pazifischer Ozean", "Einer der Ozeane auf jedenfall", 4);
         add(q22);
@@ -109,7 +107,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         add(q24);
         QuizMeModel q25 = new QuizMeModel("Was ist ein Sonett?", "Eine Stichwaffe", "Musikinstrument", "Ein Pilz", "Eine Gedichtsform", "Es hat ein Rhythmus", 4);
         add(q25);
-        QuizMeModel q26 = new QuizMeModel("Wie heißt die Schicht der Atmosphäre, die der Erde am nächsten ist?", "Troposphäre", "Stratosphäre", "Mesosphäre", "Thermosphäre", "Ich meine es fängt mit 'T'", 1);
+        QuizMeModel q26 = new QuizMeModel("Wie heißt die Schicht der Atmosphäre, die der Erde am nächsten ist?", "Troposphäre", "Stratosphäre", "Mesosphäre", "Thermosphäre", "Ich meine es fängt mit 'T' an", 1);
         add(q26);
         QuizMeModel q27 = new QuizMeModel("Wie viel Prozent der Erde sind circa von Wasser bedeckt?", "50 Prozent", "60 Prozent", "70 Prozent", "80 Prozent", "Es sollte mehr als die Hälfte der Erde sein", 3);
         add(q27);
@@ -117,15 +115,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         add(q28);
         QuizMeModel q29 = new QuizMeModel("Wie lang ist die chinesische Mauer?", "12.000 Kilometer", "15.000 Kilometer", "18.000 Kilometer", "21.000 Kilometer", "Es ist einer der höheren Werte", 4);
         add(q29);
-        QuizMeModel q30 = new QuizMeModel("Der wievielte US-Präsident war Barack Obama?", "42.", "43.", "44.", "45.", "etwas in der Mitte", 3);
+        QuizMeModel q30 = new QuizMeModel("Der wievielte US-Präsident war Barack Obama?", "42.", "43.", "44.", "45.", "Etwas in der Mitte", 3);
         add(q30);
         QuizMeModel q31 = new QuizMeModel("Welche Staatsform hat England?", "Parlamentarische Monarchie", "Konstitutionelle Monarchie", "Absolute Monarchie", "Ständische Monarchie", "Es ist keine vollständige Monarchie.", 1);
         add(q31);
         QuizMeModel q32 = new QuizMeModel("Welches ist das höchste Amt in Deutschland?", "Bundespräsident", "Bundeskanzler", "Bundestagspräsident", "Oberster Richter am Bundesverfassungsgericht", "Der Richter sollte immer neutral sein", 1);
         add(q32);
-        QuizMeModel q33 = new QuizMeModel("Wie groß ist die Summe der Winkel eines Dreiecks?", "45 Grad", "90 Grad", "180 Grad", "360 Grad", "ein voller Kreis ist 360 Grad", 3);
+        QuizMeModel q33 = new QuizMeModel("Wie groß ist die Summe der Winkel eines Dreiecks?", "45 Grad", "90 Grad", "180 Grad", "360 Grad", "Ein voller Kreis ist 360 Grad", 3);
         add(q33);
-        QuizMeModel q34 = new QuizMeModel("Wie beginnt die Kreiszahl Pi?", "3,1415", "2,8485", "1,3435", "4,6465", "4,... ist definitiv zu viel", 1);
+        QuizMeModel q34 = new QuizMeModel("Wie beginnt die Kreiszahl Pi?", "3,1415", "3,8485", "3,3435", "2,6465", "4,... ist definitiv zu viel", 1);
         add(q34);
         QuizMeModel q35 = new QuizMeModel("Wer schrieb die Harry Potter Bücher?", "E.L. James", "J.R.R. Tolkien", "George R.R. Martin", "Joanne K. Rowling", "'J' sollte im Namen vorhanden sein", 4);
         add(q35);
@@ -135,7 +133,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         add(q37);
         QuizMeModel q38 = new QuizMeModel("In welchem Land in Europa ist die Geschwindigkeit auf Autobahnen nicht generell begrenzt?", "Schweden", "Deutschland", "Italien", "Frankreich", "Wo wohl", 2);
         add(q38);
-        QuizMeModel q39 = new QuizMeModel("Was versteht man in der musikalischen Dynamik unter der Abkürzung 'ff?'", "fortissimo", "medioforte", "duoforte", "fortino", "sollte sehr laut sein", 1);
+        QuizMeModel q39 = new QuizMeModel("Was versteht man in der musikalischen Dynamik unter der Abkürzung 'ff?'", "fortissimo", "medioforte", "duoforte", "fortino", "Sollte sehr laut sein", 1);
         add(q39);
         QuizMeModel q40 = new QuizMeModel("Was ist eine veraltete Maßeinheiten für Energie?", "Farbe", "Kalorie", "Exzem", "Kraftstoff", "Farbe ist eine Energie? sicher nicht", 2);
         add(q40);
@@ -158,7 +156,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         QuizMeModel q49 = new QuizMeModel("Wie nennt man in Frankreich umgangssprachlich einen Polizisten?", "Flip", "Cloque", "Flac", "Flic", "Cloque passt nicht dazu", 4);
         add(q49);
         QuizMeModel q50 = new QuizMeModel("Welche Gestalt aus der griechischen Mythologie starb, weil sie der Sonne zu nah kam?", "Tantalos", "Sisyphos", "Daidalos", "Ikarus", "Sisyphos hat mehrmals den Tod überlistet", 4);
-        add(q50);*/
+        add(q50);
 
     }
 

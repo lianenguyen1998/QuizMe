@@ -68,7 +68,7 @@ public class Quiz extends AppCompatActivity {
     //Level Variables
     private TextView textview_level;
     private int level_count = 1;
-    private final int MAXLEVEL = 5;
+    private final int MAXLEVEL = 50;
 
     //Leben Variables
     private TextView textview_leben3;
@@ -661,6 +661,7 @@ public class Quiz extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 //Edit Text in Datenbank speichern
                 HighscoreModel model;
+
                 try {
                     if(username.getText().toString()!= null) {
                         model = new HighscoreModel(username.getText().toString(), getStringTime(), getLevelCount());
