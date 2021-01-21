@@ -1,10 +1,8 @@
 package com.example.quizme_layout;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -21,7 +19,7 @@ public class Startseite extends AppCompatActivity {
     // ---- Splash Screen Animation - Variablen
     Animation obenAnim, untenAnim;
     TextView willkommenAnim, logoAnim;
-    Button startAnim, highscorelisteAnim, überQuizmeAnim;
+    Button startAnim, highscorelisteAnim, ueberQuizmeAnim;
     ImageButton einstellungAnim;
 
     // ---- QuizButton
@@ -31,7 +29,7 @@ public class Startseite extends AppCompatActivity {
     private Button highscoreliste;
 
     // ---- InfotextButton
-    private Button überQuizme;
+    private Button ueberQuizme;
 
     // ---- EinstellungsButton
     private ImageButton einstellung;
@@ -49,29 +47,29 @@ public class Startseite extends AppCompatActivity {
 
         // ---- Splash Screen Animation
         obenAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
-        untenAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
+        untenAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
 
         // Hooks
         willkommenAnim = findViewById(R.id.willkommen);
         startAnim = findViewById(R.id.start);
         highscorelisteAnim = findViewById(R.id.highscoreliste);
-        überQuizmeAnim = findViewById(R.id.infotext);
+        ueberQuizmeAnim = findViewById(R.id.infotext);
         logoAnim = findViewById(R.id.logo4);
         einstellungAnim = findViewById(R.id.einstellung);
 
         willkommenAnim.setAnimation(obenAnim);
         startAnim.setAnimation(untenAnim);
         highscorelisteAnim.setAnimation(untenAnim);
-        überQuizmeAnim.setAnimation(untenAnim);
+        ueberQuizmeAnim.setAnimation(untenAnim);
         logoAnim.setAnimation(untenAnim);
         einstellungAnim.setAnimation(obenAnim);
 
-        backgroundAnimation();
-
         start = (Button) findViewById(R.id.start);
         highscoreliste = (Button) findViewById(R.id.highscoreliste);
-        überQuizme = (Button) findViewById(R.id.infotext);
+        ueberQuizme = (Button) findViewById(R.id.infotext);
         einstellung = (ImageButton) findViewById(R.id.einstellung);
+
+        backgroundAnimation();
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +87,7 @@ public class Startseite extends AppCompatActivity {
             }
         });
 
-        überQuizme.setOnClickListener(new View.OnClickListener() {
+        ueberQuizme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                mediaPlayer.start();

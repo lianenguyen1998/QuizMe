@@ -700,7 +700,6 @@ public class Quiz extends AppCompatActivity {
         Dialog insertDialog = insertUsername.create();
         insertDialog.setCanceledOnTouchOutside(false);
 
-
         //Popup anzeigen
         insertDialog.show();
 

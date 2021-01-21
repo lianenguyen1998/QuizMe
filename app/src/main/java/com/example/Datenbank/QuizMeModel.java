@@ -12,7 +12,7 @@ public class QuizMeModel implements Parcelable {
     public String option4;
     public String hinweis;
 
-    public QuizMeModel(String fragen, String hinweis, String option1, String option2, String option3, String option4, int antwortNr){
+    public QuizMeModel(String fragen, String option1, String option2, String option3, String option4, String hinweis, int antwortNr){
         this.fragen = fragen;
         this.antwort_nr = antwortNr;
         this.hinweis = hinweis;
