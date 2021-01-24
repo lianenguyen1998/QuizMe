@@ -198,28 +198,29 @@ public class Quiz extends AppCompatActivity {
         }
         startCountdown();
 
+        swipeCardsGame();
 
+    }
+
+    private void swipeCardsGame(){
         ArrayList<String> card = new ArrayList<>();
+        card.add("SWIPE");
+        card.add("NOCH ZWEI");
+        card.add("NOCH DREI");
+        card.add("NOCH VIER");
+        card.add("NOCH FÜNF");
+        card.add("NOCH SECHS");
+        card.add("NOCH SIEBEN");
+        card.add("NOCH ACHT");
+        card.add("NOCH NEUN");
+        card.add("NOCH ZEHN");
         SwipeFlingAdapterView swipeAdapter = (SwipeFlingAdapterView) findViewById(R.id.cards);
         ArrayAdapter arrayAdapter = new ArrayAdapter<String>(Quiz.this, R.layout.karten, R.id.textview_kartenzahl, card);
         cards = new SwipeCards(Quiz.this, swipeAdapter, card, arrayAdapter);
         //swipeAdapter.setVisibility(View.INVISIBLE);
         cards.createCards();
-
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState){
-        super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putParcelable("CurrentQuestion", currentQuestion);
-
-    }
-
-    @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState){
-        super.onRestoreInstanceState(savedInstanceState);
-        savedInstanceState.getParcelable("CurrentQuestion");
-    }
 
     public String getStringTime(){
         return chronometer.getText().toString();

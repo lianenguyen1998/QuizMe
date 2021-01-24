@@ -28,7 +28,7 @@ public class SwipeCards extends AppCompatActivity {
 
     public void createCards(){
 
-        cards = new ArrayList<>();
+        /*cards = new ArrayList<>();
         cards.add("EINS");
         cards.add("ZWEI");
         cards.add("DREI");
@@ -38,7 +38,7 @@ public class SwipeCards extends AppCompatActivity {
         cards.add("SIEBEN");
         cards.add("ACHT");
         cards.add("NEUN");
-        cards.add("ZEHN");
+        cards.add("ZEHN");*/
 
         swipeAdapter.setAdapter(arrayAdapter);
         swipeAdapter.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
@@ -50,7 +50,7 @@ public class SwipeCards extends AppCompatActivity {
 
             @Override
             public void onLeftCardExit(Object o) {
-                Toast.makeText(getApplicationContext(), "links", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
