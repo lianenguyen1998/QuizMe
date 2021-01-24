@@ -31,7 +31,6 @@
         android:layout_height="72dp"
         android:layout_marginStart="110dp"
         android:background="@drawable/rounded_corners"
-        android:backgroundTint="#2E7D91"
         android:fontFamily="@font/raleway_medium"
         android:text="@string/zurhighscoreliste" />
 

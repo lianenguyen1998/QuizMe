@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
@@ -375,7 +377,7 @@ public class Quiz extends AppCompatActivity {
                         //wenn Antwort richtig
                         //Farbe des Buttons grün
                         answered = true;
-                        btnAnswer.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightgreen));
+                        btnAnswer.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.button_green));
 
                         //nachdem man richtige Antwort anklickt -> nicht mehr drücken können
                         option1.setEnabled(false);
@@ -403,7 +405,7 @@ public class Quiz extends AppCompatActivity {
                     } else {
                         //falsche antworten rot
                         //Auswahl wird rot
-                        btnAnswer.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightred));
+                        btnAnswer.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.button_red));
                         answered = false;
 
                     }
@@ -509,6 +511,7 @@ public class Quiz extends AppCompatActivity {
             mydialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
             toNextLevel.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("ResourceType")
                 @Override
                 public void onClick(View v) {
 
@@ -522,10 +525,11 @@ public class Quiz extends AppCompatActivity {
                     option4.setEnabled(true);
 
                     //Farbe wieder normal setzen (da vorher vllt rot oder grün war)
-                    option1.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
-                    option2.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
-                    option3.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
-                    option4.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
+                     option1.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.rounded_corners));
+                     option2.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.rounded_corners));
+                     option3.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.rounded_corners));
+                     option4.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.rounded_corners));
+
 
 
                     if (timerRunning) {
