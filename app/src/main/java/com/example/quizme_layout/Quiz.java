@@ -18,6 +18,7 @@ import android.os.SystemClock;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
@@ -31,6 +32,7 @@ import com.example.Datenbank.HighscoreModel;
 import com.example.Datenbank.MainActivity;
 import com.example.Datenbank.QuizMeModel;
 import com.example.quizmetime.Countdown;
+import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
@@ -93,6 +95,8 @@ public class Quiz extends AppCompatActivity {
 
     TextView timerTest;
     //CountdownQuiz countDown;
+
+    SwipeCards cards;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,11 +192,20 @@ public class Quiz extends AppCompatActivity {
          //countDown = new CountdownQuiz(textview_timer, timerTest);
          //countDown.startCountdown();
 
-            if (timerRunning) {
-                pauseCountdown();
-                restartCountdown();
-            }
-            startCountdown();
+        if (timerRunning) {
+            pauseCountdown();
+            restartCountdown();
+        }
+        startCountdown();
+
+
+        ArrayList<String> card = new ArrayList<>();
+        SwipeFlingAdapterView swipeAdapter = (SwipeFlingAdapterView) findViewById(R.id.cards);
+        ArrayAdapter arrayAdapter = new ArrayAdapter<String>(Quiz.this, R.layout.karten, R.id.textview_kartenzahl, card);
+        cards = new SwipeCards(Quiz.this, swipeAdapter, card, arrayAdapter);
+        //swipeAdapter.setVisibility(View.INVISIBLE);
+        cards.createCards();
+
     }
 
     @Override

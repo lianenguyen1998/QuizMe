@@ -276,6 +276,14 @@
             android:textSize="24sp"
             app:drawableTint="#1E1E1E" />
 
+        <com.lorentzos.flingswipe.SwipeFlingAdapterView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/cards"
+            app:max_visible="10"
+            app:rotation_degrees="20"
+            app:min_adapter_stack="11"
             />
+
     </RelativeLayout>
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

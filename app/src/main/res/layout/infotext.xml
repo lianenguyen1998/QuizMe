@@ -45,5 +45,14 @@
         android:textColor="#1E1E1E"
         android:textSize="36sp" />
 
+    <com.lorentzos.flingswipe.SwipeFlingAdapterView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/cards_info"
+        app:max_visible="10"
+        app:rotation_degrees="20"
+        app:min_adapter_stack="11"
+        />
+
 
 </RelativeLayout>

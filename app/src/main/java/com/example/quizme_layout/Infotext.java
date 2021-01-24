@@ -4,9 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 
+import com.lorentzos.flingswipe.SwipeFlingAdapterView;
+
+import java.util.ArrayList;
+
 public class Infotext extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,6 +21,13 @@ public class Infotext extends AppCompatActivity {
         setContentView(R.layout.infotext);
 
         backgroundAnimation();
+
+        ArrayList<String> card = new ArrayList<>();
+        SwipeFlingAdapterView swipeAdapter = (SwipeFlingAdapterView) findViewById(R.id.cards_info);
+        ArrayAdapter arrayAdapter = new ArrayAdapter<String>(Infotext.this, R.layout.karten, R.id.textview_kartenzahl, card);
+        SwipeCards cards = new SwipeCards(Infotext.this, swipeAdapter, card, arrayAdapter);
+        //swipeAdapter.setVisibility(View.INVISIBLE);
+        cards.createCards();
     }
     /***
      * Die Hintergrundanimation, welche aus aus einer Animationsliste besteht, soll hier in ihrer Dauer
