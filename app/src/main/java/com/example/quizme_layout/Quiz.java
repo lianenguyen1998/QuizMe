@@ -20,6 +20,7 @@ import android.os.SystemClock;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
@@ -33,6 +34,7 @@ import com.example.Datenbank.HighscoreModel;
 import com.example.Datenbank.MainActivity;
 import com.example.Datenbank.QuizMeModel;
 import com.example.quizmetime.Countdown;
+import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
@@ -95,6 +97,8 @@ public class Quiz extends AppCompatActivity {
 
     TextView timerTest;
     //CountdownQuiz countDown;
+
+    SwipeCards cards;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -190,25 +194,35 @@ public class Quiz extends AppCompatActivity {
          //countDown = new CountdownQuiz(textview_timer, timerTest);
          //countDown.startCountdown();
 
-            if (timerRunning) {
-                pauseCountdown();
-                restartCountdown();
-            }
-            startCountdown();
-    }
+        if (timerRunning) {
+            pauseCountdown();
+            restartCountdown();
+        }
+        startCountdown();
 
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState){
-        super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putParcelable("CurrentQuestion", currentQuestion);
+        swipeCardsGame();
 
     }
 
-    @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState){
-        super.onRestoreInstanceState(savedInstanceState);
-        savedInstanceState.getParcelable("CurrentQuestion");
+    private void swipeCardsGame(){
+        ArrayList<String> card = new ArrayList<>();
+        card.add("SWIPE");
+        card.add("NOCH ZWEI");
+        card.add("NOCH DREI");
+        card.add("NOCH VIER");
+        card.add("NOCH FÜNF");
+        card.add("NOCH SECHS");
+        card.add("NOCH SIEBEN");
+        card.add("NOCH ACHT");
+        card.add("NOCH NEUN");
+        card.add("NOCH ZEHN");
+        SwipeFlingAdapterView swipeAdapter = (SwipeFlingAdapterView) findViewById(R.id.cards);
+        ArrayAdapter arrayAdapter = new ArrayAdapter<String>(Quiz.this, R.layout.karten, R.id.textview_kartenzahl, card);
+        cards = new SwipeCards(Quiz.this, swipeAdapter, card, arrayAdapter);
+        //swipeAdapter.setVisibility(View.INVISIBLE);
+        cards.createCards();
     }
+
 
     public String getStringTime(){
         return chronometer.getText().toString();
@@ -222,7 +236,6 @@ public class Quiz extends AppCompatActivity {
                 public void onPanelSlide(View panel, float slideOffset) {
 
                     findViewById(R.id.textview_panel).setAlpha(1 - slideOffset);
-
                 }
 
                 @Override
