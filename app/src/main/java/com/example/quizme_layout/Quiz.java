@@ -234,7 +234,6 @@ public class Quiz extends AppCompatActivity {
                 public void onPanelSlide(View panel, float slideOffset) {
 
                     findViewById(R.id.textview_panel).setAlpha(1 - slideOffset);
-
                 }
 
                 @Override

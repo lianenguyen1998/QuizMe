@@ -54,5 +54,62 @@
         app:min_adapter_stack="11"
         />
 
+    <com.ebanx.swipebtn.SwipeButton
+        android:id="@+id/swipeButton1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        app:button_bottom_padding="20dp"
+        app:button_image_disabled="@drawable/vector_forward"
+        app:button_image_enabled="@drawable/vector_finish_minigame"
+        app:button_left_padding="20dp"
+        app:button_right_padding="20dp"
+        app:button_top_padding="20dp"
+        app:inner_text="SWIPE"
+        app:inner_text_background="@color/teal_700"
+        app:inner_text_bottom_padding="40dp"
+        app:inner_text_left_padding="40dp"
+        app:inner_text_right_padding="40dp"
+        app:inner_text_top_padding="40dp"
+        app:inner_text_color="#000000"
+        app:inner_text_size="24dp"
+         />
+
+    <com.ebanx.swipebtn.SwipeButton
+        android:id="@+id/swipeButton2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="550dp"
+        app:button_bottom_padding="20dp"
+        app:button_left_padding="20dp"
+        app:button_right_padding="20dp"
+        app:button_top_padding="20dp"
+        app:inner_text="SWIPE"
+        app:inner_text_background="@color/teal_700"
+        app:inner_text_bottom_padding="40dp"
+        app:inner_text_left_padding="40dp"
+        app:inner_text_right_padding="40dp"
+        app:inner_text_top_padding="40dp"
+        app:inner_text_color="#000000"
+        app:inner_text_size="24dp"
+       />
+    <com.ebanx.swipebtn.SwipeButton
+        android:id="@+id/swipeButton3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="700dp"
+        app:button_bottom_padding="20dp"
+        app:button_left_padding="20dp"
+        app:button_right_padding="20dp"
+        app:button_top_padding="20dp"
+        app:inner_text="SWIPE"
+        app:inner_text_background="@color/teal_700"
+        app:inner_text_bottom_padding="40dp"
+        app:inner_text_left_padding="40dp"
+        app:inner_text_right_padding="40dp"
+        app:inner_text_top_padding="40dp"
+        app:inner_text_color="#000000"
+        app:inner_text_size="24dp"
+         />
 
 </RelativeLayout>
