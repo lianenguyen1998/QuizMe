@@ -11,8 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/hintergrundQuiz_id_relative"
-        android:background="@drawable/hintergrund_liste"
-        >
+        android:background="@drawable/hintergrund_liste">
 
         <TextView
             android:id="@+id/logo3"
@@ -32,6 +31,22 @@
             android:textAllCaps="false"
             android:textColor="#000000"
             android:textSize="22sp" />
+
+        <Chronometer
+            android:id="@+id/textview_chronometer"
+            android:layout_width="121dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="353dp"
+            android:layout_marginTop="1158dp"
+            android:layout_marginBottom="-3dp"
+            android:fontFamily="sans-serif-light"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textview_leben1"
@@ -118,7 +133,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="369dp"
+            android:layout_marginTop="421dp"
             android:layout_marginEnd="4dp"
             android:fontFamily="@font/raleway_medium"
             android:padding="8dp"
@@ -126,12 +141,13 @@
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="#1E1E1E"
-            android:textSize="30sp" />
+            android:textSize="32sp" />
 
         <Button
             android:id="@+id/choice1"
-            android:layout_width="370dp"
-            android:layout_height="110dp"
+            android:layout_width="380dp"
+            android:layout_height="120dp"
+            android:layout_below="@+id/question"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
@@ -142,12 +158,13 @@
             android:padding="8dp"
             android:text="@string/jasa"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/choice2"
-            android:layout_width="370dp"
-            android:layout_height="110dp"
+            android:layout_width="380dp"
+            android:layout_height="120dp"
+            android:layout_below="@+id/question"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
@@ -158,12 +175,12 @@
             android:padding="8dp"
             android:text="@string/chai"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/choice3"
-            android:layout_width="370dp"
-            android:layout_height="110dp"
+            android:layout_width="380dp"
+            android:layout_height="120dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
@@ -174,12 +191,12 @@
             android:padding="8dp"
             android:text="@string/oak"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/choice4"
-            android:layout_width="370dp"
-            android:layout_height="110dp"
+            android:layout_width="380dp"
+            android:layout_height="120dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
@@ -190,7 +207,7 @@
             android:padding="8dp"
             android:text="@string/lase"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <Button
         android:id="@+id/quit"
@@ -210,24 +227,13 @@
         android:textSize="14sp"
         app:drawableTopCompat="@drawable/vector_close" />
 
-        <Chronometer
-            android:id="@+id/textview_chronometer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/question"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="358dp"
-            android:layout_marginTop="487dp"
-            android:textSize="24sp" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#17DC7F"
+        android:background="#D22CFDD3"
         >
 
         <TextView
@@ -247,7 +253,6 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/raleway_medium"
             android:gravity="bottom"
-            android:text="@string/zur_ck"
             android:textColor="#1E1E1E"
             android:textSize="20sp"
             app:drawableBottomCompat="@drawable/vector_down"

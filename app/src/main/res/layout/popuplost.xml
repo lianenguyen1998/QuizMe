@@ -15,7 +15,7 @@
         android:fontFamily="@font/raleway_medium"
         android:text="@string/du_hast_leider_verloren"
         android:textAlignment="center"
-        android:textColor="#1E1E1E"
+        android:textColor="@color/black"
         android:textSize="35sp" />
 
 
@@ -30,8 +30,8 @@
         android:layout_width="500dp"
         android:layout_height="72dp"
         android:layout_marginStart="110dp"
+        android:textColor="@color/black"
         android:background="@drawable/rounded_corners"
-        android:backgroundTint="#2E7D91"
         android:fontFamily="@font/raleway_medium"
         android:text="@string/zur_highscoreliste" />
 

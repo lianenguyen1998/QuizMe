@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-            <corners android:radius="100dp"/>
-            <solid android:color="#58E3CE"/>
-        </shape>
-    </item>
+<item>
+    <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+        <corners android:radius="100dp"/>
+        <gradient android:startColor="#96FFEF"
+            android:endColor="#96FFEF" />
+        <stroke android:width="2.5px" android:color="#85177E6E" />
+    </shape>
+</item>
 </selector>
 
 

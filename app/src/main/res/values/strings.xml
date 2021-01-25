@@ -33,4 +33,7 @@
     <string name="hinweis">HINWEIS</string>
     <string name="name">Name</string>
     <string name="button">Button</string>
+    <string name="klicks_0">Klicks: 0</string>
+    <string name="klick_mich">Klick mich</string>
+    <string name="klicke_15x">Klicke: 15x</string>
 </resources>

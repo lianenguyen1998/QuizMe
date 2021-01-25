@@ -4,13 +4,13 @@
     <translate
         android:fromXDelta="0%"
         android:fromYDelta="-1000%"
-        android:duration="2000">
+        android:duration="2800">
     </translate>
 
     <alpha
         android:fromAlpha="0.1"
         android:toAlpha="1.0"
-        android:duration="2000">
+        android:duration="2800">
     </alpha>
 
 </set>

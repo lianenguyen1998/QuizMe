@@ -79,7 +79,7 @@ public class Highscoreliste extends AppCompatActivity {
         tableHelper = new TableHelper(this);
         table = (TableView<String[]>) findViewById(R.id.highscoreview);
         table.setColumnCount(4);
-        table.setHeaderBackgroundColor(Color.parseColor("#2ecc71"));
+        table.setHeaderBackgroundColor(Color.parseColor("#D22CFDD3"));
         table.setHeaderAdapter(new SimpleTableHeaderAdapter(this, tableHelper.getHeader()));
         table.setDataAdapter(new SimpleTableDataAdapter(this, tableHelper.getSpieler()));
 

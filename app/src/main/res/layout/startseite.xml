@@ -41,13 +41,13 @@
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="#1E1E1E"
-        android:textSize="65sp"
+        android:textSize="70sp"
         android:typeface="normal" />
 
     <Button
         android:id="@+id/start"
-        android:layout_width="370dp"
-        android:layout_height="95dp"
+        android:layout_width="430dp"
+        android:layout_height="100dp"
         android:layout_below="@+id/willkommen"
         android:layout_centerInParent="true"
         android:layout_marginStart="20dp"
@@ -58,13 +58,13 @@
         android:fontFamily="@font/raleway_medium"
         android:text="@string/start"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="25sp"
         app:iconPadding="8dp" />
 
     <Button
         android:id="@+id/highscoreliste"
-        android:layout_width="370dp"
-        android:layout_height="95dp"
+        android:layout_width="430dp"
+        android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="482dp"
@@ -73,13 +73,13 @@
         android:text="@string/highscoreliste"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="25sp"
         app:iconPadding="8dp" />
 
     <Button
         android:id="@+id/infotext"
-        android:layout_width="370dp"
-        android:layout_height="95dp"
+        android:layout_width="430dp"
+        android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="353dp"
@@ -88,13 +88,13 @@
         android:text="über quizme"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="25sp"
         app:iconPadding="8dp" />
 
     <ImageButton
         android:id="@+id/einstellung"
-        android:layout_width="55dp"
-        android:layout_height="54dp"
+        android:layout_width="52dp"
+        android:layout_height="49dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
@@ -102,7 +102,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="1146dp"
+        android:layout_marginBottom="1151dp"
         android:background="@drawable/vector_settings"
         android:contentDescription="@string/todo"
         android:padding="8dp"></ImageButton>

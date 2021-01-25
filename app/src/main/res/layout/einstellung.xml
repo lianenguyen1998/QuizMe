@@ -44,6 +44,4 @@
         android:textAllCaps="true"
         android:textColor="#1E1E1E"
         android:textSize="36sp" />
-
-
 </RelativeLayout>
