@@ -65,9 +65,9 @@ public class Minigame1 {
      */
     private void checkAll(){
         if(swipeButton1.isEnabled()==false && swipeButton2.isEnabled()==false && swipeButton3.isEnabled()==false) {
-            swipeButton1.setVisibility(View.INVISIBLE);
-            swipeButton2.setVisibility(View.INVISIBLE);
-            swipeButton3.setVisibility(View.INVISIBLE);
+            swipeButton1.setVisibility(View.GONE);
+            swipeButton2.setVisibility(View.GONE);
+            swipeButton3.setVisibility(View.GONE);
         }
     }
 }

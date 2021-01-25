@@ -37,8 +37,8 @@ public class Minigame3_pressTheButton extends AppCompatActivity {
                 // maximale Anzahl der Klicks festlegen -> max. 15
                 if (klickAnzahl == 15) {
                     klickMich_b.setEnabled(false);
-                    klickMich_b.setVisibility(View.INVISIBLE);
-                    klickZaehler_tv.setVisibility(View.INVISIBLE);
+                    klickMich_b.setVisibility(View.GONE);
+                    klickZaehler_tv.setVisibility(View.GONE);
                 }
 
                 klickZaehler_tv.setText("Klicks: " + klickAnzahl);

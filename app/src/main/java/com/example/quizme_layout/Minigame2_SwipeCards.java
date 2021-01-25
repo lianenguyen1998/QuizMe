@@ -23,7 +23,7 @@ public class Minigame2_SwipeCards extends AppCompatActivity {
       this.swipeAdapter = adapter;
       this.cards = cards;
       this.arrayAdapter = arrayAdapter;
-      //adapter.setVisibility(View.VISIBLE);
+      adapter.setVisibility(View.VISIBLE);
     }
 
     public void createCards(){

@@ -136,18 +136,8 @@ public class Quiz extends AppCompatActivity {
 
         if (currentQuestion == null) {
             showNextQuestion();
+            minigames();
         }
-
-
-        /* *************** VORLÄUFIG AUSKOMMENTIERT ***************
-        hinweis.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //pop up hinweis
-                popUpHinweis();
-            }
-        });
-        ************************************************* */
 
         quit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,44 +169,32 @@ public class Quiz extends AppCompatActivity {
         createChronometer();
         createPanel();
 
-        if(savedInstanceState != null){
-            currentQuestion = savedInstanceState.getParcelable("CurrentQuestion");
-        }
-         //countDown = new CountdownQuiz(textview_timer, timerTest);
-         //countDown.startCountdown();
-
         if (timerRunning) {
             pauseCountdown();
             restartCountdown();
         }
         startCountdown();
 
-        minigame2_swipeCardsGame();
-
-        switch (zufallszahl()){
-            case 1:
-                minigame1_swipe();
-                break;
-            case 2:
-                minigame2_swipeCardsGame();
-                break;
-            case 3:
-                minigame3_pressButton();
-                break;
-            default:
-                //
-        }
     }
 
     private int zufallszahl()
     {
+
         int zahl;
         Random zufallszahl = new Random();
-        zahl = 1+ zufallszahl.nextInt(3);
+        zahl = 1 + zufallszahl.nextInt(3);
         return zahl;
     }
 
-    private void minigame2_swipeCardsGame(){
+    private void minigames(){
+        int zahl = zufallszahl();
+        minigame1_swipe(zahl);
+        minigame2_swipeCardsGame(zahl);
+        minigame3_pressButton(zahl);
+    }
+
+
+    private void minigame2_swipeCardsGame(int zahl){
         ArrayList<String> card = new ArrayList<>();
         card.add("SWIPE");
         card.add("NOCH NEUN");
@@ -232,20 +210,24 @@ public class Quiz extends AppCompatActivity {
         SwipeFlingAdapterView swipeAdapter = (SwipeFlingAdapterView) findViewById(R.id.cards);
         ArrayAdapter arrayAdapter = new ArrayAdapter<String>(Quiz.this, R.layout.karten, R.id.textview_kartenzahl, card);
         swipeAdapter.setVisibility(View.INVISIBLE);
-        cards = new Minigame2_SwipeCards(Quiz.this, swipeAdapter, card, arrayAdapter);
-        cards.createCards();
+        if(zahl == 2) {
+            cards = new Minigame2_SwipeCards(Quiz.this, swipeAdapter, card, arrayAdapter);
+            cards.createCards();
+        }
     }
 
-    private void minigame3_pressButton(){
+    private void minigame3_pressButton(int zahl){
         TextView klickZaehler_tv = findViewById(R.id.klickZaehler);
         Button klickMich_b =  findViewById(R.id.klickMich);
         klickZaehler_tv.setVisibility(View.INVISIBLE);
         klickMich_b.setVisibility(View.INVISIBLE);
-        Minigame3_pressTheButton game3 = new Minigame3_pressTheButton(klickMich_b, klickZaehler_tv);
-        game3.clickMe();
+        if(zahl == 1) {
+            Minigame3_pressTheButton game3 = new Minigame3_pressTheButton(klickMich_b, klickZaehler_tv);
+            game3.clickMe();
+        }
     }
 
-    private void minigame1_swipe(){
+    private void minigame1_swipe(int zahl){
 
         SwipeButton swipeButton1 = (SwipeButton) findViewById(R.id.swipeButton1);
         SwipeButton swipeButton2 = (SwipeButton) findViewById(R.id.swipeButton2);
@@ -256,8 +238,10 @@ public class Quiz extends AppCompatActivity {
         swipeButton3.setVisibility(View.INVISIBLE);
         //WENN DAS MINISPIEL KOMMEN SOLL
 
-        Minigame1 minigame1 = new Minigame1(swipeButton1, swipeButton2, swipeButton3);
-        minigame1.spielen();
+        if(zahl == 3) {
+            Minigame1 minigame1 = new Minigame1(swipeButton1, swipeButton2, swipeButton3);
+            minigame1.spielen();
+        }
     }
 
 
@@ -386,26 +370,6 @@ public class Quiz extends AppCompatActivity {
                 }
             }
         }
-
-        SwipeButton swipeButton1;
-        SwipeButton swipeButton2;
-        SwipeButton swipeButton3;
-
-        swipeButton1 = (SwipeButton) findViewById(R.id.swipeButton1);
-        swipeButton2 = (SwipeButton) findViewById(R.id.swipeButton2);
-        swipeButton3 = (SwipeButton) findViewById(R.id.swipeButton3);
-
-        swipeButton1.setVisibility(View.INVISIBLE);
-        swipeButton2.setVisibility(View.INVISIBLE);
-        swipeButton3.setVisibility(View.INVISIBLE);
-        //WENN DAS MINISPIEL KOMMEN SOLL
-
-        Minigame1 minigame1 = new Minigame1(swipeButton1, swipeButton2, swipeButton3);
-        minigame1.spielen();
-
-        TextView klickZaehler_tv = findViewById(R.id.klickZaehler);
-        Button klickMich_b =  findViewById(R.id.klickMich);
-
     }
 
     public int getLevelCount(){
@@ -555,6 +519,8 @@ public class Quiz extends AppCompatActivity {
                 //und der Countdown muss wieder neu starten
                 pauseCountdown();
                 restartCountdown();
+                //minigames
+                minigames();
                 //start
                 startCountdown();
             }
@@ -579,6 +545,7 @@ public class Quiz extends AppCompatActivity {
 
                     //nächste Frage anzeigen
                     showNextQuestion();
+                    minigames();
 
                     //Button wieder klicken können, weil bei richtiger Antwort Buttons gesperrt werden
                     option1.setEnabled(true);
@@ -612,30 +579,6 @@ public class Quiz extends AppCompatActivity {
             mydialog.show();
     }
 
-
-    /* ****************** VORLÄUFIG AUSKOMMENTIERT ************
-
-     * Popup für Hinweis
-
-    private void popUpHinweis(){
-        dialogHinweis.setContentView(R.layout.popuphinweis);
-        TextView hinweisText = (TextView) dialogHinweis.findViewById(R.id.hinweisPopup);
-        Button closesHinweis = (Button) dialogHinweis.findViewById(R.id.closeHinweis);
-        dialogHinweis.setCanceledOnTouchOutside(false);
-        dialogHinweis.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        hinweisText.setText(currentQuestion.getHinweis());
-
-        closesHinweis.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialogHinweis.dismiss();
-            }
-        });
-
-        dialogHinweis.show();
-    }
-    **************************************************** */
 
     private void popUpVerloren(){
 
