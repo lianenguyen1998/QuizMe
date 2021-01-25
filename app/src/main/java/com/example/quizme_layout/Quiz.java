@@ -217,12 +217,16 @@ public class Quiz extends AppCompatActivity {
     }
 
     private void minigame3_pressButton(int zahl){
-        TextView klickZaehler_tv = findViewById(R.id.klickZaehler);
         Button klickMich_b =  findViewById(R.id.klickMich);
-        klickZaehler_tv.setVisibility(View.INVISIBLE);
+        TextView klickZaehler_tv = findViewById(R.id.klickZaehler);
+        TextView klickMax_tv = findViewById(R.id.klickMax);
+
         klickMich_b.setVisibility(View.INVISIBLE);
+        klickZaehler_tv.setVisibility(View.INVISIBLE);
+        klickMax_tv.setVisibility(View.INVISIBLE);
+
         if(zahl == 1) {
-            Minigame3_pressTheButton game3 = new Minigame3_pressTheButton(klickMich_b, klickZaehler_tv);
+            Minigame3_pressTheButton game3 = new Minigame3_pressTheButton(klickMich_b, klickZaehler_tv, klickMax_tv);
             game3.clickMe();
         }
     }
@@ -706,7 +710,8 @@ public class Quiz extends AppCompatActivity {
         insertDialog.show();
 
         insertDialog.getWindow().setBackgroundDrawableResource(R.drawable.hintergrundbild2_round);
-        insertDialog.getWindow().setLayout(700,400);
+        insertDialog.getWindow().setLayout(720,450);
+
     }
 
     /***
