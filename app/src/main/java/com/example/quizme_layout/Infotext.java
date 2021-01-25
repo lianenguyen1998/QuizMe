@@ -4,7 +4,9 @@ import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,37 +22,13 @@ public class Infotext extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.infotext);
 
-        ///////////////////////
-        //Variablen für Minigame1
-        SwipeButton swipeButton1;
-        SwipeButton swipeButton2;
-        SwipeButton swipeButton3;
-
-        swipeButton1 = (SwipeButton) findViewById(R.id.swipeButton1);
-        swipeButton2 = (SwipeButton) findViewById(R.id.swipeButton2);
-        swipeButton3 = (SwipeButton) findViewById(R.id.swipeButton3);
-
-        swipeButton1.setVisibility(View.INVISIBLE);
-        swipeButton2.setVisibility(View.INVISIBLE);
-        swipeButton3.setVisibility(View.INVISIBLE);
-        //WENN DAS MINISPIEL KOMMEN SOLL
-
-        Minigame1 minigame1 = new Minigame1(swipeButton1, swipeButton2, swipeButton3);
-        minigame1.spielen();
-        /////////////////////////////
-
         backgroundAnimation();
-        /***
+        /*
         final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
         mediaPlayer.setLooping(true);
         mediaPlayer.start();
+        */
 
-
-         Random zufallszahl = new Random();
-
-
-
-         **/
     }
     /***
      * Die Hintergrundanimation, welche aus aus einer Animationsliste besteht, soll hier in ihrer Dauer

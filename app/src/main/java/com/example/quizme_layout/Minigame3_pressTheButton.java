@@ -7,30 +7,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class pressTheButton extends AppCompatActivity {
+public class Minigame3_pressTheButton extends AppCompatActivity {
 
     // Variablen festlegen
-    private TextView klickZaehler_tv;
-    private Button klickMich_b;
+    private final TextView klickZaehler_tv;
+    private final Button klickMich_b;
 
     // Klickanzahl fängt bei 0 an
     int klickAnzahl = 0;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_press_the_button);
+    public Minigame3_pressTheButton(Button button, TextView view){
+        klickMich_b = button;
+        klickZaehler_tv = view;
+        klickMich_b.setVisibility(View.VISIBLE);
+        klickZaehler_tv.setVisibility(View.VISIBLE);
+    }
 
+    public void clickMe(){
 
-        /**
-         Die oben stehende Objekte werden initialisiert
-         */
-        klickZaehler_tv = findViewById(R.id.klickZaehler);
-
-        klickMich_b =  findViewById(R.id.klickMich);
-
-
-        /**
+        /*
          * onClick für die Klicks
          */
         klickMich_b.setOnClickListener(new View.OnClickListener() {
@@ -42,13 +37,12 @@ public class pressTheButton extends AppCompatActivity {
                 // maximale Anzahl der Klicks festlegen -> max. 15
                 if (klickAnzahl == 15) {
                     klickMich_b.setEnabled(false);
+                    klickMich_b.setVisibility(View.INVISIBLE);
+                    klickZaehler_tv.setVisibility(View.INVISIBLE);
                 }
 
                 klickZaehler_tv.setText("Klicks: " + klickAnzahl);
-
             }
-
-
         });
 
     }

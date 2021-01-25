@@ -8,7 +8,6 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -24,6 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ebanx.swipebtn.SwipeButton;
 import com.example.Datenbank.DatabaseHelper;
 import com.example.Datenbank.DatabaseHighscorelist;
 import com.example.Datenbank.HighscoreModel;
@@ -91,7 +91,7 @@ public class Quiz extends AppCompatActivity {
 
 
 
-    SwipeCards cards;
+    Minigame2_SwipeCards cards;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,17 +191,17 @@ public class Quiz extends AppCompatActivity {
         }
         startCountdown();
 
-        swipeCardsGame();
+        minigame2_swipeCardsGame();
 
         switch (zufallszahl()){
             case 1:
-                    //Minigame1
+                minigame1_swipe();
                 break;
             case 2:
-                //Minigame2
+                minigame2_swipeCardsGame();
                 break;
             case 3:
-                //Minigame3
+                minigame3_pressButton();
                 break;
             default:
                 //
@@ -216,9 +216,9 @@ public class Quiz extends AppCompatActivity {
         return zahl;
     }
 
-    private void swipeCardsGame(){
+    private void minigame2_swipeCardsGame(){
         ArrayList<String> card = new ArrayList<>();
-        card.add("NOCH ZEHN");
+        card.add("SWIPE");
         card.add("NOCH NEUN");
         card.add("NOCH ACHT");
         card.add("NOCH SIEBEN");
@@ -231,9 +231,33 @@ public class Quiz extends AppCompatActivity {
 
         SwipeFlingAdapterView swipeAdapter = (SwipeFlingAdapterView) findViewById(R.id.cards);
         ArrayAdapter arrayAdapter = new ArrayAdapter<String>(Quiz.this, R.layout.karten, R.id.textview_kartenzahl, card);
-        cards = new SwipeCards(Quiz.this, swipeAdapter, card, arrayAdapter);
-        //swipeAdapter.setVisibility(View.INVISIBLE);
+        swipeAdapter.setVisibility(View.INVISIBLE);
+        cards = new Minigame2_SwipeCards(Quiz.this, swipeAdapter, card, arrayAdapter);
         cards.createCards();
+    }
+
+    private void minigame3_pressButton(){
+        TextView klickZaehler_tv = findViewById(R.id.klickZaehler);
+        Button klickMich_b =  findViewById(R.id.klickMich);
+        klickZaehler_tv.setVisibility(View.INVISIBLE);
+        klickMich_b.setVisibility(View.INVISIBLE);
+        Minigame3_pressTheButton game3 = new Minigame3_pressTheButton(klickMich_b, klickZaehler_tv);
+        game3.clickMe();
+    }
+
+    private void minigame1_swipe(){
+
+        SwipeButton swipeButton1 = (SwipeButton) findViewById(R.id.swipeButton1);
+        SwipeButton swipeButton2 = (SwipeButton) findViewById(R.id.swipeButton2);
+        SwipeButton swipeButton3 = (SwipeButton) findViewById(R.id.swipeButton3);
+
+        swipeButton1.setVisibility(View.INVISIBLE);
+        swipeButton2.setVisibility(View.INVISIBLE);
+        swipeButton3.setVisibility(View.INVISIBLE);
+        //WENN DAS MINISPIEL KOMMEN SOLL
+
+        Minigame1 minigame1 = new Minigame1(swipeButton1, swipeButton2, swipeButton3);
+        minigame1.spielen();
     }
 
 
@@ -362,6 +386,25 @@ public class Quiz extends AppCompatActivity {
                 }
             }
         }
+
+        SwipeButton swipeButton1;
+        SwipeButton swipeButton2;
+        SwipeButton swipeButton3;
+
+        swipeButton1 = (SwipeButton) findViewById(R.id.swipeButton1);
+        swipeButton2 = (SwipeButton) findViewById(R.id.swipeButton2);
+        swipeButton3 = (SwipeButton) findViewById(R.id.swipeButton3);
+
+        swipeButton1.setVisibility(View.INVISIBLE);
+        swipeButton2.setVisibility(View.INVISIBLE);
+        swipeButton3.setVisibility(View.INVISIBLE);
+        //WENN DAS MINISPIEL KOMMEN SOLL
+
+        Minigame1 minigame1 = new Minigame1(swipeButton1, swipeButton2, swipeButton3);
+        minigame1.spielen();
+
+        TextView klickZaehler_tv = findViewById(R.id.klickZaehler);
+        Button klickMich_b =  findViewById(R.id.klickMich);
 
     }
 

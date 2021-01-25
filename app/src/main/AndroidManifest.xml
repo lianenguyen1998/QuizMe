@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizMe_Layout">
-        <activity android:name=".pressTheButton"></activity>
+        <activity android:name=".Minigame3_pressTheButton"></activity>
         <activity android:name=".Einstellung" />
         <activity android:name=".HintergrundTest" />
         <activity android:name=".Infotext" />

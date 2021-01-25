@@ -11,14 +11,14 @@ import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
 
-public class SwipeCards extends AppCompatActivity {
+public class Minigame2_SwipeCards extends AppCompatActivity {
 
     Context context;
     ArrayList<String> cards;
     ArrayAdapter arrayAdapter;
     SwipeFlingAdapterView swipeAdapter;
 
-    public SwipeCards(Context _context, SwipeFlingAdapterView adapter, ArrayList cards, ArrayAdapter arrayAdapter)
+    public Minigame2_SwipeCards(Context _context, SwipeFlingAdapterView adapter, ArrayList cards, ArrayAdapter arrayAdapter)
     { this.context = _context;
       this.swipeAdapter = adapter;
       this.cards = cards;
@@ -28,17 +28,6 @@ public class SwipeCards extends AppCompatActivity {
 
     public void createCards(){
 
-        /*cards = new ArrayList<>();
-        cards.add("EINS");
-        cards.add("ZWEI");
-        cards.add("DREI");
-        cards.add("VIER");
-        cards.add("FÜNF");
-        cards.add("SECHS");
-        cards.add("SIEBEN");
-        cards.add("ACHT");
-        cards.add("NEUN");
-        cards.add("ZEHN");*/
 
         swipeAdapter.setAdapter(arrayAdapter);
         swipeAdapter.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
