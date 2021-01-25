@@ -1,6 +1,7 @@
 package com.example.quizme_layout;
 
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -37,11 +38,11 @@ public class Infotext extends AppCompatActivity {
         /////////////////////////////
 
         backgroundAnimation();
-        /**
+
         final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
         mediaPlayer.setLooping(true);
         mediaPlayer.start();
-         **/
+
 
 
     }

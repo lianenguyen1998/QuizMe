@@ -206,18 +206,7 @@ public class Quiz extends AppCompatActivity {
 
     private void swipeCardsGame(){
         ArrayList<String> card = new ArrayList<>();
-//        card.add("SWIPE");
-//        card.add("NOCH ZWEI");
-//        card.add("NOCH DREI");
-//        card.add("NOCH VIER");
-//        card.add("NOCH FÜNF");
-//        card.add("NOCH SECHS");
-//        card.add("NOCH SIEBEN");
-//        card.add("NOCH ACHT");
-//        card.add("NOCH NEUN");
-//        card.add("NOCH ZEHN");
-
-        card.add("SWIPE");
+        card.add("NOCH ZEHN");
         card.add("NOCH NEUN");
         card.add("NOCH ACHT");
         card.add("NOCH SIEBEN");
@@ -554,12 +543,6 @@ public class Quiz extends AppCompatActivity {
                      option2.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.rounded_corners));
                      option3.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.rounded_corners));
                      option4.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.rounded_corners));
-
-//                    option1.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
-//                    option2.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
-//                    option3.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
-//                    option4.setBackgroundTintList(ContextCompat.getColorStateList(Quiz.this, R.color.lightblue));
-
 
                     if (timerRunning) {
                         pauseCountdown();
