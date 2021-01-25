@@ -3,7 +3,6 @@ package com.example.quizme_layout;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.DialogFragment;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -13,12 +12,9 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.SystemClock;
 import android.text.InputType;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -31,9 +27,7 @@ import android.widget.Toast;
 import com.example.Datenbank.DatabaseHelper;
 import com.example.Datenbank.DatabaseHighscorelist;
 import com.example.Datenbank.HighscoreModel;
-import com.example.Datenbank.MainActivity;
 import com.example.Datenbank.QuizMeModel;
-import com.example.quizmetime.Countdown;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
@@ -41,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 public class Quiz extends AppCompatActivity {
 
@@ -61,13 +56,14 @@ public class Quiz extends AppCompatActivity {
     private List<HighscoreModel> highscoreliste;
 
     //Countdown Variables
-    private TextView zeit;
+    private TextView textView_timer_unten;
     private TextView textview_timer;
-    private ColorStateList textColor_countdown;
     private CountDownTimer countdown;
     private boolean timerRunning;
     private long verbleibendeZeit;
     static final long COUNTDOWN_IN_MILLIS = 45000;
+
+    private Chronometer chronometer;
 
     //Level Variables
     private TextView textview_level;
@@ -93,10 +89,7 @@ public class Quiz extends AppCompatActivity {
     //Pop-up Window Variables - Gewonnen
     private Dialog dialogWin;
 
-    private Chronometer chronometer;
 
-    TextView timerTest;
-    //CountdownQuiz countDown;
 
     SwipeCards cards;
 
@@ -174,8 +167,6 @@ public class Quiz extends AppCompatActivity {
 
         //Timer
         textview_timer = findViewById(R.id.textview_timer);
-        textColor_countdown = textview_timer.getTextColors();
-
 
         //popUp
         mydialog = new Dialog(Quiz.this);
@@ -183,7 +174,7 @@ public class Quiz extends AppCompatActivity {
         dialogLost = new Dialog(Quiz.this);
         dialogWin = new Dialog(Quiz.this);
 
-        timerTest = findViewById(R.id.textview_timerTest);
+        textView_timer_unten = findViewById(R.id.textview_timerTest);
         chronometer = findViewById(R.id.textview_chronometer);
         createChronometer();
         createPanel();
@@ -202,6 +193,27 @@ public class Quiz extends AppCompatActivity {
 
         swipeCardsGame();
 
+        switch (zufallszahl()){
+            case 1:
+                    //Minigame1
+                break;
+            case 2:
+                //Minigame2
+                break;
+            case 3:
+                //Minigame3
+                break;
+            default:
+                //
+        }
+    }
+
+    private int zufallszahl()
+    {
+        int zahl;
+        Random zufallszahl = new Random();
+        zahl = 1+ zufallszahl.nextInt(3);
+        return zahl;
     }
 
     private void swipeCardsGame(){
@@ -228,31 +240,24 @@ public class Quiz extends AppCompatActivity {
     public String getStringTime(){
         return chronometer.getText().toString();
     }
-    public void createPanel()
+
+    private void createPanel()
     {
             //das SlideupPanel dem Hintergrund zuweisen
             SlidingUpPanelLayout layout = findViewById(R.id.hintergrundQuiz_id);
             layout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
                 @Override
                 public void onPanelSlide(View panel, float slideOffset) {
-
                     findViewById(R.id.textview_panel).setAlpha(1 - slideOffset);
                 }
-
                 @Override
                 public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
-
                     if (newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
                         hinweis = findViewById(R.id.textview_hinweis);
                         hinweis.setText(currentQuestion.getHinweis());
                     }
-
-                    if (newState == SlidingUpPanelLayout.PanelState.COLLAPSED) {
-
-                    }
                 }
-                //Panel expanded
-            });     //COLLABSED
+            });
     }
     /***
      * Die Hintergrundanimation, welche aus aus einer Animationsliste besteht, soll hier in ihrer Dauer
@@ -763,7 +768,7 @@ public class Quiz extends AppCompatActivity {
         //Die String mit der Zeit wird in die Textview gesetzt
         textview_timer.setText(zeitformatiert);
         //Zeit auch im unteren Layout anzeigen
-        timerTest.setText("übrige Zeit: " + zeitformatiert);
+        textView_timer_unten.setText("übrige Zeit: " + zeitformatiert);
 
         //In den letzten 10 Sekunden wird die Anzeige rot
         countdownTextRed();
@@ -782,7 +787,7 @@ public class Quiz extends AppCompatActivity {
 
         //Ansonsten bleibt die Anzeige wie voher
         } else {
-            textview_timer.setTextColor(textColor_countdown);
+            textview_timer.setTextColor(Color.BLACK);
         }
     }
 

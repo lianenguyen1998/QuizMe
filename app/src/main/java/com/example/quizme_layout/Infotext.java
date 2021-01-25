@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ebanx.swipebtn.SwipeButton;
 
+import java.util.Random;
+
 
 public class Infotext extends AppCompatActivity {
 
@@ -38,13 +40,17 @@ public class Infotext extends AppCompatActivity {
         /////////////////////////////
 
         backgroundAnimation();
-
+        /***
         final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
         mediaPlayer.setLooping(true);
         mediaPlayer.start();
 
 
+         Random zufallszahl = new Random();
 
+
+
+         **/
     }
     /***
      * Die Hintergrundanimation, welche aus aus einer Animationsliste besteht, soll hier in ihrer Dauer
