@@ -67,7 +67,7 @@ public class Quiz extends AppCompatActivity {
     private CountDownTimer countdown;
     private boolean timerRunning;
     private long verbleibendeZeit;
-    static final long COUNTDOWN_IN_MILLIS = 30000;
+    static final long COUNTDOWN_IN_MILLIS = 45000;
 
     //Level Variables
     private TextView textview_level;
@@ -473,7 +473,7 @@ public class Quiz extends AppCompatActivity {
      */
     private void showLeben()
     {   //Die Anzahl der Leben auf der Textview ausgeben
-        textView_lebenAnzeige.setText("Leben "+ this.leben_count);
+        textView_lebenAnzeige.setText("Leben: "+ this.leben_count);
 
         //Bei 3 Leben sind alle Textviews noch da
 

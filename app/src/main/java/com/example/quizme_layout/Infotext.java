@@ -12,9 +12,6 @@ import com.ebanx.swipebtn.SwipeButton;
 
 public class Infotext extends AppCompatActivity {
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
