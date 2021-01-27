@@ -90,8 +90,21 @@ public class Quiz extends AppCompatActivity {
     private Dialog dialogWin;
 
 
+    Minigame3_pressTheButton game3;
+    Button klickMich_b;
+    TextView klickZaehler_tv;
+    TextView klickMax_tv;
 
     Minigame2_SwipeCards cards;
+    SwipeFlingAdapterView swipeAdapter;
+    ArrayAdapter arrayAdapter;
+    ArrayList<String> card = new ArrayList<>();
+
+
+    Minigame1 minigame1;
+    SwipeButton swipeButton1;
+    SwipeButton swipeButton2;
+    SwipeButton swipeButton3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -187,55 +200,83 @@ public class Quiz extends AppCompatActivity {
     }
 
     private void minigames(){
+
+
         int zahl = zufallszahl();
         minigame1_swipe(zahl);
         minigame2_swipeCardsGame(zahl);
         minigame3_pressButton(zahl);
+
+    }
+
+    private void resetMinigame(){
+        if(zufallszahl() ==1 ){
+            resetMinigame1();
+        }
+        else if(zufallszahl() == 2) {
+            resetMinigame2();
+        }
+        else if(zufallszahl() == 3){
+            resetMinigame3();
+        }
+
     }
 
 
     private void minigame2_swipeCardsGame(int zahl){
-        ArrayList<String> card = new ArrayList<>();
-        card.add("SWIPE");
-        card.add("NOCH NEUN");
-        card.add("NOCH ACHT");
-        card.add("NOCH SIEBEN");
-        card.add("NOCH SECHS");
-        card.add("NOCH FÜNF");
-        card.add("NOCH VIER");
-        card.add("NOCH DREI");
-        card.add("NOCH ZWEI");
-        card.add("NOCH EINS");
 
-        SwipeFlingAdapterView swipeAdapter = (SwipeFlingAdapterView) findViewById(R.id.cards);
-        ArrayAdapter arrayAdapter = new ArrayAdapter<String>(Quiz.this, R.layout.karten, R.id.textview_kartenzahl, card);
+
+        swipeAdapter = (SwipeFlingAdapterView) findViewById(R.id.cards);
+        arrayAdapter = new ArrayAdapter<String>(Quiz.this, R.layout.karten, R.id.textview_kartenzahl, card);
+
         swipeAdapter.setVisibility(View.INVISIBLE);
         if(zahl == 2) {
             cards = new Minigame2_SwipeCards(Quiz.this, swipeAdapter, card, arrayAdapter);
+            cards.add();
             cards.createCards();
         }
+
     }
 
+    private void resetMinigame2(){
+
+        swipeAdapter = (SwipeFlingAdapterView) findViewById(R.id.cards);
+        arrayAdapter = new ArrayAdapter<String>(Quiz.this, R.layout.karten, R.id.textview_kartenzahl, card);
+
+        cards = new Minigame2_SwipeCards(Quiz.this, swipeAdapter, card, arrayAdapter);
+        cards.add();
+        cards.createCards();
+
+    }
+
+
     private void minigame3_pressButton(int zahl){
-        Button klickMich_b =  findViewById(R.id.klickMich);
-        TextView klickZaehler_tv = findViewById(R.id.klickZaehler);
-        TextView klickMax_tv = findViewById(R.id.klickMax);
+        klickMich_b =  findViewById(R.id.klickMich);
+        klickZaehler_tv = findViewById(R.id.klickZaehler);
+        klickMax_tv = findViewById(R.id.klickMax);
 
         klickMich_b.setVisibility(View.INVISIBLE);
         klickZaehler_tv.setVisibility(View.INVISIBLE);
         klickMax_tv.setVisibility(View.INVISIBLE);
 
         if(zahl == 1) {
-            Minigame3_pressTheButton game3 = new Minigame3_pressTheButton(klickMich_b, klickZaehler_tv, klickMax_tv);
+            game3 = new Minigame3_pressTheButton(klickMich_b, klickZaehler_tv, klickMax_tv);
             game3.clickMe();
         }
     }
 
-    private void minigame1_swipe(int zahl){
+    private void resetMinigame3(){
+        klickMich_b =  findViewById(R.id.klickMich);
+        klickZaehler_tv = findViewById(R.id.klickZaehler);
+        klickMax_tv = findViewById(R.id.klickMax);
+        game3 = new Minigame3_pressTheButton(klickMich_b, klickZaehler_tv, klickMax_tv);
+        game3.clickMe();
+    }
 
-        SwipeButton swipeButton1 = (SwipeButton) findViewById(R.id.swipeButton1);
-        SwipeButton swipeButton2 = (SwipeButton) findViewById(R.id.swipeButton2);
-        SwipeButton swipeButton3 = (SwipeButton) findViewById(R.id.swipeButton3);
+    private void minigame1_swipe(int zahl){
+        swipeButton1 = (SwipeButton) findViewById(R.id.swipeButton1);
+        swipeButton2 = (SwipeButton) findViewById(R.id.swipeButton2);
+        swipeButton3 = (SwipeButton) findViewById(R.id.swipeButton3);
 
         swipeButton1.setVisibility(View.INVISIBLE);
         swipeButton2.setVisibility(View.INVISIBLE);
@@ -243,9 +284,18 @@ public class Quiz extends AppCompatActivity {
         //WENN DAS MINISPIEL KOMMEN SOLL
 
         if(zahl == 3) {
-            Minigame1 minigame1 = new Minigame1(swipeButton1, swipeButton2, swipeButton3);
+            minigame1 = new Minigame1(swipeButton1, swipeButton2, swipeButton3);
             minigame1.spielen();
         }
+    }
+
+    private void resetMinigame1(){
+        swipeButton1 = (SwipeButton) findViewById(R.id.swipeButton1);
+        swipeButton2 = (SwipeButton) findViewById(R.id.swipeButton2);
+        swipeButton3 = (SwipeButton) findViewById(R.id.swipeButton3);
+
+        minigame1 = new Minigame1(swipeButton1, swipeButton2, swipeButton3);
+        minigame1.spielen();
     }
 
 
@@ -549,7 +599,7 @@ public class Quiz extends AppCompatActivity {
 
                     //nächste Frage anzeigen
                     showNextQuestion();
-                    minigames();
+                    resetMinigame();
 
                     //Button wieder klicken können, weil bei richtiger Antwort Buttons gesperrt werden
                     option1.setEnabled(true);
@@ -573,10 +623,6 @@ public class Quiz extends AppCompatActivity {
                 }
             });
         }
-
-         //else if(questionCounter == 50 ){
-            //spopUpGewonnen();
-        //}
 
         //show Popup
         if(!isFinishing())

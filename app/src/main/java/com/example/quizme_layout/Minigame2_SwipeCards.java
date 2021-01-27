@@ -3,7 +3,6 @@ package com.example.quizme_layout;
 import android.content.Context;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,16 +13,29 @@ import java.util.ArrayList;
 public class Minigame2_SwipeCards extends AppCompatActivity {
 
     Context context;
-    ArrayList<String> cards;
-    ArrayAdapter arrayAdapter;
+    ArrayList<String> cards = new ArrayList<>();
+   ArrayAdapter arrayAdapter;
     SwipeFlingAdapterView swipeAdapter;
 
-    public Minigame2_SwipeCards(Context _context, SwipeFlingAdapterView adapter, ArrayList cards, ArrayAdapter arrayAdapter)
+    public Minigame2_SwipeCards(Context _context, SwipeFlingAdapterView adapter, ArrayList<String> cards, ArrayAdapter<String> arrayAdapter)
     { this.context = _context;
       this.swipeAdapter = adapter;
       this.cards = cards;
       this.arrayAdapter = arrayAdapter;
       adapter.setVisibility(View.VISIBLE);
+    }
+
+    public void add(){
+        cards.add("SWIPE");
+        cards.add("NOCH NEUN");
+        cards.add("NOCH ACHT");
+        cards.add("NOCH SIEBEN");
+        cards.add("NOCH SECHS");
+        cards.add("NOCH FÜNF");
+        cards.add("NOCH VIER");
+        cards.add("NOCH DREI");
+        cards.add("NOCH ZWEI");
+        cards.add("NOCH EINS");
     }
 
     public void createCards(){
