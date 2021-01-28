@@ -285,10 +285,10 @@ public class Quiz extends AppCompatActivity {
 
         if(zahl == 3) {
             minigame1 = new Minigame1(swipeButton1, swipeButton2, swipeButton3);
-                //minigame1.reset();
-                minigame1.spielen();
-
+            minigame1.spielen();
         }
+            //minigame1.reset(swipeButton1, swipeButton2, swipeButton3);
+
     }
     /***
     private void resetMinigame1(){

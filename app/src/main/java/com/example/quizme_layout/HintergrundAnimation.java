@@ -1,7 +1,9 @@
 package com.example.quizme_layout;
-
 import android.graphics.drawable.AnimationDrawable;
 
+/***
+ * in dieser Klasse wird die Hintergrundanimtaion erstellt und gestartet
+ */
 public class HintergrundAnimation {
 
     //dauer
@@ -9,6 +11,7 @@ public class HintergrundAnimation {
     AnimationDrawable animation;
 
     HintergrundAnimation(AnimationDrawable _animation, int _duration){
+        //setzen der Instanzvariablen
         this.animation = _animation;
         this.duration = _duration;
 

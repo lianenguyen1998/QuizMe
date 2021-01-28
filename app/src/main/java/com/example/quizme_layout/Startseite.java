@@ -34,10 +34,15 @@ public class Startseite extends AppCompatActivity {
     // ---- EinstellungsButton
     private ImageButton einstellung;
 
+    Musik musik;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.startseite);
+
+        final MediaPlayer mediaPlayerMusik = MediaPlayer.create(this, R.raw.musik);
+        musik = new Musik(mediaPlayerMusik);
 
         //Sound für den Buttonklick
         final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.button_klick1);
@@ -73,6 +78,7 @@ public class Startseite extends AppCompatActivity {
             public void onClick(View v) {
                 mediaPlayer.start();
                 openQuiz();
+                musik.endMusik();
             }
         });
 
@@ -81,6 +87,7 @@ public class Startseite extends AppCompatActivity {
             public void onClick(View v) {
                 mediaPlayer.start();
                 openHighscoreliste();
+                musik.endMusik();
             }
         });
 
@@ -89,6 +96,7 @@ public class Startseite extends AppCompatActivity {
             public void onClick(View v) {
                mediaPlayer.start();
                 openInfotext();
+                musik.endMusik();
                     //openBackgroundTest();
             }
         });
@@ -98,6 +106,7 @@ public class Startseite extends AppCompatActivity {
             public void onClick(View v) {
                 mediaPlayer.start();
                 openEinstellung();
+                musik.endMusik();
                 //openBackgroundTest();
             }
         });
