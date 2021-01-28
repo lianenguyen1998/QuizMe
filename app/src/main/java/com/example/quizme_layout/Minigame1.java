@@ -72,17 +72,18 @@ public class Minigame1 {
         }
     }
 
-    public void reset(){
-        //swipeButton1 = null;
-        //swipeButton2 = null;
-        //swipeButton3 = null;
-        swipeButton1.toggleState();
-        swipeButton2.toggleState();
-        swipeButton3.toggleState();
+    public void reset(SwipeButton _swipeButton1, SwipeButton _swipeButton2, SwipeButton _swipeButton3 ){
+        swipeButton1 = null;
+        swipeButton2 = null;
+        swipeButton3 = null;
+        //swipeButton1.toggleState();
+        //swipeButton2.toggleState();
+        //swipeButton3.toggleState();
 
         //swipeButton2.setActivated(false);
         //swipeButton3.setActivated(false);
-
+        Minigame1 minigame1 = new Minigame1(_swipeButton1, _swipeButton2, _swipeButton3 );
+        minigame1.spielen();
     }
 
 }
