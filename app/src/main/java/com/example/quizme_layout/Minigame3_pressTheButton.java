@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Minigame3_pressTheButton extends AppCompatActivity {
+public class Minigame3_pressTheButton {
 
     // Variablen festlegen
     private final Button klickMich_b;

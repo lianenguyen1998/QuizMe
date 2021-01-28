@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">QuizMe_Layout</string>
+    <string name="app_name">QuizMe</string>
     <string name="textview">TextView</string>
     <string name="willkommen">Willkommen</string>
     <string name="quizme">QuizMe</string>
