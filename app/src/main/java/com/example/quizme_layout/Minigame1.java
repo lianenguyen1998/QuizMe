@@ -27,6 +27,7 @@ public class Minigame1 {
         swipeButton1.setVisibility(View.VISIBLE);
         swipeButton2.setVisibility(View.VISIBLE);
         swipeButton3.setVisibility(View.VISIBLE);
+        //reset();
     }
 
     /***
@@ -70,4 +71,18 @@ public class Minigame1 {
             swipeButton3.setVisibility(View.GONE);
         }
     }
+
+    public void reset(){
+        //swipeButton1 = null;
+        //swipeButton2 = null;
+        //swipeButton3 = null;
+        swipeButton1.toggleState();
+        swipeButton2.toggleState();
+        swipeButton3.toggleState();
+
+        //swipeButton2.setActivated(false);
+        //swipeButton3.setActivated(false);
+
+    }
+
 }

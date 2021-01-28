@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.InputType;
@@ -100,16 +101,15 @@ public class Quiz extends AppCompatActivity {
     ArrayAdapter arrayAdapter;
     ArrayList<String> card = new ArrayList<>();
 
-
-    Minigame1 minigame1;
-    SwipeButton swipeButton1;
-    SwipeButton swipeButton2;
-    SwipeButton swipeButton3;
+    Musik musik;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz);
+
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
+        musik = new Musik(mediaPlayer);
 
         if(savedInstanceState != null){
             //daten holen
@@ -187,12 +187,9 @@ public class Quiz extends AppCompatActivity {
             restartCountdown();
         }
         startCountdown();
-
     }
-
     private int zufallszahl()
     {
-
         int zahl;
         Random zufallszahl = new Random();
         zahl = 1 + zufallszahl.nextInt(3);
@@ -200,15 +197,14 @@ public class Quiz extends AppCompatActivity {
     }
 
     private void minigames(){
-
-
-        int zahl = zufallszahl();
+        //int zahl = zufallszahl();
+         int zahl = 3;
         minigame1_swipe(zahl);
         minigame2_swipeCardsGame(zahl);
         minigame3_pressButton(zahl);
-
     }
 
+    /***
     private void resetMinigame(){
         if(zufallszahl() ==1 ){
             resetMinigame1();
@@ -220,7 +216,7 @@ public class Quiz extends AppCompatActivity {
             resetMinigame3();
         }
 
-    }
+    }  **/
 
 
     private void minigame2_swipeCardsGame(int zahl){
@@ -237,7 +233,7 @@ public class Quiz extends AppCompatActivity {
         }
 
     }
-
+    /***
     private void resetMinigame2(){
 
         swipeAdapter = (SwipeFlingAdapterView) findViewById(R.id.cards);
@@ -247,7 +243,7 @@ public class Quiz extends AppCompatActivity {
         cards.add();
         cards.createCards();
 
-    }
+    }   ***/
 
 
     private void minigame3_pressButton(int zahl){
@@ -264,7 +260,7 @@ public class Quiz extends AppCompatActivity {
             game3.clickMe();
         }
     }
-
+   /***
     private void resetMinigame3(){
         klickMich_b =  findViewById(R.id.klickMich);
         klickZaehler_tv = findViewById(R.id.klickZaehler);
@@ -272,23 +268,27 @@ public class Quiz extends AppCompatActivity {
         game3 = new Minigame3_pressTheButton(klickMich_b, klickZaehler_tv, klickMax_tv);
         game3.clickMe();
     }
-
+    ***/
     private void minigame1_swipe(int zahl){
-        swipeButton1 = (SwipeButton) findViewById(R.id.swipeButton1);
-        swipeButton2 = (SwipeButton) findViewById(R.id.swipeButton2);
-        swipeButton3 = (SwipeButton) findViewById(R.id.swipeButton3);
+        SwipeButton swipeButton1 = (SwipeButton) findViewById(R.id.swipeButton1);
+        SwipeButton swipeButton2 = (SwipeButton) findViewById(R.id.swipeButton2);
+        SwipeButton swipeButton3 = (SwipeButton) findViewById(R.id.swipeButton3);
 
         swipeButton1.setVisibility(View.INVISIBLE);
         swipeButton2.setVisibility(View.INVISIBLE);
         swipeButton3.setVisibility(View.INVISIBLE);
         //WENN DAS MINISPIEL KOMMEN SOLL
 
+        Minigame1 minigame1;
+
         if(zahl == 3) {
             minigame1 = new Minigame1(swipeButton1, swipeButton2, swipeButton3);
-            minigame1.spielen();
+                //minigame1.reset();
+                minigame1.spielen();
+
         }
     }
-
+    /***
     private void resetMinigame1(){
         swipeButton1 = (SwipeButton) findViewById(R.id.swipeButton1);
         swipeButton2 = (SwipeButton) findViewById(R.id.swipeButton2);
@@ -297,7 +297,7 @@ public class Quiz extends AppCompatActivity {
         minigame1 = new Minigame1(swipeButton1, swipeButton2, swipeButton3);
         minigame1.spielen();
     }
-
+     ***/
 
     public String getStringTime(){
         return chronometer.getText().toString();
@@ -326,23 +326,11 @@ public class Quiz extends AppCompatActivity {
      * angepasst und gestartet werden
      */
     private void backgroundAnimation(){
-        //Von class android.graphics.drawable.DrawableContainer
+        RelativeLayout constraintLayout = findViewById(R.id.hintergrundQuiz_id_relative);
 
-        RelativeLayout layout = findViewById(R.id.hintergrundQuiz_id_relative);
-
-        //der Hintergrund beinhaltet die Animationsliste (siehe quiz.xml)
-        //diese muss als Variable definiert werden, um sie starten zu können
-        AnimationDrawable  animation= (AnimationDrawable) layout.getBackground();
-
-        //duration ist die Dauer (in Millisekunden), um das Frame anzuzeigen
-        //Die Duration wird geändert, wenn das neue Drawable eintrifft
-        animation.setEnterFadeDuration(4000);
-
-        //Die Duration wird geändert, wenn das Drawable verschwindet
-        animation.setExitFadeDuration(4000);
-
-        //das Starten der Hintergrundanimation
-        animation.start();
+        //der Hintergrund beinhaltet die Animationsliste (siehe quiz.xml),diese muss als Variable definiert werden, um sie starten zu können
+        AnimationDrawable animation= (AnimationDrawable) constraintLayout.getBackground();
+        HintergrundAnimation hintergrundAnimation = new HintergrundAnimation(animation, 4000);
     }
 
     private void createChronometer() throws NullPointerException{
@@ -482,6 +470,8 @@ public class Quiz extends AppCompatActivity {
                         if(questionCounter == questionCountTotal)
                             popUpGewonnen();
 
+
+
                     } else {
                         //falsche antworten rot
                         //Auswahl wird rot
@@ -599,7 +589,7 @@ public class Quiz extends AppCompatActivity {
 
                     //nächste Frage anzeigen
                     showNextQuestion();
-                    resetMinigame();
+                    //resetMinigame();
 
                     //Button wieder klicken können, weil bei richtiger Antwort Buttons gesperrt werden
                     option1.setEnabled(true);
@@ -623,6 +613,10 @@ public class Quiz extends AppCompatActivity {
                 }
             });
         }
+
+         //else if(questionCounter == 50 ){
+            //spopUpGewonnen();
+        //}
 
         //show Popup
         if(!isFinishing())

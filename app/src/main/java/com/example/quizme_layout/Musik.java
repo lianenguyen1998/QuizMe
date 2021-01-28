@@ -2,7 +2,7 @@ package com.example.quizme_layout;
 
 import android.media.MediaPlayer;
 
-public class Sound {
+public class Musik {
 
     /*
     Bei release idt der Mediaplayer im End State, sollte aufgerufen werden, wenn der Musikplayer nicht mehr benötogt wird
@@ -19,14 +19,14 @@ This method can be called in any state and calling it does not change the object
 
     If the looping mode was being set to true with setLooping(boolean), the MediaPlayer object shall remain in the Started state.
      */
-    MediaPlayer sound;
-    Sound(MediaPlayer _sound){
-        this.sound = _sound;
-        this.sound.setLooping(true);
-        this.sound.start();
+    MediaPlayer musik;
+    Musik(MediaPlayer _sound){
+        this.musik = _sound;
+        this.musik.setLooping(true);
+        this.musik.start();
     }
-    public void endSound(){
-        this.sound.release();
+    public void endMusik(){
+        this.musik.release();
     }
 
 }

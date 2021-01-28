@@ -42,9 +42,6 @@ public class Startseite extends AppCompatActivity {
         //Sound für den Buttonklick
         final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.button_klick1);
 
-        //Sound für den Buttonklick
-        final MediaPlayer mediaPlayer2 = MediaPlayer.create(this, R.raw.button_klick2);
-
         // ---- Splash Screen Animation
         obenAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
         untenAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
@@ -82,7 +79,7 @@ public class Startseite extends AppCompatActivity {
         highscoreliste.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer2.start();
+                mediaPlayer.start();
                 openHighscoreliste();
             }
         });
@@ -144,23 +141,11 @@ public class Startseite extends AppCompatActivity {
      * angepasst und gestartet werden
      */
     private void backgroundAnimation(){
-        //Von class android.graphics.drawable.DrawableContainer
-
         RelativeLayout constraintLayout = findViewById(R.id.hintergrundStart_id);
 
-        //der Hintergrund beinhaltet die Animationsliste (siehe quiz.xml)
-        //diese muss als Variable definiert werden, um sie starten zu können
-        AnimationDrawable  animation= (AnimationDrawable) constraintLayout.getBackground();
-
-        //duration ist die Dauer (in Millisekunden), um das Frame anzuzeigen
-        //Die Duration wird geändert, wenn das neue Drawable eintrifft
-        animation.setEnterFadeDuration(2000);
-
-        //Die Duration wird geändert, wenn das Drawable verschwindet
-        animation.setExitFadeDuration(2000);
-
-        //das Starten der Hintergrundanimation
-        animation.start();
+        //der Hintergrund beinhaltet die Animationsliste (siehe quiz.xml),diese muss als Variable definiert werden, um sie starten zu können
+        AnimationDrawable animation= (AnimationDrawable) constraintLayout.getBackground();
+        HintergrundAnimation hintergrundAnimation = new HintergrundAnimation(animation, 4000);
     }
 
 }

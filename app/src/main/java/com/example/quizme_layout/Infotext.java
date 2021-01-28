@@ -3,16 +3,9 @@ package com.example.quizme_layout;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.ebanx.swipebtn.SwipeButton;
-
-import java.util.Random;
 
 
 public class Infotext extends AppCompatActivity {
@@ -23,12 +16,9 @@ public class Infotext extends AppCompatActivity {
         setContentView(R.layout.infotext);
 
         backgroundAnimation();
-        /*
-        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
-        mediaPlayer.setLooping(true);
-        mediaPlayer.start();
-        */
 
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
+        Musik musik = new Musik(mediaPlayer);
     }
     /***
      * Die Hintergrundanimation, welche aus aus einer Animationsliste besteht, soll hier in ihrer Dauer
@@ -39,13 +29,6 @@ public class Infotext extends AppCompatActivity {
 
         //der Hintergrund beinhaltet die Animationsliste (siehe quiz.xml),diese muss als Variable definiert werden, um sie starten zu können
         AnimationDrawable animation= (AnimationDrawable) constraintLayout.getBackground();
-        //Die Dauer wird geändert, wenn das neue Drawable eintrifft
-        animation.setEnterFadeDuration(4000);
-
-        //Die Dauer wird geändert, wenn das Drawable verschwindet
-        animation.setExitFadeDuration(4000);
-
-        //das Starten der Hintergrundanimation
-        animation.start();
+        HintergrundAnimation hintergrundAnimation = new HintergrundAnimation(animation, 4000);
     }
 }

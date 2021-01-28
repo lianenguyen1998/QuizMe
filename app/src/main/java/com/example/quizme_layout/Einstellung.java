@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,9 @@ public class Einstellung extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_press_the_button);
+
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
+         Musik musik = new Musik(mediaPlayer);
 
 
         /**
@@ -50,10 +54,7 @@ public class Einstellung extends AppCompatActivity {
                 klickZaehler_tv.setText("Klicks: " + klickAnzahl);
 
             }
-
-
         });
-
     }
 
     /***
@@ -61,23 +62,11 @@ public class Einstellung extends AppCompatActivity {
      * angepasst und gestartet werden
      */
     private void backgroundAnimation(){
-        //Von class android.graphics.drawable.DrawableContainer
 
         RelativeLayout constraintLayout = findViewById(R.id.hintergrundInfo_id);
 
-        //der Hintergrund beinhaltet die Animationsliste (siehe quiz.xml)
-        //diese muss als Variable definiert werden, um sie starten zu können
+        //der Hintergrund beinhaltet die Animationsliste (siehe quiz.xml),diese muss als Variable definiert werden, um sie starten zu können
         AnimationDrawable animation= (AnimationDrawable) constraintLayout.getBackground();
-
-        //duration ist die Dauer (in Millisekunden), um das Frame anzuzeigen
-        //Die Duration wird geändert, wenn das neue Drawable eintrifft
-        animation.setEnterFadeDuration(4000);
-
-        //Die Duration wird geändert, wenn das Drawable verschwindet
-        animation.setExitFadeDuration(4000);
-
-        //das Starten der Hintergrundanimation
-        animation.start();
-
+        HintergrundAnimation hintergrundAnimation = new HintergrundAnimation(animation, 4000);
     }
 }
