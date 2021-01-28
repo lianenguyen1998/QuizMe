@@ -156,6 +156,7 @@ public class Quiz extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finishQuiz();
+                musik.endMusik();
             }
         });
 
@@ -197,17 +198,18 @@ public class Quiz extends AppCompatActivity {
     }
 
     private void minigames(){
-        //int zahl = zufallszahl();
-         int zahl = 3;
+
+
+        int zahl = zufallszahl();
         minigame1_swipe(zahl);
         minigame2_swipeCardsGame(zahl);
         minigame3_pressButton(zahl);
+
     }
 
-    /***
     private void resetMinigame(){
         if(zufallszahl() ==1 ){
-            resetMinigame1();
+            //resetMinigame1();
         }
         else if(zufallszahl() == 2) {
             resetMinigame2();
@@ -216,7 +218,7 @@ public class Quiz extends AppCompatActivity {
             resetMinigame3();
         }
 
-    }  **/
+    }
 
 
     private void minigame2_swipeCardsGame(int zahl){
@@ -233,7 +235,7 @@ public class Quiz extends AppCompatActivity {
         }
 
     }
-    /***
+
     private void resetMinigame2(){
 
         swipeAdapter = (SwipeFlingAdapterView) findViewById(R.id.cards);
@@ -243,7 +245,7 @@ public class Quiz extends AppCompatActivity {
         cards.add();
         cards.createCards();
 
-    }   ***/
+    }
 
 
     private void minigame3_pressButton(int zahl){
@@ -260,7 +262,7 @@ public class Quiz extends AppCompatActivity {
             game3.clickMe();
         }
     }
-   /***
+
     private void resetMinigame3(){
         klickMich_b =  findViewById(R.id.klickMich);
         klickZaehler_tv = findViewById(R.id.klickZaehler);
@@ -268,7 +270,7 @@ public class Quiz extends AppCompatActivity {
         game3 = new Minigame3_pressTheButton(klickMich_b, klickZaehler_tv, klickMax_tv);
         game3.clickMe();
     }
-    ***/
+
     private void minigame1_swipe(int zahl){
         SwipeButton swipeButton1 = (SwipeButton) findViewById(R.id.swipeButton1);
         SwipeButton swipeButton2 = (SwipeButton) findViewById(R.id.swipeButton2);
@@ -590,6 +592,7 @@ public class Quiz extends AppCompatActivity {
                     //nächste Frage anzeigen
                     showNextQuestion();
                     //resetMinigame();
+                    minigames();
 
                     //Button wieder klicken können, weil bei richtiger Antwort Buttons gesperrt werden
                     option1.setEnabled(true);
@@ -614,10 +617,6 @@ public class Quiz extends AppCompatActivity {
             });
         }
 
-         //else if(questionCounter == 50 ){
-            //spopUpGewonnen();
-        //}
-
         //show Popup
         if(!isFinishing())
             mydialog.show();
@@ -639,6 +638,7 @@ public class Quiz extends AppCompatActivity {
                 popupInsertName();
                 //Popup schließen
                 dismissWithTryCatch(dialogLost);
+
             }
         });
 
@@ -676,6 +676,7 @@ public class Quiz extends AppCompatActivity {
                 popupInsertName();
                 //Popup schließen
                 dismissWithTryCatch(dialogWin);
+                musik.endMusik();
             }
         });
         //Popup anzeigen lassen, wenn es nicht schließt
@@ -716,6 +717,7 @@ public class Quiz extends AppCompatActivity {
 
                         //Zur Highscoreseite
                         zurHighscoreliste();
+                        musik.endMusik();
 
 
                     } else {
@@ -739,6 +741,7 @@ public class Quiz extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 //ohne Speichern zur Highscoreliste
                 zurHighscoreliste();
+                musik.endMusik();
             }
         });
 

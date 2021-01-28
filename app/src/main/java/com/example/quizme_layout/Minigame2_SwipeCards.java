@@ -17,6 +17,10 @@ public class Minigame2_SwipeCards extends AppCompatActivity {
    ArrayAdapter arrayAdapter;
     SwipeFlingAdapterView swipeAdapter;
 
+    public  Minigame2_SwipeCards(){
+        //leerer Konstruktor
+    }
+
     public Minigame2_SwipeCards(Context _context, SwipeFlingAdapterView adapter, ArrayList<String> cards, ArrayAdapter<String> arrayAdapter)
     { this.context = _context;
       this.swipeAdapter = adapter;
@@ -36,6 +40,12 @@ public class Minigame2_SwipeCards extends AppCompatActivity {
         cards.add("NOCH DREI");
         cards.add("NOCH ZWEI");
         cards.add("NOCH EINS");
+    }
+
+    public void reset(){
+        cards.clear();
+        swipeAdapter.setAdapter(null);
+        arrayAdapter.clear();
     }
 
     public void createCards(){

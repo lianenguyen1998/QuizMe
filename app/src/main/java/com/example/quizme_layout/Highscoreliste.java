@@ -68,6 +68,7 @@ public class Highscoreliste extends AppCompatActivity {
             public void onClick(View v) {
 
                 openzurückzurStartseite();
+                musik.endMusik();
             }
         });
 
@@ -76,6 +77,7 @@ public class Highscoreliste extends AppCompatActivity {
             public void onClick(View v) {
 
                 openweiterSpielen();
+                musik.endMusik();
             }
         });
 
