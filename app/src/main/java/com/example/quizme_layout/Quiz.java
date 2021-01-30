@@ -96,11 +96,6 @@ public class Quiz extends AppCompatActivity {
     TextView klickZaehler_tv;
     TextView klickMax_tv;
 
-    Minigame2_SwipeCards cards;
-    SwipeFlingAdapterView swipeAdapter;
-    ArrayAdapter arrayAdapter;
-    ArrayList<String> card = new ArrayList<>();
-
     Musik musik;
 
     @Override
@@ -110,10 +105,6 @@ public class Quiz extends AppCompatActivity {
 
         final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
         musik = new Musik(mediaPlayer);
-
-        if(savedInstanceState != null){
-            //daten holen
-        }
 
         //starten der Hintergrundanimation
         //muss vor dem Countdown und dem Chronometer passieren
@@ -208,44 +199,30 @@ public class Quiz extends AppCompatActivity {
     }
 
     private void resetMinigame(){
-        if(zufallszahl() ==1 ){
-            //resetMinigame1();
-        }
-        else if(zufallszahl() == 2) {
-            resetMinigame2();
-        }
-        else if(zufallszahl() == 3){
-            resetMinigame3();
-        }
 
     }
 
 
     private void minigame2_swipeCardsGame(int zahl){
 
-
-        swipeAdapter = (SwipeFlingAdapterView) findViewById(R.id.cards);
-        arrayAdapter = new ArrayAdapter<String>(Quiz.this, R.layout.karten, R.id.textview_kartenzahl, card);
-
+        ArrayList<String> card = new ArrayList<>();
+        SwipeFlingAdapterView swipeAdapter = (SwipeFlingAdapterView) findViewById(R.id.cards);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(Quiz.this, R.layout.karten, R.id.textview_kartenzahl, card);
+        Minigame2_SwipeCards cards = new Minigame2_SwipeCards(Quiz.this, swipeAdapter, card, arrayAdapter);
         swipeAdapter.setVisibility(View.INVISIBLE);
+
         if(zahl == 2) {
             cards = new Minigame2_SwipeCards(Quiz.this, swipeAdapter, card, arrayAdapter);
-            cards.add();
-            cards.createCards();
+            swipeAdapter.setVisibility(View.VISIBLE);
+        } else {
+            cards.reset();
         }
 
-    }
-
-    private void resetMinigame2(){
-
-        swipeAdapter = (SwipeFlingAdapterView) findViewById(R.id.cards);
-        arrayAdapter = new ArrayAdapter<String>(Quiz.this, R.layout.karten, R.id.textview_kartenzahl, card);
-
-        cards = new Minigame2_SwipeCards(Quiz.this, swipeAdapter, card, arrayAdapter);
         cards.add();
         cards.createCards();
 
     }
+
 
 
     private void minigame3_pressButton(int zahl){
@@ -263,13 +240,6 @@ public class Quiz extends AppCompatActivity {
         }
     }
 
-    private void resetMinigame3(){
-        klickMich_b =  findViewById(R.id.klickMich);
-        klickZaehler_tv = findViewById(R.id.klickZaehler);
-        klickMax_tv = findViewById(R.id.klickMax);
-        game3 = new Minigame3_pressTheButton(klickMich_b, klickZaehler_tv, klickMax_tv);
-        game3.clickMe();
-    }
 
     private void minigame1_swipe(int zahl){
         SwipeButton swipeButton1 = (SwipeButton) findViewById(R.id.swipeButton1);
@@ -290,16 +260,7 @@ public class Quiz extends AppCompatActivity {
             //minigame1.reset(swipeButton1, swipeButton2, swipeButton3);
 
     }
-    /***
-    private void resetMinigame1(){
-        swipeButton1 = (SwipeButton) findViewById(R.id.swipeButton1);
-        swipeButton2 = (SwipeButton) findViewById(R.id.swipeButton2);
-        swipeButton3 = (SwipeButton) findViewById(R.id.swipeButton3);
 
-        minigame1 = new Minigame1(swipeButton1, swipeButton2, swipeButton3);
-        minigame1.spielen();
-    }
-     ***/
 
     public String getStringTime(){
         return chronometer.getText().toString();

@@ -26,7 +26,7 @@ public class Minigame2_SwipeCards extends AppCompatActivity {
       this.swipeAdapter = adapter;
       this.cards = cards;
       this.arrayAdapter = arrayAdapter;
-      adapter.setVisibility(View.VISIBLE);
+      //adapter.setVisibility(View.VISIBLE);
     }
 
     public void add(){
@@ -42,10 +42,16 @@ public class Minigame2_SwipeCards extends AppCompatActivity {
         cards.add("NOCH EINS");
     }
 
-    public void reset(){
-        cards.clear();
-        swipeAdapter.setAdapter(null);
-        arrayAdapter.clear();
+    public void reset() throws NullPointerException{
+        try {
+            if (cards != null && arrayAdapter != null) {
+                cards.clear();
+                arrayAdapter.clear();
+                swipeAdapter.setAdapter(null);
+            }
+        } catch (NullPointerException e){
+            e.printStackTrace();
+        }
     }
 
     public void createCards(){
