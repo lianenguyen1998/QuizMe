@@ -51,8 +51,8 @@ public class Highscoreliste extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.highscoreliste);
 
-//        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
-//        Musik musik = new Musik(mediaPlayer);
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
+        Musik musik = new Musik(mediaPlayer);
 
 
 
@@ -65,7 +65,7 @@ public class Highscoreliste extends AppCompatActivity {
             public void onClick(View v) {
 
                 openzurückzurStartseite();
-//                musik.endMusik();
+                musik.endMusik();
             }
         });
 
@@ -74,7 +74,7 @@ public class Highscoreliste extends AppCompatActivity {
             public void onClick(View v) {
 
                 openweiterSpielen();
-//                musik.endMusik();
+                musik.endMusik();
             }
         });
 

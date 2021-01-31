@@ -13,56 +13,43 @@ import android.widget.TextView;
 
 public class Einstellung extends AppCompatActivity {
 
+    private Switch musik_;
 
-    protected Musik app;
-    private Switch musikSwitch;
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
 
-
-
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.einstellung);
 
-//        app=(Musik)getApplicationContext();
+
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
+        Musik musik = new Musik(mediaPlayer);
 
 
-//        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
-//        Musik musik = new Musik(mediaPlayer);
+        musik_ = (Switch) findViewById(R.id.musik);
 
 
-        musikSwitch = (Switch) findViewById(R.id.musik);
+        mediaPlayer.pause();
+        musik_.setOnCheckedChangeListener(
+                new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
 
+                            mediaPlayer.start();
 
-//        if(app.getMusik_()){
-//
-//            musikSwitch.setChecked(true);
-//        } else {
-//
-//            musikSwitch.setChecked(false);
-//        }
+                        } else {
 
-        musikSwitch.setOnCheckedChangeListener(
-
-                ((buttonView, isChecked) -> {
-
-                if (isChecked) {
-//                app.setMusik_(true);
-                app.musikPlay();
-
-                } else {
-//                app.setMusik_(false);
-                app.musikStop();
-                }
-                }
-
-
-                )
-
+                            mediaPlayer.pause();
+                        }
+                    }
+                    }
         );
-
-
 }
 
 

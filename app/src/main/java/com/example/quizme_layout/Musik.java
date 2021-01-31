@@ -23,61 +23,21 @@ This method can be called in any state and calling it does not change the object
 
     If the looping mode was being set to true with setLooping(boolean), the MediaPlayer object shall remain in the Started state.
      */
-//    MediaPlayer musik;
-//    Musik(MediaPlayer _sound){
-//        this.musik = _sound;
-//        this.musik.setLooping(true);
-//        this.musik.start();
-//    }
-//    public void endMusik(){
-//        this.musik.release();
-//    }
+
 
     MediaPlayer musik;
-
-
-//    public Boolean getMusik_() {
-//        return musik_;
-//    }
-//
-//    public void setMusik_(Boolean musik_) {
-//        this.musik_ = musik_;
-//    }
-//
-//    Boolean musik_;
-
-
-
-
-    public void onCreate() {
-        super.onCreate();
-
-        musik = new MediaPlayer();
-//        setMusik_(false);
-
+    Musik(MediaPlayer _sound){
+        this.musik = _sound;
+        this.musik.setLooping(true);
+        this.musik.start();
     }
 
-    protected void musikPlay(){
-
-        musik.reset();
-        musik.setLooping(true);
-
-        try {
-            musik.setDataSource(getApplicationContext(), Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.musik));
-            musik.prepare();
-            this.musik.start();
-        }catch(IOException e){
-
-            e.printStackTrace();
-        }
-
+    public void endMusik(){
+        this.musik.release();
     }
 
-    protected void musikStop(){
+// ------------------------------------------------------------
 
-        this.musik.stop();
-
-    }
 
 
 }
