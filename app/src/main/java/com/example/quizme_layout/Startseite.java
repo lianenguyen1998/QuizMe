@@ -41,8 +41,8 @@ public class Startseite extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.startseite);
 
-//        final MediaPlayer mediaPlayerMusik = MediaPlayer.create(this, R.raw.musik);
-//        musik = new Musik(mediaPlayerMusik);
+        final MediaPlayer mediaPlayerMusik = MediaPlayer.create(this, R.raw.musik);
+        musik = new Musik(mediaPlayerMusik);
 
 
         //Sound für den Buttonklick
@@ -79,7 +79,7 @@ public class Startseite extends AppCompatActivity {
             public void onClick(View v) {
                 mediaPlayer.start();
                 openQuiz();
-//                musik.endMusik();
+                musik.endMusik();
             }
         });
 
@@ -88,7 +88,7 @@ public class Startseite extends AppCompatActivity {
             public void onClick(View v) {
                 mediaPlayer.start();
                 openHighscoreliste();
-//                musik.endMusik();
+                musik.endMusik();
             }
         });
 
@@ -97,7 +97,7 @@ public class Startseite extends AppCompatActivity {
             public void onClick(View v) {
                mediaPlayer.start();
                 openInfotext();
-//                musik.endMusik();
+                musik.endMusik();
                     //openBackgroundTest();
             }
         });
@@ -107,7 +107,7 @@ public class Startseite extends AppCompatActivity {
             public void onClick(View v) {
                 mediaPlayer.start();
                 openEinstellung();
-//                musik.endMusik();
+                musik.endMusik();
                 //openBackgroundTest();
             }
         });

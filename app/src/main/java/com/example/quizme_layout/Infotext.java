@@ -16,8 +16,8 @@ public class Infotext extends AppCompatActivity {
         setContentView(R.layout.infotext);
 
 
-//        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
-//        Musik musik = new Musik(mediaPlayer);
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
+        Musik musik = new Musik(mediaPlayer);
     }
     /***
      * Die Hintergrundanimation, welche aus aus einer Animationsliste besteht, soll hier in ihrer Dauer

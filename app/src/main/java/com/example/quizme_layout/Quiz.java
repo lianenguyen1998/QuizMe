@@ -99,8 +99,8 @@ public class Quiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz);
 
-//        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
-//        musik = new Musik(mediaPlayer);
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
+        musik = new Musik(mediaPlayer);
 
         //starten der Hintergrundanimation
         //muss vor dem Countdown und dem Chronometer passieren
@@ -143,7 +143,7 @@ public class Quiz extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finishQuiz();
-//                musik.endMusik();
+                musik.endMusik();
             }
         });
 
@@ -182,7 +182,7 @@ public class Quiz extends AppCompatActivity {
         Random zufallszahl = new Random();
         zahl = 1 + zufallszahl.nextInt(3);
         //return zahl;
-        return zahl;
+        return 3;
     }
 
     private void minigames(){
@@ -625,7 +625,7 @@ public class Quiz extends AppCompatActivity {
                 popupInsertName();
                 //Popup schließen
                 dismissWithTryCatch(dialogWin);
-//                musik.endMusik();
+                musik.endMusik();
             }
         });
         //Popup anzeigen lassen, wenn es nicht schließt
@@ -666,7 +666,7 @@ public class Quiz extends AppCompatActivity {
 
                         //Zur Highscoreseite
                         zurHighscoreliste();
-//                        musik.endMusik();
+                        musik.endMusik();
 
 
                     } else {
@@ -690,7 +690,7 @@ public class Quiz extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 //ohne Speichern zur Highscoreliste
                 zurHighscoreliste();
-//                musik.endMusik();
+                musik.endMusik();
             }
         });
 

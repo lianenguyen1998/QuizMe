@@ -88,6 +88,7 @@ public class Minigame1 {
             swipeButton2.setEnabled(true);
             swipeButton3.setEnabled(true);
 
+
         //swipeButton2.setActivated(false);
         //swipeButton3.setActivated(false);
     }
