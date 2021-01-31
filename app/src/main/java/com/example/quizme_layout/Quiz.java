@@ -245,13 +245,11 @@ public class Quiz extends AppCompatActivity {
 
 
     private void minigame1_swipe(int zahl){
-        Minigame1 minigame1;
 
         if(zahl == 3) {
-            minigame1 = new Minigame1(Quiz.this);
-            minigame1.spielen();
+            Minigame1 minigame1 = new Minigame1(Quiz.this);
         }
-            //minigame1.reset(swipeButton1, swipeButton2, swipeButton3);
+
     }
 
     @Override
