@@ -17,8 +17,9 @@ import java.util.ArrayList;
 public class Minigame2_SwipeCards {
 
     Activity activity;
-    ArrayList<String> cards;
-    ArrayAdapter<String> arrayAdapter;
+    Context context;
+    ArrayList<String> cards = new ArrayList<>();
+    ArrayAdapter arrayAdapter;
     SwipeFlingAdapterView swipeAdapter;
 
     public  Minigame2_SwipeCards(){
@@ -93,11 +94,5 @@ public class Minigame2_SwipeCards {
 
             }
         });
-
-
-
-
-
     }
-
 }

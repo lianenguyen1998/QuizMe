@@ -1,4 +1,5 @@
 package com.example.quizme_layout;
+import android.app.Activity;
 import android.view.View;
 import com.ebanx.swipebtn.OnStateChangeListener;
 import com.ebanx.swipebtn.SwipeButton;
@@ -12,22 +13,17 @@ public class Minigame1 {
 
     /***
      * Konstruktor
-     * @param _swipeButton1
-     * @param _swipeButton2     die benötigten SwipeButtons werden zugewiesen
-     * @param _swipeButton3
      */
-    Minigame1(SwipeButton _swipeButton1, SwipeButton _swipeButton2, SwipeButton _swipeButton3 ){
+    Minigame1(Activity _activity){
+        swipeButton1 = (SwipeButton) _activity.findViewById(R.id.swipeButton1);
+        swipeButton2 = (SwipeButton) _activity.findViewById(R.id.swipeButton2);
+        swipeButton3 = (SwipeButton) _activity.findViewById(R.id.swipeButton3);
 
-        //zuweisen der Buttons
-        swipeButton1 = _swipeButton1;
-        swipeButton2 = _swipeButton2;
-        swipeButton3 = _swipeButton3;
+        reset();
 
-        //das sichtbar machen der Buttons
         swipeButton1.setVisibility(View.VISIBLE);
         swipeButton2.setVisibility(View.VISIBLE);
         swipeButton3.setVisibility(View.VISIBLE);
-        //reset();
     }
 
     /***
@@ -66,24 +62,29 @@ public class Minigame1 {
      */
     private void checkAll(){
         if(swipeButton1.isEnabled()==false && swipeButton2.isEnabled()==false && swipeButton3.isEnabled()==false) {
-            swipeButton1.setVisibility(View.GONE);
-            swipeButton2.setVisibility(View.GONE);
-            swipeButton3.setVisibility(View.GONE);
+            //swipeButton1.setVisibility(View.GONE);
+            //swipeButton2.setVisibility(View.GONE);
+            //swipeButton3.setVisibility(View.GONE);
         }
     }
 
-    public void reset(SwipeButton _swipeButton1, SwipeButton _swipeButton2, SwipeButton _swipeButton3 ){
-        swipeButton1 = null;
-        swipeButton2 = null;
-        swipeButton3 = null;
-        //swipeButton1.toggleState();
-        //swipeButton2.toggleState();
-        //swipeButton3.toggleState();
+    public void reset(){
+        //swipeButton1 = null;
+        //swipeButton2 = null;
+        //swipeButton3 = null;
+        swipeButton1.toggleState();
+        swipeButton2.toggleState();
+        swipeButton3.toggleState();
+
+        swipeButton1.setEnabled(true);
+        swipeButton2.setEnabled(true);
+        swipeButton3.setEnabled(true);
+
 
         //swipeButton2.setActivated(false);
         //swipeButton3.setActivated(false);
-        Minigame1 minigame1 = new Minigame1(_swipeButton1, _swipeButton2, _swipeButton3 );
-        minigame1.spielen();
+        //Minigame1 minigame1 = new Minigame1(_swipeButton1, _swipeButton2, _swipeButton3 );
+        //minigame1.spielen();
     }
 
 }

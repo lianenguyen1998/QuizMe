@@ -181,7 +181,8 @@ public class Quiz extends AppCompatActivity {
         int zahl;
         Random zufallszahl = new Random();
         zahl = 1 + zufallszahl.nextInt(3);
-        return zahl;
+        //return zahl;
+        return 3;
     }
 
     private void minigames(){
@@ -243,22 +244,19 @@ public class Quiz extends AppCompatActivity {
 
 
     private void minigame1_swipe(int zahl){
-        SwipeButton swipeButton1 = (SwipeButton) findViewById(R.id.swipeButton1);
-        SwipeButton swipeButton2 = (SwipeButton) findViewById(R.id.swipeButton2);
-        SwipeButton swipeButton3 = (SwipeButton) findViewById(R.id.swipeButton3);
-
-        swipeButton1.setVisibility(View.INVISIBLE);
-        swipeButton2.setVisibility(View.INVISIBLE);
-        swipeButton3.setVisibility(View.INVISIBLE);
-        //WENN DAS MINISPIEL KOMMEN SOLL
-
         Minigame1 minigame1;
 
         if(zahl == 3) {
-            minigame1 = new Minigame1(swipeButton1, swipeButton2, swipeButton3);
+            minigame1 = new Minigame1(Quiz.this);
             minigame1.spielen();
         }
             //minigame1.reset(swipeButton1, swipeButton2, swipeButton3);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+       // minigames();
 
     }
 
@@ -279,12 +277,22 @@ public class Quiz extends AppCompatActivity {
                 @Override
                 public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
                     if (newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
+                        onPause();
                         hinweis = findViewById(R.id.textview_hinweis);
                         hinweis.setText(currentQuestion.getHinweis());
+                    }
+                    if (newState == SlidingUpPanelLayout.PanelState.COLLAPSED){
+                        onResume();
                     }
                 }
             });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     /***
      * Die Hintergrundanimation, welche aus aus einer Animationsliste besteht, soll hier in ihrer Dauer
      * angepasst und gestartet werden
