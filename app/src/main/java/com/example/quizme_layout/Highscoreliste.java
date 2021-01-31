@@ -46,18 +46,15 @@ public class Highscoreliste extends AppCompatActivity {
     TableHelper tableHelper;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.highscoreliste);
 
-        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
-        Musik musik = new Musik(mediaPlayer);
+//        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
+//        Musik musik = new Musik(mediaPlayer);
 
-        backgroundAnimation();
+
 
         zurückzurStartseite = (Button) findViewById(R.id.zurückzurStartseite);
         neuesSpiel = (Button) findViewById(R.id.neuesSpiel);
@@ -68,7 +65,7 @@ public class Highscoreliste extends AppCompatActivity {
             public void onClick(View v) {
 
                 openzurückzurStartseite();
-                musik.endMusik();
+//                musik.endMusik();
             }
         });
 
@@ -77,7 +74,7 @@ public class Highscoreliste extends AppCompatActivity {
             public void onClick(View v) {
 
                 openweiterSpielen();
-                musik.endMusik();
+//                musik.endMusik();
             }
         });
 
@@ -85,7 +82,7 @@ public class Highscoreliste extends AppCompatActivity {
         tableHelper = new TableHelper(this);
         table = (TableView<String[]>) findViewById(R.id.highscoreview);
         table.setColumnCount(4);
-        table.setHeaderBackgroundColor(Color.parseColor("#D27FFFE5"));
+        table.setHeaderBackgroundColor(Color.parseColor("#D290FFE8"));
         table.setHeaderAdapter(new SimpleTableHeaderAdapter(this, tableHelper.getHeader()));
         table.setDataAdapter(new SimpleTableDataAdapter(this, tableHelper.getSpieler()));
 

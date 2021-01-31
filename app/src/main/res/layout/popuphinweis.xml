@@ -3,7 +3,7 @@
     android:layout_width="700dp"
     android:layout_height="400dp"
     android:layout_gravity="center"
-    android:background="@drawable/hintergrundbild2_round"
+    android:background="@drawable/popup_background"
     android:orientation="vertical">
 
     <TextView
@@ -24,7 +24,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="100dp"
-        android:background="@drawable/rounded_corners"
+        android:background="@drawable/button_round"
         android:fontFamily="@font/raleway_medium"
         android:text="@string/schlie_en" />
 </LinearLayout>

@@ -17,6 +17,10 @@ public class Minigame3_pressTheButton {
     // Klickanzahl fängt bei 0 an
     int klickAnzahl = 0;
 
+
+    /***
+     * Konstruktor
+     */
     public Minigame3_pressTheButton(Button button, TextView view, TextView v){
         klickMich_b = button;
         klickZaehler_tv = view;

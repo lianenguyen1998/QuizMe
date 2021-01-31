@@ -34,14 +34,34 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
-        android:layout_marginTop="594dp"
-        android:layout_marginEnd="276dp"
-        android:fontFamily="@font/raleway_light"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="224dp"
+        android:fontFamily="@font/raleway_medium"
         android:lineSpacingExtra="8sp"
         android:padding="8dp"
         android:text="einstellung"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="#1E1E1E"
-        android:textSize="36sp" />
+        android:textSize="50sp" />
+
+    <Switch
+        android:id="@+id/musik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="582dp"
+        android:layout_marginEnd="295dp"
+        android:fontFamily="@font/raleway_medium"
+        android:padding="8dp"
+        android:text="Musik "
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="40sp" />
+
+
+
 </RelativeLayout>

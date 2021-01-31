@@ -2,60 +2,70 @@ package com.example.quizme_layout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.SharedPreferences;
+import android.app.Activity;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 public class Einstellung extends AppCompatActivity {
 
-    // Variablen festlegen
-    private TextView klickZaehler_tv;
-    private Button klickMich_b;
 
-    // Klickanzahl fängt bei 0 an
-    int klickAnzahl = 0;
+    protected Musik app;
+    private Switch musikSwitch;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_press_the_button);
+        setContentView(R.layout.einstellung);
 
-        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
-         Musik musik = new Musik(mediaPlayer);
-
-
-        /**
-         Die oben stehende Objekte werden initialisiert
-         */
-        klickZaehler_tv = findViewById(R.id.klickZaehler);
-
-        klickMich_b =  findViewById(R.id.klickMich);
+//        app=(Musik)getApplicationContext();
 
 
-        /**
-         * onClick für die Klicks
-         */
-        klickMich_b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+//        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
+//        Musik musik = new Musik(mediaPlayer);
 
-                klickAnzahl++;
 
-                // maximale Anzahl der Klicks festlegen -> max. 15
-                if (klickAnzahl == 15) {
-                    klickMich_b.setEnabled(false);
+        musikSwitch = (Switch) findViewById(R.id.musik);
+
+
+//        if(app.getMusik_()){
+//
+//            musikSwitch.setChecked(true);
+//        } else {
+//
+//            musikSwitch.setChecked(false);
+//        }
+
+        musikSwitch.setOnCheckedChangeListener(
+
+                ((buttonView, isChecked) -> {
+
+                if (isChecked) {
+//                app.setMusik_(true);
+                app.musikPlay();
+
+                } else {
+//                app.setMusik_(false);
+                app.musikStop();
+                }
                 }
 
-                klickZaehler_tv.setText("Klicks: " + klickAnzahl);
 
-            }
-        });
-    }
+                )
+
+        );
+
+
+}
+
+
 
     /***
      * Die Hintergrundanimation, welche aus aus einer Animationsliste besteht, soll hier in ihrer Dauer

@@ -17,7 +17,7 @@
         android:layout_centerInParent="true"
         android:layout_marginEnd="73dp"
         android:layout_marginBottom="260dp"
-        android:background="@drawable/redbutton_round"
+        android:background="@drawable/pressthebutton_red_round"
         android:fontFamily="@font/raleway_semibold"
         android:text="@string/klick_mich"
         android:textColor="@color/black"
