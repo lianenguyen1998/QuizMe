@@ -24,9 +24,9 @@ public class Minigame1 {
 
         reset();
 
-        swipeButton1.setVisibility(View.VISIBLE);
-        swipeButton2.setVisibility(View.VISIBLE);
-        swipeButton3.setVisibility(View.VISIBLE);
+        //swipeButton1.setVisibility(View.VISIBLE);
+        //swipeButton2.setVisibility(View.VISIBLE);
+        //swipeButton3.setVisibility(View.VISIBLE);
 
         spielen();
     }
