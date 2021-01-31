@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -98,9 +99,8 @@ public class Quiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz);
 
-
-        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
-        musik = new Musik(mediaPlayer);
+//        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
+//        musik = new Musik(mediaPlayer);
 
         //starten der Hintergrundanimation
         //muss vor dem Countdown und dem Chronometer passieren
@@ -143,7 +143,7 @@ public class Quiz extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finishQuiz();
-                musik.endMusik();
+//                musik.endMusik();
             }
         });
 
@@ -239,6 +239,7 @@ public class Quiz extends AppCompatActivity {
         if(zahl == 1) {
             game3 = new Minigame3_pressTheButton(klickMich_b, klickZaehler_tv, klickMax_tv);
             game3.clickMe();
+
         }
     }
 
@@ -572,10 +573,10 @@ public class Quiz extends AppCompatActivity {
                     option4.setEnabled(true);
 
                     //Farbe wieder normal setzen (da vorher vllt rot oder grün war)
-                     option1.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.rounded_corners));
-                     option2.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.rounded_corners));
-                     option3.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.rounded_corners));
-                     option4.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.rounded_corners));
+                     option1.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.button_round));
+                     option2.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.button_round));
+                     option3.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.button_round));
+                     option4.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.button_round));
 
                     if (timerRunning) {
                         pauseCountdown();
@@ -647,7 +648,7 @@ public class Quiz extends AppCompatActivity {
                 popupInsertName();
                 //Popup schließen
                 dismissWithTryCatch(dialogWin);
-                musik.endMusik();
+//                musik.endMusik();
             }
         });
         //Popup anzeigen lassen, wenn es nicht schließt
@@ -661,8 +662,9 @@ public class Quiz extends AppCompatActivity {
     }
 
     private void popupInsertName(){
-        AlertDialog.Builder  insertUsername = new AlertDialog.Builder(this);
-        insertUsername.setTitle("Bitte geben Sie Ihren Namen ein, um zur Highscoreliste zu gelangen:");
+        AlertDialog.Builder insertUsername = new AlertDialog.Builder(this, R.style.AlertDialog);
+        insertUsername.setTitle("Bitte Name eingeben");
+        insertUsername.setMessage("Um auf die Highscoreliste zu gelangen, geben Sie bitte Ihren Namen ein:");
 
         final EditText username = new EditText(Quiz.this);
         //festlegen was man eingeben kann
@@ -687,7 +689,7 @@ public class Quiz extends AppCompatActivity {
 
                         //Zur Highscoreseite
                         zurHighscoreliste();
-                        musik.endMusik();
+//                        musik.endMusik();
 
 
                     } else {
@@ -711,7 +713,7 @@ public class Quiz extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 //ohne Speichern zur Highscoreliste
                 zurHighscoreliste();
-                musik.endMusik();
+//                musik.endMusik();
             }
         });
 
@@ -722,9 +724,9 @@ public class Quiz extends AppCompatActivity {
         //Popup anzeigen
         insertDialog.show();
 
-        //Popup Aussehen ändern
-        insertDialog.getWindow().setBackgroundDrawableResource(R.drawable.hintergrundbild2_round);
-        insertDialog.getWindow().setLayout(720,450);
+        // AlertDialog Hintergrund
+        insertDialog.getWindow().setBackgroundDrawableResource(R.drawable.insertname_round);
+        insertDialog.getWindow().setLayout(720,222);
 
     }
 
