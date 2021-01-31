@@ -309,6 +309,7 @@
             app:inner_text_top_padding="40dp"
             app:inner_text_color="#000000"
             app:inner_text_size="24dp"
+
             />
 
         <com.ebanx.swipebtn.SwipeButton
@@ -330,6 +331,7 @@
             app:inner_text_top_padding="40dp"
             app:inner_text_color="#000000"
             app:inner_text_size="24dp"
+
             />
         <com.ebanx.swipebtn.SwipeButton
             android:id="@+id/swipeButton3"

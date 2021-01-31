@@ -93,7 +93,6 @@ public class Quiz extends AppCompatActivity {
 
     Musik musik;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -181,8 +180,8 @@ public class Quiz extends AppCompatActivity {
         int zahl;
         Random zufallszahl = new Random();
         zahl = 1 + zufallszahl.nextInt(3);
-        //return zahl;
-        return 3;
+         return zahl;
+        //return 3;
     }
 
     private void minigames(){
