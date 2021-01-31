@@ -140,12 +140,6 @@ public class Startseite extends AppCompatActivity {
 
     // ---------------------------------------------------------------------------------------- //
 
-    public void openBackgroundTest()
-    {
-        Intent intent = new Intent(this, HintergrundTest.class);
-        startActivity(intent);
-    }
-
     /***
      * Die Hintergrundanimation, welche aus aus einer Animationsliste besteht, soll hier in ihrer Dauer
      * angepasst und gestartet werden

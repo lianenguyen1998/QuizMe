@@ -199,7 +199,6 @@ public class Quiz extends AppCompatActivity {
 
     }
 
-
     private void minigame2_swipeCardsGame(){
 
         Minigame2_SwipeCards cards = new Minigame2_SwipeCards(Quiz.this);
@@ -221,18 +220,15 @@ public class Quiz extends AppCompatActivity {
         klickZaehler_tv.setVisibility(View.INVISIBLE);
         klickMax_tv.setVisibility(View.INVISIBLE);
 
-            game3 = new Minigame3_pressTheButton(klickMich_b, klickZaehler_tv, klickMax_tv);
-            game3.clickMe();
-
+        game3 = new Minigame3_pressTheButton(klickMich_b, klickZaehler_tv, klickMax_tv);
+        game3.clickMe();
 
     }
 
 
     private void minigame1_swipe(){
 
-
-            Minigame1 minigame1 = new Minigame1(Quiz.this);
-
+        Minigame1 minigame1 = new Minigame1(Quiz.this);
 
     }
 

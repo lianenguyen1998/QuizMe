@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizMe_Layout">
         <activity android:name=".Einstellung" />
-        <activity android:name=".HintergrundTest" />
         <activity android:name=".Infotext" />
         <activity android:name=".Highscoreliste" />
         <activity
