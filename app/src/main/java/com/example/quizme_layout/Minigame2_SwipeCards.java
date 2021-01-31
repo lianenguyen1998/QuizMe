@@ -1,35 +1,42 @@
 package com.example.quizme_layout;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.SimpleAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatViewInflater;
+import androidx.fragment.app.Fragment;
 
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
 
-public class Minigame2_SwipeCards extends AppCompatActivity {
+public class Minigame2_SwipeCards {
 
-    Context context;
-    ArrayList<String> cards = new ArrayList<>();
-   ArrayAdapter arrayAdapter;
+    Activity activity;
+    ArrayList<String> cards;
+    ArrayAdapter<String> arrayAdapter;
     SwipeFlingAdapterView swipeAdapter;
 
     public  Minigame2_SwipeCards(){
         //leerer Konstruktor
     }
 
-    public Minigame2_SwipeCards(Context _context, SwipeFlingAdapterView adapter, ArrayList<String> cards, ArrayAdapter<String> arrayAdapter)
-    { this.context = _context;
-      this.swipeAdapter = adapter;
-      this.cards = cards;
-      this.arrayAdapter = arrayAdapter;
-      //adapter.setVisibility(View.VISIBLE);
+    public Minigame2_SwipeCards(Activity _activity) //, SwipeFlingAdapterView adapter, ArrayAdapter<String> arrayAdapter
+    { this.activity = _activity;
+        // swipeAdapter.setVisibility(View.INVISIBLE);
+        //this.swipeAdapter = adapter;
+        //this.cards = cards;
+        //this.arrayAdapter = arrayAdapter;
+        //adapter.setVisibility(View.VISIBLE);
     }
 
+    //Karten zur Liste hinzufügen
     public void add(){
+        cards = new ArrayList<>();
         cards.add("SWIPE");
         cards.add("NOCH NEUN");
         cards.add("NOCH ACHT");
@@ -44,7 +51,7 @@ public class Minigame2_SwipeCards extends AppCompatActivity {
 
     public void reset() throws NullPointerException{
         try {
-            if (cards != null && arrayAdapter != null) {
+            if (arrayAdapter != null) { //cards != null &&
                 cards.clear();
                 arrayAdapter.clear();
                 swipeAdapter.setAdapter(null);
@@ -55,8 +62,9 @@ public class Minigame2_SwipeCards extends AppCompatActivity {
     }
 
     public void createCards(){
-
-
+        swipeAdapter  = (SwipeFlingAdapterView) activity.findViewById(R.id.cards);
+        arrayAdapter = new ArrayAdapter<>(activity, R.layout.karten, R.id.textview_kartenzahl, cards);
+        swipeAdapter.setVisibility(View.VISIBLE);
         swipeAdapter.setAdapter(arrayAdapter);
         swipeAdapter.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
@@ -91,7 +99,5 @@ public class Minigame2_SwipeCards extends AppCompatActivity {
 
 
     }
-
-
 
 }

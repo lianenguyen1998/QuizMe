@@ -90,18 +90,14 @@ public class Quiz extends AppCompatActivity {
     //Pop-up Window Variables - Gewonnen
     private Dialog dialogWin;
 
-
-    Minigame3_pressTheButton game3;
-    Button klickMich_b;
-    TextView klickZaehler_tv;
-    TextView klickMax_tv;
-
     Musik musik;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz);
+
 
         final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
         musik = new Musik(mediaPlayer);
@@ -205,27 +201,32 @@ public class Quiz extends AppCompatActivity {
 
     private void minigame2_swipeCardsGame(int zahl){
 
-        ArrayList<String> card = new ArrayList<>();
-        SwipeFlingAdapterView swipeAdapter = (SwipeFlingAdapterView) findViewById(R.id.cards);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(Quiz.this, R.layout.karten, R.id.textview_kartenzahl, card);
-        Minigame2_SwipeCards cards = new Minigame2_SwipeCards(Quiz.this, swipeAdapter, card, arrayAdapter);
-        swipeAdapter.setVisibility(View.INVISIBLE);
+
+        Minigame2_SwipeCards cards = new Minigame2_SwipeCards(Quiz.this);
+        //, swipeAdapter, arrayAdapter
+        //cards.swipeAdapter.setVisibility(View.INVISIBLE);
 
         if(zahl == 2) {
-            cards = new Minigame2_SwipeCards(Quiz.this, swipeAdapter, card, arrayAdapter);
-            swipeAdapter.setVisibility(View.VISIBLE);
+
+            //cards.swipeAdapter.setVisibility(View.VISIBLE);
+            cards.add();
+            cards.createCards();
         } else {
             cards.reset();
-        }
 
-        cards.add();
-        cards.createCards();
+        }
 
     }
 
 
 
     private void minigame3_pressButton(int zahl){
+
+        Minigame3_pressTheButton game3;
+        Button klickMich_b;
+        TextView klickZaehler_tv;
+        TextView klickMax_tv;
+
         klickMich_b =  findViewById(R.id.klickMich);
         klickZaehler_tv = findViewById(R.id.klickZaehler);
         klickMax_tv = findViewById(R.id.klickMax);
@@ -448,7 +449,7 @@ public class Quiz extends AppCompatActivity {
         return answered;
     }
 
-    /***
+    /**
      * Wenn ein Button mit der richtigen Antwort gedrückt wird, kommt man in das nächste Level,
      * also wird das Level hochgezählt
      * Wenn ein Button mit der falschen Antwort gedrückt wird, bekommt man ein Leben abgezogen
@@ -510,7 +511,7 @@ public class Quiz extends AppCompatActivity {
         }
     }
 
-    /***
+    /**
      * Hier werden die Leben abgezogen, die man dadurch verliert, dass der Countdown abläuft
      */
     private void countlebenCountdown(){
@@ -534,7 +535,7 @@ public class Quiz extends AppCompatActivity {
     }
 
     /**
-     * Popup to Next Level
+     * Popup zum nächsten Level
      */
     private void createNextLevelDialog(){
 
@@ -552,7 +553,8 @@ public class Quiz extends AppCompatActivity {
 
                     //nächste Frage anzeigen
                     showNextQuestion();
-                    //resetMinigame();
+
+                    //neues Minigame
                     minigames();
 
                     //Button wieder klicken können, weil bei richtiger Antwort Buttons gesperrt werden
@@ -652,9 +654,10 @@ public class Quiz extends AppCompatActivity {
 
     private void popupInsertName(){
         AlertDialog.Builder  insertUsername = new AlertDialog.Builder(this);
-        insertUsername.setTitle("Bitte geben Sie Ihren Namen ein, um in die Highscoreliste zu gelangen:");
+        insertUsername.setTitle("Bitte geben Sie Ihren Namen ein, um zur Highscoreliste zu gelangen:");
 
         final EditText username = new EditText(Quiz.this);
+        //festlegen was man eingeben kann
         username.setInputType(InputType.TYPE_CLASS_TEXT );
         insertUsername.setView(username);
 
@@ -673,8 +676,6 @@ public class Quiz extends AppCompatActivity {
 
                         //Daten einfügen in die Datenbank
                         boolean success = dbHighscore.add( model);
-                        //Test
-                        //Toast.makeText(Quiz.this, "Success " + success, Toast.LENGTH_SHORT).show();
 
                         //Zur Highscoreseite
                         zurHighscoreliste();
@@ -713,6 +714,7 @@ public class Quiz extends AppCompatActivity {
         //Popup anzeigen
         insertDialog.show();
 
+        //Popup Aussehen ändern
         insertDialog.getWindow().setBackgroundDrawableResource(R.drawable.hintergrundbild2_round);
         insertDialog.getWindow().setLayout(720,450);
 
