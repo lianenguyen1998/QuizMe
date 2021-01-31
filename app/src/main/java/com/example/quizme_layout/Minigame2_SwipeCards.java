@@ -1,14 +1,10 @@
 package com.example.quizme_layout;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.SimpleAdapter;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatViewInflater;
-import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
@@ -17,27 +13,22 @@ import java.util.ArrayList;
 public class Minigame2_SwipeCards {
 
     Activity activity;
-    Context context;
     ArrayList<String> cards = new ArrayList<>();
-    ArrayAdapter arrayAdapter;
+    ArrayAdapter<String> arrayAdapter;
     SwipeFlingAdapterView swipeAdapter;
 
-    public  Minigame2_SwipeCards(){
-        //leerer Konstruktor
-    }
 
-    public Minigame2_SwipeCards(Activity _activity) //, SwipeFlingAdapterView adapter, ArrayAdapter<String> arrayAdapter
-    { this.activity = _activity;
-        // swipeAdapter.setVisibility(View.INVISIBLE);
-        //this.swipeAdapter = adapter;
-        //this.cards = cards;
-        //this.arrayAdapter = arrayAdapter;
-        //adapter.setVisibility(View.VISIBLE);
+    public Minigame2_SwipeCards(Activity _activity)
+    {
+        activity = _activity;
+        reset();
+        //add();
+        createCards();
     }
 
     //Karten zur Liste hinzufügen
     public void add(){
-        cards = new ArrayList<>();
+
         cards.add("SWIPE");
         cards.add("NOCH NEUN");
         cards.add("NOCH ACHT");
@@ -52,10 +43,9 @@ public class Minigame2_SwipeCards {
 
     public void reset() throws NullPointerException{
         try {
-            if (arrayAdapter != null) { //cards != null &&
-                cards.clear();
-                arrayAdapter.clear();
-                swipeAdapter.setAdapter(null);
+            if (swipeAdapter != null) {
+                swipeAdapter.removeAllViewsInLayout();
+                arrayAdapter.notifyDataSetChanged();
             }
         } catch (NullPointerException e){
             e.printStackTrace();
@@ -63,15 +53,17 @@ public class Minigame2_SwipeCards {
     }
 
     public void createCards(){
-        swipeAdapter  = (SwipeFlingAdapterView) activity.findViewById(R.id.cards);
+        add();
         arrayAdapter = new ArrayAdapter<>(activity, R.layout.karten, R.id.textview_kartenzahl, cards);
-        swipeAdapter.setVisibility(View.VISIBLE);
+        swipeAdapter  = (SwipeFlingAdapterView) activity.findViewById(R.id.cards);
         swipeAdapter.setAdapter(arrayAdapter);
+
         swipeAdapter.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
             public void removeFirstObjectInAdapter() {
                 cards.remove(0);
                 arrayAdapter.notifyDataSetChanged();
+                swipeAdapter.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -86,6 +78,7 @@ public class Minigame2_SwipeCards {
 
             @Override
             public void onAdapterAboutToEmpty(int i) {
+
 
             }
 

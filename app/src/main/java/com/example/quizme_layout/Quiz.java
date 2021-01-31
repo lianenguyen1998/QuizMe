@@ -182,46 +182,31 @@ public class Quiz extends AppCompatActivity {
         Random zufallszahl = new Random();
         zahl = 1 + zufallszahl.nextInt(3);
         //return zahl;
-        return 3;
+        return zahl;
     }
 
     private void minigames(){
 
 
-        int zahl = zufallszahl();
-        minigame1_swipe(zahl);
-        minigame2_swipeCardsGame(zahl);
-        minigame3_pressButton(zahl);
-
-    }
-
-    private void resetMinigame(){
-
-    }
-
-
-    private void minigame2_swipeCardsGame(int zahl){
-
-
-        Minigame2_SwipeCards cards = new Minigame2_SwipeCards(Quiz.this);
-        //, swipeAdapter, arrayAdapter
-        //cards.swipeAdapter.setVisibility(View.INVISIBLE);
-
-        if(zahl == 2) {
-
-            //cards.swipeAdapter.setVisibility(View.VISIBLE);
-            cards.add();
-            cards.createCards();
+        if(zufallszahl() == 1){
+            minigame1_swipe();
+        }
+        else if (zufallszahl() == 2) {
+            minigame2_swipeCardsGame();
         } else {
-            cards.reset();
-
+            minigame3_pressButton();
         }
 
     }
 
 
+    private void minigame2_swipeCardsGame(){
 
-    private void minigame3_pressButton(int zahl){
+        Minigame2_SwipeCards cards = new Minigame2_SwipeCards(Quiz.this);
+
+    }
+
+    private void minigame3_pressButton(){
 
         Minigame3_pressTheButton game3;
         Button klickMich_b;
@@ -236,19 +221,18 @@ public class Quiz extends AppCompatActivity {
         klickZaehler_tv.setVisibility(View.INVISIBLE);
         klickMax_tv.setVisibility(View.INVISIBLE);
 
-        if(zahl == 1) {
             game3 = new Minigame3_pressTheButton(klickMich_b, klickZaehler_tv, klickMax_tv);
             game3.clickMe();
 
-        }
+
     }
 
 
-    private void minigame1_swipe(int zahl){
+    private void minigame1_swipe(){
 
-        if(zahl == 3) {
+
             Minigame1 minigame1 = new Minigame1(Quiz.this);
-        }
+
 
     }
 
@@ -428,7 +412,6 @@ public class Quiz extends AppCompatActivity {
                         //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
 
                         //der Countdown muss abgebrochen werden, da man sonst ein weiteres Leben verliert während sich das
-                        //gewonnen Pop up öffnet
 
                         //////////
                         pauseCountdown();
