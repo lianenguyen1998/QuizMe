@@ -46,18 +46,17 @@ public class Einstellung extends AppCompatActivity {
         musikSwitch.setChecked(switch_status);
 
         // Musik ist beim öffnen der App aus
-       // musik.pauseMusik();
+        musik.pauseMusik();
 
         musikSwitch.setOnCheckedChangeListener(
                 new CompoundButton.OnCheckedChangeListener() {
-                    private Musik musik;
 
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean defValue) {
                         if (buttonView.isChecked()) {
 
                             // Musik an
-                            this.musik.startMusik();
+                            musik.startMusik();
 
                             // Switch Status wird auf true gesetzt
                             myEditor.putBoolean(SWITCH_STATUS, true);
@@ -67,7 +66,7 @@ public class Einstellung extends AppCompatActivity {
                         } else {
 
                             // Musik aus
-                            this.musik.pauseMusik();
+                            musik.pauseMusik();
 
                             // Switch Status wird auf false gesetzt
                             myEditor.putBoolean(SWITCH_STATUS, false);
