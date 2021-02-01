@@ -1,9 +1,8 @@
 package com.example.quizme_layout;
+
 import android.app.Activity;
 import android.view.View;
-
 import com.ebanx.swipebtn.OnActiveListener;
-import com.ebanx.swipebtn.OnStateChangeListener;
 import com.ebanx.swipebtn.SwipeButton;
 
 public class Minigame1 {

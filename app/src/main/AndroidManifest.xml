@@ -15,7 +15,8 @@
         <activity
             android:name=".Quiz"
             android:parentActivityName=".Startseite" />
-        <activity android:name=".Startseite">
+        <activity android:name=".Startseite"
+            android:screenOrientation="sensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

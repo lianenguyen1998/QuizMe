@@ -3,11 +3,7 @@ package com.example.quizme_layout;
 import android.app.Activity;
 import android.view.View;
 import android.widget.ArrayAdapter;
-
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
-
 import java.util.ArrayList;
 
 public class Minigame2_SwipeCards {

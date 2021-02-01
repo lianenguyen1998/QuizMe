@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,7 +16,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.InputType;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
@@ -25,12 +23,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ebanx.swipebtn.SwipeButton;
 import com.example.Datenbank.DatabaseHelper;
 import com.example.Datenbank.DatabaseHighscorelist;
 import com.example.Datenbank.HighscoreModel;
 import com.example.Datenbank.QuizMeModel;
-import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
@@ -93,6 +89,7 @@ public class Quiz extends AppCompatActivity {
 
     //Hintergrundmusik
      private Musik musik;
+
 
 
     @Override

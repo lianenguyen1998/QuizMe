@@ -1,4 +1,5 @@
 package com.example.quizme_layout;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
@@ -18,7 +19,7 @@ public class Musik {
     /***
      * zum starten der Musik, wenn sie abläuft fängt sie automatisch von vorne an
      */
-    private void startMusik(){
+    public void startMusik(){
         try {
             this.musik.setLooping(true);
             this.musik.start();
@@ -50,3 +51,6 @@ public class Musik {
         }
     }
 } //end class
+// ------------------------------------------------------------
+
+

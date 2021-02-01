@@ -1,8 +1,5 @@
 package com.example.quizme_layout;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -29,6 +26,9 @@ public class Minigame3_pressTheButton {
         klickMich_b.setVisibility(View.VISIBLE);
         klickZaehler_tv.setVisibility(View.VISIBLE);
         klickMax_tv.setVisibility(View.VISIBLE);
+
+//        reset();
+
     }
 
     public void clickMe(){
@@ -71,4 +71,12 @@ public class Minigame3_pressTheButton {
             klickMax_tv.setVisibility(View.GONE);
         }
     }
+
+//    public void reset(){
+//
+//        klickMich_b.setEnabled(true);
+//        klickZaehler_tv.setEnabled(true);
+//        klickMax_tv.setEnabled(true);
+//
+//    }
 }

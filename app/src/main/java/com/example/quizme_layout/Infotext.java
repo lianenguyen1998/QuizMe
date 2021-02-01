@@ -1,13 +1,8 @@
 package com.example.quizme_layout;
 
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.widget.RelativeLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 
 public class Infotext extends AppCompatActivity {
 

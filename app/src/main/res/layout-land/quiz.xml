@@ -11,20 +11,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/hintergrund_Animation"
-        android:background="@drawable/hintergrund_liste"
-        >
+        android:background="@drawable/hintergrund_liste">
+
 
         <TextView
-            android:id="@+id/logo9"
-            android:layout_width="115dp"
+            android:id="@+id/logo8"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
-            android:layout_marginStart="-11dp"
-            android:layout_marginEnd="1176dp"
-            android:layout_marginBottom="-2dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="1187dp"
+            android:layout_marginBottom="0dp"
             android:fontFamily="sans-serif-light"
             android:padding="8dp"
             android:text="@string/quizme"
@@ -32,6 +32,21 @@
             android:textAllCaps="false"
             android:textColor="#000000"
             android:textSize="22sp" />
+
+        <Chronometer
+            android:id="@+id/textview_chronometer"
+            android:layout_width="100dp"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="588dp"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="sans-serif-light"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textview_leben1"
@@ -78,8 +93,8 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="sans-serif"
-            android:textColor="#1E1E1E"
             android:text="@string/level_1"
+            android:textColor="#1E1E1E"
             android:textSize="24sp"
             app:drawableTopCompat="@drawable/vector_level_neu" />
 
@@ -117,8 +132,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="178dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="188dp"
             android:layout_marginEnd="1dp"
             android:fontFamily="@font/raleway_medium"
             android:padding="8dp"
@@ -130,67 +145,69 @@
 
         <Button
             android:id="@+id/choice1"
-            android:layout_width="390dp"
-            android:layout_height="110dp"
+            android:layout_width="400dp"
+            android:layout_height="120dp"
+            android:layout_below="@+id/question"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
-            android:layout_marginStart="233dp"
-            android:layout_marginTop="340dp"
+            android:layout_marginStart="223dp"
+            android:layout_marginTop="314dp"
             android:background="@drawable/button_round"
             android:fontFamily="@font/raleway_medium"
             android:padding="8dp"
             android:text="@string/jasa"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="19sp" />
 
         <Button
             android:id="@+id/choice2"
-            android:layout_width="390dp"
-            android:layout_height="110dp"
+            android:layout_width="400dp"
+            android:layout_height="120dp"
+            android:layout_below="@+id/question"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
-            android:layout_marginStart="657dp"
-            android:layout_marginTop="339dp"
+            android:layout_marginStart="659dp"
+            android:layout_marginTop="315dp"
             android:background="@drawable/button_round"
             android:fontFamily="@font/raleway_medium"
             android:padding="8dp"
             android:text="@string/chai"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="19sp" />
 
         <Button
             android:id="@+id/choice3"
-            android:layout_width="390dp"
-            android:layout_height="110dp"
+            android:layout_width="400dp"
+            android:layout_height="120dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
-            android:layout_marginStart="233dp"
-            android:layout_marginTop="466dp"
+            android:layout_marginStart="223dp"
+            android:layout_marginTop="458dp"
             android:background="@drawable/button_round"
             android:fontFamily="@font/raleway_medium"
             android:padding="8dp"
             android:text="@string/oak"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="19sp" />
 
         <Button
             android:id="@+id/choice4"
-            android:layout_width="390dp"
-            android:layout_height="110dp"
+            android:layout_width="400dp"
+            android:layout_height="120dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
-            android:layout_marginStart="656dp"
-            android:layout_marginTop="467dp"
+            android:layout_marginStart="658dp"
+            android:layout_marginTop="459dp"
             android:background="@drawable/button_round"
             android:fontFamily="@font/raleway_medium"
             android:padding="8dp"
             android:text="@string/lase"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="19sp" />
 
         <Button
             android:id="@+id/quit"
@@ -210,24 +227,13 @@
             android:textSize="14sp"
             app:drawableTopCompat="@drawable/vector_close" />
 
-        <Chronometer
-            android:id="@+id/textview_chronometer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/question"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="599dp"
-            android:layout_marginTop="273dp"
-            android:textSize="24sp" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#17DC7F"
+        android:background="#D290FFE8"
         >
 
         <TextView
@@ -247,20 +253,21 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/raleway_medium"
             android:gravity="bottom"
-            android:text="@string/zur_ck"
             android:textColor="#1E1E1E"
             android:textSize="20sp"
             app:drawableBottomCompat="@drawable/vector_down"
             app:drawableTint="#1E1E1E" />
+
         <TextView
             android:id="@+id/textview_timerTest"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fontFamily="@font/raleway_medium"
+            android:fontFamily="sans-serif-light"
+            android:layout_margin="5dp"
             android:gravity="end|bottom"
-            android:text="test timer"
+            android:text="@string/test_timer"
             android:textColor="#1E1E1E"
-            android:textSize="20sp"
+            android:textSize="27sp"
             app:drawableTint="#1E1E1E" />
 
         <TextView
@@ -281,13 +288,14 @@
             app:max_visible="10"
             app:rotation_degrees="20"
             app:min_adapter_stack="11"
+
             />
 
         <com.ebanx.swipebtn.SwipeButton
             android:id="@+id/swipeButton1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="180dp"
             app:button_bottom_padding="20dp"
             app:button_image_disabled="@drawable/vector_forward"
             app:button_image_enabled="@drawable/vector_finish_minigame"
@@ -301,14 +309,14 @@
             app:inner_text_right_padding="40dp"
             app:inner_text_top_padding="40dp"
             app:inner_text_color="#000000"
-            app:inner_text_size="24dp"
-            />
+            app:inner_text_size="24dp">
+        </com.ebanx.swipebtn.SwipeButton>
 
         <com.ebanx.swipebtn.SwipeButton
             android:id="@+id/swipeButton2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="550dp"
+            android:layout_marginTop="330dp"
             app:button_bottom_padding="20dp"
             app:button_left_padding="20dp"
             app:button_right_padding="20dp"
@@ -323,12 +331,13 @@
             app:inner_text_top_padding="40dp"
             app:inner_text_color="#000000"
             app:inner_text_size="24dp"
+
             />
         <com.ebanx.swipebtn.SwipeButton
             android:id="@+id/swipeButton3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="700dp"
+            android:layout_marginTop="480dp"
             app:button_bottom_padding="20dp"
             app:button_left_padding="20dp"
             app:button_right_padding="20dp"
@@ -347,33 +356,37 @@
 
         <Button
             android:id="@+id/klickMich"
-            android:layout_width="480dp"
-            android:layout_height="100dp"
+            android:layout_width="555dp"
+            android:layout_height="520dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginEnd="161dp"
-            android:layout_marginBottom="135dp"
-            android:background="@drawable/button_round"
-            android:fontFamily="@font/raleway_medium"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="368dp"
+            android:layout_marginBottom="63dp"
+            android:background="@drawable/pressthebutton_red_round"
+            android:fontFamily="@font/raleway_semibold"
             android:text="@string/klick_mich"
             android:textColor="@color/black"
-            android:textSize="30sp"
+            android:textSize="45sp"
             app:iconPadding="8dp" />
 
         <TextView
             android:id="@+id/klickZaehler"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_above="@id/klickMich"
+            android:layout_marginTop="665dp"
+            android:layout_marginEnd="562dp"
+            android:layout_marginBottom="5dp"
             android:fontFamily="@font/raleway_medium"
             android:padding="8dp"
+            android:text="@string/klicks_0"
+            android:textAllCaps="true"
             android:textColor="@color/black"
-            android:textSize="30sp"
-            android:layout_marginBottom="300dp"
-            android:text="@string/klicks_0" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/klickMax"
@@ -382,14 +395,13 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginEnd="209dp"
-            android:layout_marginBottom="895dp"
-            android:fontFamily="@font/raleway_semibold"
+            android:layout_marginEnd="454dp"
+            android:layout_marginBottom="582dp"
+            android:fontFamily="@font/raleway_medium"
             android:padding="8dp"
-            android:text="@string/klicke_15x"
+            android:text="Klicke 15x"
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="65sp" />
-
     </RelativeLayout>
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

@@ -1,37 +1,15 @@
 package com.example.quizme_layout;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.graphics.drawable.AnimationDrawable;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.TableLayout;
-import android.widget.Toast;
-
 import de.codecrafters.tableview.*;
-import de.codecrafters.tableview.listeners.OnScrollListener;
 import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter;
 import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter;
-
-import com.example.Datenbank.DatabaseHighscorelist;
-import com.example.Datenbank.HighscoreModel;
 import com.example.Datenbank.TableHelper;
-
-import java.util.ArrayList;
-import java.util.List;
-import android.widget.RelativeLayout;
 
 public class Highscoreliste extends AppCompatActivity {
 

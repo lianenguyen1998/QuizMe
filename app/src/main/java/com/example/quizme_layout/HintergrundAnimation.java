@@ -1,4 +1,5 @@
 package com.example.quizme_layout;
+
 import android.app.Activity;
 import android.graphics.drawable.AnimationDrawable;
 import android.widget.RelativeLayout;

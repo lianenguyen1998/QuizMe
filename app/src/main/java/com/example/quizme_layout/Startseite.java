@@ -1,9 +1,7 @@
 package com.example.quizme_layout;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 public class Startseite extends AppCompatActivity {
@@ -36,16 +35,19 @@ public class Startseite extends AppCompatActivity {
 
     private Musik musik;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.startseite);
 
+
         //HintergrundAnimation
         HintergrundAnimation hintergrundAnimation = new HintergrundAnimation(Startseite.this,3000);
 
         //Hintergrundmusik (wird gesartet)
-        musik = new Musik(this);
+     //   musik = new Musik(this);
+//        musik.pauseMusik();
 
 
         //Sound für den Buttonklick
@@ -80,7 +82,7 @@ public class Startseite extends AppCompatActivity {
             public void onClick(View v) {
                 mediaPlayer.start();
                 openQuiz();
-                musik.endMusik();
+               // musik.endMusik();
             }
         });
 
@@ -89,7 +91,7 @@ public class Startseite extends AppCompatActivity {
             public void onClick(View v) {
                 mediaPlayer.start();
                 openHighscoreliste();
-                musik.endMusik();
+            //    musik.endMusik();
             }
         });
 
@@ -98,7 +100,7 @@ public class Startseite extends AppCompatActivity {
             public void onClick(View v) {
                mediaPlayer.start();
                 openInfotext();
-                musik.endMusik();
+            //    musik.endMusik();
                     //openBackgroundTest();
             }
         });
@@ -108,7 +110,7 @@ public class Startseite extends AppCompatActivity {
             public void onClick(View v) {
                 mediaPlayer.start();
                 openEinstellung();
-                musik.endMusik();
+               // musik.endMusik();
                 //openBackgroundTest();
             }
         });
@@ -133,6 +135,7 @@ public class Startseite extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     // ---- bringt uns zu der Einstellung
     public void openEinstellung() {
         Intent intent = new Intent(this, Einstellung.class);
@@ -149,11 +152,12 @@ public class Startseite extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //Musik stoppen
-        musik.endMusik();
+       // musik.endMusik();
 
         //zur Startseite
         Intent intent = new Intent(this, Startseite.class);
         startActivity(intent);
         super.onBackPressed();
+
     }
 }
