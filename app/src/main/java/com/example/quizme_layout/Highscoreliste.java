@@ -41,7 +41,7 @@ public class Highscoreliste extends AppCompatActivity {
     // ---- neuesSpielButton
     private Button neuesSpiel;
 
-    //Tableview
+    //Tableview -- um Highscoreliste auszugeben
     TableView<String[]> table;
     TableHelper tableHelper;
 
@@ -83,11 +83,17 @@ public class Highscoreliste extends AppCompatActivity {
         });
 
 
+        //Tableview um Highscorliste auszugeben
+
         tableHelper = new TableHelper(this);
         table = (TableView<String[]>) findViewById(R.id.highscoreview);
+        // Vier Werte für den Header
         table.setColumnCount(4);
+        //Farbe des Headers
         table.setHeaderBackgroundColor(Color.parseColor("#D290FFE8"));
+        //Header ausgeben
         table.setHeaderAdapter(new SimpleTableHeaderAdapter(this, tableHelper.getHeader()));
+        //Tabelle mit Spielern ausgeben
         table.setDataAdapter(new SimpleTableDataAdapter(this, tableHelper.getSpieler()));
 
 

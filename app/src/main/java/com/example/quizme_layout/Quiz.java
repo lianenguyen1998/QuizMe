@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,12 +24,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ebanx.swipebtn.SwipeButton;
 import com.example.Datenbank.DatabaseHelper;
 import com.example.Datenbank.DatabaseHighscorelist;
 import com.example.Datenbank.HighscoreModel;
 import com.example.Datenbank.QuizMeModel;
-import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
@@ -47,7 +44,6 @@ public class Quiz extends AppCompatActivity {
     private Button option2;
     private Button option3;
     private Button option4;
-    private Button quit;
 
     //Databank variables
     private List<QuizMeModel> fragenliste;
@@ -70,7 +66,6 @@ public class Quiz extends AppCompatActivity {
     //Level Variables
     private TextView textview_level;
     private int level_count = 1;
-    private final int MAXLEVEL = 50;
 
     //Leben Variables
     private TextView textview_leben3;
@@ -81,9 +76,6 @@ public class Quiz extends AppCompatActivity {
 
     //Pop-up Window Variables - Next
     private Dialog mydialog;
-
-    //Pop-up Window Variables - Hinweis
-    private Dialog dialogHinweis;
 
     //Pop-up Window Variables - Verloren
     private Dialog dialogLost;
@@ -109,12 +101,6 @@ public class Quiz extends AppCompatActivity {
 
         frage = findViewById(R.id.question);
 
-        // *********************** Vorläufig auskommentiert
-        //hinweis = findViewById(R.id.hinweis);
-
-
-        quit = findViewById(R.id.quit);
-
         //Antwortbuttons
         option1 = findViewById(R.id.choice1);
         option2 = findViewById(R.id.choice2);
@@ -139,6 +125,8 @@ public class Quiz extends AppCompatActivity {
             minigames();
         }
 
+        Button quit = findViewById(R.id.quit);
+
         quit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,7 +149,6 @@ public class Quiz extends AppCompatActivity {
 
         //popUp
         mydialog = new Dialog(Quiz.this);
-        dialogHinweis = new Dialog(Quiz.this);
         dialogLost = new Dialog(Quiz.this);
         dialogWin = new Dialog(Quiz.this);
 
@@ -176,6 +163,7 @@ public class Quiz extends AppCompatActivity {
         }
         startCountdown();
     }
+
     private int zufallszahl()
     {
         int zahl;
@@ -225,7 +213,6 @@ public class Quiz extends AppCompatActivity {
 
     }
 
-
     private void minigame1_swipe(){
 
         Minigame1 minigame1 = new Minigame1(Quiz.this);
@@ -250,6 +237,21 @@ public class Quiz extends AppCompatActivity {
 
     public String getStringTime(){
         return chronometer.getText().toString();
+    }
+
+    public int getLevelCount(){
+        return this.level_count;
+    }
+
+    //Zurück zur Startseite
+    private void finishQuiz() {
+        Intent intent = new Intent(this, Startseite.class);
+        startActivity(intent);
+    }
+
+    private void zurHighscoreliste(){
+        Intent intent = new Intent(Quiz.this, Highscoreliste.class);
+        startActivity(intent);
     }
 
     private void createPanel()
@@ -322,6 +324,7 @@ public class Quiz extends AppCompatActivity {
         saveQuestion();
 
         //aktuelle Frage anzeigen wenn es noch Fragen gibt
+        //Frage mit Antworten und Hinweis aus der Datenbank holen
         if (questionCounter < questionCountTotal) {
 
             currentQuestion = fragenliste.get(questionCounter);
@@ -352,18 +355,6 @@ public class Quiz extends AppCompatActivity {
         }
     }
 
-    public int getLevelCount(){
-        return this.level_count;
-    }
-
-
-    //Zurück zur Startseite
-    private void finishQuiz() {
-        Intent intent = new Intent(this, Startseite.class);
-        startActivity(intent);
-        intent.putExtra("currentQuestion", currentQuestion);
-    }
-
     /**
      * Kontrollieren ob eine Antwort richtig oder Falsch ist
      * @param buttoncount Nummer des Button
@@ -374,7 +365,6 @@ public class Quiz extends AppCompatActivity {
             //////////////////
             boolean answered = false;
             ///////////////////////////
-
             if (btnAnswer.isPressed()) {
 
                 if(currentQuestion != null) {
@@ -391,12 +381,6 @@ public class Quiz extends AppCompatActivity {
                         option3.setEnabled(false);
                         option4.setEnabled(false);
 
-                        //debug message
-                        //Toast.makeText(getApplicationContext(), "richtig", Toast.LENGTH_LONG).show();
-
-                        //der Countdown muss abgebrochen werden, da man sonst ein weiteres Leben verliert während sich das
-
-                        //////////
                         pauseCountdown();
 
                         // -> nachste Frage Pop Up -> next level
@@ -406,8 +390,6 @@ public class Quiz extends AppCompatActivity {
                         //Keine level mehr -> Gewonnen Popup
                         if(questionCounter == questionCountTotal)
                             popUpGewonnen();
-
-
 
                     } else {
                         //falsche antworten rot
@@ -427,7 +409,8 @@ public class Quiz extends AppCompatActivity {
      * Wenn ein Button mit der falschen Antwort gedrückt wird, bekommt man ein Leben abgezogen
      */
     private void countlevel() {
-        if(level_count >=1 && level_count <=MAXLEVEL ) {
+        int MAXLEVEL = 50;
+        if(level_count >=1 && level_count <= MAXLEVEL) {
             //wenn die Antwort richtig ist level hochzählen
             if (this.checkAnswer(1, option1) || this.checkAnswer(2, option2) || this.checkAnswer(3, option3) || this.checkAnswer(4, option4))  {
                 this.level_count++;
@@ -573,7 +556,6 @@ public class Quiz extends AppCompatActivity {
                 popupInsertName();
                 //Popup schließen
                 dismissWithTryCatch(dialogLost);
-
             }
         });
 
@@ -619,11 +601,6 @@ public class Quiz extends AppCompatActivity {
             dialogWin.show();
     }
 
-    private void zurHighscoreliste(){
-        Intent intent = new Intent(Quiz.this, Highscoreliste.class);
-        startActivity(intent);
-    }
-
     private void popupInsertName(){
         AlertDialog.Builder insertUsername = new AlertDialog.Builder(this, R.style.AlertDialog);
         insertUsername.setTitle("Bitte Name eingeben");
@@ -654,7 +631,6 @@ public class Quiz extends AppCompatActivity {
                         zurHighscoreliste();
                         musik.endMusik();
 
-
                     } else {
                         Toast.makeText(getApplicationContext(),"Vorgang abgebrochen", Toast.LENGTH_SHORT).show();
                         dialog.cancel();
@@ -666,8 +642,6 @@ public class Quiz extends AppCompatActivity {
                     Toast.makeText(Quiz.this, model.toString(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
-
-
             }
         });
 

@@ -2,6 +2,9 @@ package com.example.Datenbank;
 
 import android.provider.BaseColumns;
 
+/**
+ * Tabellenstruktur für Fragendatenbank
+ */
 public class QuizContract {
 
     private QuizContract(){}
