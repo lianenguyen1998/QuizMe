@@ -3,6 +3,7 @@ package com.example.quizme_layout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -13,27 +14,25 @@ import android.widget.TextView;
 
 public class Einstellung extends AppCompatActivity {
 
+    //Hintergrund musik
+     private Musik musik;
+
     private Switch musik_;
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.einstellung);
 
+        //Hintergrundanimation
+        HintergrundAnimation hintergrundAnimation = new HintergrundAnimation(Einstellung.this,4000);
 
-        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
-        Musik musik = new Musik(mediaPlayer);
-
+        //Hintergrundmusik (wird gestartet)
+        musik = new Musik(this);
 
         musik_ = (Switch) findViewById(R.id.musik);
 
-
+        /***
         mediaPlayer.pause();
         musik_.setOnCheckedChangeListener(
                 new CompoundButton.OnCheckedChangeListener() {
@@ -50,20 +49,23 @@ public class Einstellung extends AppCompatActivity {
                     }
                     }
         );
-}
-
-
-
-    /***
-     * Die Hintergrundanimation, welche aus aus einer Animationsliste besteht, soll hier in ihrer Dauer
-     * angepasst und gestartet werden
-     */
-    private void backgroundAnimation(){
-
-        RelativeLayout constraintLayout = findViewById(R.id.hintergrundInfo_id);
-
-        //der Hintergrund beinhaltet die Animationsliste (siehe quiz.xml),diese muss als Variable definiert werden, um sie starten zu können
-        AnimationDrawable animation= (AnimationDrawable) constraintLayout.getBackground();
-        HintergrundAnimation hintergrundAnimation = new HintergrundAnimation(animation, 4000);
+}   ***/
     }
+
+    /**
+     * Methode um den zurück-Button zu steuern
+     *      -die Musik wird gestoppt
+     *      -zurück zur Startseite
+     */
+    @Override
+    public void onBackPressed() {
+        //Musik stoppen
+        musik.endMusik();
+
+        //zur Startseite
+        Intent intent = new Intent(this, Startseite.class);
+        startActivity(intent);
+        super.onBackPressed();
+    }
+
 }

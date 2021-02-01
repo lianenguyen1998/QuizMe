@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/hintergrundQuiz_id_relative"
+        android:id="@+id/hintergrund_Animation"
         android:background="@drawable/hintergrund_liste">
 
         <TextView

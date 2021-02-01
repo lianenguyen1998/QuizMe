@@ -91,7 +91,8 @@ public class Quiz extends AppCompatActivity {
     //Pop-up Window Variables - Gewonnen
     private Dialog dialogWin;
 
-    Musik musik;
+    //Hintergrundmusik
+     private Musik musik;
 
 
     @Override
@@ -99,13 +100,12 @@ public class Quiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz);
 
-        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
-        musik = new Musik(mediaPlayer);
+        //Hitergrundmusik (wird gestartet)
+        musik = new Musik(this);
 
-        //starten der Hintergrundanimation
-        //muss vor dem Countdown und dem Chronometer passieren
-        //android:background="@drawable/hintergrund_liste"
-        backgroundAnimation();
+         //Hintergrundanimation
+        HintergrundAnimation hintergrundAnimation = new HintergrundAnimation(Quiz.this, 4000);
+
 
         frage = findViewById(R.id.question);
 
@@ -189,7 +189,7 @@ public class Quiz extends AppCompatActivity {
 
 
         if(zufallszahl() == 1){
-            minigame1_swipe();
+           // minigame1_swipe();
         }
         else if (zufallszahl() == 2) {
             minigame2_swipeCardsGame();
@@ -232,13 +232,21 @@ public class Quiz extends AppCompatActivity {
 
     }
 
+    /**
+     * Methode um den zurück-Button zu steuern
+     *      -die Musik wird gestoppt
+     *      -zurück zur Startseite
+     */
     @Override
-    protected void onPause() {
-        super.onPause();
-       // minigames();
+    public void onBackPressed() {
+        //Musik stoppen
+        musik.endMusik();
 
+        //zur Startseite
+        Intent intent = new Intent(this, Startseite.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
-
 
     public String getStringTime(){
         return chronometer.getText().toString();
@@ -256,32 +264,11 @@ public class Quiz extends AppCompatActivity {
                 @Override
                 public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
                     if (newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
-                        onPause();
                         hinweis = findViewById(R.id.textview_hinweis);
                         hinweis.setText(currentQuestion.getHinweis());
                     }
-                    if (newState == SlidingUpPanelLayout.PanelState.COLLAPSED){
-                        onResume();
-                    }
                 }
             });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    /***
-     * Die Hintergrundanimation, welche aus aus einer Animationsliste besteht, soll hier in ihrer Dauer
-     * angepasst und gestartet werden
-     */
-    private void backgroundAnimation(){
-        RelativeLayout constraintLayout = findViewById(R.id.hintergrundQuiz_id_relative);
-
-        //der Hintergrund beinhaltet die Animationsliste (siehe quiz.xml),diese muss als Variable definiert werden, um sie starten zu können
-        AnimationDrawable animation= (AnimationDrawable) constraintLayout.getBackground();
-        HintergrundAnimation hintergrundAnimation = new HintergrundAnimation(animation, 4000);
     }
 
     private void createChronometer() throws NullPointerException{
@@ -431,7 +418,6 @@ public class Quiz extends AppCompatActivity {
                     }
                 }
             }
-
         return answered;
     }
 

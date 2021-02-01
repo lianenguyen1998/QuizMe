@@ -1,43 +1,52 @@
 package com.example.quizme_layout;
-
-import android.app.Application;
+import android.content.Context;
+import android.content.res.Resources;
 import android.media.MediaPlayer;
-import android.net.Uri;
 
-import java.io.IOException;
+/***
+ * In dieser Klasse wird die Hintergrundmusik geregelt
+ */
+public class Musik {
 
-public class Musik extends Application {
+    private MediaPlayer musik;
 
-    /*
-    Bei release idt der Mediaplayer im End State, sollte aufgerufen werden, wenn der Musikplayer nicht mehr benötogt wird
-    bei start() wird gestartet isPlaying() = true
-    bei pause() wird gestoppt und die Position wird sich gemerkt isPlaying()=false, bei einem start() wird jetzt alles auf Anfang zurückgesetzt
-    getCurrentPosition(),
-    seekTo(long, int)
-    After reset(), the object is like being just created.
+    Musik(Context _context) {
+        musik = MediaPlayer.create(_context, R.raw.musik);
+        startMusik();
+    }
 
-    setOnErrorListener
-any
-{}
-This method can be called in any state and calling it does not change the object state.
-
-    If the looping mode was being set to true with setLooping(boolean), the MediaPlayer object shall remain in the Started state.
+    /***
+     * zum starten der Musik, wenn sie abläuft fängt sie automatisch von vorne an
      */
+    private void startMusik(){
+        try {
+            this.musik.setLooping(true);
+            this.musik.start();
 
-
-    MediaPlayer musik;
-    Musik(MediaPlayer _sound){
-        this.musik = _sound;
-        this.musik.setLooping(true);
-        this.musik.start();
+        } catch(Resources.NotFoundException e){
+            e.printStackTrace();
+        }
     }
 
+    /**
+     * zum beenden der Hintergrundmusik
+     */
     public void endMusik(){
-        this.musik.release();
+        try {
+            this.musik.release();
+        } catch(IllegalStateException e){
+            e.printStackTrace();
+        }
     }
 
-// ------------------------------------------------------------
-
-
-
-}
+    /***
+     * zum pausieren der Musik
+     */
+    public void pauseMusik(){
+        try {
+            this.musik.pause();
+        } catch(IllegalStateException e){
+            e.printStackTrace();
+        }
+    }
+} //end class

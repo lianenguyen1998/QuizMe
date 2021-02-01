@@ -1,5 +1,6 @@
 package com.example.quizme_layout;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -10,24 +11,34 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Infotext extends AppCompatActivity {
 
+    //Hintergundmusik
+    private Musik musik;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.infotext);
 
+        //Hintergrundmusik (wird gestartet)
+        musik = new Musik(this);
 
-        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
-        Musik musik = new Musik(mediaPlayer);
+        //Hintergrundanimation
+        HintergrundAnimation hintergrundAnimation = new HintergrundAnimation(Infotext.this, 4000);
     }
-    /***
-     * Die Hintergrundanimation, welche aus aus einer Animationsliste besteht, soll hier in ihrer Dauer
-     * angepasst und gestartet werden
-     */
-    private void backgroundAnimation(){
-        RelativeLayout constraintLayout = findViewById(R.id.hintergrundInfo_id);
 
-        //der Hintergrund beinhaltet die Animationsliste (siehe quiz.xml),diese muss als Variable definiert werden, um sie starten zu können
-        AnimationDrawable animation= (AnimationDrawable) constraintLayout.getBackground();
-        HintergrundAnimation hintergrundAnimation = new HintergrundAnimation(animation, 4000);
+    /**
+     * Methode um den zurück-Button zu steuern
+     *      -die Musik wird gestoppt
+     *      -zurück zur Startseite
+     */
+    @Override
+    public void onBackPressed() {
+        //Musik stoppen
+        musik.endMusik();
+
+        //zur Startseite
+        Intent intent = new Intent(this, Startseite.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

@@ -6,7 +6,7 @@
     android:layout_height= "match_parent"
     tools:context= ".Startseite"
     android:background="@drawable/hintergrund_liste"
-    android:id="@+id/hintergrundStart_id">
+    android:id="@+id/hintergrund_Animation">
 
 
     <ImageButton

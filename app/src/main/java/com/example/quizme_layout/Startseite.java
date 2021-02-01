@@ -34,15 +34,18 @@ public class Startseite extends AppCompatActivity {
     // ---- EinstellungsButton
     private ImageButton einstellung;
 
-    Musik musik;
+    private Musik musik;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.startseite);
 
-        final MediaPlayer mediaPlayerMusik = MediaPlayer.create(this, R.raw.musik);
-        musik = new Musik(mediaPlayerMusik);
+        //HintergrundAnimation
+        HintergrundAnimation hintergrundAnimation = new HintergrundAnimation(Startseite.this,3000);
+
+        //Hintergrundmusik (wird gesartet)
+        musik = new Musik(this);
 
 
         //Sound für den Buttonklick
@@ -71,8 +74,6 @@ public class Startseite extends AppCompatActivity {
         highscoreliste = (Button) findViewById(R.id.highscoreliste);
         ueberQuizme = (Button) findViewById(R.id.infotext);
         einstellung = (ImageButton) findViewById(R.id.einstellung);
-
-        backgroundAnimation();
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,16 +141,19 @@ public class Startseite extends AppCompatActivity {
 
     // ---------------------------------------------------------------------------------------- //
 
-    /***
-     * Die Hintergrundanimation, welche aus aus einer Animationsliste besteht, soll hier in ihrer Dauer
-     * angepasst und gestartet werden
+    /**
+     * Methode um den zurück-Button zu steuern
+     *      -die Musik wird gestoppt
+     *      -zurück zur Startseite
      */
-    private void backgroundAnimation(){
-        RelativeLayout constraintLayout = findViewById(R.id.hintergrundStart_id);
+    @Override
+    public void onBackPressed() {
+        //Musik stoppen
+        musik.endMusik();
 
-        //der Hintergrund beinhaltet die Animationsliste (siehe quiz.xml),diese muss als Variable definiert werden, um sie starten zu können
-        AnimationDrawable animation= (AnimationDrawable) constraintLayout.getBackground();
-        HintergrundAnimation hintergrundAnimation = new HintergrundAnimation(animation, 4000);
+        //zur Startseite
+        Intent intent = new Intent(this, Startseite.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
-
 }

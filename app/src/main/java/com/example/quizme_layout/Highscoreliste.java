@@ -45,16 +45,20 @@ public class Highscoreliste extends AppCompatActivity {
     TableView<String[]> table;
     TableHelper tableHelper;
 
+    //Hintergrundmusik
+    private Musik musik;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.highscoreliste);
 
-        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.musik);
-        Musik musik = new Musik(mediaPlayer);
+        //Hintergrundanimation
+        HintergrundAnimation hintergrundAnimation = new HintergrundAnimation(Highscoreliste.this,4000);
 
-
+        //Hintergrundmusik (wird gestartet)
+        musik = new Musik(this);
 
         zurückzurStartseite = (Button) findViewById(R.id.zurückzurStartseite);
         neuesSpiel = (Button) findViewById(R.id.neuesSpiel);
@@ -89,7 +93,6 @@ public class Highscoreliste extends AppCompatActivity {
 
 
     }
-
     // ---- bringt uns zurück Startseite
     public void openzurückzurStartseite() {
         Intent intent = new Intent(this, Startseite.class);
@@ -102,15 +105,19 @@ public class Highscoreliste extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /***
-     * Die Hintergrundanimation, welche aus aus einer Animationsliste besteht, soll hier in ihrer Dauer
-     * angepasst und gestartet werden
+    /**
+     * Methode um den zurück-Button zu steuern
+     *      -die Musik wird gestoppt
+     *      -zurück zur Startseite
      */
-    private void backgroundAnimation(){
-        RelativeLayout constraintLayout = findViewById(R.id.hintergrundListe_id);
+    @Override
+    public void onBackPressed() {
+        //Musik stoppen
+        musik.endMusik();
 
-        //der Hintergrund beinhaltet die Animationsliste (siehe quiz.xml),diese muss als Variable definiert werden, um sie starten zu können
-        AnimationDrawable animation= (AnimationDrawable) constraintLayout.getBackground();
-        HintergrundAnimation hintergrundAnimation = new HintergrundAnimation(animation, 4000);
+        //zur Startseite
+        Intent intent = new Intent(this, Startseite.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }
