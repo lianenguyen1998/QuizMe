@@ -49,7 +49,9 @@ public class Minigame2_SwipeCards {
     }
 
     public void createCards(){
+        //Karten hinzufügen
         add();
+
         arrayAdapter = new ArrayAdapter<>(activity, R.layout.karten, R.id.textview_kartenzahl, cards);
         swipeAdapter  = (SwipeFlingAdapterView) activity.findViewById(R.id.cards);
         swipeAdapter.setAdapter(arrayAdapter);
@@ -57,9 +59,11 @@ public class Minigame2_SwipeCards {
         swipeAdapter.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
             public void removeFirstObjectInAdapter() {
+
+                //Karten werden vom Stapel geswiped
                 cards.remove(0);
+                //Adapter bescheid geben
                 arrayAdapter.notifyDataSetChanged();
-                swipeAdapter.setVisibility(View.VISIBLE);
             }
 
             @Override

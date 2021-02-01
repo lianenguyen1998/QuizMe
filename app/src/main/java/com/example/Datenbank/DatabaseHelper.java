@@ -11,6 +11,9 @@ import com.example.Datenbank.QuizContract.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Klasse der Datenbank für Fragen, Antworten und Hinweisen
+ */
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "FRAGEN.db";
 

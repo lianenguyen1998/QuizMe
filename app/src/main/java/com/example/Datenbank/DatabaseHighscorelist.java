@@ -12,6 +12,9 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Klasse der Datenbank für Einträge in dder Highscoreliste
+ */
 public class DatabaseHighscorelist extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "highscore.db";
@@ -21,6 +24,10 @@ public class DatabaseHighscorelist extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, 1);
     }
 
+    /**
+     * Initalisiert die Datenbank
+     * @param db Datenbank
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
     this.db = db;
@@ -35,12 +42,23 @@ public class DatabaseHighscorelist extends SQLiteOpenHelper {
     db.execSQL(SQL_CREATE_HIGHSCORELIST);
     }
 
+    /**
+     * Updated Datenbank bei neuen Versionen
+     * @param db Datenbank
+     * @param oldVersion alter Version
+     * @param newVersion neue Version
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + HighscoreTable.TABLE_NAME);
         onCreate(db);
     }
 
+    /**
+     * Hinzufügen von Werten in die Datenbank
+     * @param model Highscormodelobjket
+     * @return boolean, um zu sehen ob sich etwas eingefügt hat
+     */
     public boolean add(HighscoreModel model){
         db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -57,6 +75,10 @@ public class DatabaseHighscorelist extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * Einträge werden in einer Liste gespeichert
+     * @return Highscoreliste nach level geordnet
+     */
     public List<HighscoreModel> getHighscorelist(){
         List<HighscoreModel> highscoreliste = new ArrayList<>();
         db = getReadableDatabase();

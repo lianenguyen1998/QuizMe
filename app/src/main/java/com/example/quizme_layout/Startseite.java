@@ -35,12 +35,10 @@ public class Startseite extends AppCompatActivity {
 
     private Musik musik;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.startseite);
-
 
         //HintergrundAnimation
         HintergrundAnimation hintergrundAnimation = new HintergrundAnimation(Startseite.this,3000);

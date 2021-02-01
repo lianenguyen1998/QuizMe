@@ -1,9 +1,9 @@
 package com.example.Datenbank;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-public class QuizMeModel implements Parcelable {
+/**
+ * Modellklasse für Fragen mit Antworten und Hinweisen
+ */
+public class QuizMeModel {
     public String fragen;
     public int antwort_nr;
     public String option1;
@@ -12,7 +12,7 @@ public class QuizMeModel implements Parcelable {
     public String option4;
     public String hinweis;
 
-    public QuizMeModel(String fragen, String option1, String option2, String option3, String option4, String hinweis, int antwortNr){
+    public QuizMeModel(String fragen, String option1, String option2, String option3, String option4, String hinweis, int antwortNr) {
         this.fragen = fragen;
         this.antwort_nr = antwortNr;
         this.hinweis = hinweis;
@@ -22,17 +22,7 @@ public class QuizMeModel implements Parcelable {
         this.option4 = option4;
     }
 
-    public QuizMeModel() {}
-
-    //Parcelling part
-    public QuizMeModel(Parcel source){
-        this.fragen = source.readString();
-        this.antwort_nr = source.readInt();
-        this.hinweis = source.readString();
-        this.option1 = source.readString();
-        this.option2 = source.readString();
-        this.option3 = source.readString();
-        this.option4 = source.readString();
+    public QuizMeModel() {
     }
 
     //setter und getter
@@ -92,32 +82,4 @@ public class QuizMeModel implements Parcelable {
         return hinweis;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.fragen);
-        dest.writeString(this.hinweis);
-        dest.writeInt(this.antwort_nr);
-        dest.writeString(this.option1);
-        dest.writeString(this.option2);
-        dest.writeString(this.option3);
-        dest.writeString(this.option4);
-    }
-
-    public static final Parcelable.Creator CREATOR = new Parcelable.Creator(){
-
-        @Override
-        public Object createFromParcel(Parcel source) {
-            return new QuizMeModel(source);
-        }
-
-        @Override
-        public Object[] newArray(int size) {
-            return new QuizMeModel[size];
-        }
-    };
 }

@@ -1,5 +1,8 @@
 package com.example.Datenbank;
 
+/**
+ * Modelklasse für Highscorelistenwerte
+ */
 public class HighscoreModel {
 
 
