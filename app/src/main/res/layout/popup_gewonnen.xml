@@ -23,7 +23,7 @@
         android:layout_width="516dp"
         android:layout_height="199dp"
         android:layout_gravity="center|top"
-        android:src="@drawable/pokal" />
+        android:src="@drawable/victory" />
 
     <Button
         android:id="@+id/closeGewonnen"

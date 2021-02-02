@@ -32,7 +32,9 @@ public class Startseite extends AppCompatActivity {
     private ImageButton einstellung;
 
     private Musik musik;
+    MediaPlayer mediaPlayer;
 
+    private Musik buttonSound;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +49,8 @@ public class Startseite extends AppCompatActivity {
 
 
         //Sound für den Buttonklick
-        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.button_klick1);
+         mediaPlayer = MediaPlayer.create(this, R.raw.button_klick1);
+        //buttonSound = new Musik(Startseite.this, true);
 
         // ---- Splash Screen Animation
         obenAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
@@ -76,6 +79,7 @@ public class Startseite extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               //buttonSound.starteButtonsound();
                 mediaPlayer.start();
                 openQuiz();
                // musik.endMusik();
@@ -85,7 +89,9 @@ public class Startseite extends AppCompatActivity {
         highscoreliste.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //buttonSound.starteButtonsound();
                 mediaPlayer.start();
+
                 openHighscoreliste();
             //    musik.endMusik();
             }
@@ -94,7 +100,8 @@ public class Startseite extends AppCompatActivity {
         ueberQuizme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               mediaPlayer.start();
+                buttonSound.starteButtonsound();
+                mediaPlayer.start();
                 openInfotext();
             //    musik.endMusik();
                     //openBackgroundTest();
@@ -104,6 +111,7 @@ public class Startseite extends AppCompatActivity {
         einstellung.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                buttonSound.starteButtonsound();
                 mediaPlayer.start();
                 openEinstellung();
                // musik.endMusik();

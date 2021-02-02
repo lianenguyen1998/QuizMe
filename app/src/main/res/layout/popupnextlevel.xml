@@ -21,7 +21,7 @@
         android:layout_width="530dp"
         android:layout_height="200dp"
         android:layout_gravity="center|top"
-        android:src="@drawable/right" />
+        android:src="@drawable/next" />
 
     <Button
         android:id="@+id/nextLevel"

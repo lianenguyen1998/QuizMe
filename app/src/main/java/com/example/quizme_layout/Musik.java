@@ -16,6 +16,15 @@ public class Musik {
         startMusik();
     }
 
+    Musik(Context _context, boolean _buttonSound){
+        if(_buttonSound){
+            musik = MediaPlayer.create(_context, R.raw.button_klick1);
+        }
+    }
+
+    public void starteButtonsound(){
+        this.musik.start();
+    }
     /***
      * zum starten der Musik, wenn sie abläuft fängt sie automatisch von vorne an
      */
@@ -28,7 +37,6 @@ public class Musik {
             e.printStackTrace();
         }
     }
-
     /**
      * zum beenden der Hintergrundmusik
      */

@@ -1,5 +1,4 @@
 package com.example.quizme_layout;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -9,9 +8,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.InputType;
@@ -19,7 +16,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -86,7 +82,6 @@ public class Quiz extends AppCompatActivity {
      private Musik musik;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,7 +125,7 @@ public class Quiz extends AppCompatActivity {
         quit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finishQuiz();
+                zurStartseite();
                 musik.endMusik();
             }
         });
@@ -226,13 +221,13 @@ public class Quiz extends AppCompatActivity {
      */
     @Override
     public void onBackPressed() {
+        //super.onBackPressed();
         //Musik stoppen
         musik.endMusik();
 
         //zur Startseite
-        Intent intent = new Intent(this, Startseite.class);
-        startActivity(intent);
-        super.onBackPressed();
+        zurStartseite();
+        finish();
     }
 
     public String getStringTime(){
@@ -244,7 +239,7 @@ public class Quiz extends AppCompatActivity {
     }
 
     //Zurück zur Startseite
-    private void finishQuiz() {
+    private void zurStartseite() {
         Intent intent = new Intent(this, Startseite.class);
         startActivity(intent);
     }
@@ -314,7 +309,7 @@ public class Quiz extends AppCompatActivity {
                     break;
             }
 
-            countlevel();
+            checkAllAnswers();
         }
     };
 
@@ -408,7 +403,7 @@ public class Quiz extends AppCompatActivity {
      * also wird das Level hochgezählt
      * Wenn ein Button mit der falschen Antwort gedrückt wird, bekommt man ein Leben abgezogen
      */
-    private void countlevel() {
+    private void checkAllAnswers() {
         int MAXLEVEL = 50;
         if(level_count >=1 && level_count <= MAXLEVEL) {
             //wenn die Antwort richtig ist level hochzählen
@@ -469,11 +464,11 @@ public class Quiz extends AppCompatActivity {
     /**
      * Hier werden die Leben abgezogen, die man dadurch verliert, dass der Countdown abläuft
      */
-    private void countlebenCountdown(){
+    private void CountdownAbgelaufen(){
         //Aktuelle Anzahl der Leben anzeigen
         showLeben();
             //Wenn der Countdown abläuft ein Leben abziehen
-            if (verbleibendeZeit <= 100) {
+            if (verbleibendeZeit <= 10) {
                 this.leben_count--;
                 //neu anzeigen
                 showLeben();
@@ -558,6 +553,15 @@ public class Quiz extends AppCompatActivity {
                 dismissWithTryCatch(dialogLost);
             }
         });
+        dialogLost.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                dialog.dismiss();
+                musik.endMusik();
+                zurStartseite();
+
+            }
+        });
 
         //wenn es nicht schließt, Popup anzeigen lassen
     if(!isFinishing())
@@ -637,11 +641,21 @@ public class Quiz extends AppCompatActivity {
 
                     }
 
+
                 } catch (Exception e){
                     model = new HighscoreModel("Error", "Error", 0);
                     Toast.makeText(Quiz.this, model.toString(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
+            }
+        });
+
+        insertUsername.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                dialog.dismiss();
+                musik.endMusik();
+                zurStartseite();
             }
         });
 
@@ -664,9 +678,12 @@ public class Quiz extends AppCompatActivity {
         // AlertDialog Hintergrund
         insertDialog.getWindow().setBackgroundDrawableResource(R.drawable.insertname_round);
         insertDialog.getWindow().setLayout(720,222);
-
     }
 
+    private void zumstart(){
+        Intent intent = new Intent(this, Startseite.class);
+        startActivity(intent);
+    }
     /***
      * Hier wird der Countdown auf 30 Sekunden gesetzt und gestartet
      * Der Countdown wird heruntergezählt und auf 0 gesetzt
@@ -718,7 +735,7 @@ public class Quiz extends AppCompatActivity {
         countdownTextRed();
 
         //Wenn der Countdown abläuft wird hier ein Leben abgezogen
-        countlebenCountdown();
+        CountdownAbgelaufen();
     }
 
     /***
