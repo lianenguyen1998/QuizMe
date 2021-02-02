@@ -31,10 +31,12 @@ public class Startseite extends AppCompatActivity {
     // ---- EinstellungsButton
     private ImageButton einstellung;
 
+    //für die Hintergrundmusik
     private Musik musik;
-    MediaPlayer mediaPlayer;
 
+    //für den Buttonsound
     private Musik buttonSound;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +51,6 @@ public class Startseite extends AppCompatActivity {
 
 
         //Sound für den Buttonklick
-        //mediaPlayer = MediaPlayer.create(this, R.raw.button_klick1);
         buttonSound = new Musik(Startseite.this, true);
 
         // ---- Splash Screen Animation
@@ -80,7 +81,6 @@ public class Startseite extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                buttonSound.starteButtonsound();
-                //mediaPlayer.start();
                 openQuiz();
                // musik.endMusik();
             }
@@ -90,8 +90,6 @@ public class Startseite extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 buttonSound.starteButtonsound();
-                //mediaPlayer.start();
-
                 openHighscoreliste();
             //    musik.endMusik();
             }
@@ -101,7 +99,6 @@ public class Startseite extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 buttonSound.starteButtonsound();
-                //mediaPlayer.start();
                 openInfotext();
             //    musik.endMusik();
                     //openBackgroundTest();
@@ -112,13 +109,11 @@ public class Startseite extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 buttonSound.starteButtonsound();
-                //mediaPlayer.start();
                 openEinstellung();
                // musik.endMusik();
                 //openBackgroundTest();
             }
         });
-
     }
 
     // ---- bringt uns zum Quiz

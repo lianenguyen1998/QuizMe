@@ -52,7 +52,7 @@ public class Quiz extends AppCompatActivity {
     private TextView textView_timer_unten;
     private TextView textview_timer;
     private CountDownTimer countdown;
-    private boolean timerRunning;
+    private boolean countdownLaeuft;
     private long verbleibendeZeit;
     static final long COUNTDOWN_IN_MILLIS = 45000;
 
@@ -152,8 +152,8 @@ public class Quiz extends AppCompatActivity {
         createChronometer();
         createPanel();
 
-        if (timerRunning) {
-            pauseCountdown();
+        if (countdownLaeuft) {
+            stoppCountdown();
             restartCountdown();
         }
         startCountdown();
@@ -376,7 +376,7 @@ public class Quiz extends AppCompatActivity {
                         option3.setEnabled(false);
                         option4.setEnabled(false);
 
-                        pauseCountdown();
+                        stoppCountdown();
 
                         // -> nachste Frage Pop Up -> next level
                         if(questionCounter < questionCountTotal)
@@ -447,7 +447,7 @@ public class Quiz extends AppCompatActivity {
         }
         //keine Leben, also hat man verloren
         if(this.leben_count==0 ){
-            pauseCountdown();
+            stoppCountdown();
             //alle Leben-Textviews verschwinden
             textview_leben3.setVisibility(View.INVISIBLE);
             textview_leben2.setVisibility(View.INVISIBLE);
@@ -475,7 +475,7 @@ public class Quiz extends AppCompatActivity {
                 //eine neue Frage soll erscheinen
                 showNextQuestion();
                 //und der Countdown muss wieder neu starten
-                pauseCountdown();
+                stoppCountdown();
                 restartCountdown();
                 //minigames
                 minigames();
@@ -519,8 +519,8 @@ public class Quiz extends AppCompatActivity {
                      option3.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.button_round));
                      option4.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.button_round));
 
-                    if (timerRunning) {
-                        pauseCountdown();
+                    if (countdownLaeuft) {
+                        stoppCountdown();
                         restartCountdown();
                     }
                     startCountdown();
@@ -696,7 +696,7 @@ public class Quiz extends AppCompatActivity {
                 //Zeit herunterzählen
                 verbleibendeZeit = millisUntilFinished;
                 //auf der Textview anzeigen
-                updateCountdownText();
+                setzeCountdownText();
             }
 
             @Override
@@ -705,21 +705,21 @@ public class Quiz extends AppCompatActivity {
                 //Zeit auf 0 setzen
                 verbleibendeZeit = 0;
                 //auf der Textview anzeigen
-                updateCountdownText();
+                setzeCountdownText();
 
                 //Der Countdown läuft nicht weiter
-                timerRunning = false;
+                countdownLaeuft = false;
             }
         }.start();
         //Der Countdown läuft
-        timerRunning= true;
+        countdownLaeuft= true;
     }
 
     /***
      * Hier wird der zu sehende Text der Textview aktualisiert
      * Die Zeit wird in Sekunden heruntergezählt
     */
-    public void updateCountdownText() {
+    public void setzeCountdownText() {
         //umrechnen der verbleibenden Zeit in Sekunden
         int sekunden = (int) (verbleibendeZeit / 1000) % 60;
 
@@ -727,6 +727,7 @@ public class Quiz extends AppCompatActivity {
         String zeitformatiert = String.format(Locale.getDefault(), "%02d", sekunden);
 
         //Die String mit der Zeit wird in die Textview gesetzt
+
         textview_timer.setText(zeitformatiert);
         //Zeit auch im unteren Layout anzeigen
         textView_timer_unten.setText("übrige Zeit: " + zeitformatiert);
@@ -745,21 +746,23 @@ public class Quiz extends AppCompatActivity {
         //letzeen 10 Sekunden, also rot
         if (verbleibendeZeit < 11000) {
             textview_timer.setTextColor(Color.RED);
+            textView_timer_unten.setTextColor(Color.RED);
 
         //Ansonsten bleibt die Anzeige wie voher
         } else {
             textview_timer.setTextColor(Color.BLACK);
+            textView_timer_unten.setTextColor(Color.BLACK);
         }
     }
 
     /***
      * Der Countdown soll abgebrochen werden
     */
-    private void pauseCountdown(){
+    private void stoppCountdown(){
         countdown.cancel();
 
         //Der Countdown läuft nicht weiter
-        timerRunning = false;
+        countdownLaeuft = false;
     }
 
     /***
@@ -769,6 +772,6 @@ public class Quiz extends AppCompatActivity {
         verbleibendeZeit= COUNTDOWN_IN_MILLIS;
 
         //die Anzeige der Textview aktualisieren
-        updateCountdownText();
+        setzeCountdownText();
     }
 }

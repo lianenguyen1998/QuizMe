@@ -5,26 +5,42 @@ import android.content.res.Resources;
 import android.media.MediaPlayer;
 
 /***
- * In dieser Klasse wird die Hintergrundmusik geregelt
+ * In dieser Klasse wird die Hintergrundmusik  und der Buttonsound geregelt
  */
 public class Musik {
 
     private MediaPlayer musik;
 
+    /***
+     * Konstruktor für die Hintergrundmusik
+     * @param _context für die Activity in welcher die Musik laufen soll
+     */
     Musik(Context _context) {
         musik = MediaPlayer.create(_context, R.raw.musik);
         startMusik();
     }
 
+    /***
+     * Konstruktor für den Buttonsound
+     * @param _context für die Activity in welcher die Musik laufen soll
+     */
     Musik(Context _context, boolean _buttonSound){
         if(_buttonSound){
             musik = MediaPlayer.create(_context, R.raw.button_klick1);
         }
     }
 
+    /***
+     * zum starten des Buttonsound
+     */
     public void starteButtonsound(){
-        this.musik.start();
+        try {
+            this.musik.start();
+        }catch (Resources.NotFoundException e){
+            e.printStackTrace();
+        }
     }
+
     /***
      * zum starten der Musik, wenn sie abläuft fängt sie automatisch von vorne an
      */
@@ -58,7 +74,7 @@ public class Musik {
             e.printStackTrace();
         }
     }
+
 } //end class
-// ------------------------------------------------------------
 
 
