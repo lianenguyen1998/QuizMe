@@ -99,7 +99,7 @@
             app:drawableTopCompat="@drawable/vector_level_neu" />
 
         <TextView
-            android:id="@+id/textview_timer"
+            android:id="@+id/textview_Countdown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -259,7 +259,7 @@
             app:drawableTint="#1E1E1E" />
 
         <TextView
-            android:id="@+id/textview_timerTest"
+            android:id="@+id/textview_Countdown_unten"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="sans-serif-light"

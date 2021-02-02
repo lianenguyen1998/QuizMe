@@ -49,8 +49,8 @@ public class Quiz extends AppCompatActivity {
     private List<HighscoreModel> highscoreliste;
 
     //Countdown Variables
-    private TextView textView_timer_unten;
-    private TextView textview_timer;
+    private TextView textView_Countdown_unten;
+    private TextView textview_Countdown;
     private CountDownTimer countdown;
     private boolean countdownLaeuft;
     private long verbleibendeZeit;
@@ -81,18 +81,16 @@ public class Quiz extends AppCompatActivity {
     //Hintergrundmusik
      private Musik musik;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz);
 
-        //Hitergrundmusik (wird gestartet)
+        //Hintergrundmusik (wird gestartet)
         musik = new Musik(this);
 
          //Hintergrundanimation
         HintergrundAnimation hintergrundAnimation = new HintergrundAnimation(Quiz.this, 4000);
-
 
         frage = findViewById(R.id.question);
 
@@ -139,47 +137,72 @@ public class Quiz extends AppCompatActivity {
         textview_leben1 = findViewById(R.id.textview_leben1);
         textView_lebenAnzeige = findViewById(R.id.textview_LebenCount);
 
-        //Timer
-        textview_timer = findViewById(R.id.textview_timer);
+        //Countdown
+        textview_Countdown = findViewById(R.id.textview_Countdown);
+        textView_Countdown_unten = findViewById(R.id.textview_Countdown_unten);
+
+        //starten des Countdowns
+        if (countdownLaeuft) {
+            stoppCountdown();
+            restartCountdown();
+        }
+        startCountdown();
+
+        //Chronometer (Zeit)
+        chronometer = findViewById(R.id.textview_chronometer);
+        createChronometer();
 
         //popUp
         mydialog = new Dialog(Quiz.this);
         dialogLost = new Dialog(Quiz.this);
         dialogWin = new Dialog(Quiz.this);
 
-        textView_timer_unten = findViewById(R.id.textview_timerTest);
-        chronometer = findViewById(R.id.textview_chronometer);
-        createChronometer();
+        //SlidingUpPanel zum hochziehen für den Hinweis
         createPanel();
-
-        if (countdownLaeuft) {
-            stoppCountdown();
-            restartCountdown();
-        }
-        startCountdown();
     }
 
+    /***
+     * Eine Zufallszahl wird für die Auswahl des Minigames generiert
+     * @return die zufallszahl zwischen 1 und 3
+     */
     private int zufallszahl()
     {
         int zahl;
+        //Zufallsobjekt
         Random zufallszahl = new Random();
+        //zahl zwischen 1 und 3
         zahl = 1 + zufallszahl.nextInt(3);
         //return zahl;
-        return 3;
+        return 1;
     }
 
+    /***
+     * Hier wird je nach Zufallszahl das passende Minigame gestartet. Die nicht ausgewählten Minispiele sind
+     * unsichtbar
+     */
     private void minigames(){
+        int zahl = zufallszahl();
 
+        //Minigame 1 (unsichtbar)
+        Minigame1_SwipeButtons minigame1 = new Minigame1_SwipeButtons(Quiz.this);
+        minigame1.invisible();
 
-        if(zufallszahl() == 1){
-           // minigame1_swipe();
+        //Minigame1 wurde ausgewählt
+        if(zahl == 1){
+            //es wird sichtbar
+            minigame1.visible();
+            //es wird gestartet
+            minigame1.spielen();
         }
-        else if (zufallszahl() == 2) {
+        //Minigame2 wurde ausgewählt
+        else if (zahl == 2) {
             minigame2_swipeCardsGame();
-        } else {
+
+        }
+        //Minigame3 wurde ausgewählt
+        else {
             minigame3_pressButton();
         }
-
     }
 
     private void minigame2_swipeCardsGame(){
@@ -208,11 +231,7 @@ public class Quiz extends AppCompatActivity {
 
     }
 
-    private void minigame1_swipe(){
 
-        Minigame1 minigame1 = new Minigame1(Quiz.this);
-
-    }
 
     /**
      * Methode um den zurück-Button zu steuern
@@ -221,7 +240,6 @@ public class Quiz extends AppCompatActivity {
      */
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
         //Musik stoppen
         musik.endMusik();
 
@@ -238,29 +256,43 @@ public class Quiz extends AppCompatActivity {
         return this.level_count;
     }
 
-    //Zurück zur Startseite
+    /***
+     * Methode, um zurück zur Startseite zu gelangen
+     */
     private void zurStartseite() {
         Intent intent = new Intent(this, Startseite.class);
         startActivity(intent);
     }
 
+    /***
+     * Methode, um zurück zur Highscoreliste zu gelangen
+     */
     private void zurHighscoreliste(){
         Intent intent = new Intent(Quiz.this, Highscoreliste.class);
         startActivity(intent);
     }
 
+    /***
+     * Das SlidingUpPanel zum hochziehen für den Hinweis wird hier erstellt
+     */
     private void createPanel()
     {
             //das SlideupPanel dem Hintergrund zuweisen
             SlidingUpPanelLayout layout = findViewById(R.id.hintergrundQuiz_id);
             layout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+
+                //damit das Panel hochgezogen werden kann
                 @Override
                 public void onPanelSlide(View panel, float slideOffset) {
                     findViewById(R.id.textview_panel).setAlpha(1 - slideOffset);
                 }
+                //zur Überprüfung in welchem Zustand sich das Panel befindet
                 @Override
                 public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+
+                    //wenn es hochgezogen wurde
                     if (newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
+                        //den Hinweis ausgeben
                         hinweis = findViewById(R.id.textview_hinweis);
                         hinweis.setText(currentQuestion.getHinweis());
                     }
@@ -268,6 +300,10 @@ public class Quiz extends AppCompatActivity {
             });
     }
 
+    /***
+     *
+     * @throws NullPointerException
+     */
     private void createChronometer() throws NullPointerException{
         try {
             this.chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
@@ -680,10 +716,6 @@ public class Quiz extends AppCompatActivity {
         insertDialog.getWindow().setLayout(720,222);
     }
 
-    private void zumstart(){
-        Intent intent = new Intent(this, Startseite.class);
-        startActivity(intent);
-    }
     /***
      * Hier wird der Countdown auf 30 Sekunden gesetzt und gestartet
      * Der Countdown wird heruntergezählt und auf 0 gesetzt
@@ -728,9 +760,9 @@ public class Quiz extends AppCompatActivity {
 
         //Die String mit der Zeit wird in die Textview gesetzt
 
-        textview_timer.setText(zeitformatiert);
+        textview_Countdown.setText(zeitformatiert);
         //Zeit auch im unteren Layout anzeigen
-        textView_timer_unten.setText("übrige Zeit: " + zeitformatiert);
+        textView_Countdown_unten.setText("übrige Zeit: " + zeitformatiert);
 
         //In den letzten 10 Sekunden wird die Anzeige rot
         countdownTextRed();
@@ -745,13 +777,13 @@ public class Quiz extends AppCompatActivity {
     private void countdownTextRed(){
         //letzeen 10 Sekunden, also rot
         if (verbleibendeZeit < 11000) {
-            textview_timer.setTextColor(Color.RED);
-            textView_timer_unten.setTextColor(Color.RED);
+            textview_Countdown.setTextColor(Color.RED);
+            textView_Countdown_unten.setTextColor(Color.RED);
 
         //Ansonsten bleibt die Anzeige wie voher
         } else {
-            textview_timer.setTextColor(Color.BLACK);
-            textView_timer_unten.setTextColor(Color.BLACK);
+            textview_Countdown.setTextColor(Color.BLACK);
+            textView_Countdown_unten.setTextColor(Color.BLACK);
         }
     }
 
