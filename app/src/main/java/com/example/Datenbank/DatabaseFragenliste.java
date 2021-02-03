@@ -14,13 +14,13 @@ import java.util.List;
 /**
  * Klasse der Datenbank für Fragen, Antworten und Hinweisen
  */
-public class DatabaseHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "FRAGEN.db";
+public class DatabaseFragenliste extends SQLiteOpenHelper {
+    public static final String DATABASE_NAME = "fragen.db";
 
     private SQLiteDatabase db;
 
-    public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 3);
+    public DatabaseFragenliste(Context context) {
+        super(context, DATABASE_NAME, null, 1);
     }
 
     /**

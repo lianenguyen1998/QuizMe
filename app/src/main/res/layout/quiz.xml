@@ -286,8 +286,6 @@
             android:id="@+id/cards"
             app:max_visible="10"
             app:rotation_degrees="20"
-            app:min_adapter_stack="11"
-
             />
 
         <com.ebanx.swipebtn.SwipeButton

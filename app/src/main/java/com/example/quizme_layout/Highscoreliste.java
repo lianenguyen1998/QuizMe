@@ -9,7 +9,7 @@ import android.widget.Button;
 import de.codecrafters.tableview.*;
 import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter;
 import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter;
-import com.example.Datenbank.TableHelper;
+import com.example.Datenbank.HighscoreTableHelper;
 
 public class Highscoreliste extends AppCompatActivity {
 
@@ -21,7 +21,7 @@ public class Highscoreliste extends AppCompatActivity {
 
     //Tableview -- um Highscoreliste auszugeben
     TableView<String[]> table;
-    TableHelper tableHelper;
+    HighscoreTableHelper highscoreTableHelper;
 
     //Hintergrundmusik
     private Musik musik;
@@ -63,16 +63,16 @@ public class Highscoreliste extends AppCompatActivity {
 
         //Tableview um Highscorliste auszugeben
 
-        tableHelper = new TableHelper(this);
+        highscoreTableHelper = new HighscoreTableHelper(this);
         table = (TableView<String[]>) findViewById(R.id.highscoreview);
         // Vier Werte für den Header
         table.setColumnCount(4);
         //Farbe des Headers
         table.setHeaderBackgroundColor(Color.parseColor("#D290FFE8"));
         //Header ausgeben
-        table.setHeaderAdapter(new SimpleTableHeaderAdapter(this, tableHelper.getHeader()));
+        table.setHeaderAdapter(new SimpleTableHeaderAdapter(this, highscoreTableHelper.getHeader()));
         //Tabelle mit Spielern ausgeben
-        table.setDataAdapter(new SimpleTableDataAdapter(this, tableHelper.getSpieler()));
+        table.setDataAdapter(new SimpleTableDataAdapter(this, highscoreTableHelper.getSpieler()));
 
 
 

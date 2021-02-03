@@ -19,7 +19,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.Datenbank.DatabaseHelper;
+import com.example.Datenbank.DatabaseFragenliste;
 import com.example.Datenbank.DatabaseHighscorelist;
 import com.example.Datenbank.HighscoreModel;
 import com.example.Datenbank.QuizMeModel;
@@ -45,8 +45,6 @@ public class Quiz extends AppCompatActivity {
     private int questionCounter;
     private int questionCountTotal;
     private QuizMeModel currentQuestion;
-
-    private List<HighscoreModel> highscoreliste;
 
     //Countdown Variables
     private TextView textView_Countdown_unten;
@@ -106,7 +104,7 @@ public class Quiz extends AppCompatActivity {
         option4.setOnClickListener(answer);
 
         //Datenbank initialisieren
-        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        DatabaseFragenliste dbHelper = new DatabaseFragenliste(this);
         //liste mit allen Fragen aus der Datenbank
         fragenliste = dbHelper.getAllQuestions();
         questionCountTotal = fragenliste.size();
@@ -328,20 +326,15 @@ public class Quiz extends AppCompatActivity {
             switch (v.getId()){
                 case R.id.choice1:
                     checkAnswer(1,option1);
-                    //Button nicht doppelt klicken können
-                    option1.setEnabled(false);
                     break;
                 case R.id.choice2:
                     checkAnswer(2,option2);
-                    option2.setEnabled(false);
                     break;
                 case R.id.choice3:
                     checkAnswer(3,option3);
-                    option3.setEnabled(false);
                     break;
                 case R.id.choice4:
                     checkAnswer(4,option4);
-                    option4.setEnabled(false);
                     break;
             }
 

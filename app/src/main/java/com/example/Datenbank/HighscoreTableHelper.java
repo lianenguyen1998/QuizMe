@@ -1,26 +1,19 @@
 package com.example.Datenbank;
 
 import android.content.Context;
-
-import com.example.quizme_layout.Quiz;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
  * Erstellen der Highscoreliste
  */
-public class TableHelper{
+public class HighscoreTableHelper {
 
     Context c;
 
     //Tabellenkopf
-    private String[] header = {"Rang", "Name", "Level", "Zeit"};
-    private String [][] spieler;
+    private final String[] header = {"Rang", "Name", "Level", "Zeit"};
 
-    public TableHelper(Context c){
+    public HighscoreTableHelper(Context c){
         this.c = c;
     }
 
@@ -43,9 +36,9 @@ public class TableHelper{
         //aktueller Spieler
         HighscoreModel currentmodel;
 
-        int increment = 1;
+        int rang = 1;
 
-        this.spieler = new String[spielerListe.size()][4];
+        String[][] spieler = new String[spielerListe.size()][4];
 
         for(int i = 0; i < spielerListe.size(); i++){
 
@@ -53,7 +46,7 @@ public class TableHelper{
             currentmodel = spielerListe.get(i);
 
             //rang
-            spieler[i][0] = String.valueOf(increment);
+            spieler[i][0] = String.valueOf(rang);
             //Name des Spielers
             spieler[i][1] = currentmodel.getUsername();
             //Levelanzahl bei dem der Spieler aufgehört hat
@@ -62,7 +55,7 @@ public class TableHelper{
             spieler[i][3] = String.valueOf(currentmodel.getUserzeit());
 
             //neuer Rang, wenn neuer Spieler eingefügt wird
-            ++increment;
+            ++rang;
         }
     return spieler;
     }

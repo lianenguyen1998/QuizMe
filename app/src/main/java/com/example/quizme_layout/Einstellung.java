@@ -55,6 +55,7 @@ public class Einstellung extends AppCompatActivity {
                     public void onCheckedChanged(CompoundButton buttonView, boolean defValue) {
                         if (buttonView.isChecked()) {
 
+
                             // Musik an
                             musik.startMusik();
 
