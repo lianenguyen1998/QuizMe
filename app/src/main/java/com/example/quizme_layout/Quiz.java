@@ -170,8 +170,7 @@ public class Quiz extends AppCompatActivity {
         Random zufallszahl = new Random();
         //zahl zwischen 1 und 3
         zahl = 1 + zufallszahl.nextInt(3);
-        //return zahl;
-        return 1;
+        return zahl;
     }
 
     /***
@@ -228,8 +227,6 @@ public class Quiz extends AppCompatActivity {
         game3.clickMe();
 
     }
-
-
 
     /**
      * Methode um den zurück-Button zu steuern
@@ -299,7 +296,7 @@ public class Quiz extends AppCompatActivity {
     }
 
     /***
-     *
+     *diese Methode startet den Chronometer
      * @throws NullPointerException
      */
     private void createChronometer() throws NullPointerException{
@@ -310,6 +307,7 @@ public class Quiz extends AppCompatActivity {
                     chronometer = _chronometer;
                 }
             });
+            //starten
             chronometer.start();
         } catch (NullPointerException e){
             e.printStackTrace();
@@ -433,10 +431,12 @@ public class Quiz extends AppCompatActivity {
      * Wenn ein Button mit der falschen Antwort gedrückt wird, bekommt man ein Leben abgezogen
      */
     private void checkAllAnswers() {
+        //das maximale Level
         int MAXLEVEL = 50;
         if(level_count >=1 && level_count <= MAXLEVEL) {
-            //wenn die Antwort richtig ist level hochzählen
+
             if (this.checkAnswer(1, option1) || this.checkAnswer(2, option2) || this.checkAnswer(3, option3) || this.checkAnswer(4, option4))  {
+                //wenn die Antwort richtig ist Level hochzählen
                 this.level_count++;
             }
             else {
@@ -458,6 +458,8 @@ public class Quiz extends AppCompatActivity {
      * Soll dafür sorgen, dass angezeigt wird wie viele Leben noch da sind.
      * Außerdem verschwinden je nach Leben die Textview-Herzen
      * Wenn man 0 Leben hat, dann kommt das Verloren-Pop-Up
+     *
+     * wenn alle Leben verbraucht sind, endet das Spiel
      */
     private void showLeben()
     {   //Die Anzahl der Leben auf der Textview ausgeben
@@ -492,6 +494,7 @@ public class Quiz extends AppCompatActivity {
 
     /**
      * Hier werden die Leben abgezogen, die man dadurch verliert, dass der Countdown abläuft
+     * Außerdem kommt der Spieler zur nächsten Frage und der Countdown startet neu
      */
     private void CountdownAbgelaufen(){
         //Aktuelle Anzahl der Leben anzeigen
@@ -582,13 +585,16 @@ public class Quiz extends AppCompatActivity {
                 dismissWithTryCatch(dialogLost);
             }
         });
+        //wenn das PopUp verlassen wird (durch den Zurückbutton des Tablets)
         dialogLost.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
+                //schließen des PopUps
                 dialog.dismiss();
+                //beenden der Musik
                 musik.endMusik();
+                //weiterleiten zur Startseite
                 zurStartseite();
-
             }
         });
 
@@ -629,6 +635,20 @@ public class Quiz extends AppCompatActivity {
                 musik.endMusik();
             }
         });
+
+        //wenn das PopUp verlassen wird (durch den Zurückbutton des Tablets)
+        dialogWin.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                //schließen des PopUps
+                dialog.dismiss();
+                //beenden der Musik
+                musik.endMusik();
+                //weiterleiten zur Startseite
+                zurStartseite();
+            }
+        });
+
         //Popup anzeigen lassen, wenn es nicht schließt
         if(!isFinishing())
             dialogWin.show();
@@ -679,11 +699,15 @@ public class Quiz extends AppCompatActivity {
             }
         });
 
+        //wenn das PopUp verlassen wird (durch den Zurückbutton des Tablets)
         insertUsername.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
+                //schließen des PopUps
                 dialog.dismiss();
+                //beenden der Musik
                 musik.endMusik();
+                //weiterleiten zur Startseite
                 zurStartseite();
             }
         });
