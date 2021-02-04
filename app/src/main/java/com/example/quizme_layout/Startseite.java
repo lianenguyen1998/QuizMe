@@ -156,7 +156,5 @@ public class Startseite extends AppCompatActivity {
         //zur Startseite
         Intent intent = new Intent(this, Startseite.class);
         startActivity(intent);
-        super.onBackPressed();
-
     }
 }

@@ -567,6 +567,25 @@ public class Quiz extends AppCompatActivity {
             mydialog.show();
     }
 
+    /***
+     * hier wird der Zurückbutton für das jeweilige PopUp gesteuert.
+     * Die Musik wird gestoppt und der Spieler gelangt zur Startseite
+     * @param _popUp das jeweilige PopUp
+     */
+    private void setzeZuruekButton(Dialog _popUp){
+        //wenn das PopUp verlassen wird (durch den Zurückbutton des Tablets)
+        _popUp.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                //schließen des PopUps
+                dialog.dismiss();
+                //beenden der Musik
+                musik.endMusik();
+                //weiterleiten zur Startseite
+                zurStartseite();
+            }
+        });
+    }
 
     private void popUpVerloren(){
 
@@ -585,18 +604,8 @@ public class Quiz extends AppCompatActivity {
                 dismissWithTryCatch(dialogLost);
             }
         });
-        //wenn das PopUp verlassen wird (durch den Zurückbutton des Tablets)
-        dialogLost.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                //schließen des PopUps
-                dialog.dismiss();
-                //beenden der Musik
-                musik.endMusik();
-                //weiterleiten zur Startseite
-                zurStartseite();
-            }
-        });
+
+        setzeZuruekButton(dialogLost);
 
         //wenn es nicht schließt, Popup anzeigen lassen
     if(!isFinishing())
@@ -636,18 +645,7 @@ public class Quiz extends AppCompatActivity {
             }
         });
 
-        //wenn das PopUp verlassen wird (durch den Zurückbutton des Tablets)
-        dialogWin.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                //schließen des PopUps
-                dialog.dismiss();
-                //beenden der Musik
-                musik.endMusik();
-                //weiterleiten zur Startseite
-                zurStartseite();
-            }
-        });
+       setzeZuruekButton(dialogWin);
 
         //Popup anzeigen lassen, wenn es nicht schließt
         if(!isFinishing())
@@ -776,7 +774,6 @@ public class Quiz extends AppCompatActivity {
         String zeitformatiert = String.format(Locale.getDefault(), "%02d", sekunden);
 
         //Die String mit der Zeit wird in die Textview gesetzt
-
         textview_Countdown.setText(zeitformatiert);
         //Zeit auch im unteren Layout anzeigen
         textView_Countdown_unten.setText("übrige Zeit: " + zeitformatiert);
