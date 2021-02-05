@@ -136,7 +136,7 @@ public class Quiz extends AppCompatActivity {
         textview_leben1 = findViewById(R.id.textview_leben1);
         textView_lebenAnzeige = findViewById(R.id.textview_LebenCount);
 
-        //Countdown
+        //Countdown Textviews
         textview_Countdown = findViewById(R.id.textview_Countdown);
         textView_Countdown_unten = findViewById(R.id.textview_Countdown_unten);
 
