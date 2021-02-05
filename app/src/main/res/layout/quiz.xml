@@ -352,53 +352,53 @@
             app:inner_text_size="24dp"
             />
 
-        <Button
-            android:id="@+id/klickMich"
-            android:layout_width="650dp"
-            android:layout_height="600dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_centerInParent="true"
-            android:layout_marginEnd="73dp"
-            android:layout_marginBottom="295dp"
-            android:background="@drawable/pressthebutton_red_round"
-            android:fontFamily="@font/raleway_semibold"
-            android:text="@string/klick_mich"
-            android:textColor="@color/black"
-            android:textSize="45sp"
-            app:iconPadding="8dp" />
+<!--        <Button-->
+<!--            android:id="@+id/klickMich"-->
+<!--            android:layout_width="650dp"-->
+<!--            android:layout_height="600dp"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:layout_marginEnd="73dp"-->
+<!--            android:layout_marginBottom="295dp"-->
+<!--            android:background="@drawable/pressthebutton_red_round"-->
+<!--            android:fontFamily="@font/raleway_semibold"-->
+<!--            android:text="@string/klick_mich"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="45sp"-->
+<!--            app:iconPadding="8dp" />-->
 
-        <TextView
-            android:id="@+id/klickZaehler"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="1010dp"
-            android:layout_marginEnd="323dp"
-            android:fontFamily="@font/raleway_medium"
-            android:padding="8dp"
-            android:text="@string/klicks_0"
-            android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textSize="30sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/klickZaehler"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginTop="1010dp"-->
+<!--            android:layout_marginEnd="323dp"-->
+<!--            android:fontFamily="@font/raleway_medium"-->
+<!--            android:padding="8dp"-->
+<!--            android:text="@string/klicks_0"-->
+<!--            android:textAllCaps="true"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="30sp" />-->
 
-        <TextView
-            android:id="@+id/klickMax"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginEnd="217dp"
-            android:layout_marginBottom="1003dp"
-            android:fontFamily="@font/raleway_medium"
-            android:padding="8dp"
-            android:text="Klicke 15x"
-            android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textSize="65sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/klickMax"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginEnd="217dp"-->
+<!--            android:layout_marginBottom="1003dp"-->
+<!--            android:fontFamily="@font/raleway_medium"-->
+<!--            android:padding="8dp"-->
+<!--            android:text="Klicke 15x"-->
+<!--            android:textAllCaps="true"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="65sp" />-->
 
     </RelativeLayout>
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

@@ -9,17 +9,20 @@
         android:roundIcon="@mipmap/icon_quizme"
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizMe_Layout">
-        <activity android:name=".Einstellung" />
-        <activity android:name=".Infotext" />
-        <activity android:name=".Highscoreliste" />
+        <activity android:name=".Einstellung"
+            android:screenOrientation="locked"/>
+        <activity android:name=".Infotext"
+            android:screenOrientation="locked"/>
+        <activity android:name=".Highscoreliste"
+            android:screenOrientation="locked"/>
         <activity
             android:name=".Quiz"
+            android:screenOrientation="locked"
             android:parentActivityName=".Startseite" />
         <activity android:name=".Startseite"
-            android:screenOrientation="sensor">
+            android:screenOrientation="locked">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

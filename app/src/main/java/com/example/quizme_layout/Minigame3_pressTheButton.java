@@ -1,5 +1,6 @@
 package com.example.quizme_layout;
 
+import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -7,35 +8,34 @@ import android.widget.TextView;
 public class Minigame3_pressTheButton {
 
     // Variablen festlegen
-    private final Button klickMich_b;
-    private final TextView klickZaehler_tv;
-    private final TextView klickMax_tv;
+   private Button klickMich_b;
+   private TextView klickZaehler_tv;
+   private TextView klickMax_tv;
 
-    // Klickanzahl fängt bei 0 an
+    // Klickanzahl wird auf 0 gesetzt -> Anfangsstatus
     int klickAnzahl = 0;
 
 
-    /***
-     * Konstruktor
+    /**
+     * Konstruktor, der die Views der Activity zuweist
+     * @param activity Activity -> Quiz
      */
-    public Minigame3_pressTheButton(Button button, TextView view, TextView v){
-        klickMich_b = button;
-        klickZaehler_tv = view;
-        klickMax_tv = v;
+    public Minigame3_pressTheButton(Activity activity){
+        klickMich_b = activity.findViewById(R.id.klickMich);
+        klickZaehler_tv = activity.findViewById(R.id.klickZaehler);
+        klickMax_tv = activity.findViewById(R.id.klickMax);
 
-        klickMich_b.setVisibility(View.VISIBLE);
-        klickZaehler_tv.setVisibility(View.VISIBLE);
-        klickMax_tv.setVisibility(View.VISIBLE);
+//        klickMich_b.setVisibility(View.VISIBLE);
+//        klickZaehler_tv.setVisibility(View.VISIBLE);
+//        klickMax_tv.setVisibility(View.VISIBLE);
 
-//        reset();
+        reset();
 
     }
 
-    public void clickMe(){
+    public void clickMe() {
 
-        /*
-         * onClick für die Klicks
-         */
+        // onClick für die Klicks
         klickMich_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,16 +44,20 @@ public class Minigame3_pressTheButton {
 
                 // maximale Anzahl der Klicks festlegen -> max. 15
                 if (klickAnzahl == 15) {
+
+                    // Button blockieren
                     klickMich_b.setEnabled(false);
 
-                    klickMich_b.setVisibility(View.INVISIBLE);
-                    klickZaehler_tv.setVisibility(View.INVISIBLE);
-                    klickMax_tv.setVisibility(View.INVISIBLE);
+//                    klickMich_b.setVisibility(View.INVISIBLE);
+//                    klickZaehler_tv.setVisibility(View.INVISIBLE);
+//                    klickMax_tv.setVisibility(View.INVISIBLE);
 
+                    // Views überprüfen
                     checkAll();
 
                 }
 
+                // klickAnzahl wird dem Textview zugewiesen
                 klickZaehler_tv.setText("Klicks: " + klickAnzahl);
             }
         });
@@ -64,19 +68,54 @@ public class Minigame3_pressTheButton {
      * hier wird überprüft, ob alle Buttons sich im richtigen Zustand befinden
      * Wenn ja, werden die Buttons unsichtbar, damit der Hinweis gelesen werden kann
      */
-    private void checkAll(){
-        if(klickMich_b.isEnabled()==false && klickZaehler_tv.isEnabled()==false && klickMax_tv.isEnabled()==false) {
-            klickMich_b.setVisibility(View.GONE);
-            klickZaehler_tv.setVisibility(View.GONE);
-            klickMax_tv.setVisibility(View.GONE);
+    public void checkAll() {
+
+        // wenn alle Views blockiert sind
+        if(klickMich_b.isEnabled()==false && klickZaehler_tv.isEnabled()==false  && klickMax_tv.isEnabled()==false ) {
+
+                // unsichtbar machen
+                invisible();
+            }
+            // zurücksetzen des Buttons
+            reset();
         }
+
+
+    // zurücksetzen und entblockieren der Views
+    public void reset(){
+
+        klickMich_b=null;
+        klickMax_tv=null;
+        klickMax_tv=null;
+
+        // entblockieren
+        klickMich_b.setEnabled(true);
+        klickZaehler_tv.setEnabled(true);
+        klickMax_tv.setEnabled(true);
+
     }
 
-//    public void reset(){
-//
-//        klickMich_b.setEnabled(true);
-//        klickZaehler_tv.setEnabled(true);
-//        klickMax_tv.setEnabled(true);
-//
-//    }
+    // Views werden sichtbar
+    public void visible(){
+        klickMich_b.setVisibility(View.VISIBLE);
+        klickZaehler_tv.setVisibility(View.VISIBLE);
+        klickMax_tv.setVisibility(View.VISIBLE);
+    }
+
+    // Views werden unsichtbar
+    public void invisible(){
+        klickMich_b.setVisibility(View.INVISIBLE);
+        klickZaehler_tv.setVisibility(View.INVISIBLE);
+        klickMax_tv.setVisibility(View.INVISIBLE);
+    }
 }
+
+
+
+
+
+
+
+
+
+

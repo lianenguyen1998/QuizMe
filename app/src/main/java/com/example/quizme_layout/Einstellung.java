@@ -9,7 +9,7 @@ import android.widget.Switch;
 
 public class Einstellung extends AppCompatActivity {
 
-    //Hintergrundmusik Variable
+    // Hintergrundmusik Variable
      private Musik musik;
 
     // SwitchButton Variable
@@ -21,6 +21,7 @@ public class Einstellung extends AppCompatActivity {
 
     boolean switch_status;
 
+    // Zum Speichern des Switchs -> letzten Stand (an/aus)
     SharedPreferences myPreferences;
     SharedPreferences.Editor myEditor;
 
@@ -29,10 +30,10 @@ public class Einstellung extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.einstellung);
 
-        //Hintergrundanimation
+        // Hintergrundanimation
         HintergrundAnimation hintergrundAnimation = new HintergrundAnimation(Einstellung.this,4000);
 
-        //Hintergrundmusik (wird gestartet)
+        // Hintergrundmusik (wird gestartet)
         musik = new Musik(this);
 
         musikSwitch = (Switch) findViewById(R.id.musik);
@@ -40,13 +41,10 @@ public class Einstellung extends AppCompatActivity {
         myPreferences = getSharedPreferences(MY_PREFS, MODE_PRIVATE);
         myEditor =  getSharedPreferences(MY_PREFS, MODE_PRIVATE).edit();
 
-        // false ist der default Wert
+        // default Wert -> false
         switch_status = myPreferences.getBoolean(SWITCH_STATUS, false);
 
         musikSwitch.setChecked(switch_status);
-
-        // Musik ist beim öffnen der App aus
-        musik.pauseMusik();
 
         musikSwitch.setOnCheckedChangeListener(
                 new CompoundButton.OnCheckedChangeListener() {
@@ -55,21 +53,20 @@ public class Einstellung extends AppCompatActivity {
                     public void onCheckedChanged(CompoundButton buttonView, boolean defValue) {
                         if (buttonView.isChecked()) {
 
-
                             // Musik an
-                            musik.startMusik();
+//                            musik.startMusik();
 
-                            // Switch Status wird auf true gesetzt
+                            // Switch wird auf true gesetzt -> bleibt an
                             myEditor.putBoolean(SWITCH_STATUS, true);
                             myEditor.apply();
                             musikSwitch.setChecked(true);
 
                         } else {
 
-                            // Musik aus
-                            musik.pauseMusik();
+                            // Musik aus/pausieren
+//                            musik.pauseMusik();
 
-                            // Switch Status wird auf false gesetzt
+                            // Switch wird auf false gesetzt -> bleibt aus
                             myEditor.putBoolean(SWITCH_STATUS, false);
                             myEditor.apply();
                             musikSwitch.setChecked(false);
@@ -90,7 +87,7 @@ public class Einstellung extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //Musik stoppen
-//        musik.endMusik();
+        musik.endMusik();
 
         //zur Startseite
         Intent intent = new Intent(this, Startseite.class);

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -184,6 +185,9 @@ public class Quiz extends AppCompatActivity {
         Minigame1_SwipeButtons minigame1 = new Minigame1_SwipeButtons(Quiz.this);
         minigame1.invisible();
 
+//        Minigame3_pressTheButton minigame3 = new Minigame3_pressTheButton(Quiz.this);
+//        minigame3.invisible();
+
         //Minigame1 wurde ausgewählt
         if(zahl == 1){
             //es wird sichtbar
@@ -194,11 +198,14 @@ public class Quiz extends AppCompatActivity {
         //Minigame2 wurde ausgewählt
         else if (zahl == 2) {
             minigame2_swipeCardsGame();
-
         }
         //Minigame3 wurde ausgewählt
         else {
-            minigame3_pressButton();
+//            minigame3_pressButton();
+//            //es wird sichtbar
+//            minigame3.visible();
+//            //es wird gestartet
+//            minigame3.clickMe();
         }
     }
 
@@ -208,25 +215,6 @@ public class Quiz extends AppCompatActivity {
 
     }
 
-    private void minigame3_pressButton(){
-
-        Minigame3_pressTheButton game3;
-        Button klickMich_b;
-        TextView klickZaehler_tv;
-        TextView klickMax_tv;
-
-        klickMich_b =  findViewById(R.id.klickMich);
-        klickZaehler_tv = findViewById(R.id.klickZaehler);
-        klickMax_tv = findViewById(R.id.klickMax);
-
-        klickMich_b.setVisibility(View.INVISIBLE);
-        klickZaehler_tv.setVisibility(View.INVISIBLE);
-        klickMax_tv.setVisibility(View.INVISIBLE);
-
-        game3 = new Minigame3_pressTheButton(klickMich_b, klickZaehler_tv, klickMax_tv);
-        game3.clickMe();
-
-    }
 
     /**
      * Methode um den zurück-Button zu steuern
