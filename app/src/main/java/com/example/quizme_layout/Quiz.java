@@ -680,6 +680,9 @@ public class Quiz extends AppCompatActivity {
         insertUsername.setMessage("Um auf die Highscoreliste zu gelangen, geben Sie bitte Ihren Namen ein:");
 
         final EditText username = new EditText(Quiz.this);
+
+        // Anmerkung wo Name eingegeben werden soll
+        username.setHint("  Hier Name eingeben ");
         //festlegen was man eingeben kann
         username.setInputType(InputType.TYPE_CLASS_TEXT );
         insertUsername.setView(username);

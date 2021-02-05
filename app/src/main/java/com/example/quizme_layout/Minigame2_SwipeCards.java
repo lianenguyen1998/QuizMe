@@ -20,6 +20,11 @@ public class Minigame2_SwipeCards {
     SwipeFlingAdapterView swipeAdapter;
     Boolean nextQuestion;
 
+    /**
+     * Konstruktor
+     * @param _activity Activity die übergeben wird
+     * @param nextquestion Abfrage ob nächstes Level kommt
+     */
     public Minigame2_SwipeCards(Activity _activity, Boolean nextquestion)
     {
         //activity = _activity;
@@ -30,7 +35,10 @@ public class Minigame2_SwipeCards {
         //createCards();
     }
 
-    //Karten zur Liste hinzufügen
+    /**
+     * Karten zur Liste hinzufügen
+     */
+
     public void add(){
 
         cards.add("SWIPE");
