@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -170,7 +171,6 @@ public class Quiz extends AppCompatActivity {
         Random zufallszahl = new Random();
         //zahl zwischen 1 und 3
         zahl = 1 + zufallszahl.nextInt(3);
-        //return zahl;
         return zahl;
     }
 
@@ -204,7 +204,11 @@ public class Quiz extends AppCompatActivity {
         }
         //Minigame3 wurde ausgewählt
         else {
-            minigame3_pressButton();
+//            minigame3_pressButton();
+//            //es wird sichtbar
+//            minigame3.visible();
+//            //es wird gestartet
+//            minigame3.clickMe();
         }
     }
 
@@ -214,25 +218,6 @@ public class Quiz extends AppCompatActivity {
 
     }
 
-    private void minigame3_pressButton(){
-
-        Minigame3_pressTheButton game3;
-        Button klickMich_b;
-        TextView klickZaehler_tv;
-        TextView klickMax_tv;
-
-        klickMich_b =  findViewById(R.id.klickMich);
-        klickZaehler_tv = findViewById(R.id.klickZaehler);
-        klickMax_tv = findViewById(R.id.klickMax);
-
-        klickMich_b.setVisibility(View.INVISIBLE);
-        klickZaehler_tv.setVisibility(View.INVISIBLE);
-        klickMax_tv.setVisibility(View.INVISIBLE);
-
-        game3 = new Minigame3_pressTheButton(klickMich_b, klickZaehler_tv, klickMax_tv);
-        game3.clickMe();
-
-    }
 
     /**
      * Methode um den zurück-Button zu steuern
@@ -363,9 +348,7 @@ public class Quiz extends AppCompatActivity {
             option4.setText(currentQuestion.getOption4());
 
             questionCounter++;
-
         }
-
     }
 
     private void saveQuestion(){
@@ -530,7 +513,7 @@ public class Quiz extends AppCompatActivity {
     /**
      * Popup zum nächsten Level
      */
-    public void createNextLevelDialog(){
+    private void createNextLevelDialog(){
 
         if(questionCounter < questionCountTotal) {
             mydialog.setContentView(R.layout.popupnextlevel);
@@ -568,18 +551,35 @@ public class Quiz extends AppCompatActivity {
                     }
                     startCountdown();
 
-
                     mydialog.dismiss();
                 }
             });
         }
 
         //show Popup
-        if(!isFinishing()) {
+        if(!isFinishing())
             mydialog.show();
-        }
     }
 
+    /***
+     * hier wird der Zurückbutton für das jeweilige PopUp gesteuert.
+     * Die Musik wird gestoppt und der Spieler gelangt zur Startseite
+     * @param _popUp das jeweilige PopUp
+     */
+    private void setzeZuruekButton(Dialog _popUp){
+        //wenn das PopUp verlassen wird (durch den Zurückbutton des Tablets)
+        _popUp.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                //schließen des PopUps
+                dialog.dismiss();
+                //beenden der Musik
+                musik.endMusik();
+                //weiterleiten zur Startseite
+                zurStartseite();
+            }
+        });
+    }
 
     private void popUpVerloren(){
 
@@ -598,18 +598,8 @@ public class Quiz extends AppCompatActivity {
                 dismissWithTryCatch(dialogLost);
             }
         });
-        //wenn das PopUp verlassen wird (durch den Zurückbutton des Tablets)
-        dialogLost.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                //schließen des PopUps
-                dialog.dismiss();
-                //beenden der Musik
-                musik.endMusik();
-                //weiterleiten zur Startseite
-                zurStartseite();
-            }
-        });
+
+        setzeZuruekButton(dialogLost);
 
         //wenn es nicht schließt, Popup anzeigen lassen
     if(!isFinishing())
@@ -649,18 +639,7 @@ public class Quiz extends AppCompatActivity {
             }
         });
 
-        //wenn das PopUp verlassen wird (durch den Zurückbutton des Tablets)
-        dialogWin.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                //schließen des PopUps
-                dialog.dismiss();
-                //beenden der Musik
-                musik.endMusik();
-                //weiterleiten zur Startseite
-                zurStartseite();
-            }
-        });
+       setzeZuruekButton(dialogWin);
 
         //Popup anzeigen lassen, wenn es nicht schließt
         if(!isFinishing())
@@ -789,7 +768,6 @@ public class Quiz extends AppCompatActivity {
         String zeitformatiert = String.format(Locale.getDefault(), "%02d", sekunden);
 
         //Die String mit der Zeit wird in die Textview gesetzt
-
         textview_Countdown.setText(zeitformatiert);
         //Zeit auch im unteren Layout anzeigen
         textView_Countdown_unten.setText("übrige Zeit: " + zeitformatiert);

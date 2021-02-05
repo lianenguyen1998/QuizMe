@@ -2,7 +2,6 @@ package com.example.quizme_layout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -46,9 +45,7 @@ public class Startseite extends AppCompatActivity {
         HintergrundAnimation hintergrundAnimation = new HintergrundAnimation(Startseite.this,3000);
 
         //Hintergrundmusik (wird gesartet)
-     //   musik = new Musik(this);
-//        musik.pauseMusik();
-
+        musik = new Musik(this);
 
         //Sound für den Buttonklick
         buttonSound = new Musik(Startseite.this, true);
@@ -82,7 +79,7 @@ public class Startseite extends AppCompatActivity {
             public void onClick(View v) {
                buttonSound.starteButtonsound();
                 openQuiz();
-               // musik.endMusik();
+                musik.endMusik();
             }
         });
 
@@ -91,7 +88,7 @@ public class Startseite extends AppCompatActivity {
             public void onClick(View v) {
                 buttonSound.starteButtonsound();
                 openHighscoreliste();
-            //    musik.endMusik();
+                musik.endMusik();
             }
         });
 
@@ -100,7 +97,7 @@ public class Startseite extends AppCompatActivity {
             public void onClick(View v) {
                 buttonSound.starteButtonsound();
                 openInfotext();
-            //    musik.endMusik();
+                musik.endMusik();
                     //openBackgroundTest();
             }
         });
@@ -110,7 +107,7 @@ public class Startseite extends AppCompatActivity {
             public void onClick(View v) {
                 buttonSound.starteButtonsound();
                 openEinstellung();
-               // musik.endMusik();
+                musik.endMusik();
                 //openBackgroundTest();
             }
         });
@@ -150,13 +147,11 @@ public class Startseite extends AppCompatActivity {
      */
     @Override
     public void onBackPressed() {
-        //Musik stoppen
-       // musik.endMusik();
+        // Musik stoppen
+        musik.endMusik();
 
         //zur Startseite
         Intent intent = new Intent(this, Startseite.class);
         startActivity(intent);
-        super.onBackPressed();
-
     }
 }

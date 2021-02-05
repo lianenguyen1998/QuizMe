@@ -58,7 +58,7 @@
         android:fontFamily="@font/raleway_medium"
         android:lineSpacingExtra="8sp"
         android:padding="8dp"
-        android:text="QuizMe umfasst allwissende Fragen, mit insgesamt 50 Fragen und 3 Leben pro Runde. Jede Frage hat 4 Antwortmöglichkeiten und einen Hinweis. Sie haben 45 Sekunden Zeit, um eine Frage zu beantworten. Wenn die Frage nicht in der vorgegebenen Zeit gelöst wird, wird ein Leben abgezogen. Wenn alle 3 Leben weg sind, müssen Sie wieder von vorne anfangen zu spielen. \n\n Viel Spaß beim Knobbeln!"
+        android:text="QuizMe umfasst allgemeine Wissensfragen, mit insgesamt 50 Fragen und 3 Leben pro Runde. Jede Frage hat 4 Antwortmöglichkeiten und einen Hinweis. Sie haben 45 Sekunden Zeit, um eine Frage zu beantworten. Wenn die Frage nicht in der vorgegebenen Zeit gelöst wird, wird ein Leben abgezogen. Wenn alle 3 Leben weg sind, müssen Sie wieder von vorne anfangen zu spielen. \n\n Viel Spaß beim Knobbeln!"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="#1E1E1E"

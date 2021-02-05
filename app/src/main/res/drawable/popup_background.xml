@@ -7,7 +7,7 @@
                 android:startColor="#5DFDB7"
                 android:endColor="#95AFFF"
                 android:type="linear"/>
-            <stroke android:width="3.8px" android:color="#C3062C68" />
+            <stroke android:width="3.8px" android:color="#093D65" />
         </shape>
     </item>
 </selector>
