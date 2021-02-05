@@ -3,23 +3,31 @@ package com.example.quizme_layout;
 import android.app.Activity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 import java.util.ArrayList;
 
+/**
+ * Swipe Cards Minigame
+ */
 public class Minigame2_SwipeCards {
 
     Activity activity;
     ArrayList<String> cards = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
     SwipeFlingAdapterView swipeAdapter;
+    Boolean nextQuestion;
 
-
-    public Minigame2_SwipeCards(Activity _activity)
+    public Minigame2_SwipeCards(Activity _activity, Boolean nextquestion)
     {
-        activity = _activity;
-        reset();
-        //add();
-        createCards();
+        //activity = _activity;
+        arrayAdapter = new ArrayAdapter<>(_activity, R.layout.karten, R.id.textview_kartenzahl, cards);
+        swipeAdapter  = (SwipeFlingAdapterView) _activity.findViewById(R.id.cards);
+        nextQuestion = nextquestion;
+        //reset();
+        //createCards();
     }
 
     //Karten zur Liste hinzufügen
@@ -37,26 +45,31 @@ public class Minigame2_SwipeCards {
         cards.add("NOCH EINS");
     }
 
+    /**
+     * Zurücksetzen des Spiels
+     * @throws NullPointerException
+     */
     public void reset() throws NullPointerException{
         try {
-            if (swipeAdapter != null) {
                 swipeAdapter.removeAllViewsInLayout();
-                arrayAdapter.notifyDataSetChanged();
-            }
+                //createCards();
+
         } catch (NullPointerException e){
             e.printStackTrace();
         }
     }
 
+    /**
+     * Spiel ausführen
+     */
     public void createCards(){
         //Karten hinzufügen
         add();
 
-        arrayAdapter = new ArrayAdapter<>(activity, R.layout.karten, R.id.textview_kartenzahl, cards);
-        swipeAdapter  = (SwipeFlingAdapterView) activity.findViewById(R.id.cards);
         swipeAdapter.setAdapter(arrayAdapter);
 
         swipeAdapter.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
+
             @Override
             public void removeFirstObjectInAdapter() {
 
@@ -64,10 +77,13 @@ public class Minigame2_SwipeCards {
                 cards.remove(0);
                 //Adapter bescheid geben
                 arrayAdapter.notifyDataSetChanged();
+                swipeAdapter.setVisibility(View.VISIBLE);
+
             }
 
             @Override
             public void onLeftCardExit(Object o) {
+
 
             }
 
@@ -78,8 +94,9 @@ public class Minigame2_SwipeCards {
 
             @Override
             public void onAdapterAboutToEmpty(int i) {
-
-
+                if(cards.isEmpty()){
+                    reset();
+                }
             }
 
             @Override
