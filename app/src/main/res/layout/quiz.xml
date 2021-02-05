@@ -366,7 +366,8 @@
             android:text="@string/klick_mich"
             android:textColor="@color/black"
             android:textSize="45sp"
-            app:iconPadding="8dp" />
+            app:iconPadding="8dp"
+            android:visibility="invisible"/>
 
         <TextView
             android:id="@+id/klickZaehler"
@@ -382,7 +383,8 @@
             android:text="@string/klicks_0"
             android:textAllCaps="true"
             android:textColor="@color/black"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:visibility="invisible"/>
 
         <TextView
             android:id="@+id/klickMax"
@@ -398,7 +400,8 @@
             android:text="Klicke 15x"
             android:textAllCaps="true"
             android:textColor="@color/black"
-            android:textSize="65sp" />
+            android:textSize="65sp"
+            android:visibility="invisible"/>
 
     </RelativeLayout>
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

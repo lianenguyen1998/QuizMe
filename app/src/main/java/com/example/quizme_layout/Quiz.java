@@ -170,6 +170,7 @@ public class Quiz extends AppCompatActivity {
         Random zufallszahl = new Random();
         //zahl zwischen 1 und 3
         zahl = 1 + zufallszahl.nextInt(3);
+        //return zahl;
         return zahl;
     }
 
@@ -184,6 +185,9 @@ public class Quiz extends AppCompatActivity {
         Minigame1_SwipeButtons minigame1 = new Minigame1_SwipeButtons(Quiz.this);
         minigame1.invisible();
 
+        //Minigame 2
+        Minigame2_SwipeCards minigame2 = new Minigame2_SwipeCards(Quiz.this, nextQuestion());
+
         //Minigame1 wurde ausgewählt
         if(zahl == 1){
             //es wird sichtbar
@@ -193,8 +197,10 @@ public class Quiz extends AppCompatActivity {
         }
         //Minigame2 wurde ausgewählt
         else if (zahl == 2) {
-            minigame2_swipeCardsGame();
-
+            minigame2.createCards();
+            if(nextQuestion()){
+                minigame2.reset();
+            }
         }
         //Minigame3 wurde ausgewählt
         else {
@@ -204,7 +210,7 @@ public class Quiz extends AppCompatActivity {
 
     private void minigame2_swipeCardsGame(){
 
-        Minigame2_SwipeCards cards = new Minigame2_SwipeCards(Quiz.this);
+        Minigame2_SwipeCards cards = new Minigame2_SwipeCards(Quiz.this, nextQuestion());
 
     }
 
@@ -357,7 +363,9 @@ public class Quiz extends AppCompatActivity {
             option4.setText(currentQuestion.getOption4());
 
             questionCounter++;
+
         }
+
     }
 
     private void saveQuestion(){
@@ -425,6 +433,9 @@ public class Quiz extends AppCompatActivity {
         return answered;
     }
 
+    private boolean nextQuestion(){
+        return this.checkAnswer(1, option1) || this.checkAnswer(2, option2) || this.checkAnswer(3, option3) || this.checkAnswer(4, option4);
+    }
     /**
      * Wenn ein Button mit der richtigen Antwort gedrückt wird, kommt man in das nächste Level,
      * also wird das Level hochgezählt
@@ -519,7 +530,7 @@ public class Quiz extends AppCompatActivity {
     /**
      * Popup zum nächsten Level
      */
-    private void createNextLevelDialog(){
+    public void createNextLevelDialog(){
 
         if(questionCounter < questionCountTotal) {
             mydialog.setContentView(R.layout.popupnextlevel);
@@ -557,14 +568,16 @@ public class Quiz extends AppCompatActivity {
                     }
                     startCountdown();
 
+
                     mydialog.dismiss();
                 }
             });
         }
 
         //show Popup
-        if(!isFinishing())
+        if(!isFinishing()) {
             mydialog.show();
+        }
     }
 
 
