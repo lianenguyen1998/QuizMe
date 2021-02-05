@@ -190,6 +190,7 @@ public class DatabaseFragenliste extends SQLiteOpenHelper {
         db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + QuestionsTable.TABLE_NAME, null);
 
+        //Mithilfe do-while-Schleife über alle Objekte in der Datenbank iterieren
         if (c.moveToFirst()) {
             do {
                 QuizMeModel fragen = new QuizMeModel();

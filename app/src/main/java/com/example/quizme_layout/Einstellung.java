@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
+/**
+ * Klasse für extra Einstellungen
+ */
 public class Einstellung extends AppCompatActivity {
 
     // Hintergrundmusik Variable
@@ -80,8 +83,6 @@ public class Einstellung extends AppCompatActivity {
                     }
             );
         }
-
-
 
     /**
      * Methode um den zurück-Button zu steuern

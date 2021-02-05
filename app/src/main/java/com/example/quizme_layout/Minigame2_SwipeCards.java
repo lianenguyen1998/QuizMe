@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 import java.util.ArrayList;
 
+/**
+ * Swipe Cards Minigame
+ */
 public class Minigame2_SwipeCards {
 
     Activity activity;
@@ -16,7 +19,6 @@ public class Minigame2_SwipeCards {
     ArrayAdapter<String> arrayAdapter;
     SwipeFlingAdapterView swipeAdapter;
     Boolean nextQuestion;
-
 
     public Minigame2_SwipeCards(Activity _activity, Boolean nextquestion)
     {
@@ -43,16 +45,23 @@ public class Minigame2_SwipeCards {
         cards.add("NOCH EINS");
     }
 
+    /**
+     * Zurücksetzen des Spiels
+     * @throws NullPointerException
+     */
     public void reset() throws NullPointerException{
         try {
                 swipeAdapter.removeAllViewsInLayout();
-                createCards();
+                //createCards();
 
         } catch (NullPointerException e){
             e.printStackTrace();
         }
     }
 
+    /**
+     * Spiel ausführen
+     */
     public void createCards(){
         //Karten hinzufügen
         add();
@@ -69,8 +78,6 @@ public class Minigame2_SwipeCards {
                 //Adapter bescheid geben
                 arrayAdapter.notifyDataSetChanged();
                 swipeAdapter.setVisibility(View.VISIBLE);
-
-
 
             }
 

@@ -5,7 +5,6 @@ package com.example.Datenbank;
  */
 public class HighscoreModel {
 
-
     public String username;
     public String userzeit;
     public int levelanzahl;
