@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Minigame3_pressTheButton {
+public class Minigame3_PressTheButton {
 
     // Variablen festlegen
    private Button klickMich_b;
@@ -20,7 +20,7 @@ public class Minigame3_pressTheButton {
      * Konstruktor, der die Views der Activity zuweist
      * @param activity Activity -> Quiz
      */
-    public Minigame3_pressTheButton(Activity activity){
+    public Minigame3_PressTheButton(Activity activity){
         klickMich_b = activity.findViewById(R.id.klickMich);
         klickZaehler_tv = activity.findViewById(R.id.klickZaehler);
         klickMax_tv = activity.findViewById(R.id.klickMax);
@@ -35,14 +35,20 @@ public class Minigame3_pressTheButton {
 
     public void clickMe() {
 
-        // onClick für die Klicks
+        /*
+         * onClickListener für die Klicks
+         */
         klickMich_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 klickAnzahl++;
 
-                // maximale Anzahl der Klicks festlegen -> max. 15
+                /*
+                 * maximale Anzahl der Klicks festlegen -> max. 15
+                 * Spieler kann 15x auf den Button klicken
+                 */
+
                 if (klickAnzahl == 15) {
 
                     // Button blockieren
@@ -108,7 +114,8 @@ public class Minigame3_pressTheButton {
         klickZaehler_tv.setVisibility(View.INVISIBLE);
         klickMax_tv.setVisibility(View.INVISIBLE);
     }
-}
+
+} // end class Minigame3_PressTheButton
 
 
 

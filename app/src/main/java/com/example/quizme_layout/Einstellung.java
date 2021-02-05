@@ -19,6 +19,7 @@ public class Einstellung extends AppCompatActivity {
     private static String MY_PREFS = "switch_prefs";
     private static String SWITCH_STATUS = "switch_status";
 
+    // Überprüfung des Switchs -> true/false
     boolean switch_status;
 
     // Zum Speichern des Switchs -> letzten Stand (an/aus)
@@ -46,6 +47,9 @@ public class Einstellung extends AppCompatActivity {
 
         musikSwitch.setChecked(switch_status);
 
+        /*
+         * onCheckedChangedListener für den Switch
+         */
         musikSwitch.setOnCheckedChangeListener(
                 new CompoundButton.OnCheckedChangeListener() {
 
@@ -56,7 +60,7 @@ public class Einstellung extends AppCompatActivity {
                             // Musik an
 //                            musik.startMusik();
 
-                            // Switch wird auf true gesetzt -> bleibt an
+                            // wenn Switch eingeschaltet wird -> wird Switch auf true gesetzt -> bleibt an
                             myEditor.putBoolean(SWITCH_STATUS, true);
                             myEditor.apply();
                             musikSwitch.setChecked(true);
@@ -66,7 +70,7 @@ public class Einstellung extends AppCompatActivity {
                             // Musik aus/pausieren
 //                            musik.pauseMusik();
 
-                            // Switch wird auf false gesetzt -> bleibt aus
+                            // wenn Switch ausgeschaltet wird -> wird Switch auf false gesetzt -> bleibt aus
                             myEditor.putBoolean(SWITCH_STATUS, false);
                             myEditor.apply();
                             musikSwitch.setChecked(false);
@@ -95,4 +99,4 @@ public class Einstellung extends AppCompatActivity {
 
     }
 
-}
+} // end class Einstellung
