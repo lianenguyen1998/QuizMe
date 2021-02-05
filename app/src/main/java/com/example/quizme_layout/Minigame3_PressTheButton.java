@@ -90,9 +90,9 @@ public class Minigame3_PressTheButton {
     // zurücksetzen und entblockieren der Views
     public void reset(){
 
-        klickMich_b=null;
-        klickMax_tv=null;
-        klickMax_tv=null;
+//        klickMich_b=0;
+//        klickMax_tv=null;
+//        klickMax_tv=null;
 
         // entblockieren
         klickMich_b.setEnabled(true);
