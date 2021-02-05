@@ -136,7 +136,7 @@ public class Quiz extends AppCompatActivity {
         textview_leben1 = findViewById(R.id.textview_leben1);
         textView_lebenAnzeige = findViewById(R.id.textview_LebenCount);
 
-        //Countdown
+        //Countdown Textviews
         textview_Countdown = findViewById(R.id.textview_Countdown);
         textView_Countdown_unten = findViewById(R.id.textview_Countdown_unten);
 
@@ -163,6 +163,8 @@ public class Quiz extends AppCompatActivity {
     /***
      * Eine Zufallszahl wird für die Auswahl des Minigames generiert
      * @return die zufallszahl zwischen 1 und 3
+     *
+     * Dadurch, dass das 3 Minigame nicht genutzt werden kann, ist die Zufallszahl 1 oder 2
      */
     private int zufallszahl()
     {
@@ -170,7 +172,7 @@ public class Quiz extends AppCompatActivity {
         //Zufallsobjekt
         Random zufallszahl = new Random();
         //zahl zwischen 1 und 3
-        zahl = 1 + zufallszahl.nextInt(3);
+        zahl = 1 + zufallszahl.nextInt(2);
         return zahl;
     }
 
@@ -562,6 +564,7 @@ public class Quiz extends AppCompatActivity {
                      option3.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.button_round));
                      option4.setBackground(ContextCompat.getDrawable(Quiz.this, R.drawable.button_round));
 
+                     //Countdown neu starten
                     if (countdownLaeuft) {
                         stoppCountdown();
                         restartCountdown();

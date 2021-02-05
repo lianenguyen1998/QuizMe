@@ -54,7 +54,7 @@ public class Musik {
         }
     }
     /**
-     * zum beenden der Hintergrundmusik
+     * zum Beenden der Hintergrundmusik
      */
     public void endMusik(){
         try {
@@ -65,9 +65,9 @@ public class Musik {
     }
 
     /***
-     * zum pausieren der Musik
+     * zum Pausieren der Musik
      */
-    public void pauseMusik(){
+    private void pauseMusik(){
         try {
             this.musik.pause();
         } catch(IllegalStateException e){

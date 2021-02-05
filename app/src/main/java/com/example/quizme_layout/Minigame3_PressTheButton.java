@@ -15,7 +15,7 @@ public class Minigame3_PressTheButton {
     // Klickanzahl wird auf 0 gesetzt -> Anfangsstatus
     int klickAnzahl = 0;
 
-    /**
+    /***
      * Konstruktor, der die Views der Activity zuweist
      * @param activity Activity -> Quiz
      */
@@ -69,7 +69,7 @@ public class Minigame3_PressTheButton {
 
     }
 
-    /*
+    /**
      * hier wird überprüft, ob alle Buttons sich im richtigen Zustand befinden
      * Wenn ja, werden die Buttons unsichtbar, damit der Hinweis gelesen werden kann
      */
@@ -100,20 +100,23 @@ public class Minigame3_PressTheButton {
 
     }
 
-    // Views werden sichtbar
+    /**
+     * Views werden sichtbar
+     */
     public void visible(){
         klickMich_b.setVisibility(View.VISIBLE);
         klickZaehler_tv.setVisibility(View.VISIBLE);
         klickMax_tv.setVisibility(View.VISIBLE);
     }
 
-    // Views werden unsichtbar
+    /**
+     * Views werden unsichtbar
+     */
     public void invisible(){
         klickMich_b.setVisibility(View.INVISIBLE);
         klickZaehler_tv.setVisibility(View.INVISIBLE);
         klickMax_tv.setVisibility(View.INVISIBLE);
     }
-
 } // end class Minigame3_PressTheButton
 
 

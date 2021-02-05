@@ -98,7 +98,7 @@ public class Startseite extends AppCompatActivity {
                 buttonSound.starteButtonsound();
                 openInfotext();
                 musik.endMusik();
-                    //openBackgroundTest();
+
             }
         });
 
@@ -108,7 +108,6 @@ public class Startseite extends AppCompatActivity {
                 buttonSound.starteButtonsound();
                 openEinstellung();
                 musik.endMusik();
-                //openBackgroundTest();
             }
         });
     }
