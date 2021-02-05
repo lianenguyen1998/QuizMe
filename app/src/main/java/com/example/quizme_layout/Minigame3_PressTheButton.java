@@ -15,7 +15,6 @@ public class Minigame3_PressTheButton {
     // Klickanzahl wird auf 0 gesetzt -> Anfangsstatus
     int klickAnzahl = 0;
 
-
     /**
      * Konstruktor, der die Views der Activity zuweist
      * @param activity Activity -> Quiz

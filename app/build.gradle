@@ -39,4 +39,5 @@ dependencies {
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
     implementation 'com.lorentzos.swipecards:library:1.0.9@aar'
     implementation'com.ebanx:swipe-button:0.8.3'
+
 }

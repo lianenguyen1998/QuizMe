@@ -11,6 +11,9 @@ import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter;
 import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter;
 import com.example.Datenbank.HighscoreTableHelper;
 
+/**
+ * Gibt eine Highscoreliste aller Spieler aus
+ */
 public class Highscoreliste extends AppCompatActivity {
 
     // ---- StartseiteButton

@@ -185,8 +185,8 @@ public class Quiz extends AppCompatActivity {
         Minigame1_SwipeButtons minigame1 = new Minigame1_SwipeButtons(Quiz.this);
         minigame1.invisible();
 
-//        Minigame3_pressTheButton minigame3 = new Minigame3_pressTheButton(Quiz.this);
-//        minigame3.invisible();
+        //Minigame 2
+        Minigame2_SwipeCards minigame2 = new Minigame2_SwipeCards(Quiz.this, nextQuestion());
 
         //Minigame1 wurde ausgewählt
         if(zahl == 1){
@@ -197,7 +197,13 @@ public class Quiz extends AppCompatActivity {
         }
         //Minigame2 wurde ausgewählt
         else if (zahl == 2) {
-            minigame2_swipeCardsGame();
+            //Spiel wird ausgegeben
+            minigame2.createCards();
+            //wenn der richtige Button gedrückt wurde
+            if(nextQuestion()){
+                //Spiel soll sich resetten (funktioniert nicht richtig)
+                minigame2.reset();
+            }
         }
         //Minigame3 wurde ausgewählt
         else {
@@ -208,13 +214,6 @@ public class Quiz extends AppCompatActivity {
 //            minigame3.clickMe();
         }
     }
-
-    private void minigame2_swipeCardsGame(){
-
-        Minigame2_SwipeCards cards = new Minigame2_SwipeCards(Quiz.this);
-
-    }
-
 
     /**
      * Methode um den zurück-Button zu steuern
@@ -231,10 +230,18 @@ public class Quiz extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Zeit des aktuellen Spieler übergeben
+     * @return Chronometer im String-Format
+     */
     public String getStringTime(){
         return chronometer.getText().toString();
     }
 
+    /**
+     * Level des aktuellen Spielers übergeben
+     * @return aktuelle Levelanzahl
+     */
     public int getLevelCount(){
         return this.level_count;
     }
@@ -311,6 +318,7 @@ public class Quiz extends AppCompatActivity {
 
             switch (v.getId()){
                 case R.id.choice1:
+                    //Überprüfen ob der gedrückte Button richtig oder falsch ist
                     checkAnswer(1,option1);
                     break;
                 case R.id.choice2:
@@ -328,7 +336,9 @@ public class Quiz extends AppCompatActivity {
         }
     };
 
-
+    /**
+     * zur nächsten Frage übergehen
+     */
     private void showNextQuestion() {
 
         saveQuestion();
@@ -348,6 +358,9 @@ public class Quiz extends AppCompatActivity {
         }
     }
 
+    /**
+     * gesehene Fragen speichern und nicht wieder ausgeben
+     */
     private void saveQuestion(){
 
         //genutze Frage in Liste speichern
@@ -358,6 +371,7 @@ public class Quiz extends AppCompatActivity {
 
         if(questionCounter < questionCountTotal) {
             if (currentQuestion != null) {
+                //Wenn Frage schon gesehen wurde -> überspringen
                 if (seenQuestions.equals(currentQuestion.getFragen())) {
                     fragenliste.iterator().next();
                 }
@@ -372,9 +386,10 @@ public class Quiz extends AppCompatActivity {
      * @return Bei falsch wird der Button rot, Bei richtig wird er grün
      */
     private boolean checkAnswer(int buttoncount, Button btnAnswer){
-            //////////////////
+
             boolean answered = false;
-            ///////////////////////////
+
+            //Wenn Button gedrückt wurde
             if (btnAnswer.isPressed()) {
 
                 if(currentQuestion != null) {
@@ -391,6 +406,7 @@ public class Quiz extends AppCompatActivity {
                         option3.setEnabled(false);
                         option4.setEnabled(false);
 
+                        //Countdown wird gestoppt
                         stoppCountdown();
 
                         // -> nachste Frage Pop Up -> next level
@@ -413,6 +429,13 @@ public class Quiz extends AppCompatActivity {
         return answered;
     }
 
+    /**
+     * Überprüfen ob der gedrückte Button richtig ist und zum nächsten Level führt
+     * @return richtig oder falsch
+     */
+    private boolean nextQuestion(){
+        return this.checkAnswer(1, option1) || this.checkAnswer(2, option2) || this.checkAnswer(3, option3) || this.checkAnswer(4, option4);
+    }
     /**
      * Wenn ein Button mit der richtigen Antwort gedrückt wird, kommt man in das nächste Level,
      * also wird das Level hochgezählt
@@ -575,6 +598,9 @@ public class Quiz extends AppCompatActivity {
         });
     }
 
+    /**
+     * Popup, dass erscheint, wenn man verloren hat
+     */
     private void popUpVerloren(){
 
         dialogLost.setContentView(R.layout.popuplost);
@@ -605,6 +631,7 @@ public class Quiz extends AppCompatActivity {
      */
     public void dismissWithTryCatch(Dialog dialog) {
         try {
+            //Dialog schließen, gegebenfalls Exceptions fangen
             dialog.dismiss();
         } catch (final IllegalArgumentException e) {
             // Do nothing.
@@ -615,6 +642,9 @@ public class Quiz extends AppCompatActivity {
         }
     }
 
+    /**
+     * Popup erscheint, wenn man gewonnen hat
+     */
     private void popUpGewonnen(){
 
         dialogWin.setContentView(R.layout.popup_gewonnen);
@@ -640,6 +670,10 @@ public class Quiz extends AppCompatActivity {
             dialogWin.show();
     }
 
+    /**
+     * Popup erscheint, nach dem Gewinnen oder Verloren Popup,
+     * um seinen Namen in die Highscoreliste einzutragen
+     */
     private void popupInsertName(){
         AlertDialog.Builder insertUsername = new AlertDialog.Builder(this, R.style.AlertDialog);
         insertUsername.setTitle("Bitte Name eingeben");
@@ -668,17 +702,20 @@ public class Quiz extends AppCompatActivity {
 
                         //Zur Highscoreseite
                         zurHighscoreliste();
+                        //Musik stoppen
                         musik.endMusik();
 
                     } else {
+                        //Spieler kann sehen, dass beim Einfügen etwas schief gelaufen ist
                         Toast.makeText(getApplicationContext(),"Vorgang abgebrochen", Toast.LENGTH_SHORT).show();
                         dialog.cancel();
-
                     }
 
 
                 } catch (Exception e){
+                    //Default Model, wenn ein Error auftritt
                     model = new HighscoreModel("Error", "Error", 0);
+                    //Spieler kann sehen, dass beim Einfügen etwas schief gelaufen ist
                     Toast.makeText(Quiz.this, model.toString(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }

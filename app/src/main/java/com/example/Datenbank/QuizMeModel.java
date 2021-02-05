@@ -1,7 +1,7 @@
 package com.example.Datenbank;
 
 /**
- * Modellklasse für Fragen mit Antworten und Hinweisen
+ * Modelklasse für Fragen mit Antworten und Hinweisen
  */
 public class QuizMeModel {
     public String fragen;
